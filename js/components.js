@@ -26,6 +26,9 @@ class FeynmanHeader extends HTMLElement {
           font-weight: 700;
           color: #1f77b4;
         }
+        section a {
+            text-decoration: none;
+        }
         nav a {
           margin-left: 1.5rem;
           text-decoration: none;
@@ -42,12 +45,12 @@ class FeynmanHeader extends HTMLElement {
       </style>
       <header>
         <section>
-          <h1>Feynman Interactive</h1>
+          <a href="/index.html"><h1>Feynman Interactive</h1></a>
         </section>
         <nav>
-          <a href="./../index.html"><strong>Home</strong></a>
-          <a href="./../about.html"><strong>About</strong></a>
-          <a href="./../contact.html"><strong>Contact</strong></a>
+          <a href="/index.html"><strong>Home</strong></a>
+          <a href="/about.html"><strong>About</strong></a>
+          <a href="/contact.html"><strong>Contact</strong></a>
           <a href="https://github.com/blaszlofy/feynman-interactive" target="_blank" rel="noopener noreferrer">
             <strong>GitHub</strong>
           </a>

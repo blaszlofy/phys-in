@@ -1,0 +1,144 @@
+.diagramatics-slider-container{
+    display: flex;
+}
+.diagramatics-slider-leftcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.diagramatics-slider-rightcontainer{
+    /* display: inline-block; */
+    padding-left: 10px;
+}
+
+.diagramatics-slider-playbutton {
+    width:  30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #1f77b4;
+    border: none;
+    color: white;
+    padding: 0 0px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+}
+.diagramatics-slider-playbutton>div{
+    margin: auto;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent transparent white;
+    border-style: solid;
+    border-width: 0.45em 0 0.45em 0.8em;
+    translate: 0.1em 0;
+    transition: 100ms all ease;
+}
+.diagramatics-slider-playbutton.paused>div{
+    height: 0.6em;
+    border-style: double;
+    border-width: 0 0 0 0.8em;
+    translate: 0 0;
+}
+.diagramatics-slider-playbutton:hover {
+    background-color: #1f77b450;
+}
+
+.diagramatics-label {
+    font-family: 'Latin Modern Math', sans-serif;
+    margin-bottom: 5px;
+}
+
+.diagramatics-slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    /* width: 100%; /* Full-width */
+
+    /* creating a custom design */
+    width: 200px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 15px;
+
+    /* New additions */
+    height: 5px;
+    margin-bottom: 12.5px;
+    background: #ccc;
+    /* background: linear-gradient(to right, #1f77b4 0%, #1f77b4 90%, #0000 90%, #0000 100%); */
+    /* create a backround color that has padding of 5px on both side */
+    /* background: linear-gradient(to right,#0000 0px, $0000 5px, #1f77b4 5px, #1f77b4 90%, #0000 90%, #0000 100%); */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.diagramatics-slider::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background-color:#1f77b4;
+    /* clip-path:circle(50% at 50% 50%); */
+    background-clip:padding-box;
+    padding:5px;
+    border:10px solid #1f77b450;
+}
+/* Thumb: Firefox */
+.diagramatics-slider::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    background-color: #1f77b4;
+    border-radius: 50%;
+    border: none;
+}
+
+
+/*--------------------------- Locator ---------------*/
+@keyframes blink-locator {
+    from {fill-opacity: 0.8;}
+    to {fill-opacity: 0.3137;}
+}
+.diagramatics-locator-blink{
+    animation: blink-locator 0.5s infinite alternate;
+}
+
+/*---------------------- Drag and Drop --------------*/
+.diagramatics-dnd-draggable:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+.diagramatics-dnd-container:hover{
+    opacity: 0.5;
+}
+
+.diagramatics-dnd-draggable:focus {
+    outline: none;
+}
+.diagramatics-dnd-container:focus{
+    outline: none;
+}
+
+.diagramatics-dnd-container.hovered{
+    opacity: 0.5;
+}
+.diagramatics-dnd-draggable.hovered{
+    opacity: 0.5;
+}
+.diagramatics-dnd-draggable.picked > :not(.diagramatics-focusrect){
+    opacity: 0.5 !important;
+}
+
+/*---------------------- a11y --------------*/
+.diagramatics-focusable-no-outline {
+    outline: none;
+}
+.diagramatics-focusrect {
+    visibility: hidden;
+}
+:focus > .diagramatics-focusrect {
+    visibility: visible;
+}
