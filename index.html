@@ -5,6 +5,7 @@
   <title>Feynman Interactive</title>
   <link rel="icon" type="image/x-icon" href="/favicon.svg">
   <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/mainmenu.css">
   <script src="/js/components.js" defer></script>
 </head>
 <body>
@@ -12,7 +13,33 @@
   <feynman-header></feynman-header>
 
   <main>
-    <a href="/volume1/chapter4/pendulum/index.html">Pendulum</a>
+    <details open class="volume-dropdown">
+
+      <summary>Volume I: Mainly Mechanics, Radiation, and Heat</summary>
+
+      <details class="chapter-dropdown">
+        <summary>Chapter 4: Conservation of Energy</summary>
+        <ul class="page-list">
+          <li><a href="/volume1/chapter4/virtualwork.html">Principle of Virtual Work</a></li>
+          <li><a href="/volume1/chapter4/pendulum.html">The Pendulum</a></li>
+        </ul>
+      </details>
+
+    </details>
+
+    <details open class="volume-dropdown">
+      <summary>Volume II: Mainly Electromagnetism and Matter</summary>
+
+      <div class="volume-content">
+        <details class="chapter-dropdown">
+          <summary>Chapter 4: Conservation of Energy</summary>
+          <ul class="page-list">
+            <li><a href="/volume1/chapter4/virtualwork.html">Principle of Virtual Work</a></li>
+            <li><a href="/volume1/chapter4/pendulum.html">The Pendulum</a></li>
+          </ul>
+        </details>
+      </div>
+    </details>
   </main>
 
   <feynman-footer></feynman-footer>

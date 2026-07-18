@@ -1,0 +1,80 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    justify-content: center;
+    padding: 3rem 2rem;
+}
+
+.volume-dropdown {
+    flex: 1 1 450px;
+    max-width: 550px;
+    height: fit-content;
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::before {
+    content: "›";
+    display: inline-block;
+    margin-right: 0.8rem;
+    font-size: 1.6rem;
+    color: #1f77b4;
+    transition: transform 0.2s ease;
+    line-height: 1;
+}
+
+details[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+.volume-dropdown > summary {
+    font-size: 1.2rem;
+}
+
+.chapter-dropdown {
+    margin-left: 1.5rem;
+}
+
+.chapter-dropdown > summary {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #4a5568;
+}
+
+.chapter-dropdown > summary::before {
+    font-size: 1.4rem;
+    margin-right: 0.6rem;
+}
+
+.page-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-left: 2.5rem;
+}
+
+.page-list li {
+    margin: 0.6rem 0;
+}
+
+.page-list a {
+    text-decoration: none;
+    color: #1f77b4;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.page-list a:hover {
+    color: #62a4f8;
+}

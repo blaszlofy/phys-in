@@ -1,3 +1,8 @@
+const page_order = [
+    {title: "Principle of Virtual Work", url: "/volume1/chapter4/virtualwork.html"},
+    {title: "Pendulum", url: "/volume1/chapter4/pendulum.html"},
+];
+
 class FeynmanHeader extends HTMLElement {
     constructor() {
         super();
@@ -90,5 +95,38 @@ class FeynmanFooter extends HTMLElement {
     }
 }
 
+class FeynmanNav extends HTMLElement {
+    connectedCallback() {
+        const currentIndex = page_order.findIndex(page => page.url === window.location.pathname);
+        if (currentIndex === -1) return;
+
+        let html = `
+        <style>
+            .nav-arrow { 
+                position: fixed; top: 50%; transform: translateY(-50%); 
+                font-size: 6rem; color: #c7c7c7; text-decoration: none; 
+                padding: 1rem; z-index: 100; user-select: none; transition: color 0.2s;
+            }
+            .nav-arrow:hover { color: #1f77b4; }
+            .nav-prev { left: 1rem; }
+            .nav-next { right: 1rem; }
+            @media (max-width: 1400px) { .nav-arrow { display: none; } }
+        </style>`;
+
+        if (currentIndex > 0) {
+            const prev = page_order[currentIndex - 1];
+            html += `<a href="${prev.url}" class="nav-arrow nav-prev" title="${prev.title}">‹</a>`;
+        }
+
+        if (currentIndex < page_order.length - 1) {
+            const next = page_order[currentIndex + 1];
+            html += `<a href="${next.url}" class="nav-arrow nav-next" title="${next.title}">›</a>`;
+        }
+
+        this.innerHTML = html;
+    }
+}
+
+customElements.define('feynman-nav', FeynmanNav);
 customElements.define('feynman-header', FeynmanHeader);
 customElements.define('feynman-footer', FeynmanFooter);

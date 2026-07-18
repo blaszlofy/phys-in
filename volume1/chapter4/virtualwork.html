@@ -8,18 +8,20 @@
     <script src="/js/components.js" defer></script>
 
     <link href="/css/diagramatics.css" rel="stylesheet">
-    <script src="./sim.js" type="module"></script>
+    <script src="virtualwork.js" type="module"></script>
 </head>
 <body>
 
-    <feynman-header></feynman-header>
+<feynman-header></feynman-header>
 
-    <main>
-        <svg style="width: calc(1200px - 4rem); height: calc((1200px - 4rem)*9/16)" id="canvas"></svg>
-        <div id="control" style="display: flex; gap: 50px; flex-flow: wrap; justify-content: space-between"></div>
-    </main>
+<feynman-nav></feynman-nav>
 
-    <feynman-footer></feynman-footer>
+<main>
+    <svg style="width: calc(1200px - 4rem); height: calc((1200px - 4rem)*9/16)" id="canvas"></svg>
+    <div id="control"></div>
+</main>
+
+<feynman-footer></feynman-footer>
 
 </body>
 </html>

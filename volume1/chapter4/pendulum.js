@@ -12,7 +12,7 @@ import {
     plotv,
     axes_transform,
     square,
-    arrow1, text, distribute_horizontal_and_align, distribute_vertical_and_align, align_horizontal, align_vertical
+    arrow1, text, distribute_horizontal_and_align, distribute_vertical_and_align, align_vertical
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
