@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Binomial Distribution - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="binomial.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div style="position: relative; width: calc(1200px - 4rem); height: calc((1200px - 4rem)*9/16);">
+        <svg id="canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></svg>
+        <svg id="tex" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+    </div>
+    <div id="control" style="display: flex; gap: 50px; flex-flow: wrap; justify-content: flex-start"></div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

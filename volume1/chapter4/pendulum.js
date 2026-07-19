@@ -54,7 +54,7 @@ let axes_opt = {
     headsize: 0.1,
     n_sample: 200
 }
-let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20)
+let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
 let time = text("t (s)").fontfamily("Math").fontsize(20).position(V2(7.4, -4.45))
 let energy = text("E").fontfamily("Math").fontsize(20).position(V2(-8,  -2))
 
