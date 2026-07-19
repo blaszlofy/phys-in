@@ -130,19 +130,19 @@ int.draw_function = (inp) => {
 }
 
 function timeFormat(name, value) {
-    return (name + " = " + value + " s");
+    return (name + " = " + value.toFixed(2) + " s");
 }
 
 function accFormat(name, value) {
-    return (name + " = " + value + " m/s²");
+    return (name + " = " + value.toFixed(2) + " m/s²");
 }
 
 function distFormat(name, value) {
-    return (name + " = " + value + " m");
+    return (name + " = " + value.toFixed(2) + " m");
 }
 
 function massFormat(name, value) {
-    return (name + " = " + value + " kg");
+    return (name + " = " + value.toFixed(2) + " kg");
 }
 
 int.slider("t", 0, period * 4, 0, 0.01, period * 4, timeFormat);

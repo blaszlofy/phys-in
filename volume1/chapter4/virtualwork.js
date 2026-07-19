@@ -1,3 +1,7 @@
+/*
+####### ------- THIS CODE IS TERRIBLE. BE WARNED -------- ##########
+ */
+
 import {
     rectangle,
     draw_to_svg,
