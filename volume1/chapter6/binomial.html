@@ -18,11 +18,17 @@
 <feynman-nav></feynman-nav>
 
 <main>
-    <div style="position: relative; width: calc(1200px - 4rem); height: calc((1200px - 4rem)*9/16);">
-        <svg id="canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></svg>
-        <svg id="tex" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+    <svg id="canvas" style="width: calc(1200px - 4rem); height: calc((1200px - 4rem)*9/16);"></svg>
+    <div id="control" style="display: flex; gap: 50px; flex-flow: wrap; justify-content: flex-start">
+        <button id="reroll" style="background-color: #e5e5e5; color: #111; border: none; border-radius: 6px; padding: 8px 24px; font-family: 'Cantarell', sans-serif; cursor: pointer; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#d1d1d1'" onmouseout="this.style.backgroundColor='#e5e5e5'">
+            Reroll
+        </button>
     </div>
-    <div id="control" style="display: flex; gap: 50px; flex-flow: wrap; justify-content: flex-start"></div>
+    <section style="padding-top: 20px">
+        <p><strong>n</strong> - The total number of times the stack of c coins is flipped (n = 10<sup>log<sub>10</sub>(n)</sup>). For example, if log<sub>10</sub>(n) = 3, the simulation runs 1,000 trials.</p>
+        <p><strong>c</strong> - The number of coins flipped together in one single trial.</p>
+    </section>
+    <p style="padding-top: 20px">This simulation demonstrates how random coin flips behave at scale. A single "trial" consists of flipping a stack of coins and counting how many land on heads. The bar chart records the results of many trials, showing how often each specific number of heads occurred. As you increase the total number of trials, the shape of the bar chart smoothly approaches the theoretical binomial distribution, represented by the bell curve.</p>
 </main>
 
 <feynman-footer></feynman-footer>
