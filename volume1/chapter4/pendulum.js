@@ -31,8 +31,8 @@ let divider1 = line(V2(-8, -1.5), V2(8, -1.5))
 let divider2 = line(V2(3, -1.5), V2(3, 4.5))
 let divider3 = line(V2(3, 2.5), V2(8, 2.5))
 
-let pot_square = square(0.3).fill("blue")
-let kin_square = square(0.3).fill("red")
+let pot_square = square(0.3).fill("blue").strokewidth(0)
+let kin_square = square(0.3).fill("red").strokewidth(0)
 let pot_text = text("P.E. - potential energy").fontfamily("Math").fontsize(20)
 let kin_text = text("K.E. - kinetic energy").fontfamily("Math").fontsize(20)
 
@@ -84,7 +84,7 @@ int.draw_function = (inp) => {
 
     let path = arc(l, 0.6).position(sus_point).rotate(-Math.PI/2 - 0.3).strokedasharray([10]);
     let rope = line(sus_point, pend_pos);
-    let ball = circle(0.1 * Math.cbrt(m)).position(pend_pos).fill("lightblue");
+    let ball = circle(0.15 * Math.cbrt(m)).position(pend_pos).fill("lightblue").strokewidth(0)
 
     let end_point = sus_point.sub(pend_pos).normalize().rotate(Math.PI / 2).scale(omega * theta_0 * l * Math.sin(omega * t))
     let vel_vector = arrow1(pend_pos, pend_pos.add(end_point), 0.1).fill("lightred").stroke("lightred").strokewidth(2)
@@ -108,7 +108,7 @@ int.draw_function = (inp) => {
     //ENERGY BAR
     let pot_energy_bar = rectangle(3, 1).position(V2(5.5, 0)).strokewidth(0).fill("blue")
     let kin_energy_bar = rectangle(3 * Math.pow(Math.sin(omega * t), 2), 1).position(V2(4 + Math.pow(Math.sin(omega * t), 2) * 1.5, 0)).strokewidth(0).fill("red")
-    let bar_outline = rectangle(3, 1).position(V2(5.5, 0))
+    let bar_outline = rectangle(3, 1).position(V2(5.5, 0)).strokewidth(0)
     let bar = diagram_combine(pot_energy_bar, kin_energy_bar, bar_outline)
 
     //ENERGY VALUES
@@ -117,8 +117,8 @@ int.draw_function = (inp) => {
     let total_text = text(max_energy.toFixed(2).toString()).fontfamily("Math").fontsize(20).translate(V2(2.65, 0))
     let plus = text("+").fontfamily("Math").fontsize(20).translate(V2(0.4, 0)).translate(V2(0.5, 0))
     let equal = text("=").fontfamily("Math").fontsize(20).translate(V2(2.2,0))
-    let pot_square2 = square(0.3).fill("blue")
-    let kin_square2 = square(0.3).fill("red")
+    let pot_square2 = square(0.3).fill("blue").strokewidth(0)
+    let kin_square2 = square(0.3).fill("red").strokewidth(0)
     let energy_values = align_vertical([
         distribute_horizontal_and_align([kin_square2, kin_text], 0.35, "center"),
         plus,
@@ -129,9 +129,25 @@ int.draw_function = (inp) => {
     draw(setup, pot_energy_plot, kin_energy_plot, total_energy_plot, axes, time, energy, timeline, path, vel_vector, rope, ball, suspension, bar, legend, energy_values);
 }
 
-int.slider("t", 0, period * 4, 0, 0.01, period * 4);
-int.slider("g", 5, 12, 9.81, 0.1, 0);
-int.slider("l", 1, 5, 4, 0.1, 0);
-int.slider("m", 1, 5, 2, 0.1, 0);
+function timeFormat(name, value) {
+    return (name + " = " + value + " s");
+}
+
+function accFormat(name, value) {
+    return (name + " = " + value + " m/s²");
+}
+
+function distFormat(name, value) {
+    return (name + " = " + value + " m");
+}
+
+function massFormat(name, value) {
+    return (name + " = " + value + " kg");
+}
+
+int.slider("t", 0, period * 4, 0, 0.01, period * 4, timeFormat);
+int.slider("g", 5, 12, 9.81, 0.1, 10, accFormat);
+int.slider("l", 1, 5, 4, 0.1, 10, distFormat);
+int.slider("m", 1, 5, 2, 0.1, 10, massFormat);
 
 int.draw()

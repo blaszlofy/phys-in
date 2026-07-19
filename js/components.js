@@ -1,6 +1,7 @@
 const page_order = [
     {title: "Principle of Virtual Work", url: "/volume1/chapter4/virtualwork.html"},
-    {title: "Pendulum", url: "/volume1/chapter4/pendulum.html"},
+    {title: "Pendulum Energy Conservation", url: "/volume1/chapter4/pendulum.html"},
+    {title: "Galileo's Ramp", url: "/volume1/chapter5/galileo.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {

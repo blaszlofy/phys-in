@@ -1,0 +1,18 @@
+diff --git a/node_modules/diagramatics/dist/diagramatics.js b/node_modules/diagramatics/dist/diagramatics.js
+index 3c6599a..aaa1b1b 100644
+--- a/node_modules/diagramatics/dist/diagramatics.js
++++ b/node_modules/diagramatics/dist/diagramatics.js
+@@ -4672,12 +4672,12 @@ class LocatorHandler {
+         let coord = getMousePosition(evt, this.control_svg);
+         const s = this.global_scale_factor;
+         let pos = V2(coord.x / s, coord.y / s).add(this.mouseOffset);
+-        this.element_pos[this.selectedVariable] = pos;
+         // check if setter for this.selectedVariable exists
+         // if it does, call it
+         if (this.setter[this.selectedVariable] != undefined) {
+             pos = this.setter[this.selectedVariable](pos);
+         }
++        this.element_pos[this.selectedVariable] = pos;
+         // check if callback for this.selectedVariable exists
+         // if it does, call it
+         if (this.selectedVariable == null)
