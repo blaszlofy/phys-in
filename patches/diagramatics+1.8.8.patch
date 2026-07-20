@@ -1,8 +1,58 @@
+diff --git a/node_modules/diagramatics/dist/diagramatics.d.ts b/node_modules/diagramatics/dist/diagramatics.d.ts
+index d06c01b..1e5096e 100644
+--- a/node_modules/diagramatics/dist/diagramatics.d.ts
++++ b/node_modules/diagramatics/dist/diagramatics.d.ts
+@@ -868,7 +868,8 @@ declare class Interactive {
+      * @param color color of the locator
+      * @param track_diagram if provided, the locator will snap to the closest point on the diagram
+      */
+-    locator(variable_name: string, value: Vector2, radius: number, color?: string, track_diagram?: Diagram, blink?: boolean, callback?: (locator_name: string, position: Vector2) => any): void;
++    locator(variable_name: string, value: Vector2, radius: number, color?: string, track_diagram?: Diagram, blink?: boolean, callback?: (locator_name: string, position: Vector2) => any,
++            limit_bounds?: { type: 'circle', center: Vector2, radius: number } | { type: 'rect', min: Vector2, max: Vector2 }): void;
+     /**
+      * Create a locator with custom diagram object
+      * @param variable_name name of the variable
 diff --git a/node_modules/diagramatics/dist/diagramatics.js b/node_modules/diagramatics/dist/diagramatics.js
-index 3c6599a..aaa1b1b 100644
+index 3c6599a..e04cf4a 100644
 --- a/node_modules/diagramatics/dist/diagramatics.js
 +++ b/node_modules/diagramatics/dist/diagramatics.js
-@@ -4672,12 +4672,12 @@ class LocatorHandler {
+@@ -3974,7 +3974,7 @@ class Interactive {
+      * @param color color of the locator
+      * @param track_diagram if provided, the locator will snap to the closest point on the diagram
+      */
+-    locator(variable_name, value, radius, color = 'blue', track_diagram, blink = true, callback) {
++    locator(variable_name, value, radius, color = 'blue', track_diagram, blink = true, callback, limit_bounds) {
+         if (this.diagram_outer_svg == undefined)
+             throw Error("diagram_outer_svg in Interactive class is undefined");
+         this.inp_variables[variable_name] = value;
+@@ -4030,6 +4030,26 @@ class Interactive {
+                 return coord;
+             };
+         }
++        else if (limit_bounds) {
++            setter = (pos) => {
++                let p = pos;
++                if (limit_bounds.type === 'circle') {
++                    let offset = pos.sub(limit_bounds.center);
++                    let dist = offset.length();
++                    if (dist > limit_bounds.radius && dist > 0) {
++                        p = limit_bounds.center.add(offset.scale(limit_bounds.radius / dist));
++                    }
++                } else if (limit_bounds.type === 'rect') {
++                    p = V2(
++                        Math.max(limit_bounds.min.x, Math.min(limit_bounds.max.x, pos.x)),
++                        Math.max(limit_bounds.min.y, Math.min(limit_bounds.max.y, pos.y))
++                    );
++                }
++                const s = this.global_scale_factor;
++                locator_svg.setAttribute("transform", `translate(${p.x * s},${-p.y * s})`);
++                return p;
++            };
++        }
+         else {
+             setter = (pos) => {
+                 const s = this.global_scale_factor;
+@@ -4672,12 +4692,12 @@ class LocatorHandler {
          let coord = getMousePosition(evt, this.control_svg);
          const s = this.global_scale_factor;
          let pos = V2(coord.x / s, coord.y / s).add(this.mouseOffset);
