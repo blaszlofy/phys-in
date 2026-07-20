@@ -164,4 +164,5 @@ int.slider("M", 10, 100, 60, 10, 10, massFormat)
 int.slider("m", 10, 50, 30, 10, 10, massFormat)
 
 int.draw()
+int.draw()
 int.locator_initial_draw()

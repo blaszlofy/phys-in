@@ -30,3 +30,76 @@ main {
     margin: 0 auto;
     width: 100%;
 }
+
+
+/*SIMULATION PAGE*/
+.sim-container {
+    position: relative;
+    width: calc(1200px - 4rem);
+    height: calc((1200px - 4rem) * 9 / 16);
+}
+
+.sim-canvas, .sim-tex-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sim-tex-overlay {
+    pointer-events: none;
+}
+
+.control-panel {
+    padding-top: 40px;
+    display: flex;
+    gap: 50px;
+    flex-flow: wrap;
+    justify-content: flex-start;
+}
+
+.control-btn {
+    background-color: #e5e5e5;
+    color: #111;
+    border: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    margin-bottom: -6px;
+    padding: 8px 24px;
+    font-family: 'Cantarell', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.control-btn:hover {
+    background-color: #d1d1d1;
+}
+
+.info-container {
+    padding-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.feynman-ref-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    background-color: #e51d38;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: bold;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.feynman-ref-link:hover {
+    background-color: #ea2540;
+    transform: scale(1.05);
+}

@@ -18,11 +18,26 @@
 <feynman-nav></feynman-nav>
 
 <main>
-    <div style="position: relative; width: calc(1200px - 4rem); height: calc((1200px - 4rem)*9/16);">
-        <svg id="canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></svg>
-        <svg id="tex" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
     </div>
-    <div id="control" style="display: flex; gap: 50px; flex-flow: wrap; justify-content: flex-start"></div>
+
+    <div id="control" class="control-panel">
+        <button id="generate" class="control-btn">
+            button
+        </button>
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p>variable description</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
 </main>
 
 <feynman-footer></feynman-footer>

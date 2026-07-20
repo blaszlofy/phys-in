@@ -150,3 +150,4 @@ int.slider("θ", 30, 45, 30, 1, 10, angleFormat)
 int.slider("m", 10, 100, 50, 1, 10, massFormat)
 
 int.draw()
+int.draw()

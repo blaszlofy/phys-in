@@ -39,3 +39,4 @@ int.draw_function = (inp) => {
 }
 
 int.draw()
+int.draw()

@@ -103,9 +103,14 @@ int.draw_function = (inp) => {
     draw(outline, dataplot, axes, binom_plot)
 }
 
-int.slider("log(n)", 1, 5, 2, 1, 10)
-int.slider("c", 10, 100, 30, 1, 10)
+function format(name, value) {
+    return (name + " = " + value);
+}
 
+int.slider("log(n)", 1, 5, 2, 1, 10, format)
+int.slider("c", 10, 100, 30, 1, 10, format)
+
+int.draw()
 int.draw()
 
 let btn = document.getElementById("reroll");

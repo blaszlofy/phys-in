@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Random Walk - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="random.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+        <button id="generate" class="control-btn">
+            Generate a new path
+        </button>
+        <button id="regenerate" class="control-btn">
+            Regenerate all paths
+        </button>
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>n</strong> - The total number of random steps taken in a single path.</p>
+            <p><strong>p</strong> - The number of independent paths generated.</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_06.html#Ch6-S3" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

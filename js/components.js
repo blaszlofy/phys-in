@@ -3,6 +3,7 @@ const page_order = [
     {title: "Pendulum Energy Conservation", url: "/volume1/chapter4/pendulum.html"},
     {title: "Galileo's Ramp", url: "/volume1/chapter5/galileo.html"},
     {title: "Binomial Distribution", url: "/volume1/chapter6/binomial.html"},
+    {title: "Random Walk", url: "/volume1/chapter6/random.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
