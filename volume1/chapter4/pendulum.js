@@ -79,6 +79,12 @@ int.draw_function = (inp) => {
     //PENDULUM
     omega = Math.sqrt(g/l);
     period = 2 * Math.PI / omega;
+
+    let n = (6 - Math.trunc(l))
+    if (t > period * (n > 3 ? 3 : n) && int.intervals["t"] !== undefined) {
+        int.set("t", 0)
+    }
+
     let theta = theta_0 * Math.cos(omega * t);
     let pend_pos = V2(sus_point.x + l * Math.sin(theta), sus_point.y - l * Math.cos(theta));
 
@@ -145,7 +151,7 @@ function massFormat(name, value) {
     return (name + " = " + value.toFixed(2) + " kg");
 }
 
-int.slider("t", 0, period * 4, 0, 0.01, period * 4, timeFormat);
+int.slider("t", 0, 17, 0, 0.01, 17, timeFormat);
 int.slider("g", 5, 12, 9.81, 0.1, 10, accFormat);
 int.slider("l", 1, 5, 4, 0.1, 10, distFormat);
 int.slider("m", 1, 5, 2, 0.1, 10, massFormat);

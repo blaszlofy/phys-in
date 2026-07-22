@@ -108,7 +108,7 @@ function format(name, value) {
     return (name + " = " + value);
 }
 
-int.slider("n", 20, 200, 25, 1, 10, format)
+int.slider("n", 20, 200, 50, 1, 10, format)
 int.slider("p", 1, 30, 15, 1, 10, format)
 
 int.draw()
