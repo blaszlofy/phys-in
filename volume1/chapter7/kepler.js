@@ -253,7 +253,7 @@ int.draw_function = (inp) => {
 int.locator("p", V2(-4, -4), 0.2, "blue", null, true, null, {type: "circle", center: V2(-4, -3.4), radius: 0.6})
 int.locator("f", V2(-4, 2), 0.2, "lightgray", null, true, null, {type: "circle", center: V2(-4, 1), radius: 1})
 
-int.slider("t", 0, 30, 0, 0.01, 20, (name, value) => name + " = " + value.toFixed(2) + " ⋅ 10⁷ s")
+int.slider("t", 0, 30, 0, 0.02, 30, (name, value) => name + " = " + value.toFixed(2) + " ⋅ 10⁷ s")
 int.slider("M", 1, 2.5, 1.98, 0.1, 10, (name, value) => name + " = " + value.toFixed(2) + " ⋅ 10³⁰ kg")
 int.slider("m", 4, 13, 5.97, 0.1, 10, (name, value) => name + " = " + value.toFixed(2) + " ⋅ 10²⁴ kg ")
 int.slider("G", 6, 8, 6.67, 0.01, 10, (name, value) => name + " = " + value.toFixed(2) + " ⋅ 10⁻¹¹ m³/kg⋅s²")

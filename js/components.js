@@ -4,6 +4,8 @@ const page_order = [
     {title: "Galileo's Ramp", url: "/volume1/chapter5/galileo.html"},
     {title: "Binomial Distribution", url: "/volume1/chapter6/binomial.html"},
     {title: "Random Walk", url: "/volume1/chapter6/random.html"},
+    {title: "Kepler's Laws", url: "/volume1/chapter7/kepler.html"},
+    {title: "Independence of Horizontal and Vertical Motion", url: "/volume1/chapter7/independence.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {

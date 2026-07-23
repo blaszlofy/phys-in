@@ -151,7 +151,7 @@ function massFormat(name, value) {
     return (name + " = " + value.toFixed(2) + " kg");
 }
 
-int.slider("t", 0, 17, 0, 0.01, 17, timeFormat);
+int.slider("t", 0, 17, 0, 0.02, 17, timeFormat);
 int.slider("g", 5, 12, 9.81, 0.1, 10, accFormat);
 int.slider("l", 1, 5, 4, 0.1, 10, distFormat);
 int.slider("m", 1, 5, 2, 0.1, 10, massFormat);
