@@ -10,6 +10,18 @@
     <link href="/css/diagramatics.css" rel="stylesheet">
     <script src="newton.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
 </head>
 <body>
 
@@ -38,6 +50,37 @@
             F
         </a>
     </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Ellipse</summary>
+            <p class="notice-text">
+                Since the initial velocity is perpendicular to the gravitational force, the launching point will always be either the closest or
+                the farthest point from the planet's center.
+                The closest point on an elliptical path is called periapsis, the farthest is called apoapsis.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Mass of the Ball</summary>
+            <p class="notice-text">
+                The explanation below relies on Newton's second law, which is only introduced later in Chapter 9 of <em>The Feynman Lectures on Physics</em>.
+            </p>
+            <p class="notice-text">
+                Try changing $m$, the mass of the ball orbiting the planet. You will notice that nothing changes about the orbit itself, only the physical size of the ball and the magnitude of the gravitational force change.
+                The ball's size is naturally proportional to its mass. The gravitational force $F$ is proportional to the masses ($m$ and $M$), the gravitational constant $G$, and inversely proportional to the square of the distance $r$ between the bodies' centers:
+                $$F = G\frac{mM}{r^2}$$
+            </p>
+            <p class="notice-text">
+                However, according to Newton's second law, force is mass times acceleration ($F = ma$). If we substitute this into our gravity equation, we get:
+                $$ma = G\frac{mM}{r^2}$$
+                Because the ball's mass $m$ appears on both sides, we can cancel it out completely. This leaves us with:
+                $$a = G\frac{M}{r^2}$$
+                Therefore, the acceleration, $a$, which is what actually determines the path the ball takes, does not depend on $m$ at all.
+            </p>
+        </details>
+    </div>
 </main>
 
 <feynman-footer></feynman-footer>

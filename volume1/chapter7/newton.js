@@ -48,14 +48,13 @@ const cannon_pos = V2(-6, 0)
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
 
-let v_esc = text("v꜀ =    ").fontfamily("Math").fontsize(20).position(V2(6, 4))
 let v_leg1 = text("v꜀ - magnitude of velocity required").fontfamily("Math").fontsize(20).position(V2(6, 3.4))
 let v_leg2 = text("for a perfectly circular orbit").fontfamily("Math").fontsize(20).position(V2(6, 3.1))
 let vel_sq = square(0.2).fill("red").strokewidth(0).position(V2(5, -3.4))
 let f_sq = square(0.2).fill("blue").strokewidth(0).position(V2(5, -3.7))
 let vel = text("velocity").fontfamily("Math").fontsize(20).position(V2(5.7, -3.4))
 let f = text("gravitational force").fontfamily("Math").fontsize(20).position(V2(6.3, -3.7))
-let legend = diagram_combine(v_esc, v_leg1, v_leg2, vel_sq, vel, f_sq, f)
+let legend = diagram_combine(v_leg1, v_leg2, vel_sq, vel, f_sq, f)
 
 let int = new Interactive(control, canvas);
 
@@ -130,7 +129,7 @@ int.draw_function = (inp) => {
         velocity =  arrow1(pos_on_orbit, tangent_dir.scale(v_mag).add(pos_on_orbit), 0.1).fill("red").stroke("red").strokewidth(3)
     }
 
-    let v_esc_val = text(v_crit.toFixed(2)).fontfamily("Math").fontsize(20).position(V2(6.6, 3.99))
+    let v_esc_val = text("v꜀ = " + v_crit.toFixed(2) + " ⋅ 10³ m/s").fontfamily("Math").fontsize(20).position(V2(6, 4))
 
     draw(outline, orbit, planet, force, velocity, ball, legend, v_esc_val)
 }

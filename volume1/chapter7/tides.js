@@ -160,7 +160,7 @@ int.draw_function = (inp) => {
 
     let plot_vis = diagram_combine(timeline, value_point)
 
-    let h_value = text("h = " + (0.6 + h / h_base).toFixed(2)).fontfamily('Math').fontsize(20).position(V2(4.2, -2))
+    let h_value = text("h = " + (0.6 + h / h_base).toFixed(2) + " m").fontfamily('Math').fontsize(20).position(V2(4.2, -2))
 
     draw(outline, div, earth_orbit, moon_orbit, earth, moon, visual_tide, city, earth_zoom_orbit, earth_zoom, ax, tide_plot, (t / DAY_TO_RAW < ax_opt.xrange[1] ? plot_vis : square(0)), leg, h_value)
 }

@@ -10,6 +10,18 @@
     <link href="/css/diagramatics.css" rel="stylesheet">
     <script src="independence.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
 </head>
 <body>
 
@@ -38,6 +50,37 @@
             F
         </a>
     </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Gravity</summary>
+            <p class="notice-text">
+                Try changing $g$, the value of gravitational acceleration. You will notice that the shape of the path of the rolling ball does not change. The ball does complete the path faster, of course.
+                The qualitative explanation is that if we increase $g$, the ball will roll down faster on the ramp, and so it will acquire a larger horizontal speed. It will fall faster too, but that horizontal speed "compensates" for the faster fall, in the sense that it also goes forward faster.
+                The ratio between horizontal and vertical speed is preserved, and the shape of the path is thus constant.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Mass of the Balls</summary>
+            <p class="notice-text">
+                The explanation below relies on Newton's second law, which is only introduced later in Chapter 9 of <em>The Feynman Lectures on Physics</em>.
+            </p>
+            <p class="notice-text">
+                Try changing $M$, the mass of the hanging ball. You will notice that it does not fall faster (same with the smaller ball, try changing $m$), only the physical size of it changes.
+                To understand why, we look at the gravitational force $F$, which is proportional to the ball's mass $M$, and the gravitational acceleration $g$.
+                $$F = Mg$$
+            </p>
+            <p class="notice-text">
+                However, according to Newton's second law, force is mass times acceleration ($F = Ma$). If we substitute this into our equation above, we get:
+                $$Ma = Mg$$
+                Because the ball's mass $M$ appears on both sides, we can cancel it out completely. This leaves us with:
+                $$a = g$$
+                Therefore, the acceleration, $a$, which is what actually determines the speed with which the object falls down, does not depend on $M$ at all.
+            </p>
+        </details>
+    </div>
 </main>
 
 <feynman-footer></feynman-footer>

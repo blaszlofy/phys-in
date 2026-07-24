@@ -103,3 +103,59 @@ main {
     background-color: #ea2540;
     transform: scale(1.05);
 }
+
+/*Things to notice section */
+.notice-section {
+    margin-top: 70px;
+    flex: 1 1 450px;
+    max-width: 1200px;
+    height: fit-content;
+}
+
+.notice-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #333;
+    justify-self: center;
+}
+
+.notice-dropdown {
+    margin-bottom: 0.25rem;
+}
+
+.notice-dropdown > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #4a5568;
+}
+
+.notice-dropdown > summary::-webkit-details-marker {
+    display: none;
+}
+
+.notice-dropdown > summary::before {
+    content: "›";
+    display: inline-block;
+    margin-right: 0.6rem;
+    font-size: 1.4rem;
+    color: #1f77b4;
+    transition: transform 0.2s ease;
+    line-height: 1;
+}
+
+.notice-dropdown[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+.notice-text {
+    margin: 0.2rem 0 1.5rem 2rem;
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
