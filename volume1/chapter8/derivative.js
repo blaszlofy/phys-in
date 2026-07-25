@@ -91,7 +91,7 @@ int.draw_function = (inp) => {
 
     let tangent_system = diagram_combine(l_vert_t, l_vert_dt, l_hor_t, l_hor_dt, tangent, actual_tangent, dt_annot, ds_annot)
 
-    let ball = circle(0.1).position(V2(-0.6, x(pos.x)).apply(transf)).strokewidth(0).fill("lightblue")
+    let ball = circle(0.2).position(V2(-0.6, x(pos.x)).apply(transf)).strokewidth(0).fill("lightblue")
     let velocity = arrow1(ball.origin, V2(-0.6, x(pos.x) + v(pos.x)).apply(transf), 0.1).fill("red").stroke("red").strokewidth(2)
     let velocity_emp = arrow1(ball.origin.add(V2(0.1, 0)), V2(-0.5, x(pos.x) + ds/dt).apply(transf), 0.1).fill("black").stroke("black").strokewidth(2).apply_to_tagged_recursive(TAG.ARROW_LINE, d => d.strokedasharray([10]))
 
