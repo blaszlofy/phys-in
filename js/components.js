@@ -8,6 +8,7 @@ const page_order = [
     {title: "Independence of Horizontal and Vertical Motion", url: "/volume1/chapter7/independence.html"},
     {title: "Newton's Cannonball", url: "/volume1/chapter7/newton.html"},
     {title: "Tides", url: "/volume1/chapter7/tides.html"},
+    {title: "Speed as a Derivative", url: "/volume1/chapter8/derivative.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
