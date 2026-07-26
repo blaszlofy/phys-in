@@ -10,6 +10,7 @@ const page_order = [
     {title: "Tides", url: "/volume1/chapter7/tides.html"},
     {title: "Speed as a Derivative", url: "/volume1/chapter8/derivative.html"},
     {title: "Distance as an Integral", url: "/volume1/chapter8/integral.html"},
+    {title: "Numerical Methods", url: "/volume1/chapter9/numerical.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
