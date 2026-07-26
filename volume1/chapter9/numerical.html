@@ -55,7 +55,7 @@
             <summary>Leapfrog</summary>
             <p class="notice-text">
                 Feynman's "little trick" with $\epsilon/2$ is actually called the Leapfrog method (or Leapfrog integration). Unlike the first method introduced (which is named Euler integration by the way), Leapfrog is stable for any repeating (oscillatory) motion
-                (if the timestep $\epsilon$ satisfies some conditions, namely $\epsilon \lt \frac{2}{\omega}$, where $\omega$ is a property that defines how much time the motion takes to "repeat" and return to its initial state).
+                (if the timestep $\epsilon$ satisfies some conditions, namely $\epsilon \lt \frac{2}{\omega}$, where $\omega$ is a property that is related to how much time the motion takes to "repeat" and return to its initial state; in the above simulation, $\omega = 1$, so $\epsilon$ has to be smaller than $\frac{2}{1} = 2$, otherwise the Leapfrog integration becomes unstable).
             </p>
         </details>
     </div>

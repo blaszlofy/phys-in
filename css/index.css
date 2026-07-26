@@ -116,7 +116,7 @@ main {
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    color: #333;
+    color: black;
     justify-self: center;
 }
 
@@ -132,7 +132,7 @@ main {
     padding: 0.5rem 0;
     font-weight: 500;
     font-size: 1rem;
-    color: #4a5568;
+    color: #000000;
 }
 
 .notice-dropdown > summary::-webkit-details-marker {
@@ -155,7 +155,7 @@ main {
 
 .notice-text {
     margin: 0.2rem 0 1.5rem 2rem;
-    color: #4a5568;
-    font-size: 0.95rem;
+    color: #202125;
+    font-size: 1rem;
     line-height: 1.6;
 }

@@ -172,10 +172,15 @@ int.draw_function = (inp) => {
     let osc1_line = line(oscillator1.block_pos, V2(-0.02, Math.cos(t)).apply(rul_transf)).strokewidth(2).strokedasharray([10])
 
     let pos2 = getInterpolatedValue(t, half_data.positions)
+    let out_of_bound2 = false
+    if (Math.abs(pos2) > 3.7) {
+        pos2= Math.sign(pos2) * 3.7
+        out_of_bound2 = true
+    }
     let vel2 = getInterpolatedValue(t, half_data.velocities)
-    let oscillator2 = oscillator(pos2, vel2, V2(-3.5, 4.5), "lightblue", "blue")
+    let oscillator2 = oscillator(pos2, vel2, V2(-3.5, 4.5), "lightblue", "blue", out_of_bound2)
     let osc2_diagram = oscillator2.diagram
-    let osc2_line = line(oscillator2.block_pos, V2(0.02, pos2).apply(rul_transf)).stroke("blue").opacity(0.5).strokewidth(2)
+    let osc2_line = line(oscillator2.block_pos, V2(0.02, pos2).apply(rul_transf)).stroke("blue").opacity(out_of_bound2 ? 0.05 : 0.5).strokewidth(2)
 
     let pos3 = getInterpolatedValue(t, whole_data.positions)
     let out_of_bound = false
@@ -192,16 +197,19 @@ int.draw_function = (inp) => {
 
     let timeline = line(V2(t, -3).apply(transf), V2(t, 3).apply(transf)).strokedasharray([10]).stroke("gray")
     let circ1 = circle(0.05).stroke(0).fill("gray").position(V2(t, Math.cos(t)).apply(transf))
+    let circ3 = square(0)
+    if (Math.abs(pos2) < 2.9) {
+        circ3 =  circle(0.05).stroke(0).fill("blue").position(V2(t, pos2).apply(transf))
+    }
     let circ2 = square(0)
-    if (Math.abs(pos3) < 3) {
+    if (Math.abs(pos3) < 2.9) {
         circ2 = circle(0.05).stroke(0).fill("red").position(V2(t, pos3).apply(transf))
     }
-    let circ3 = circle(0.05).stroke(0).fill("blue").position(V2(t, pos2).apply(transf))
 
     draw(outline, statics, real_pos, half_pos, whole_pos, ...half_points, ...whole_points, oscillators, timeline, circ1, circ2, circ3)
 }
 int.slider("t", 0, Math.PI * 4, 0, 0.02, Math.PI * 4, (name, value) => name + " = " + value.toFixed(2) + " s")
-int.slider("ϵ", 1, 100, 20, 0.1, 10, (name, value) => name + " = " + (value / 100).toFixed(2) + " s")
+int.slider("ϵ", 1, 300, 20, 0.1, 10, (name, value) => name + " = " + (value / 100).toFixed(2) + " s")
 
 int.draw()
 int.draw()
