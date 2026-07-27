@@ -11,6 +11,7 @@ const page_order = [
     {title: "Speed as a Derivative", url: "/volume1/chapter8/derivative.html"},
     {title: "Distance as an Integral", url: "/volume1/chapter8/integral.html"},
     {title: "Numerical Methods", url: "/volume1/chapter9/numerical.html"},
+    {title: "Galilean Relativity & Inelastic Collisions", url: "/volume1/chapter10/inelastic.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
