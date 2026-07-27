@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Elastic Collisions - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="elastic.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>m₁</strong> - Mass of the red body</p>
+            <p><strong>m₂</strong> - Mass of the blue body</p>
+            <p><strong>v₁</strong> - Initial velocity of the red body</p>
+            <p><strong>v₂</strong> - Initial velocity of the blue body</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_10.html#Ch10-S4" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Collision with the Wall</summary>
+            <p class="notice-text">
+                Notice that after the blocks collide with the container's walls, their momentum becomes zero. While the collision between blocks is elastic, a collision between the walls and a block is inelastic in the simulation.
+                From momentum conservation, the initial momentum $p_{i} = m \cdot v + M \cdot 0$ (where $m$ is the mass of the block, $v$ is its velocity, $M$ is the mass of the wall, but multiplied by $V = 0$, since it does not move)
+                has to be equal to the final momentum, $p_{f} = m \cdot V + M \cdot V = (m + M) \cdot V$. From that,
+                $$m \cdot v = (m + M) \cdot V$$ and by rearranging, we get that $$V = \frac{m}{m + M} \cdot v.$$
+                We know that the wall is way heavier than the block, $M \gg m$, and so $$\frac{m}{m + M} \approx \frac{m}{M} \approx 0$$ and $$V \approx 0.$$ So we can safely assume that the wall does not move, but it does stop our block.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

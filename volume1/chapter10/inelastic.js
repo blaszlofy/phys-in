@@ -117,10 +117,16 @@ int.draw_function = (inp) => {
     let p1 = (t < t_collision) ?  (m1 * v1) : (m1 * v_final)
     let p2 = (t < t_collision) ? (m2 * v2) : (m2 * v_final)
 
+    if (wall) {
+        p1 = 0
+        p2 = 0
+        p = 0
+    }
+
     let p1_arrow = arrow1(V2(0, 0), V2(p1 * 0.5, 0), 0.1).fill("red").stroke("red").strokedasharray([10]).strokewidth(2)
-    let p1_tx = text("p₁ = " + ((p1 === 1) ? "mv" : ((p1 === 0) ? "0" : (p1.toPrecision(2) + "mv")))).position(p1_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
+    let p1_tx = text("p₁ = " + ((p1 === 1) ? "mv" : ((p1 === 0) ? "0" : ((p1 === -1) ? "-mv" : (p1.toPrecision(2) + "mv"))))).position(p1_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
     let p2_arrow = arrow1(V2(0, -1), V2(p2  * 0.5, -1), 0.1).fill("blue").stroke("blue").strokedasharray([10]).strokewidth(2)
-    let p2_tx = text("p₂ = " + ((p2 === -1) ? "-mv" : ((p2 === 0) ? "0" : (p2.toPrecision(2) + "mv")))).position(p2_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
+    let p2_tx = text("p₂ = " + ((p2 === 1) ? "mv" : ((p2 === 0) ? "0" : ((p2 === -1) ? "-mv" : (p2.toPrecision(2) + "mv"))))).position(p2_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
     let p_arrow = arrow1(V2(0, -2), V2(p  * 0.5, -2), 0.1).fill("gray").stroke("gray").strokedasharray([10]).strokewidth(2)
     let p_tx = text("p = " + ((p === 1) ? "mv" : ((p === 0) ? "0" : ((p === -1) ? "-mv" : (p.toPrecision(2) + "mv"))))).position(p_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
     let plus = text("+").fontfamily("Math").fontsize(25).position(V2(0, -0.4))
