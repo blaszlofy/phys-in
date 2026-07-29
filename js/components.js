@@ -13,6 +13,8 @@ const page_order = [
     {title: "Numerical Methods", url: "/volume1/chapter9/numerical.html"},
     {title: "Galilean Relativity & Inelastic Collisions", url: "/volume1/chapter10/inelastic.html"},
     {title: "Elastic Collisions", url: "/volume1/chapter10/elastic.html"},
+    {title: "Gravitational Field Superposition", url: "/volume1/chapter12/superposition.html"},
+    {title: "Pseudo Forces", url: "/volume1/chapter12/pseudo.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
