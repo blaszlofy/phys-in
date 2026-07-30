@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Pseudo Forces - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="pseudo.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas2" class="sim-canvas"></svg>
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p>variable description</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_12.html#Ch12-S5" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+        <details class="notice-dropdown">
+            <summary>Stationary Coordinate System</summary>
+            <p class="notice-text">
+                Reload the page to reset all variables to their original values!
+                First, let's look at the stationary coordinate system, the one where the container and the block move.
+                The block inside the container has weight $$W = m \cdot g.$$ Since it does not move up or down, the sum of the forces in the y-direction has to be zero,
+                so $$N = W = m \cdot g$$ is the normal force provided by the container to hold up the block.
+                There is a force applied to the container, $F$, represented by the black arrow.
+                Try starting $t$! There is friction between the container and the block, pointing in the direction of motion, since the block wants to "move backwards", or if we view it from our stationary frame,
+                just remain in its original place due to its inertia. The frictional force is $$f = \mu \cdot N.$$
+                From Newton's third law we know that there must be an equal and opposite force on the container too, $-f$.
+                Looking at the container, we ignore any forces in the vertical y-direction acting on it (the same case as the mass, the normal force from the table that may be placed under it cancels with the weight).
+                The sum of forces in the horizontal x-direction is $F - f$. That is equal to $M \cdot A$, where $M$ is the container's mass, $A$ is its acceleration,
+                and from the equation $F - f = M \cdot A$ we can get
+                $$A = \frac{F - \mu \cdot m \cdot g}{M}.$$
+                We can do the same with the block. There is a single force acting on it in the horizontal direction, $f$, and so $f = m \cdot a$, where $a$ is the block's acceleration, and
+                $$a = \frac{\mu \cdot m \cdot g}{m} = \mu \cdot g.$$
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Accelerating Coordinate System</summary>
+            <p class="notice-text">
+                Now let's look at the accelerating coordinate system! It accelerates with the same $A$ we calculated above, because the container looks stationary in it.
+                But we can also calculate $A$ just from this argument, and we do not have to rely on previous results.
+                The same two forces are again acting on the container just as if we viewed it from the stationary reference system, $F$, and $-f$.
+                But there is a third force, the pseudo force, equal to the acceleration of our reference system times the container's mass, so $$F_{p,cont} = M \cdot A.$$
+                The container does not move, so the sum of the forces has to be zero, $F = f + F_{p,cont}$, and we know the value of friction and the pseudo force:
+                $$F = \mu \cdot m \cdot g + M \cdot A$$
+                $$A = \frac{F - \mu \cdot m \cdot g}{M},$$ and we arrive at the same expression as before.
+                Now with this acceleration, we can calculate the pseudo force on the block, $$F_{p,block} = m \cdot A.$$
+                There are two forces acting on the block in the x-direction, so $m \cdot a' = f - F_{p,block}$, and
+                $$a' = \frac{\mu \cdot m \cdot g - m \cdot A}{m} = \mu \cdot g - A = \mu \cdot g - \frac{F - \mu \cdot m \cdot g}{M}.$$
+                This expression is actually great, if we think about it. The $a$ we got in the stationary reference system and the $a'$ we got in the accelerating one differ by $A$,
+                $$a' = a - A,$$ so we arrive at the same result both ways.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Slip Condition</summary>
+            <p class="notice-text">
+                Reload the page to reset all variables to their original values!
+                Try setting the value of $F$ to $20N$. If you start the time variable $t$, you will notice that the block actually does not slide backwards, and it doesn't even move at all.
+                Well, then our analysis above is entirely wrong! Or is it?
+                Actually, it is correct, if we specify a hidden assumption we made above. We assumed that the block actually moves backwards in the container and does not stick to it.
+                We did this all the way back in the third equation we wrote, $f = \mu \cdot N$. If this equation was always true, then we would just have to put down the block in the container,
+                and it would start to move forward, because of the friction force. This cannot be correct, and it isn't, so we have to view two cases of friction. It is easiest to do this in the accelerating reference system.
+                <br>
+                In the first case, $A$ is very small, and the pseudo force $m \cdot A$ acting on the  block is small too. Namely, the pseudo force is smaller than our theoretical "friction",
+                $$m \cdot A \le \mu \cdot N.$$
+                In this case, the real friction, the red arrow we see cannot be larger than the pseudo force, otherwise the block would start moving forward.
+                So the friction is equal to the pseudo force, and the block does not move relative to the container.
+                You can see this by moving $F$ from $20N$ towards a higher value, and observing that the red arrows grow with the cyan one until about $50N$.
+                <br>
+                If the pseudo force grows even further, we reach the maximum strength of the friction force, $\mu \cdot N$, friction cannot grow any more, it cannot hold the block,
+                and so the block slips and starts moving.
+                While it is moving, the friction is always $\mu \cdot N$ of course.
+                <br>
+                We should calculate the exact slip condition. One method we already worked with above is by using the forces in the accelerating reference system.
+                The pseudo force "overpowers" friction, when $$m \cdot A \gt \mu \cdot N,$$ and if we substitute all the expressions for the known variables here, we get
+                $$F \gt \mu \cdot g \cdot (M + m).$$
+                Everything we did to analyze the motion in both reference frames is correct if and only if this condition is true. Otherwise, the block does not slip. That case is easier to solve using Newton's laws.
+                <br>
+                Another, bonus way to arrive at this condition is to realize, that $a'$ cannot ever be positive. If it were, the block would start moving forward in the accelerating reference system,
+                and we know that is impossible. So from $$a' \lt 0$$ we can arrive at the same condition with a bit of algebra.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Collision with the Wall</summary>
+            <p class="notice-text">
+                Notice that when the block collides with the wall of the container, a new force appears, $N'$, represented by purple arrows.
+                That force is responsible for the block stopping and not moving backwards any further. As we saw above, the total force acting on the block (if it moves, so the slip condition is satisfied)
+                is $$F = f - m \cdot A.$$ For the block to not move, the sum of all forces acting on it has to be zero, and so the normal force from the wall is
+                $$N' =  m \cdot A - f.$$
+                But from Newton's third law we know that if the container pushes on the block, the block pushes on the container too, and a $N'$ force starts acting on the container too.
+                That $N'$ points backwards, just like friction. Because of this, the container slows down a bit, $A$ becomes smaller.
+                If we calculate $A$ in the case where the slip condition is not satisfied, so the block stays put, and the case where it already reached the wall, we would of course get the same expression...
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Many Ways to the Same Result</summary>
+            <p class="notice-text">
+                As demonstrated above, there are many ways to reach the same conclusion with these kinds of problems.
+                It is sometimes worth solving something two different ways to see if the results agree, and if they do, we have a better chance that we actually
+                arrived at the right solution.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

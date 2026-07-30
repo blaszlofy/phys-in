@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg 
+   viewBox="0 0 600 600"
+   version="1.1"
+   id="svg9724"
+   sodipodi:docname="hide.svg"
+   inkscape:version="1.2.2 (1:1.2.2+202212051550+b0a8486541)"
+   width="600"
+   height="600"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9728" />
+  <sodipodi:namedview
+     id="namedview9726"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="0.84118632"
+     inkscape:cx="282.33935"
+     inkscape:cy="250.24183"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="0"
+     inkscape:window-y="1080"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg9724"
+     showguides="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid9972"
+       originx="0"
+       originy="0" />
+    <sodipodi:guide
+       position="300,360"
+       orientation="1,0"
+       id="guide1208"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="30,300"
+       orientation="0,-1"
+       id="guide345"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  
+  <path
+     id="path401"
+     style="color:#000000;fill:#000000;stroke-linecap:round;-inkscape-stroke:none"
+     d="M 304.97266 60.011719 C 301.64345 59.975172 298.30563 60.017867 294.96094 60.138672 C 187.93081 64.004424 94.224141 145.76033 6.6503906 276.92188 A 40 40 0 0 0 0.4921875 296.11328 A 40 40 0 0 0 0.12695312 299.21094 A 40 40 0 0 0 0.82226562 305.09961 A 40 40 0 0 0 2.3222656 312.62891 A 40 40 0 0 0 2.9257812 313.93945 A 40 40 0 0 0 6.734375 322.21094 C 94.308126 453.37249 188.01285 535.13035 295.04297 538.99609 C 402.07309 542.86185 501.15054 465.95491 593.82422 321.61133 A 40 40 0 0 0 599.95898 296.71289 A 40 40 0 0 0 599.73242 294.32031 A 40 40 0 0 0 599.60938 293.48633 A 40 40 0 0 0 593.74219 277.52344 C 503.96456 137.69058 408.17803 61.144675 304.97266 60.011719 z M 297.84766 140.08594 C 360.4588 137.82452 432.32712 182.03757 512.4082 299.62891 C 432.36016 417.12988 360.5194 461.30947 297.92969 459.04883 C 235.76089 456.80339 163.96532 406.29087 88.212891 299.50781 C 163.93522 192.80364 235.70122 142.33057 297.84766 140.08594 z " />
+  <path
+     style="color:#000000;fill:#000000;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;paint-order:stroke fill markers"
+     d="m 300,180 c -65.91876,0 -120,54.08124 -120,120 0,65.91876 54.08124,120 120,120 65.91876,0 120,-54.08124 120,-120 0,-65.91876 -54.08124,-120 -120,-120 z m 0,60 c 33.49239,0 60,26.50761 60,60 0,33.49239 -26.50761,60 -60,60 -33.49239,0 -60,-26.50761 -60,-60 0,-33.49239 26.50761,-60 60,-60 z"
+     id="path1081" />
+</svg>
