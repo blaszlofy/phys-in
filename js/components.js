@@ -15,6 +15,7 @@ const page_order = [
     {title: "Elastic Collisions", url: "/volume1/chapter10/elastic.html"},
     {title: "Gravitational Field Superposition", url: "/volume1/chapter12/superposition.html"},
     {title: "Pseudo Forces", url: "/volume1/chapter12/pseudo.html"},
+    {title: "Principle of Least Time", url: "/volume1/chapter26/leasttime.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
