@@ -10,6 +10,18 @@
     <link href="/css/diagramatics.css" rel="stylesheet">
     <script src="leasttime.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
 </head>
 <body>
 
@@ -39,9 +51,11 @@
         <div class="notice-title">Things to Notice</div>
 
         <details class="notice-dropdown">
-            <summary>title</summary>
+            <summary>Minimum</summary>
             <p class="notice-text">
-                description
+                Try dragging the light blue point on the air-material boundary! On the graph, you can see the time it takes light to go from A to B on a specific path.
+                C corresponds to the path that takes the least amount of time, so the path light actually takes.
+                The units of time are $3.3 \cdot 10^{-9} s$, because the distance units are $m$, and so light covers one distance unit in $\frac{1}{c} s$, where $c$ is the speed of light in $m/s$.
             </p>
         </details>
     </div>

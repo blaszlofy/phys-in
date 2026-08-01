@@ -10,6 +10,17 @@
     <link href="/css/diagramatics.css" rel="stylesheet">
     <script src="sum.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
 </head>
 <body>
 
@@ -27,10 +38,10 @@
 
     <article class="info-container">
         <section class="variables-list">
-            <p>variable description</p>
+            <p><strong>n</strong> - How finely the mirror is divided to calculate the paths</p>
         </section>
 
-        <a href="https://www.feynmanlectures.caltech.edu/" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+        <a href="https://www.feynmanlectures.caltech.edu/I_26.html#Ch26-S6" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
             F
         </a>
     </article>
@@ -39,9 +50,24 @@
         <div class="notice-title">Things to Notice</div>
 
         <details class="notice-dropdown">
-            <summary>title</summary>
+            <summary>Change</summary>
             <p class="notice-text">
-                description
+                Try dragging the light blue point on the mirror! Notice that one of the small black vectors is highlighted in red.
+                That red vector corresponds to the path that is dashed and light gray.
+                If the highlighted path is near the path that takes the least amount of time for light to complete, the small black vectors near the highlighted red one
+                all point in more or less the same direction and add together. But if the selected path is far away from the minimum-time path, the vectors there point in completely different directions and cancel each other out.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Probability</summary>
+            <p class="notice-text">
+                Reload the page to reset all variables to their original values.
+                Try changing which parts of the mirror are exposed by moving the two cyan points. If you drag one cyan point to around $x = 4$ and the other to $x = 6$, you will notice that the
+                small black arrows point more or less in the same direction. This happens because the minimum-time path
+                reflects off the mirror at $x = 5$. The paths near that center point have only a slight variation in the time light takes to complete them.
+                Since a vector's angle is proportional to the time light takes to complete a specific path, less variation in time means less variation in angle.
+                Because the vectors point mostly in the same direction, their sum is a very long, thick arrow. This means the probability that a photon emitted at A will reach B is very high.
+                Now try moving the two cyan points to $x = 0$ and $x = 2$. The exact same number of vectors now point in very different directions, so the sum of them is way smaller. With that, the probability that a photon emitted at A will reach B is very small too.
             </p>
         </details>
     </div>
