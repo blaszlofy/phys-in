@@ -10,6 +10,18 @@
     <link href="/css/diagramatics.css" rel="stylesheet">
     <script src="radiation.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
 </head>
 <body>
 
@@ -25,12 +37,19 @@
 
     <div id="control" class="control-panel"></div>
 
+    <section style="padding-top: 50px">
+        <p><strong>*</strong> - Real electric field from a positive charge undergoing harmonic oscillation using the formula 28.3 from the Feynman Lectures on Physics $$\mathbf{E} = \frac{q}{4\pi\epsilon_0} \left[ \frac{\mathbf{e}_{\mathbf{r}'}}{r^{\prime 2}} + \frac{\mathbf{r}'}{c} \frac{d}{dt}\left(\frac{\mathbf{e}_{\mathbf{r}'}}{r^{\prime 2}}\right) + \frac{1}{c^2} \frac{d^2}{dt^2} \mathbf{e}_{\mathbf{r}'} \right].$$</p>
+        <p><strong>**</strong> - Approximate electric field from a positive charge undergoing harmonic oscillation using the formula 28.6 from the Feynman Lectures on Physics $$E_y(t) = \frac{q}{4\pi\epsilon_0 c^2 r} a_y\left(t - \frac{r}{c}\right).$$</p>
+    </section>
+
     <article class="info-container">
         <section class="variables-list">
-            <p>variable description</p>
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>A</strong> - Amplitude of the charge's harmonic oscillation</p>
+            <p><strong>ω</strong> - Angular frequency of the charge's harmonic oscillation</p>
         </section>
 
-        <a href="https://www.feynmanlectures.caltech.edu/" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+        <a href="https://www.feynmanlectures.caltech.edu/I_28.html#Ch28-S2" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
             F
         </a>
     </article>
@@ -39,9 +58,36 @@
         <div class="notice-title">Things to Notice</div>
 
         <details class="notice-dropdown">
-            <summary>Relativistic speed</summary>
+            <summary>Approximation</summary>
             <p class="notice-text">
-                description
+                Notice that the electric field vectors create a wave.
+                The wave decays proportionally to $\frac{1}{r}$, where $r$ is the distance from the charge.
+                The electric field vectors behave differently in the two coordinate systems.
+                In the upper one, the field is exactly like it is in real life. The equation
+                $$\mathbf{E} = \frac{q}{4\pi\epsilon_0} \left[ \frac{\mathbf{e}_{\mathbf{r}'}}{r^{\prime 2}} + \frac{\mathbf{r}'}{c} \frac{d}{dt}\left(\frac{\mathbf{e}_{\mathbf{r}'}}{r^{\prime 2}}\right) + \frac{1}{c^2} \frac{d^2}{dt^2} \mathbf{e}_{\mathbf{r}'} \right]$$
+                describes it perfectly. It is noticeable that near the charge, the terms that are proportional to $\frac{1}{r^2}$ "overpower" the radiation term (the third one, which scales as $\frac{1}{r}$)
+                Because of this, the vectors there are very long and point mostly away from the charge (similar to Coulomb's law).
+                But as the distance increases, the $\frac{1}{r^2}$ terms fade away faster, and the vectors point mostly in the vertical direction, forming a wave.
+                In the lower coordinate system, the electric field is approximated based on the equation
+                $$E_y(t) = \frac{q}{4\pi\epsilon_0 c^2 r} a_y\left(t - \frac{r}{c}\right).$$
+                This of course ignores any terms that scale as $\frac{1}{r^2}$, so it is very wrong as we get close to the charge.
+                But further away, it starts to be very similar to the electric field in the upper coordinate system,
+                as the approximation gets better and better.
+            </p>
+        </details>
+
+        <details class="notice-dropdown">
+            <summary>Decay</summary>
+            <p class="notice-text">
+                In the lower coordinate system the electric field vectors never go above the light blue plot.
+                That is because that plot is a visualization of the function
+                $$\frac{q}{4\pi\epsilon_0 c^2 x} A \omega ^2.$$
+                Why is that the function?
+                Of course, the first part comes from the approximated electric field formula.
+                The $A \omega ^2$ then corresponds to $a_y\left(t - \frac{r}{c}\right)$, but the charge undergoes simple harmonic motion, so its acceleration is
+                $$A \omega ^2 \cos(\omega t).$$
+                The maximum value of $\cos(\omega t)$ is $1$, so the maximum value of the acceleration is simply $A \omega ^2$, used for the plots.
+                The electric field in the upper coordinate system sometimes goes above the function, because of course the approximation gets worse and worse as we go near the charge.
             </p>
         </details>
     </div>
