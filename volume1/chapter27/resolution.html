@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Resolving Power - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="resolution.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>D</strong> - Distance between the two point sources</p>
+            <p><strong>ν</strong> - Frequency of the light from the two point sources</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_27.html#Ch27-S7" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Path Difference</summary>
+            <p class="notice-text">
+                As you increase $D$ from $0$, the point sources become resolved once $D$ exceeds $D_{limit}$ ($D \gt D_{limit}$).
+                You can visually verify Feynman's condition $$t_{2} - t_{1} \gt \frac{1}{\nu}$$ by watching the colored lines representing the light waves.
+                The distance between two consecutive lines is $\lambda = \frac{c}{\nu}$, the wavelength of the light (where $c$ is the speed of light). Substituting this
+                into the condition above yields $$c(t_{2} - t_{1}) \gt \lambda.$$
+                Since $t_{2} - t_{1}$ is the time difference between the two paths, $c(t_{2} - t_{1})$ is the difference in path length, which must be greater than $\lambda$.
+                Watching the lines near point T while increasing $D$, you will see the two point sources become resolved exactly when the lines on the top and bottom paths "line up" again.
+                Because the top path gets shorter and the bottom path gets longer, the lines shift in opposite directions, realigning perfectly when the total difference in path length reaches exactly one full wavelength ($\lambda$).
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
