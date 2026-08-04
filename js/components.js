@@ -19,6 +19,7 @@ const page_order = [
     {title: "The Sum Over Paths", url: "/volume1/chapter26/sum.html"},
     {title: "Resolving Power", url: "/volume1/chapter27/resolution.html"},
     {title: "Electromagnetic Radiation", url: "/volume1/chapter28/radiation.html"},
+    {title: "Electromagnetic Radiation - 2", url: "/volume1/chapter28/radiation2.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
