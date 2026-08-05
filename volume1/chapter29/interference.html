@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Multiple Source Interference - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="interference.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <canvas id="htmlcanvas" class="sim-canvas"></canvas>
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>n</strong> - Number of charges oscillating</p>
+            <p><strong>d</strong> - Distance between consecutive charges (in multiples of λ)</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_29.html#Ch29-S4" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Sampling Problems</summary>
+            <p class="notice-text">
+                The patterns in the electric field vectors are from a phenomenon called undersampling. The field is still physically correct; it's just that visually it looks somewhat odd.
+                Imagine a sine wave. If we want to approximate its shape, we can sample points on it and then connect those points.
+                Now, if we put a point on every peak and valley of that sine wave, we get a very crude approximation, but one that still has a wavy shape.
+                If we sample points closer to one another, the approximation gets better and better.
+                But if we sample points less frequently than at every peak and valley, we lose information, because we do not know where the valleys and peaks are anymore.
+                This is what happens in the electric field representation above. Because of graphical limitations, the space between the vectors is larger
+                than half a wavelength of the electromagnetic waves, and so some information is lost.
+                (This explanation is not exactly correct, see more about the <a href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem" target="_blank">Nyquist–Shannon sampling theorem</a>)
+                <br>
+                <br>
+                If you are curious about the math, here is some:
+                From the charges to the end of the electric field visualization, there is $1000 \text{ m}$ horizontally. There are $50$ vectors; that means a vector every
+                $\frac{1000}{50} = 20 \text{ m}$. For the "minimum sampling requirement" above to be satisfied, then, we would have to have $\lambda \gt 40$.
+                But there is another catch. For the far field approximation of the intensity pattern to be correct,
+                the distance we observe must be way greater than $D$, where $D$ is the distance from the top charge to the bottom one.
+                Let's take the maximum possible $D$, that is $D_{max} = (n_{max} - 1) d_{max} = 4 \cdot 3 \lambda = 12 \lambda$.
+                Let's say that a "great distance" means at least $10D = 120 \lambda$. We still have $1000 \text{ m}$ to use, so $\lambda \lt 8.33 \text{ m}$.
+                These two conditions contradict one another, so it is not really feasible to create a visualization where the far field approximation is correct and
+                the waves are still nicely visible.
+            </p>
+        </details>
+
+        <details class="notice-dropdown">
+            <summary>Interference</summary>
+            <p class="notice-text">
+                Please disregard those odd patterns in the electric field representation detailed above!
+                It is still nicely visible where the intensity is greatest and where it is near zero.
+                Try changing $d$ and $n$.
+                Notice that changing $n$ does not affect the spacing of the maximum intensity points (this is best viewed at $d = 3$).
+                Also, changing $d$ does not affect the intensity of the peaks (this is best viewed at $n = 5$).
+            </p>
+        </details>
+
+        <details class="notice-dropdown">
+            <summary>Electric Field Vectors</summary>
+            <p class="notice-text">
+                The opacity of the electric field vectors is dynamically scaled based on their magnitude. This is a visual effect used to make the propagating waves clearly visible across the canvas.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

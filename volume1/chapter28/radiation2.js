@@ -88,7 +88,7 @@ function drawArrow(start, end, options = {}) {
 
 const c = 10
 const k = 100
-let amount = 20
+let amount = 30
 const dist = 15
 const radius = 3.6
 const center = V2(3, 0)
@@ -174,7 +174,7 @@ int.draw_function = (inp) => {
 
     const scale = 0.35
     const coord_scale = V2(scale, 0).apply(transf).x - center.x
-    let ch = charge1.get_anchor("center-center")
+    let phys_r = radius * (40 / max);
     let ln = line(pos, center).stroke("gray").strokedasharray([10]).strokewidth(2)
     let angle = pos.sub(center).angle()
     let perpdir = Vdir(angle + Math.PI / 2)
@@ -182,17 +182,17 @@ int.draw_function = (inp) => {
     let ac = arrow1(center, center.add(V2(0, a_y(t)).scale(coord_scale)), 0.1).strokewidth(3).stroke("lightblue").fill("lightblue")
     let ac_perp = arrow1(center, perpdir.scale(Math.cos(angle) * a_y(t) * scale).apply(transf), 0.1).strokewidth(3).stroke("blue").fill("blue")
 
-    let E = -(k / (c**2 * radius)) * a_y(t - radius / c) * Math.cos(angle) * 0.1
+    let E = -(k / (c**2 * phys_r)) * a_y(t - phys_r / c) * Math.cos(angle)
     let E_vec = arrow1(pos, pos.add(Vdir(angle + Math.PI / 2).scale(E)), 0.05).fill("green").stroke("green").strokewidth(2)
 
     let theta = annotation.angle([V2(1, 0).apply(transf), V2(0, 0).apply(transf), pos], "θ", 0.5, 0.8).fill("lightblue").strokewidth(0)
 
-    draw(outline, stat, ln, lnperp, ac, ac_perp, theta, charge1, E_vec, leg)
+    draw(outline, stat, theta, ln, lnperp, ac, ac_perp, charge1, E_vec, leg)
 }
 
-int.slider("t", 0, 10, 0, 0.03, 10, (name, value) => name + " = " + value.toFixed(2) + " s")
+int.slider("t", 0, 10, 0, 0.02, 10, (name, value) => name + " = " + value.toFixed(2) + " s")
 int.slider("A", 1, 1.5, 1, 0.1, 10, (name, value) => name + " = " + value.toFixed(1) + " m")
-int.slider("ω", 3, 6, 5, 0.1, 10, (name, value) => name + " = " + value.toFixed(1) + " rad/s")
+int.slider("ω", 3, 6, 6, 0.1, 10, (name, value) => name + " = " + value.toFixed(1) + " rad/s")
 
 int.locator("pos", V2(5, 2), 0.2, "red", bound)
 

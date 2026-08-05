@@ -20,6 +20,8 @@ const page_order = [
     {title: "Resolving Power", url: "/volume1/chapter27/resolution.html"},
     {title: "Electromagnetic Radiation", url: "/volume1/chapter28/radiation.html"},
     {title: "Electromagnetic Radiation - 2", url: "/volume1/chapter28/radiation2.html"},
+    {title: "Interference From Two Charges", url: "/volume1/chapter28/interference.html"},
+    {title: "Multiple Source Interference", url: "/volume1/chapter29/interference.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
