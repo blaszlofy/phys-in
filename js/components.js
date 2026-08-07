@@ -22,6 +22,7 @@ const page_order = [
     {title: "Electromagnetic Radiation - 2", url: "/volume1/chapter28/radiation2.html"},
     {title: "Interference From Two Charges", url: "/volume1/chapter28/interference.html"},
     {title: "Multiple Source Interference", url: "/volume1/chapter29/interference.html"},
+    {title: "Diffraction Pattern", url: "/volume1/chapter30/diffraction.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
