@@ -23,6 +23,8 @@ const page_order = [
     {title: "Interference From Two Charges", url: "/volume1/chapter28/interference.html"},
     {title: "Multiple Source Interference", url: "/volume1/chapter29/interference.html"},
     {title: "Diffraction Pattern", url: "/volume1/chapter30/diffraction.html"},
+    {title: "Shadow Edge Diffraction", url: "/volume1/chapter30/shadow.html"},
+    {title: "Radiation from a Sheet of Charges", url: "/volume1/chapter30/sheet.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {

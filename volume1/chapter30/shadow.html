@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Shadow Edge Diffraction - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="shadow.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>λ</strong> - Wavelength of the incoming light</p>
+            <p><strong>s</strong> - Distance of the screen from the opaque object</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_30.html#Ch30-S6" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Oscillation</summary>
+            <p class="notice-text">
+                Try moving point P into the bright region above the opaque object. Notice how the tail of the blue resultant vector traces along the converging coils of the Cornu spiral. As it spirals inward, the overall length of the vector alternately increases and decreases. This changing length directly corresponds to the oscillating intensity pattern on the screen. The oscillations dampen and level out as the vector's tail settles deeply into the center of the spiral's "eye."
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

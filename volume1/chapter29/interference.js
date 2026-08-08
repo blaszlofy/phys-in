@@ -103,7 +103,7 @@ let ax1_opt = {
 }
 let transf = axes_transform(ax1_opt)
 
-let outline = rectangle(16, 9).strokewidth(1);
+let outline = rectangle(16, 9).strokewidth(0);
 
 //let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
 
