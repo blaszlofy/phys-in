@@ -10,6 +10,18 @@
     <link href="/css/diagramatics.css" rel="stylesheet">
     <script src="shadow.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
 </head>
 <body>
 
@@ -42,7 +54,7 @@
         <details class="notice-dropdown">
             <summary>Oscillation</summary>
             <p class="notice-text">
-                Try moving point P into the bright region above the opaque object. Notice how the tail of the blue resultant vector traces along the converging coils of the Cornu spiral. As it spirals inward, the overall length of the vector alternately increases and decreases. This changing length directly corresponds to the oscillating intensity pattern on the screen. The oscillations dampen and level out as the vector's tail settles deeply into the center of the spiral's "eye."
+                Try moving point $P$ into the bright region above the opaque object. Notice how the tail of the blue resultant vector traces along the converging coils of the Cornu spiral. As it spirals inward, the overall length of the vector alternately increases and decreases. This changing length directly corresponds to the oscillating intensity pattern on the screen. The oscillations dampen and level out as the vector's tail settles deeply into the center of the spiral's "eye."
             </p>
         </details>
     </div>
