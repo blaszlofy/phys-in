@@ -25,6 +25,8 @@ const page_order = [
     {title: "Diffraction Pattern", url: "/volume1/chapter30/diffraction.html"},
     {title: "Shadow Edge Diffraction", url: "/volume1/chapter30/shadow.html"},
     {title: "Radiation from a Sheet of Charges", url: "/volume1/chapter30/sheet.html"},
+    {title: "The Origin of the Refractive Index", url: "/volume1/chapter31/refractive.html"},
+    {title: "Scattering of Light", url: "/volume1/chapter32/scattering.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {

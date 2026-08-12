@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Scattering of Light - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="scattering.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <canvas id="htmlcanvas" class="sim-canvas"></canvas>
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>E₀</strong> - Amplitude of the incoming light wave</p>
+            <p><strong>ω</strong> - Angular frequency of the incoming light wave</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_32.html#Ch32-S5" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Phase</summary>
+            <p class="notice-text">
+                Notice that the electron is 180° out of phase with the incoming light wave. That is because it has a negative charge. If it were positive, it would be exactly in phase (assuming we ignore damping terms, as done in the Feynman Lectures).
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Scattering</summary>
+            <p class="notice-text">
+                As stated in the interactive, the amount of light that a single electron in an air molecule (N₂ or O₂ for example) scatters is very, very tiny.
+                For that reason, the forward-propagating wave has basically the same intensity as the incoming one.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
