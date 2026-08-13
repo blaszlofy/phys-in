@@ -27,6 +27,7 @@ const page_order = [
     {title: "Radiation from a Sheet of Charges", url: "/volume1/chapter30/sheet.html"},
     {title: "The Origin of the Refractive Index", url: "/volume1/chapter31/refractive.html"},
     {title: "Scattering of Light", url: "/volume1/chapter32/scattering.html"},
+    {title: "Electric Field from Relativistic Speeds", url: "/volume1/chapter34/relativistic.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {

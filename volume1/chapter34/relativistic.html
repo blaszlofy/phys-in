@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Electric Field from Relativistic Speeds - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="relativistic.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>v</strong> - Speed of the positive charge</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_34.html#Ch34-S2" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Electric Field</summary>
+            <p class="notice-text">
+                The bottom graph illustrates the second derivative ($\frac{d^2 x'}{dt^2}$) of the apparent position of the charge ($x'(t)$).
+                The radiated electric field measured by a distant observer is proportional to $-\frac{d^2 x'}{dt^2}$. That is why the electric field vectors point in the opposite direction to the acceleration curve does.
+                The electric field is only correct if we are far away from the charge.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Electric Field Pulses</summary>
+            <p class="notice-text">
+                Look at the electric field vectors when $v$ is very high. Instead of a smooth wave, the radiation is concentrated into intense pulses separated by periods of near silence. This beaming effect is a hallmark of synchrotron radiation.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Why the Direction Change in the Spikes?</summary>
+            <p class="notice-text">
+                Try changing $v$ to around $0.75c$. You can see that the acceleration curve (in light blue) spikes downwards at equal intervals, so the electric field there has large pulses upwards.
+                But if you increase $v$ even more, to around $0.85c$, you'll notice that the massive downwards spikes are way steeper, and now next to them, there are large upwards spikes too.
+                <br><br>
+                To understand why this is, we have to go on a bit of a tangent. The charge moves in a circle, which means at the end of each cycle it goes back to its original position; therefore, its motion is periodic.
+                Because of that, $v' = \frac{dx'}{dt}$ also has to be the same at the start and end of each cycle. We can write this as
+                $$v'(T) = v'(0),$$ where $T$ is the period of the circular motion.
+                For seemingly no logical reason, we will now integrate the second derivative $a' = \frac{dv'}{dt}$ over one period, from $0$ to $T$. With the help of the <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus" target="_blank">fundamental theorem of calculus</a>,
+                we can evaluate the integral:
+                $$\int_{0}^{T}a'(t)dt = v'(T) - v'(0) = 0,$$
+                because $v'(T) = v'(0)$ from above. This means the area under the acceleration curve across each cycle must be zero.
+                <br><br>
+                With this knowledge, we found a mathematical reason for the upwards spikes: if a downwards spike has a large "negative" area under it, we must compensate for that
+                with a large amount of positive area, hence the upwards spikes.
+                But if you increase $v$ even more, you'll see the downwards spikes disappearing from the plot.
+                This is just a visual bug; actually, they are there, and they are massive, but too narrow to be drawn (aliasing problems).
+                Because the upwards spikes are smaller and wider, they are still drawn, as are the electric field vectors under them.
+                But if there were way more arrows, the massive upwards spike in the electric field would still be visible.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
