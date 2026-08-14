@@ -206,7 +206,7 @@ int.draw_function = (inp) => {
 
 int.slider("t", 0, 10, 0, 0.02, 10, (name, value) => name + " = " + value.toFixed(2) + " s")
 int.slider("E₀", 1, 1.5, 1, 0.1, 10, (name, value) => name + " = " + value.toFixed(1) + " V/m")
-int.slider("ω", 251, 483, 418, 1, 10, (name, value) => name + " = " + (value / 100).toFixed(2) + " ⋅10¹⁵ rad/s")
+int.slider("ω", 251, 483, 418, 1, 10, (name, value) => name + " = " + (value / 100).toFixed(2) + " ⋅ 10¹⁵ rad/s")
 
 int.draw()
 int.draw()

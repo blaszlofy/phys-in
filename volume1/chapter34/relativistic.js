@@ -17,7 +17,7 @@ const dt = 0.02 / 5
 const c = 5
 const r = 1.2
 
-let outline = rectangle(16, 9);
+let outline = rectangle(16, 9).strokewidth(0);
 
 let simp_opt = {
     xrange: [-1.4, 1.4],

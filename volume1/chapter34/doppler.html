@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Doppler Effect - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="doppler.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>ω₀</strong> - Natural angular frequency of the emitter</p>
+            <p><strong>v₁</strong> - Speed of the emitter</p>
+            <p><strong>v₂</strong> - Speed of the observers</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_34.html#Ch34-S6" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Colors</summary>
+            <p class="notice-text">
+                Try reloading the page to reset all the variables.
+                By changing $\omega_0$ to $3 \cdot 10^{15} \text{ rad/s}$, and increasing it slowly from there, you may notice that the color of the light emitted in the direction
+                of motion of the emitter changes, from green to blue.
+                But the light emitted in the other direction does not really change that much in color; it remains red for a while.
+                But the Doppler effect affects both directions by the same factor...
+                The trick is, the visible spectrum has almost twice as much red in it as blue or green.
+                <br><br>
+                Try changing $v_1$ and $v_2$ to their maximum values and slowly increase $\omega_0$ too.
+                After a while, the light registered by the observer in front of the emitter (to the right side of the screen) turns instantly from violet to pink.
+                This is just a visual trick. After that nice color of violet, we slowly move outside the visible spectrum. The pink color is supposed to represent ultraviolet light.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

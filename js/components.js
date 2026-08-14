@@ -28,6 +28,7 @@ const page_order = [
     {title: "The Origin of the Refractive Index", url: "/volume1/chapter31/refractive.html"},
     {title: "Scattering of Light", url: "/volume1/chapter32/scattering.html"},
     {title: "Electric Field from Relativistic Speeds", url: "/volume1/chapter34/relativistic.html"},
+    {title: "Doppler Effect", url: "/volume1/chapter34/doppler.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
