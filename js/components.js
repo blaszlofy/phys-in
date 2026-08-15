@@ -18,6 +18,7 @@ const page_order = [
     {title: "Principle of Least Time", url: "/volume1/chapter26/leasttime.html"},
     {title: "The Sum Over Paths", url: "/volume1/chapter26/sum.html"},
     {title: "Resolving Power", url: "/volume1/chapter27/resolution.html"},
+    {title: "Electric Field of an Accelerating Charge", url: "/volume1/chapter28/field.html"},
     {title: "Electromagnetic Radiation", url: "/volume1/chapter28/radiation.html"},
     {title: "Electromagnetic Radiation - 2", url: "/volume1/chapter28/radiation2.html"},
     {title: "Interference From Two Charges", url: "/volume1/chapter28/interference.html"},
