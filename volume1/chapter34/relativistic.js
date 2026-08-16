@@ -57,7 +57,7 @@ let ct2_leg = text("ct").fontsize(20).fontfamily("Math").position(V2(7.8, -0.3))
 
 let div = line(V2(-8, -2.3), V2(8, -2.3))
 
-let ch = circle(0.15).strokewidth(0).fill("lightblue").position(V2(-6.9, -2.9))
+let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-6.9, -2.9))
 let ch_t = text("Positive charge").fontsize(20).fontfamily("Math").position(V2(-5.5, -2.9))
 let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-7.15, -3.7))
 let evec_t = text("Value of the electric field at a point").fontsize(20).fontfamily("Math").position(V2(-4.4, -3.7))

@@ -104,7 +104,7 @@ const b = 50
 const m = 1
 const SCALE = 1
 let max_his_time  = 19 / c
-const step = 0.5
+const step = 0.6
 
 let int = new Interactive(control, canvas);
 
@@ -168,12 +168,11 @@ let velocity = V2(0, 0)
 let momentum = V2(0, 0)
 
 
-//TODO: RANDOM BIG ARROWS; CLAMP POSITION
 let previousTime = performance.now()
 function update(time) {
     let sp = int.get("spring")
     let K = int.get("K") / 10
-    let zoom = 1 / (int.get("zoom") / 10)
+    let zoom = 1 / (7 / 10)
 
     world.left = -8 * zoom
     world.right = 8 * zoom
@@ -191,6 +190,8 @@ function update(time) {
     velocity = momentum.scale(1 / (m * Math.sqrt(1 + (momentum.length() / (m * c)) ** 2)))
     position = position.add(velocity.scale(dt))
 
+    position = V2(Math.sign(position.x) * Math.min(Math.abs(position.x), 8), Math.sign(position.y) * Math.min(Math.abs(position.y), 4.5))
+
     let acceleration = velocity.sub(previous_velocity).scale(1 / dt)
 
     let currentTimeSec = time / 1000
@@ -203,13 +204,11 @@ function update(time) {
     let charge = circle(0.2).strokewidth(0).fill("lightred").position(position)
     let spring_diagram = spring(position, sp, 0.15, 10, 0.05, 100)
 
-    let current_step = step * zoom
-
     ctx.clearRect(0, 0, htmlcanvas.width, htmlcanvas.height);
-    for (let x = world.left; x <= world.right; x += current_step) {
-        for (let y = world.bottom; y <= world.top; y += current_step) {
+    for (let x = world.left; x <= world.right; x += step) {
+        for (let y = world.bottom; y <= world.top; y += step) {
             let r = V2(x, y).scale(SCALE)
-            if (r.sub(position).length() < current_step * 2) continue
+            if (r.sub(position).length() < step * 2) continue
 
 
             //ALL VARIABLES FOR LIÉNARD WIECHERT
@@ -232,18 +231,17 @@ function update(time) {
         }
     }
 
-    draw(rectangle(16 * zoom, 9 * zoom), spring_diagram, charge)
+    draw(rectangle(16 * zoom, 9 * zoom).strokewidth(0), spring_diagram, charge)
 
     int.draw()
 
     requestAnimationFrame(update)
 }
 
-int.locator("spring", V2(0, 0), 0.2, "red", null, true, null, {type: "rect", min: V2(-5, -3), max: V2(5, 3)})
+int.locator("spring", V2(0, 0), 0.3, "red", null, true, null, {type: "rect", min: V2(-5, -3), max: V2(5, 3)})
 int.locator_initial_draw()
 
 int.slider("K", 2, 30, 10, 1, 10, (name, value) => "q = " + value / 10 + " C")
-int.slider("zoom", 4, 10, 10, 1, 10, (name, value) => "Zoom = " + value / 10 )
 
 resizeCanvas();
 
