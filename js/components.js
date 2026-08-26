@@ -30,6 +30,8 @@ const page_order = [
     {title: "Scattering of Light", url: "/volume1/chapter32/scattering.html"},
     {title: "Electric Field from Relativistic Speeds", url: "/volume1/chapter34/relativistic.html"},
     {title: "Doppler Effect", url: "/volume1/chapter34/doppler.html"},
+    {title: "Sound Wave in a Tube", url: "/volume1/chapter47/wave.html"},
+    {title: "Acoustic Beats", url: "/volume1/chapter48/beats.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {

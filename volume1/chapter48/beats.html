@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Acoustic Beats - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="beats.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+        <button id="sound" class="control-btn">
+            Play/Stop Sound
+        </button>
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>A₁</strong> - Amplitude of the first signal</p>
+            <p><strong>A₂</strong> - Amplitude of the second signal</p>
+            <p><strong>Δω</strong> - The difference in angular frequency between the signals</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_48.html#Ch48-S2" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Hearing</summary>
+            <p class="notice-text">
+                Press the "Play/Stop Sound" button! You can hear a few interesting things if you play around with the sliders while the audio is playing.
+                First, set $\Delta \omega$ to around $3 \text{ rad/s}$. If you set the amplitudes equal to each other, you can hear the beating effect clearly.
+                Notice that at some point, the sound dies out, and the two signals perfectly cancel. This is visible using the 'amplitude vectors' too. At those points, the
+                length of the vector representing the sum of the two signals is zero.
+                Now try changing the amplitude of either signal. There are no points where the sum of the two is zero, so there are no points of no sound, and the vector never has zero length.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
