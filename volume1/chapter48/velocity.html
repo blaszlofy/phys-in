@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Phase Velocity & Group Velocity - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="velocity.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <p style="padding-top: 50px">
+        The wave number $k$ is determined by the formula $48.14$ from The Feynman Lectures on Physics, Volume 1.
+        $$k = \frac{\omega}{c} - \frac{a}{\omega c}$$
+    </p>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>a</strong> - Constant in the function k(ω)</p>
+            <p><strong>ω₁</strong> - Angular frequency of the first wave</p>
+            <p><strong>ω₂</strong> - Angular frequency of the second wave</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_48.html#Ch48-S4" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

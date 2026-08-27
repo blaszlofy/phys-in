@@ -32,6 +32,7 @@ const page_order = [
     {title: "Doppler Effect", url: "/volume1/chapter34/doppler.html"},
     {title: "Sound Wave in a Tube", url: "/volume1/chapter47/wave.html"},
     {title: "Acoustic Beats", url: "/volume1/chapter48/beats.html"},
+    {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
