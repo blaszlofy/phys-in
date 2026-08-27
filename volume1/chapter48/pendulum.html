@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Coupled Pendulums - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="pendulum.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>k</strong> - Spring constant</p>
+            <p><strong>l</strong> - Length of the pendulums</p>
+            <p><strong>m</strong> - Mass of the pendulums</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_48.html#Ch48-S7" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Beats</summary>
+            <p class="notice-text">
+                Refresh the page to reset all variables. Set one pendulum to an initial angle and the other to zero. If you start the time variable, you will observe that the energy transfers from one pendulum to the other and back. Try changing the other variables and observe the effects.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Normal Modes</summary>
+            <p class="notice-text">
+                Try setting the initial angles of both pendulums to the same value, for example by moving both blue points to the right. This is the first normal mode, where both pendulums swing together in the same direction.
+                Try changing the variables and observe the effects. Notice that changing the spring constant does not change anything!
+                <br><br>
+                Now try setting the initial angles to opposite values, for example by moving one blue point to the left and the other to the right.
+                This is the second normal mode, where the pendulums swing in opposite directions.
+                Try changing the variables and observe the effects. Changing the spring constant now affects the period of the oscillation.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
