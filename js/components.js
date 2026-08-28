@@ -34,6 +34,7 @@ const page_order = [
     {title: "Acoustic Beats", url: "/volume1/chapter48/beats.html"},
     {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity.html"},
     {title: "Coupled Pendulums", url: "/volume1/chapter48/pendulum.html"},
+    {title: "Reflection of Waves", url: "/volume1/chapter49/reflection.html"},
 ];
 
 class FeynmanHeader extends HTMLElement {
