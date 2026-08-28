@@ -22,7 +22,7 @@ const x_right = 7
 const x_res = 13
 const y_res = 4
 
-let outline = rectangle(16, 9);
+let outline = rectangle(16, 9).strokewidth(0);
 
 let div = line(V2(-8, -2.5), V2(8, -2.5))
 

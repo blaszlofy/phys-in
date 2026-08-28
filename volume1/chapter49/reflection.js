@@ -133,7 +133,7 @@ function update(time) {
     requestAnimationFrame(update)
 }
 
-let outline = rectangle(16, 9);
+let outline = rectangle(16, 9).strokewidth(0);
 
 let int = new Interactive(control, canvas);
 

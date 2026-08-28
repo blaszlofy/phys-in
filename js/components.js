@@ -30,7 +30,7 @@ const page_order = [
     {title: "Scattering of Light", url: "/volume1/chapter32/scattering.html"},
     {title: "Electric Field from Relativistic Speeds", url: "/volume1/chapter34/relativistic.html"},
     {title: "Doppler Effect", url: "/volume1/chapter34/doppler.html"},
-    {title: "Sound Wave in a Tube", url: "/volume1/chapter47/wave.html"},
+    {title: "The Wave Equation", url: "/volume1/chapter47/wave.html"},
     {title: "Acoustic Beats", url: "/volume1/chapter48/beats.html"},
     {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity.html"},
     {title: "Coupled Pendulums", url: "/volume1/chapter48/pendulum.html"},
