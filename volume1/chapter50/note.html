@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Manufacturing Musical Tones - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="note.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+        <button id="sound" class="control-btn">
+            Play/Stop Sound
+        </button>
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_50.html#Ch50-S3" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Waveforms</summary>
+            <p class="notice-text">
+                Refresh the page to reset the sliders to their default values. You will notice that this specific arrangement produces what is known as a sawtooth wave.
+                <br><br>
+                Try setting the volume of all even harmonics (2ω, 4ω, 6ω, etc.) to zero. This pattern produces a square wave.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>

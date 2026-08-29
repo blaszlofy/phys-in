@@ -35,6 +35,7 @@ const page_order = [
     {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity.html"},
     {title: "Coupled Pendulums", url: "/volume1/chapter48/pendulum.html"},
     {title: "Reflection of Waves", url: "/volume1/chapter49/reflection.html"},
+    {title: "Manufacturing Musical Tones", url: "/volume1/chapter50/note.html"},
     {title: "Surface Waves", url: "/volume1/chapter51/surface.html"},
 ];
 
