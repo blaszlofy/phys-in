@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fourier Series of a Plucked String - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="fourier.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_50.html#Ch50-S2" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Waveforms</summary>
+            <p class="notice-text">
+                (The sound is not synchronized to the visuals, the wave on the string travels much slower than it would in real life to produce such a tone.)
+                Try "plucking" the string in the middle. Notice that there are only odd harmonics present, the first, the third, etc. The sound is pleasant, clear
+                Now try "plucking" near the end of the string. Notice that now all harmonics are present, and they have larger amplitudes than in the previous case. The sound now is way harsher.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Ratios</summary>
+            <p class="notice-text">
+                Try "plucking" the string one-third of the way from one end. To find that position, you can use an interesting trick. Imagine that the string is hit with a hammer
+                instead of being plucked at that position (it is easier to think about it this way, but both methods generate the same harmonics, hitting lifts the string).
+                If we are exactly at the right position, the third harmonic should not be present, because the hammer hit exactly where that harmonic has a node, so it was not excited.
+                But the sixth, ninth, etc. harmonics also have a node there, and so they are not excited either. This works with any harmonic, you can find where the fourth, eighth, etc. or the fifth, tenth, etc. are not excited.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
