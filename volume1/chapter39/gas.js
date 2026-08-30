@@ -323,7 +323,7 @@ function update(time) {
         drawCircle(V2(p.x + depth * (1 - zNormalized), p.y + depth * (1 - zNormalized)), r * currentScale, { opacity: op })
     }
 
-    const delta = 0.25
+    const delta = 0.3
     let container = rectangle(width + delta, height + delta).position(center).strokewidth(3).stroke("gray")
     const dP = V2(depth, depth)
     let outer = diagram_combine(
@@ -377,7 +377,22 @@ function update(time) {
     let hist_plot = bar.plot(velocity_histogram, bar_opt).stroke("blue").fill("lightblue").opacity(0.5)
     let hist_ax = bar.yaxes(velocity_histogram, bar_opt).stroke("black").fontsize(20).fontfamily("Math").textfill("black")
 
-    draw(outline, stat, container, outer, inner, ax, real_plot, press_plot, tick1, tick2, yticks, hist_plot, hist_ax)
+    function maxwellBoltzmann(x) {
+        const v = x * bin_width
+
+        const a = m / (2 * Math.PI * k * T)
+        const probabilityDensity = 4 * Math.PI * Math.pow(a, 1.5) * v * v * Math.exp((-m * v * v) / (2 * k * T))
+
+        return N * bin_width * probabilityDensity
+    }
+
+    let theo_dist = plotf(x => maxwellBoltzmann(x), {
+        bbox: bar_opt.bbox,
+        yrange: bar_opt.yrange,
+        xrange: [0, velocity_histogram.length]
+    }).stroke("gray").strokewidth(2).strokedasharray([10])
+
+    draw(outline, stat, container, outer, inner, ax, real_plot, press_plot, tick1, tick2, yticks, hist_plot, hist_ax, theo_dist)
     requestAnimationFrame(update)
 }
 
