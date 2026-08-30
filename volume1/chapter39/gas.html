@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ideal Gas Law - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="gas.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <canvas id="htmlcanvas" class="sim-canvas"></canvas>
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>V</strong> - Volume of the container</p>
+            <p><strong>N</strong> - Number of gas molecules</p>
+            <p><strong>T</strong> - Temperature of the gas</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_39.html#Ch39-S5" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Velocity Histogram</summary>
+            <p class="notice-text">
+                Check the relationships between the different variables in the ideal gas law! For example, if you increase the volume, the pressure decreases.
+                You will also see that increasing the temperature increases the average velocity of the particles, shifting the peak of the histogram to the right.
+                An interesting effect is that the velocity distribution also becomes wider and flatter at higher temperatures.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Particle Coloring</summary>
+            <p class="notice-text">
+                Since the particles are simulated in 3D space, but the screen is just 2D, they are colored based on how far away they are from the camera. The lighter shades are further back.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
