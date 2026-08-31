@@ -31,6 +31,7 @@ const page_order = [
     {title: "Electric Field from Relativistic Speeds", url: "/volume1/chapter34/relativistic.html"},
     {title: "Doppler Effect", url: "/volume1/chapter34/doppler.html"},
     {title: "Ideal Gas Law", url: "/volume1/chapter39/gas.html"},
+    {title: "Distribution of Molecules in an Atmosphere", url: "/volume1/chapter40/atmosphere.html"},
     {title: "The Wave Equation", url: "/volume1/chapter47/wave.html"},
     {title: "Acoustic Beats", url: "/volume1/chapter48/beats.html"},
     {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity.html"},
