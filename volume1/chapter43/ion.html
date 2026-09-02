@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ionic Drift Velocity - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="ion.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <canvas id="htmlcanvas" class="sim-canvas"></canvas>
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+        <button id="restart" class="control-btn">
+            Restart
+        </button>
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>V</strong> - Voltage between the two plates at the edges of the container</p>
+            <p><strong>n</strong> - Number of ionized gas molecules</p>
+            <p><strong>N</strong> - Number of neutral gas molecules</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_43.html#Ch43-S4" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Drift Speed</summary>
+            <p class="notice-text">
+                Restart the simulation! Try viewing the whole container as one, and notice that the ionized molecules move to the right more or less with the drift speed.
+                Try adjusting the sliders; notice that increasing the voltage increases the drift speed, but increasing the number of molecules decreases it.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
