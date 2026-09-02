@@ -34,6 +34,7 @@ const page_order = [
     {title: "Distribution of Molecules in an Atmosphere", url: "/volume1/chapter40/atmosphere.html"},
     {title: "Brownian Motion", url: "/volume1/chapter41/brown.html"},
     {title: "Ionic Drift Velocity", url: "/volume1/chapter43/ion.html"},
+    {title: "Molecular Diffusion", url: "/volume1/chapter43/diffusion.html"},
     {title: "The Wave Equation", url: "/volume1/chapter47/wave.html"},
     {title: "Acoustic Beats", url: "/volume1/chapter48/beats.html"},
     {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity.html"},

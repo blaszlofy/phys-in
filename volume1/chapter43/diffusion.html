@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Molecular Diffusion - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="diffusion.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <canvas id="htmlcanvas" class="sim-canvas"></canvas>
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+        <button id="restart" class="control-btn">
+            Restart
+        </button>
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>N</strong> - Number of gas molecules</p>
+            <p><strong>T</strong> - Temperature of the gas</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_43.html#Ch43-S5" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
