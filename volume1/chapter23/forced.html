@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Forced Damped Oscillator (Steady state)  - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="forced.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel"></div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>F₀</strong> - Maximum magnitude of the driving force</p>
+            <p><strong>ω</strong> - Angular frequency of the driving force</p>
+            <p><strong>ω₀</strong> - Natural frequency of the oscillator</p>
+            <p><strong>γ</strong> - Damping coefficient</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_23.html#Ch23-S2" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Steady State</summary>
+            <p class="notice-text">
+                The motion displayed in the simulation does not show the full picture. If we had a real oscillator and a real force applied to it, it would move in a slightly different fashion.
+                The mass would need a short time to "adjust" to the driving force, but after a while, it would move more and more like the long-term behavior displayed above, called the "steady-state solution".
+            </p>
+        </details>
+
+        <details class="notice-dropdown">
+            <summary>Resonance</summary>
+            <p class="notice-text">
+                Set the sliders so that $\omega = \omega_{0}$. Observe that the phase shift between the force and the position of the mass is exactly $90°$; the force "leads" by that amount.
+                The amplitude of the oscillation is the greatest: for any other value of $\omega$, $\rho$ will be smaller. ($x = \rho \cdot \cos(\omega \cdot t + \theta)$)
+            </p>
+        </details>
+
+        <details class="notice-dropdown">
+            <summary>Phase Shift</summary>
+            <p class="notice-text">
+                Observe the phase shift between the force and the position of the mass. If $\omega \gt \omega_{0}$, the position lags by more than $90°$; when $\omega \lt \omega_{0}$, it lags by less than $90°$.
+                This is visible on the plot of the force and the position too, as the two sinusoids are out of phase.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
