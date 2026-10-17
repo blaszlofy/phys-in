@@ -17,6 +17,7 @@ const page_order = [
     {title: "Pseudo Forces", url: "/volume1/chapter12/pseudo.html"},
     {title: "Harmonic Motion", url: "/volume1/chapter21/harmonic.html"},
     {title: "Forced Damped Oscillator", url: "/volume1/chapter23/forced.html"},
+    {title: "Damped Oscillations", url: "/volume1/chapter24/damped.html"},
     {title: "Principle of Least Time", url: "/volume1/chapter26/leasttime.html"},
     {title: "The Sum Over Paths", url: "/volume1/chapter26/sum.html"},
     {title: "Resolving Power", url: "/volume1/chapter27/resolution.html"},

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Damped Oscillations - Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="damped.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+</head>
+<body>
+
+<feynman-header></feynman-header>
+
+<feynman-nav></feynman-nav>
+
+<main>
+    <div class="sim-container">
+        <svg id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+    </div>
+
+    <section style="padding-top: 50px">
+        <p>Unlike in the Feynman Lectures on Physics, here $\gamma$ is defined as $\frac{c}{2m}$, instead of $\frac{c}{m}$. This factor of $\frac{1}{2}$ simplifies the equations a little:
+        instead of comparing $\omega_{0}^{2}$ to $\frac{\gamma^{2}}{4}$, we can compare $\omega_{0}$ to $\gamma$ directly.</p>
+    </section>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p><strong>t</strong> - Time elapsed</p>
+            <p><strong>A</strong> - Initial displacement</p>
+            <p><strong>ω₀</strong> - Natural frequency of the oscillator</p>
+            <p><strong>γ</strong> - Damping coefficient</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_24.html#Ch24-S2" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Three Cases</summary>
+            <p class="notice-text">
+                Change the values of $\omega_0$ and $\gamma$. Comparing the two, we can distinguish three cases:
+                <br><br>
+                $\omega_0 \gt \gamma$
+                <br>
+                The mass starts moving, crosses the equilibrium point, and oscillates back and forth with a slowly decaying amplitude. The system is called underdamped in this case.
+                Notice that $Q \gt \frac{1}{2}$ ($Q = \frac{\omega_0}{2\gamma}$ with our definition of $\gamma$).
+                <br><br>
+                $\omega_0 \lt \gamma$
+                <br>
+                The mass starts moving, but it does not cross the equilibrium point, and slowly moves towards it, with decaying speed. The system is called overdamped in this case.
+                Notice that $Q \lt \frac{1}{2}$.
+                <br><br>
+                $\omega_0 = \gamma$
+                <br>
+                The same happens as in the overdamped case, but the mass moves towards the equilibrium the fastest of all possible cases, without crossing it. The system is called critically damped in this case.
+                Notice that $Q = \frac{1}{2}$.
+            </p>
+        </details>
+
+        <details class="notice-dropdown">
+            <summary>Energy</summary>
+            <p class="notice-text">
+                The energy formula in the Feynman Lectures on Physics ($E(t) = E_0 e^{-2\gamma t}$) is visualized with a gray dashed line next to the red line that graphs the exact energy of the oscillator at each moment.
+                The approximation formula comes from the fact that in each radian the system loses a fraction $\frac{1}{Q}$ of its stored energy. So both plots represent the general trend of energy loss.
+                However, if we consider what physically happens, we can understand why energy decays in a "wavy" or "staircase" pattern. The energy is drained by the damping force,
+                which depends on $v$, the velocity of the oscillator. That is very high when crossing the equilibrium, but zero exactly at the maximum displacement. So the energy graph levels off at times when the mass reverses direction (has a derivative of zero there; at that moment, no energy is lost).
+                But looking at the red plot closely we can observe that the energy is always decaying or momentarily staying constant, because the system can never gain energy from nothing.
+            </p>
+        </details>
+    </div>
+</main>
+
+<feynman-footer></feynman-footer>
+
+</body>
+</html>
