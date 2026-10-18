@@ -1,5 +1,9 @@
 Rövid leírás mindegyikhez
 
+
+meta description
+JSON-LD
+
 Cornu spirálhoz matek
 
 3D:
