@@ -1,51 +1,51 @@
 const page_order = [
-    {title: "Principle of Virtual Work", url: "/volume1/chapter4/virtualwork.html"},
-    {title: "Pendulum Energy Conservation", url: "/volume1/chapter4/pendulum.html"},
-    {title: "Galileo's Ramp", url: "/volume1/chapter5/galileo.html"},
-    {title: "Binomial Distribution", url: "/volume1/chapter6/binomial.html"},
-    {title: "Random Walk", url: "/volume1/chapter6/random.html"},
-    {title: "Kepler's Laws", url: "/volume1/chapter7/kepler.html"},
-    {title: "Independence of Horizontal and Vertical Motion", url: "/volume1/chapter7/independence.html"},
-    {title: "Newton's Cannonball", url: "/volume1/chapter7/newton.html"},
-    {title: "Tides", url: "/volume1/chapter7/tides.html"},
-    {title: "Speed as a Derivative", url: "/volume1/chapter8/derivative.html"},
-    {title: "Distance as an Integral", url: "/volume1/chapter8/integral.html"},
-    {title: "Numerical Methods", url: "/volume1/chapter9/numerical.html"},
-    {title: "Galilean Relativity & Inelastic Collisions", url: "/volume1/chapter10/inelastic.html"},
-    {title: "Elastic Collisions", url: "/volume1/chapter10/elastic.html"},
-    {title: "Gravitational Field Superposition", url: "/volume1/chapter12/superposition.html"},
-    {title: "Pseudo Forces", url: "/volume1/chapter12/pseudo.html"},
-    {title: "Harmonic Motion", url: "/volume1/chapter21/harmonic.html"},
-    {title: "Forced Damped Oscillator", url: "/volume1/chapter23/forced.html"},
-    {title: "Damped Oscillations", url: "/volume1/chapter24/damped.html"},
-    {title: "Principle of Least Time", url: "/volume1/chapter26/leasttime.html"},
-    {title: "The Sum Over Paths", url: "/volume1/chapter26/sum.html"},
-    {title: "Resolving Power", url: "/volume1/chapter27/resolution.html"},
-    {title: "Electric Field of an Accelerating Charge", url: "/volume1/chapter28/field.html"},
-    {title: "Electromagnetic Radiation", url: "/volume1/chapter28/radiation.html"},
-    {title: "Electromagnetic Radiation - 2", url: "/volume1/chapter28/radiation2.html"},
-    {title: "Interference From Two Charges", url: "/volume1/chapter28/interference.html"},
-    {title: "Multiple Source Interference", url: "/volume1/chapter29/interference.html"},
-    {title: "Diffraction Pattern", url: "/volume1/chapter30/diffraction.html"},
-    {title: "Shadow Edge Diffraction", url: "/volume1/chapter30/shadow.html"},
-    {title: "Radiation from a Sheet of Charges", url: "/volume1/chapter30/sheet.html"},
-    {title: "The Origin of the Refractive Index", url: "/volume1/chapter31/refractive.html"},
-    {title: "Scattering of Light", url: "/volume1/chapter32/scattering.html"},
-    {title: "Electric Field from Relativistic Speeds", url: "/volume1/chapter34/relativistic.html"},
-    {title: "Doppler Effect", url: "/volume1/chapter34/doppler.html"},
-    {title: "Ideal Gas Law", url: "/volume1/chapter39/gas.html"},
-    {title: "Distribution of Molecules in an Atmosphere", url: "/volume1/chapter40/atmosphere.html"},
-    {title: "Brownian Motion", url: "/volume1/chapter41/brown.html"},
-    {title: "Ionic Drift Velocity", url: "/volume1/chapter43/ion.html"},
-    {title: "Molecular Diffusion", url: "/volume1/chapter43/diffusion.html"},
-    {title: "The Wave Equation", url: "/volume1/chapter47/wave.html"},
-    {title: "Acoustic Beats", url: "/volume1/chapter48/beats.html"},
-    {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity.html"},
-    {title: "Coupled Pendulums", url: "/volume1/chapter48/pendulum.html"},
-    {title: "Reflection of Waves", url: "/volume1/chapter49/reflection.html"},
-    {title: "Fourier Series of a Plucked String", url: "/volume1/chapter50/fourier.html"},
-    {title: "Manufacturing Musical Tones", url: "/volume1/chapter50/note.html"},
-    {title: "Surface Waves", url: "/volume1/chapter51/surface.html"},
+    {title: "Principle of Virtual Work", url: "/volume1/chapter4/virtualwork"},
+    {title: "Pendulum Energy Conservation", url: "/volume1/chapter4/pendulum"},
+    {title: "Galileo's Ramp", url: "/volume1/chapter5/galileo"},
+    {title: "Binomial Distribution", url: "/volume1/chapter6/binomial"},
+    {title: "Random Walk", url: "/volume1/chapter6/random"},
+    {title: "Kepler's Laws", url: "/volume1/chapter7/kepler"},
+    {title: "Independence of Horizontal and Vertical Motion", url: "/volume1/chapter7/independence"},
+    {title: "Newton's Cannonball", url: "/volume1/chapter7/newton"},
+    {title: "Tides", url: "/volume1/chapter7/tides"},
+    {title: "Speed as a Derivative", url: "/volume1/chapter8/derivative"},
+    {title: "Distance as an Integral", url: "/volume1/chapter8/integral"},
+    {title: "Numerical Methods", url: "/volume1/chapter9/numerical"},
+    {title: "Galilean Relativity & Inelastic Collisions", url: "/volume1/chapter10/inelastic"},
+    {title: "Elastic Collisions", url: "/volume1/chapter10/elastic"},
+    {title: "Gravitational Field Superposition", url: "/volume1/chapter12/superposition"},
+    {title: "Pseudo Forces", url: "/volume1/chapter12/pseudo"},
+    {title: "Harmonic Motion", url: "/volume1/chapter21/harmonic"},
+    {title: "Forced Damped Oscillator", url: "/volume1/chapter23/forced"},
+    {title: "Damped Oscillations", url: "/volume1/chapter24/damped"},
+    {title: "Principle of Least Time", url: "/volume1/chapter26/leasttime"},
+    {title: "The Sum Over Paths", url: "/volume1/chapter26/sum"},
+    {title: "Resolving Power", url: "/volume1/chapter27/resolution"},
+    {title: "Electric Field of an Accelerating Charge", url: "/volume1/chapter28/field"},
+    {title: "Electromagnetic Radiation", url: "/volume1/chapter28/radiation"},
+    {title: "Electromagnetic Radiation - 2", url: "/volume1/chapter28/radiation2"},
+    {title: "Interference From Two Charges", url: "/volume1/chapter28/interference"},
+    {title: "Multiple Source Interference", url: "/volume1/chapter29/interference"},
+    {title: "Diffraction Pattern", url: "/volume1/chapter30/diffraction"},
+    {title: "Shadow Edge Diffraction", url: "/volume1/chapter30/shadow"},
+    {title: "Radiation from a Sheet of Charges", url: "/volume1/chapter30/sheet"},
+    {title: "The Origin of the Refractive Index", url: "/volume1/chapter31/refractive"},
+    {title: "Scattering of Light", url: "/volume1/chapter32/scattering"},
+    {title: "Electric Field from Relativistic Speeds", url: "/volume1/chapter34/relativistic"},
+    {title: "Doppler Effect", url: "/volume1/chapter34/doppler"},
+    {title: "Ideal Gas Law", url: "/volume1/chapter39/gas"},
+    {title: "Distribution of Molecules in an Atmosphere", url: "/volume1/chapter40/atmosphere"},
+    {title: "Brownian Motion", url: "/volume1/chapter41/brown"},
+    {title: "Ionic Drift Velocity", url: "/volume1/chapter43/ion"},
+    {title: "Molecular Diffusion", url: "/volume1/chapter43/diffusion"},
+    {title: "The Wave Equation", url: "/volume1/chapter47/wave"},
+    {title: "Acoustic Beats", url: "/volume1/chapter48/beats"},
+    {title: "Phase Velocity & Group Velocity", url: "/volume1/chapter48/velocity"},
+    {title: "Coupled Pendulums", url: "/volume1/chapter48/pendulum"},
+    {title: "Reflection of Waves", url: "/volume1/chapter49/reflection"},
+    {title: "Fourier Series of a Plucked String", url: "/volume1/chapter50/fourier"},
+    {title: "Manufacturing Musical Tones", url: "/volume1/chapter50/note"},
+    {title: "Surface Waves", url: "/volume1/chapter51/surface"},
 ];
 
 class FeynmanHeader extends HTMLElement {
@@ -95,12 +95,12 @@ class FeynmanHeader extends HTMLElement {
       </style>
       <header>
         <section>
-          <a href="/index.html"><h1>Feynman Interactive</h1></a>
+          <a href="/"><h1>Feynman Interactive</h1></a>
         </section>
         <nav>
-          <a href="/index.html"><strong>Home</strong></a>
-          <a href="/about.html"><strong>About</strong></a>
-          <a href="/contact.html"><strong>Contact</strong></a>
+          <a href="/"><strong>Home</strong></a>
+          <a href="/about"><strong>About</strong></a>
+          <a href="/contact"><strong>Contact</strong></a>
           <a href="https://github.com/blaszlofy/feynman-interactive" target="_blank" rel="noopener noreferrer">
             <strong>GitHub</strong>
           </a>
@@ -142,8 +142,14 @@ class FeynmanFooter extends HTMLElement {
 
 class FeynmanNav extends HTMLElement {
     connectedCallback() {
-        const currentIndex = page_order.findIndex(page => page.url === window.location.pathname);
-        if (currentIndex === -1) return;
+        const currentPath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '')
+
+        const currentIndex = page_order.findIndex(page => {
+            const pagePath = page.url.replace(/\.html$/, '').replace(/\/$/, '')
+            return pagePath === currentPath
+        });
+
+        if (currentIndex === -1) return
 
         let html = `
         <style>
@@ -159,16 +165,16 @@ class FeynmanNav extends HTMLElement {
         </style>`;
 
         if (currentIndex > 0) {
-            const prev = page_order[currentIndex - 1];
-            html += `<a href="${prev.url}" class="nav-arrow nav-prev" title="${prev.title}">‹</a>`;
+            const prev = page_order[currentIndex - 1]
+            html += `<a href="${prev.url}" class="nav-arrow nav-prev" title="${prev.title}">‹</a>`
         }
 
         if (currentIndex < page_order.length - 1) {
-            const next = page_order[currentIndex + 1];
-            html += `<a href="${next.url}" class="nav-arrow nav-next" title="${next.title}">›</a>`;
+            const next = page_order[currentIndex + 1]
+            html += `<a href="${next.url}" class="nav-arrow nav-next" title="${next.title}">›</a>`
         }
 
-        this.innerHTML = html;
+        this.innerHTML = html
     }
 }
 

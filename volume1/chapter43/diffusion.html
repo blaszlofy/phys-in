@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Molecular Diffusion - Feynman Interactive</title>
+    <meta name="description" content="Interactive physics simulation of gas diffusion. Watch two distinct gases mix over time and observe how their concentration gradients approach equilibrium.">
+
+    <link rel="canonical" href="https://yourdomain.com/volume1/chapter43/diffusion">
+
     <link rel="icon" type="image/x-icon" href="/favicon.svg">
     <link rel="stylesheet" href="/css/index.css">
     <script src="/js/components.js" defer></script>
@@ -21,7 +25,7 @@
 <main>
     <div class="sim-container">
         <canvas id="htmlcanvas" class="sim-canvas"></canvas>
-        <svg id="canvas" class="sim-canvas"></svg>
+        <svg role="application" aria-label="Interactive gas diffusion simulation showing two gases mixing to reach equilibrium" id="canvas" class="sim-canvas"></svg>
         <svg id="tex" class="sim-tex-overlay"></svg>
     </div>
 

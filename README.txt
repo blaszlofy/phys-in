@@ -3,6 +3,7 @@ Rövid leírás mindegyikhez
 
 meta description
 JSON-LD
+role="application" svg-knek
 
 Cornu spirálhoz matek
 

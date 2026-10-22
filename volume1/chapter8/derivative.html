@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Speed as a Derivative - Feynman Interactive</title>
+    <meta name="description" content="Interactive math simulation of numerical derivatives. See how the derivative of position yields velocity, and how smaller time steps improve accuracy.">
+
+    <link rel="canonical" href="https://yourdomain.com/volume1/chapter8/derivative">
+
     <link rel="icon" type="image/x-icon" href="/favicon.svg">
     <link rel="stylesheet" href="/css/index.css">
     <script src="/js/components.js" defer></script>
@@ -33,7 +37,7 @@
 
 <main>
     <div class="sim-container">
-        <svg id="canvas" class="sim-canvas"></svg>
+        <svg role="application" aria-label="Interactive simulation demonstrating numerical approximation of derivatives" id="canvas" class="sim-canvas"></svg>
         <svg id="tex" class="sim-tex-overlay"></svg>
     </div>
 
