@@ -1,10 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script data-goatcounter="https://feynman-interactive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Feynman Interactive</title>
+    <title>About - Feynman Interactive</title>
+    <meta name="description" content="Information about the Feynman Interactive website, if you are curious about why and how it was created.">
+
+    <link rel="canonical" href="https://yourdomain.com/about">
+
+    <meta property="og:title" content="About - Feynman Interactive">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://yourdomain.com/about">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About - Feynman Interactive",
+            "description": "",
+            "url": "https://yourdomain.com/about",
+            "inLanguage": "en",
+            "author": {
+                "@type": "Person",
+                "name": "blaszlofy"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Feynman Interactive",
+                "url": "https://yourdomain.com"
+            }
+        }
+    </script>
+
     <link rel="icon" type="image/x-icon" href="/favicon.svg">
     <link rel="stylesheet" href="/css/index.css">
     <script src="/js/components.js" defer></script>
@@ -14,8 +44,41 @@
     <feynman-header></feynman-header>
 
     <main>
+        <img src="images/pendulum2.png" style="float: left; width: 400px; margin: 0 20px 15px 0; max-width: 100%; height: auto;">
+        <p style="text-indent: 20px">
+            I always felt that interactive physics simulations can greatly help in understanding any topic. However, I found that good sites are hard to come by,
+            for a few reasons. The ones written by humans, crafted carefully so that they are accurate as well as visually coherent, are rare, and if they exist (apart from a few exceptions),
+            they are mostly pretty basic middle-school level stuff (one good counterexample would be <a target="_blank" href="https://www.falstad.com/mathphysics.html">Paul Falstad's site</a>, but this is the only one I know of).
+            The ones written by AI are flooding the web, but their quality is usually exceptionally bad, as AI (at least a year ago) couldn't create coherent visuals or correct physics in such applets.
+        </p>
+        <p style="text-indent: 20px">
+            So I got the idea of creating a website for undergrad level interactive simulations, that is nicely structured, coherent and correct (I hope you'll find that I achieved my goal; if not, please <a href="/contact">contact me</a>).
+            The only thing was, I had no concept for the structure of it, as I did not want to just create simulations off the top of my head, and structure them based on themes.
+            So I searched for physics books as inspiration.
+        </p>
+        <img src="images/feynman-lectures.jpg" style="float: right; width: 250px; margin: 0 0 15px 20px; max-width: 100%; height: auto;">
+        <p style="text-indent: 20px">
+            When I first read <i>The Feynman Lectures on Physics</i>, I felt that this book offered something different from a more traditional textbook.
+            I intentionally do not say it offers <i>more</i>, as Feynman famously teaches on a very high level, with uncommon tricks that substitute basic methods used all over physics, so if one wants to learn traditional problem-solving,
+            this is certainly not the book for that. However, unlike a traditional book, Feynman offers very intuitive explanations, detailing why exactly physical phenomena happen, especially in Volume 1.
+        </p>
+        <p style="text-indent: 20px">
+            So I came to the decision to use the structure of <i>The Feynman Lectures on Physics</i>, but of course, I paid attention not to reexplain Feynman, just visualize his ideas in an interactive way.
+            Currently, only Volume 1 is covered. I hope to create simulations for Volume 2 too, if I have time and patience. Each simulation page contains the <strong>simulation</strong> itself, the <strong>variables</strong>
+            that can be changed below, and their <strong>descriptions</strong>. Also, there is a red button with an "F" in it, a link that leads to the relevant section in <i>The Feynman Lectures on Physics</i>.
+        </p>
+        <p style="text-indent: 20px">
+            On some pages, there is a <strong>Things to Notice</strong> section that aims to point out a few details that may not be obvious at first, or explain some behind-the-scenes about the simulation.
+            Sometimes, in this section one can find detailed derivations, especially in the <a href="/volume1/chapter12/pseudo">Pseudo Forces</a> simulation, where forces are analyzed in detail.
+            Other times, the section details some interesting, related topic, for example the idea behind the Nyquist–Shannon sampling theorem in <a href="/volume1/chapter29/interference">Multiple Source Interference</a>.
+        </p>
         <p>
-            Few examples of explanation like "Pseudo Forces"
+            Although the structure is inspired by <i>The Feynman Lectures on Physics</i>, most simulations can be understood without having read the book.
+            Physics knowledge can of course be acquired from other sources, but I do recommend reading the books; they are great.
+        </p>
+        <p>
+            I hope you'll find something interesting on the site. There are currently about 50 simulations or so, their source code available on <a target="_blank" href="https://github.com/blaszlofy/feynman-interactive">GitHub</a>.
+            Again, the project is not affiliated with Caltech or <i>The Feynman Lectures on Physics</i>; I simply took inspiration from the book's structure.
         </p>
     </main>
 

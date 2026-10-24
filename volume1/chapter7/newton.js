@@ -70,7 +70,6 @@ int.draw_function = (inp) => {
 
     const r0 = planet_pos.sub(cannon_pos).length()
     const a = (G * M * r0) / (2 * G * M - Math.pow(v, 2) * r0) //semi-major axis from energy conservation
-    console.log(a)
     const v_crit = Math.sqrt(G * M / r0)
     const other_point = cannon_pos.add(planet_pos.sub(cannon_pos).normalize().scale(2 * a))//either apo or periapsis
     const center = other_point.add(cannon_pos).scale(0.5)
