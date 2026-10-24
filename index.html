@@ -1,224 +1,263 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Feynman Interactive</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.svg">
-  <link rel="stylesheet" href="/css/index.css">
-  <link rel="stylesheet" href="/css/mainmenu.css">
-  <script src="/js/components.js" defer></script>
+    <title>Feynman Interactive</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/mainmenu.css">
+    <script src="/js/components.js" defer></script>
+    <script src="js/swipe.js"></script>
+
+
 </head>
 <body>
 
-  <feynman-header></feynman-header>
+<feynman-header></feynman-header>
 
-  <main>
+<div class="hero-title">
+  <h1>Interactive Physics Simulations</h1>
+  <p>Inspired by concepts from <i>The Feynman Lectures on Physics</i></p>
+</div>
+
+<feynman-warning></feynman-warning>
+
+<div class="feynman-carousel-container">
+    <a class="carousel-arrow carousel-prev" aria-label="Previous">‹</a>
+
+    <a href="/volume1/chapter39/gas" class="carousel-card card-active">
+        <img src="/images/gas.png" alt="Elastic Collisions Simulation">
+    </a>
+    <a href="/volume1/chapter4/pendulum" class="carousel-card card-next">
+        <img src="/images/pendulum.png" alt="Virtual Work Simulation">
+    </a>
+    <a href="/volume1/chapter28/interference" class="carousel-card card-hidden">
+        <img src="/images/interference.png" alt="Newton's Cannonball Simulation">
+    </a>
+    <a href="/volume1/chapter21/harmonic" class="carousel-card card-hidden">
+        <img src="/images/harmonic.png" alt="Damped Oscillations Simulation">
+    </a>
+    <a href="/volume1/chapter50/note.html" class="carousel-card card-hidden">
+        <img src="/images/note.png" alt="Damped Oscillations Simulation">
+    </a>
+    <a href="/volume1/chapter30/diffraction" class="carousel-card card-hidden">
+        <img src="/images/diffraction.png" alt="Electromagnetic Radiation Simulation">
+    </a>
+    <a href="/volume1/chapter9/numerical" class="carousel-card card-prev">
+        <img src="/images/numerical.png" alt="Diffraction Pattern Simulation">
+    </a>
+
+    <a class="carousel-arrow carousel-next" aria-label="Next">›</a>
+</div>
+
+
+<main>
     <details open class="volume-dropdown">
 
-      <summary>Volume I: Mainly Mechanics, Radiation, and Heat</summary>
+        <summary>Volume I: Mainly Mechanics, Radiation, and Heat</summary>
 
-      <details class="chapter-dropdown">
-        <summary>Chapter 4: Conservation of Energy</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter4/virtualwork">Principle of Virtual Work</a></li>
-          <li><a href="/volume1/chapter4/pendulum">Pendulum Energy Conservation</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 5: Time and Distance</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter5/galileo">Galileo's Ramp</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 6: Probability</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter6/binomial">Binomial Distribution</a></li>
-          <li><a href="/volume1/chapter6/random">Random Walk</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 7: The Theory of Gravitation</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter7/kepler">Kepler's Laws</a></li>
-          <li><a href="/volume1/chapter7/independence">Independence of Horizontal and Vertical Motion</a></li>
-          <li><a href="/volume1/chapter7/newton">Newton's Cannonball</a></li>
-          <li><a href="/volume1/chapter7/tides">Tides</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 8: Motion</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter8/derivative">Speed as a Derivative</a></li>
-          <li><a href="/volume1/chapter8/integral">Distance as an Integral</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 9: Newton’s Laws of Dynamics</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter9/numerical">Numerical Methods</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 10: Conservation of Momentum</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter10/inelastic">Galilean Relativity & Inelastic Collisions</a></li>
-          <li><a href="/volume1/chapter10/elastic">Elastic Collisions</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 12: Characteristics of Force</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter12/superposition">Gravitational Field Superposition</a></li>
-          <li><a href="/volume1/chapter12/pseudo">Pseudo Forces</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 21: The Harmonic Oscillator</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter21/harmonic">Harmonic Motion</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 23: Resonance</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter23/forced">Forced Damped Oscillator (Steady state)</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 24: Transients</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter24/damped">Damped Oscillations</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 26: Optics: The Principle of Least Time</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter26/leasttime">Principle of Least Time</a></li>
-          <li><a href="/volume1/chapter26/sum">The Sum Over Paths</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 27: Geometrical Optics</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter27/resolution">Resolving Power</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 28: Electromagnetic Radiation</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter28/field">Electric Field of an Accelerating Charge</a></li>
-          <li><a href="/volume1/chapter28/radiation">Electromagnetic Radiation</a></li>
-          <li><a href="/volume1/chapter28/radiation2">Electromagnetic Radiation - 2</a></li>
-          <li><a href="/volume1/chapter28/interference">Interference From Two Charges</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 29: Interference</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter29/interference">Multiple Source Interference</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 30: Diffraction</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter30/diffraction">Diffraction Pattern</a></li>
-          <li><a href="/volume1/chapter30/shadow">Shadow Edge Diffraction</a></li>
-          <li><a href="/volume1/chapter30/sheet">Radiation from a Sheet of Charges</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 31: The Origin of the Refractive Index</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter31/refractive">The Origin of the Refractive Index</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 32: Radiation Damping. Light Scattering</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter32/scattering">Scattering of Light</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 34: Relativistic Effects in Radiation</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter34/relativistic">Electric Field from Relativistic Speeds</a></li>
-          <li><a href="/volume1/chapter34/doppler">Doppler Effect</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 39: The Kinetic Theory of Gases</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter39/gas">Ideal Gas Law</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 40: The Principles of Statistical Mechanics</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter40/atmosphere">Distribution of Molecules in an Atmosphere</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 41: The Brownian Movement</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter41/brown">Brownian Motion</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 43: Diffusion</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter43/ion">Ionic Drift Velocity</a></li>
-          <li><a href="/volume1/chapter43/diffusion">Molecular Diffusion</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 47: Sound. The wave equation</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter47/wave">The Wave Equation</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 48: Beats</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter48/beats">Acoustic Beats</a></li>
-          <li><a href="/volume1/chapter48/velocity">Phase Velocity & Group Velocity</a></li>
-          <li><a href="/volume1/chapter48/pendulum">Coupled Pendulums</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 49: Modes</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter49/reflection">Reflection of Waves</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 50: Harmonics</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter50/fourier">Fourier Series of a Plucked String</a></li>
-          <li><a href="/volume1/chapter50/note">Manufacturing Musical Tones</a></li>
-        </ul>
-      </details>
-      <details class="chapter-dropdown">
-        <summary>Chapter 51: Waves</summary>
-        <ul class="page-list">
-          <li><a href="/volume1/chapter51/surface">Surface Waves</a></li>
-        </ul>
-      </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 4: Conservation of Energy</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter4/virtualwork">Principle of Virtual Work</a></li>
+                <li><a href="/volume1/chapter4/pendulum">Pendulum Energy Conservation</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 5: Time and Distance</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter5/galileo">Galileo's Ramp</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 6: Probability</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter6/binomial">Binomial Distribution</a></li>
+                <li><a href="/volume1/chapter6/random">Random Walk</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 7: The Theory of Gravitation</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter7/kepler">Kepler's Laws</a></li>
+                <li><a href="/volume1/chapter7/independence">Independence of Horizontal and Vertical Motion</a></li>
+                <li><a href="/volume1/chapter7/newton">Newton's Cannonball</a></li>
+                <li><a href="/volume1/chapter7/tides">Tides</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 8: Motion</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter8/derivative">Speed as a Derivative</a></li>
+                <li><a href="/volume1/chapter8/integral">Distance as an Integral</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 9: Newton’s Laws of Dynamics</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter9/numerical">Numerical Methods</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 10: Conservation of Momentum</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter10/inelastic">Galilean Relativity & Inelastic Collisions</a></li>
+                <li><a href="/volume1/chapter10/elastic">Elastic Collisions</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 12: Characteristics of Force</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter12/superposition">Gravitational Field Superposition</a></li>
+                <li><a href="/volume1/chapter12/pseudo">Pseudo Forces</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 21: The Harmonic Oscillator</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter21/harmonic">Harmonic Motion</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 23: Resonance</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter23/forced">Forced Damped Oscillator (Steady state)</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 24: Transients</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter24/damped">Damped Oscillations</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 26: Optics: The Principle of Least Time</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter26/leasttime">Principle of Least Time</a></li>
+                <li><a href="/volume1/chapter26/sum">The Sum Over Paths</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 27: Geometrical Optics</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter27/resolution">Resolving Power</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 28: Electromagnetic Radiation</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter28/field">Electric Field of an Accelerating Charge</a></li>
+                <li><a href="/volume1/chapter28/radiation">Electromagnetic Radiation</a></li>
+                <li><a href="/volume1/chapter28/radiation2">Electromagnetic Radiation - 2</a></li>
+                <li><a href="/volume1/chapter28/interference">Interference From Two Charges</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 29: Interference</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter29/interference">Multiple Source Interference</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 30: Diffraction</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter30/diffraction">Diffraction Pattern</a></li>
+                <li><a href="/volume1/chapter30/shadow">Shadow Edge Diffraction</a></li>
+                <li><a href="/volume1/chapter30/sheet">Radiation from a Sheet of Charges</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 31: The Origin of the Refractive Index</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter31/refractive">The Origin of the Refractive Index</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 32: Radiation Damping. Light Scattering</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter32/scattering">Scattering of Light</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 34: Relativistic Effects in Radiation</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter34/relativistic">Electric Field from Relativistic Speeds</a></li>
+                <li><a href="/volume1/chapter34/doppler">Doppler Effect</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 39: The Kinetic Theory of Gases</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter39/gas">Ideal Gas Law</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 40: The Principles of Statistical Mechanics</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter40/atmosphere">Distribution of Molecules in an Atmosphere</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 41: The Brownian Movement</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter41/brown">Brownian Motion</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 43: Diffusion</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter43/ion">Ionic Drift Velocity</a></li>
+                <li><a href="/volume1/chapter43/diffusion">Molecular Diffusion</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 47: Sound. The wave equation</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter47/wave">The Wave Equation</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 48: Beats</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter48/beats">Acoustic Beats</a></li>
+                <li><a href="/volume1/chapter48/velocity">Phase Velocity & Group Velocity</a></li>
+                <li><a href="/volume1/chapter48/pendulum">Coupled Pendulums</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 49: Modes</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter49/reflection">Reflection of Waves</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 50: Harmonics</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter50/fourier">Fourier Series of a Plucked String</a></li>
+                <li><a href="/volume1/chapter50/note">Manufacturing Musical Tones</a></li>
+            </ul>
+        </details>
+        <details class="chapter-dropdown">
+            <summary>Chapter 51: Waves</summary>
+            <ul class="page-list">
+                <li><a href="/volume1/chapter51/surface">Surface Waves</a></li>
+            </ul>
+        </details>
 
     </details>
 
     <details open class="volume-dropdown">
-      <summary>Volume II: Mainly Electromagnetism and Matter</summary>
+        <summary>Volume II: Mainly Electromagnetism and Matter</summary>
 
-      <div class="volume-content">
-        Work in progress!
-      </div>
+        <div class="volume-content">
+            Work in progress!
+        </div>
     </details>
-  </main>
+</main>
 
-  <feynman-footer></feynman-footer>
+<feynman-footer></feynman-footer>
 
 </body>
 </html>

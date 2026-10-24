@@ -178,6 +178,29 @@ class FeynmanNav extends HTMLElement {
     }
 }
 
+class FeynmanWarning extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+        <style>
+            @media (min-width: 768px) {
+                .warning {
+                    display: none;
+            }
+        }
+        .warning {
+            font-size: 1.2rem;
+            color: #ff8787;
+            text-align: center;
+        }
+        </style>
+        <div class="warning">
+            <p>For the best experience, please view this site on a larger screen. These simulations feature multiple plots and interactive elements optimized for desktop and laptop computers.</p>
+        </div>
+    `;
+    }
+}
+
 customElements.define('feynman-nav', FeynmanNav);
+customElements.define('feynman-warning', FeynmanWarning);
 customElements.define('feynman-header', FeynmanHeader);
 customElements.define('feynman-footer', FeynmanFooter);

@@ -78,3 +78,118 @@ details[open] > summary::before {
 .page-list a:hover {
     color: #62a4f8;
 }
+
+
+.feynman-carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 450px;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 1000px;
+    user-select: none;
+    transform-style: preserve-3d;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 6rem;
+    color: #c7c7c7;
+    text-decoration: none;
+    padding: 1rem;
+    z-index: 100;
+    user-select: none;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.carousel-arrow:hover {
+    color: #1f77b4;
+}
+
+.carousel-prev {
+    left: 1rem;
+}
+
+.carousel-next {
+    right: 1rem;
+}
+
+@media (max-width: 768px) {
+    .carousel-arrow {
+        display: none;
+    }
+    .feynman-carousel-container {
+        display: none;
+    }
+}
+
+.carousel-card {
+    position: absolute;
+    width: 600px;
+    height: 350px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-active {
+    transform: translateX(0) translateZ(50px) scale(1);
+    z-index: 3;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.card-prev {
+    transform: translateX(-200px) translateZ(0px) scale(0.75);
+    z-index: 2;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.card-next {
+    transform: translateX(200px) translateZ(0px) scale(0.75);
+    z-index: 2;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.card-hidden {
+    transform: translateX(0) translateZ(-50px) scale(0.5);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hero-title {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+.hero-title h1 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+.hero-title p {
+    font-size: 1.2rem;
+    color: #666;
+    margin: 0;
+}
