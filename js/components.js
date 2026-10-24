@@ -48,7 +48,7 @@ const page_order = [
     {title: "Surface Waves", url: "/volume1/chapter51/surface"},
 ];
 
-class FeynmanHeader extends HTMLElement {
+class PhysinHeader extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -72,9 +72,17 @@ class FeynmanHeader extends HTMLElement {
         }
         h1 {
           margin: 0;
-          font-size: 1.25rem;
+          font-size: 1.5rem;
           font-weight: 700;
           color: #1f77b4;
+        }
+        p {
+          margin: 0;
+          margin-top: 3px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #4a5568;
+          text-align: center;
         }
         section a {
             text-decoration: none;
@@ -92,16 +100,21 @@ class FeynmanHeader extends HTMLElement {
         strong {
           font-weight: 500;
         }
+        div {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
       </style>
       <header>
         <section>
-          <a href="/"><h1>Feynman Interactive</h1></a>
+          <a href="/"><div><h1>Phys-In</h1><p>Interactive Physics Simulations</p></div></a>
         </section>
         <nav>
           <a href="/"><strong>Home</strong></a>
           <a href="/about"><strong>About</strong></a>
           <a href="/contact"><strong>Contact</strong></a>
-          <a href="https://github.com/blaszlofy/feynman-interactive" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/blaszlofy/phys-in" target="_blank" rel="noopener noreferrer">
             <strong>GitHub</strong>
           </a>
         </nav>
@@ -110,7 +123,7 @@ class FeynmanHeader extends HTMLElement {
     }
 }
 
-class FeynmanFooter extends HTMLElement {
+class PhysinFooter extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -140,7 +153,7 @@ class FeynmanFooter extends HTMLElement {
     }
 }
 
-class FeynmanNav extends HTMLElement {
+class PhysinNav extends HTMLElement {
     connectedCallback() {
         const currentPath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '')
 
@@ -178,7 +191,7 @@ class FeynmanNav extends HTMLElement {
     }
 }
 
-class FeynmanWarning extends HTMLElement {
+class PhysinWarning extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <style>
@@ -200,7 +213,7 @@ class FeynmanWarning extends HTMLElement {
     }
 }
 
-customElements.define('feynman-nav', FeynmanNav);
-customElements.define('feynman-warning', FeynmanWarning);
-customElements.define('feynman-header', FeynmanHeader);
-customElements.define('feynman-footer', FeynmanFooter);
+customElements.define('physin-nav', PhysinNav);
+customElements.define('physin-warning', PhysinWarning);
+customElements.define('physin-header', PhysinHeader);
+customElements.define('physin-footer', PhysinFooter);

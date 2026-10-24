@@ -80,7 +80,7 @@ details[open] > summary::before {
 }
 
 
-.feynman-carousel-container {
+.physin-carousel-container {
     position: relative;
     width: 100%;
     max-width: 1200px;
@@ -125,7 +125,7 @@ details[open] > summary::before {
     .carousel-arrow {
         display: none;
     }
-    .feynman-carousel-container {
+    .physin-carousel-container {
         display: none;
     }
 }

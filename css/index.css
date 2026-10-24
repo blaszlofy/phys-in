@@ -83,7 +83,7 @@ main {
     justify-content: space-between;
 }
 
-.feynman-ref-link {
+.physin-ref-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -99,7 +99,7 @@ main {
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.feynman-ref-link:hover {
+.physin-ref-link:hover {
     background-color: #ea2540;
     transform: scale(1.05);
 }
