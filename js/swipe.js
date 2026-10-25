@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const carouselContainer = document.querySelector('.feynman-carousel-container')
+    const carouselContainer = document.querySelector('.physin-carousel-container')
     const cards = Array.from(document.querySelectorAll('.carousel-card'))
     const btnPrev = document.querySelector('.carousel-prev')
     const btnNext = document.querySelector('.carousel-next')

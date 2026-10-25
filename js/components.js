@@ -1,4 +1,4 @@
-const page_order = [
+export const page_order = [
     {title: "Principle of Virtual Work", url: "/volume1/chapter4/virtualwork"},
     {title: "Pendulum Energy Conservation", url: "/volume1/chapter4/pendulum"},
     {title: "Galileo's Ramp", url: "/volume1/chapter5/galileo"},
