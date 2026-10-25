@@ -193,3 +193,10 @@ details[open] > summary::before {
     color: #666;
     margin: 0;
 }
+
+.corresponding {
+    text-indent: 20px;
+    font-size: 0.8rem;
+    margin: 0;
+    color: #666666;
+}
