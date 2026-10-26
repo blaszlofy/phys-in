@@ -3,19 +3,19 @@
   <!-- Main pages -->
   <url>
     <loc>https://physin.org/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://physin.org/about</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://physin.org/contact</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -23,13 +23,13 @@
   <!-- Volume 1 - Chapter 4 -->
   <url>
     <loc>https://physin.org/volume1/chapter4/pendulum</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter4/virtualwork</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -37,7 +37,7 @@
   <!-- Volume 1 - Chapter 5 -->
   <url>
     <loc>https://physin.org/volume1/chapter5/galileo</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -45,13 +45,13 @@
   <!-- Volume 1 - Chapter 6 -->
   <url>
     <loc>https://physin.org/volume1/chapter6/binomial</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter6/random</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -59,25 +59,25 @@
   <!-- Volume 1 - Chapter 7 -->
   <url>
     <loc>https://physin.org/volume1/chapter7/independence</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter7/kepler</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter7/newton</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter7/tides</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -85,13 +85,13 @@
   <!-- Volume 1 - Chapter 8 -->
   <url>
     <loc>https://physin.org/volume1/chapter8/derivative</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter8/integral</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -99,7 +99,7 @@
   <!-- Volume 1 - Chapter 9 -->
   <url>
     <loc>https://physin.org/volume1/chapter9/numerical</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -107,13 +107,13 @@
   <!-- Volume 1 - Chapter 10 -->
   <url>
     <loc>https://physin.org/volume1/chapter10/elastic</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter10/inelastic</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -121,13 +121,13 @@
   <!-- Volume 1 - Chapter 12 -->
   <url>
     <loc>https://physin.org/volume1/chapter12/pseudo</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter12/superposition</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -135,7 +135,7 @@
   <!-- Volume 1 - Chapter 21 -->
   <url>
     <loc>https://physin.org/volume1/chapter21/harmonic</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -143,7 +143,7 @@
   <!-- Volume 1 - Chapter 23 -->
   <url>
     <loc>https://physin.org/volume1/chapter23/forced</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -151,7 +151,7 @@
   <!-- Volume 1 - Chapter 24 -->
   <url>
     <loc>https://physin.org/volume1/chapter24/damped</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -159,13 +159,13 @@
   <!-- Volume 1 - Chapter 26 -->
   <url>
     <loc>https://physin.org/volume1/chapter26/leasttime</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter26/sum</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -173,7 +173,7 @@
   <!-- Volume 1 - Chapter 27 -->
   <url>
     <loc>https://physin.org/volume1/chapter27/resolution</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -181,25 +181,25 @@
   <!-- Volume 1 - Chapter 28 -->
   <url>
     <loc>https://physin.org/volume1/chapter28/field</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter28/interference</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter28/radiation</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter28/radiation2</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -207,7 +207,7 @@
   <!-- Volume 1 - Chapter 29 -->
   <url>
     <loc>https://physin.org/volume1/chapter29/interference</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -215,19 +215,19 @@
   <!-- Volume 1 - Chapter 30 -->
   <url>
     <loc>https://physin.org/volume1/chapter30/diffraction</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter30/shadow</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter30/sheet</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -235,7 +235,7 @@
   <!-- Volume 1 - Chapter 31 -->
   <url>
     <loc>https://physin.org/volume1/chapter31/refractive</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -243,7 +243,7 @@
   <!-- Volume 1 - Chapter 32 -->
   <url>
     <loc>https://physin.org/volume1/chapter32/scattering</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -251,13 +251,13 @@
   <!-- Volume 1 - Chapter 34 -->
   <url>
     <loc>https://physin.org/volume1/chapter34/doppler</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter34/relativistic</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -265,7 +265,7 @@
   <!-- Volume 1 - Chapter 39 -->
   <url>
     <loc>https://physin.org/volume1/chapter39/gas</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -273,7 +273,7 @@
   <!-- Volume 1 - Chapter 40 -->
   <url>
     <loc>https://physin.org/volume1/chapter40/atmosphere</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -281,7 +281,7 @@
   <!-- Volume 1 - Chapter 41 -->
   <url>
     <loc>https://physin.org/volume1/chapter41/brown</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -289,13 +289,13 @@
   <!-- Volume 1 - Chapter 43 -->
   <url>
     <loc>https://physin.org/volume1/chapter43/diffusion</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter43/ion</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -303,7 +303,7 @@
   <!-- Volume 1 - Chapter 47 -->
   <url>
     <loc>https://physin.org/volume1/chapter47/wave</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -311,19 +311,19 @@
   <!-- Volume 1 - Chapter 48 -->
   <url>
     <loc>https://physin.org/volume1/chapter48/beats</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter48/pendulum</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter48/velocity</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -331,7 +331,7 @@
   <!-- Volume 1 - Chapter 49 -->
   <url>
     <loc>https://physin.org/volume1/chapter49/reflection</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -339,13 +339,13 @@
   <!-- Volume 1 - Chapter 50 -->
   <url>
     <loc>https://physin.org/volume1/chapter50/fourier</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://physin.org/volume1/chapter50/note</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -353,7 +353,7 @@
   <!-- Volume 1 - Chapter 51 -->
   <url>
     <loc>https://physin.org/volume1/chapter51/surface</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
