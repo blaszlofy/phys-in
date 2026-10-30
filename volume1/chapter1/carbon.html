@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script data-goatcounter="https://physin.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carbon Combustion Molecular Simulation - Phys-In</title>
+    <meta name="description" content="Explore an interactive molecular simulation of carbon burning in oxygen. Visualize gas kinetics, collisions, and exothermic reactions in real-time.">
+
+    <link rel="canonical" href="https://physin.org/volume1/chapter1/carbon">
+
+    <meta property="og:title" content="Carbon Combustion Molecular Simulation">
+    <meta property="og:description" content="Explore an interactive molecular simulation of carbon burning in oxygen. Visualize gas kinetics, collisions, and exothermic reactions in real-time.">
+    <meta property="og:url" content="https://physin.org/volume1/chapter1/carbon">
+    <meta property="og:image" content="https://physin.org/images/">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LearningResource",
+            "name": "Carbon Combustion Molecular Simulation",
+            "description": "Explore an interactive molecular simulation of carbon burning in oxygen. Visualize gas kinetics, collisions, and exothermic reactions in real-time.",
+            "url": "https://physin.org/volume1/chapter1/carbon",
+            "teaches": "Carbon Combustion Molecular Simulation",
+            "image": "https://physin.org/images/",
+            "learningResourceType": "Interactive Simulation",
+            "inLanguage": "en",
+            "author": {
+                "@type": "Person",
+                "name": "blaszlofy"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Phys-In",
+                "url": "https://physin.org"
+            },
+            "educationalAlignment": {
+                "@type": "AlignmentObject",
+                "alignmentType": "educationalSubject",
+                "targetName": "Physics"
+            },
+            "citation": {
+                "@type": "Book",
+                "name": "The Feynman Lectures on Physics",
+                "author": {
+                    "@type": "Person",
+                    "name": "Richard Feynman"
+                },
+                "url": "https://www.feynmanlectures.caltech.edu/I_01.html#Ch1-S4"
+            }
+        }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/components.js" type="module" defer></script>
+
+    <link href="/css/diagramatics.css" rel="stylesheet">
+    <script src="./carbon.js" type="module"></script>
+</head>
+<body>
+
+<physin-header></physin-header>
+
+<physin-nav></physin-nav>
+
+<main>
+    <div class="sim-container" style="position: relative; width: calc(1200px - 4rem); height: calc((1200px - 4rem) * 12 / 16);">
+        <canvas id="htmlcanvas" class="sim-canvas" style="position: relative; width: calc(1200px - 4rem); height: calc((1200px - 4rem) * 9 / 16);"></canvas>
+
+        <svg role="application" aria-label="Interactive molecular simulation showing carbon atoms in a graphite lattice reacting with oxygen gas to form carbon monoxide and carbon dioxide." id="canvas" class="sim-canvas"></svg>
+        <svg id="tex" class="sim-tex-overlay"></svg>
+    </div>
+
+    <div id="control" class="control-panel">
+        <button id="restart" class="control-btn">
+            Restart
+        </button>
+    </div>
+
+    <article class="info-container">
+        <section class="variables-list">
+            <p>All variables are initial conditions, so they are applied only when pressing Restart.</p>
+            <p><strong>T</strong> - Initial temperature</p>
+            <p><strong>C</strong> - Initial amount of C molecules</p>
+            <p><strong>O₂</strong> - Initial amount of O₂ molecules</p>
+        </section>
+
+        <a href="https://www.feynmanlectures.caltech.edu/I_01.html#Ch1-S4" target="_blank" title="Read the relevant section in The Feynman Lectures" class="feynman-ref-link">
+            F
+        </a>
+    </article>
+
+    <div class="notice-section">
+        <div class="notice-title">Things to Notice</div>
+
+        <details class="notice-dropdown">
+            <summary>Temperature</summary>
+            <p class="notice-text">
+                Notice that when the oxygen molecules start reacting with the carbon atoms, energy is released and the system heats up.
+                As a result, free molecules move and rotate faster, and the carbon atoms remaining in the graphite vibrate more vigorously.
+                Because of this higher temperature, the remaining oxygen molecules have a higher chance of reacting with the lattice, triggering a runaway effect until all the carbon is burned and converted into either CO₂ or CO.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Chemical Reaction</summary>
+            <p class="notice-text">
+                Notice that below about 800K, any reaction has a very low probability of happening. Between 800K and 1000K, an O₂ molecule colliding with the graphite will mostly react to form CO₂ directly.
+                However, when the temperature is very high, collisions are more energetic and often produce a CO molecule and a free O atom.
+                That free O atom can then either react with an existing CO molecule to form CO₂, or react with the carbon lattice to form another CO molecule.
+            </p>
+        </details>
+        <details class="notice-dropdown">
+            <summary>Statistics</summary>
+            <p class="notice-text">
+                The simulation above is physically rigorous: the required activation energies, released reaction energies, and rigid-body collisions closely model real life.
+                However, we are using a statistical shortcut. Because the simulation timescale is incredibly small (time steps of 10⁻¹⁴ seconds) to make the molecular motion observable, we only simulate a tiny fraction of a macroscopic system.
+                In real life, trillions of O₂ molecules would hit the graphite every fraction of a second. To compensate for having far fewer molecules here, the per-collision reaction probabilities have been artificially scaled up. Otherwise, at this timescale, you would have to watch the screen for years to see a single reaction happen!
+            </p>
+        </details>
+    </div>
+</main>
+
+<physin-footer></physin-footer>
+
+</body>
+</html>
