@@ -91,14 +91,14 @@ let div = line(V2(-8, -3), V2(8, -3))
 
 let part_l = circle(0.05).strokewidth(0).fill("blue").position(V2(-4, -3.775))
 let part_l2 = circle(0.05).strokewidth(0).fill("red").position(V2(-4.2, -3.775))
-let part_t = text("Gas molecule").fontfamily("Math").fontsize(20).position(V2(-2.9, -3.775))
-let path_t = text("Distribution of the red particles").fontfamily("Math").fontsize(20).position(V2(2.5, -3.775))
+let part_t = text("Gas molecule").fontfamily("Math").fontscale(0.017).position(V2(-2.9, -3.775))
+let path_t = text("Distribution of the red particles").fontfamily("Math").fontscale(0.017).position(V2(2.5, -3.775))
 let path_l = line(V2(0, 0), V2(0.4, 0)).strokewidth(30).stroke("lightred").position(V2(0, -3.775)).opacity(0.6)
 
 let leg = diagram_combine(part_l, part_l2, part_t, path_l, path_t).translate(V2(0.6, 0))
 
-let n_t = text("n").fontsize(20).fontfamily("Math").position(V2(-width / 2 - 0.3, -1.2))
-let x_t = text("x (m)").fontsize(20).fontfamily("Math").position(V2(width / 2 + 0.7, -2.8))
+let n_t = text("n").fontscale(0.017).fontfamily("Math").position(V2(-width / 2 - 0.3, -1.2))
+let x_t = text("x (m)").fontscale(0.017).fontfamily("Math").position(V2(width / 2 + 0.7, -2.8))
 
 let stat = diagram_combine(div, leg, n_t, x_t)
 

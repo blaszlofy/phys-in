@@ -48,23 +48,23 @@ let a_ax = axes_empty(a_opt).stroke("black").fill("black")
 
 let path = circle(r).position(V2(0, 1.4).apply(simp_transf)).stroke("gray").strokedasharray([10])
 
-let x_leg = text("x").fontsize(20).fontfamily("Math").position(V2(-6.6, 4.3))
-let z_leg = text("z").fontsize(20).fontfamily("Math").position(V2(-4.9, 1.6))
-let x__leg = text("x'").fontsize(20).fontfamily("Math").position(V2(-4.7, 4.3))
-let E_leg = text("Eₓ").fontsize(20).fontfamily("Math").position(V2(-4.75, 0.9))
-let ct_leg = text("ct").fontsize(20).fontfamily("Math").position(V2(7.8, 1.7))
-let ct2_leg = text("ct").fontsize(20).fontfamily("Math").position(V2(7.8, -0.3))
+let x_leg = text("x").fontscale(0.017).fontfamily("Math").position(V2(-6.6, 4.3))
+let z_leg = text("z").fontscale(0.017).fontfamily("Math").position(V2(-4.9, 1.6))
+let x__leg = text("x'").fontscale(0.017).fontfamily("Math").position(V2(-4.7, 4.3))
+let E_leg = text("Eₓ").fontscale(0.017).fontfamily("Math").position(V2(-4.75, 0.9))
+let ct_leg = text("ct").fontscale(0.017).fontfamily("Math").position(V2(7.8, 1.7))
+let ct2_leg = text("ct").fontscale(0.017).fontfamily("Math").position(V2(7.8, -0.3))
 
 let div = line(V2(-8, -2.3), V2(8, -2.3))
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-6.9, -2.9))
-let ch_t = text("Positive charge").fontsize(20).fontfamily("Math").position(V2(-5.5, -2.9))
+let ch_t = text("Positive charge").fontscale(0.017).fontfamily("Math").position(V2(-5.5, -2.9))
 let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-7.15, -3.7))
-let evec_t = text("Value of the electric field at a point").fontsize(20).fontfamily("Math").position(V2(-4.4, -3.7))
+let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-4.4, -3.7))
 let x_ = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-1, -2.9))
 let a_ = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-1, -3.7))
-let x_t = text("Apparent position (x') of the moving charge").fontsize(20).fontfamily("Math").position(V2(2.3, -2.9))
-let a_t = text("Acceleration of the apparent position (scaled by a constant)").fontsize(20).fontfamily("Math").position(V2(3.21, -3.7))
+let x_t = text("Apparent position (x') of the moving charge").fontscale(0.017).fontfamily("Math").position(V2(2.3, -2.9))
+let a_t = text("Acceleration of the apparent position (scaled by a constant)").fontscale(0.017).fontfamily("Math").position(V2(3.21, -3.7))
 
 let leg = diagram_combine(ch, ch_t, evec, evec_t, x_, a_, x_t, a_t)
 

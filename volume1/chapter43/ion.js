@@ -87,9 +87,9 @@ const height = 5
 
 let coll_l = circle(0.05).strokewidth(0).fill("blue").position(V2(-4, -3.45))
 let part_l = circle(0.05).strokewidth(0).fill("red").position(V2(-4, -4.1))
-let coll_t = text("Gas molecule").fontfamily("Math").fontsize(20).position(V2(-2.95, -3.45))
-let part_t = text("Ionized gas molecule").fontfamily("Math").fontsize(20).position(V2(-2.48, -4.1))
-let path_t = text("Point moving at drift velocity").fontfamily("Math").fontsize(20).position(V2(2.5, -3.775))
+let coll_t = text("Gas molecule").fontfamily("Math").fontscale(0.017).position(V2(-2.95, -3.45))
+let part_t = text("Ionized gas molecule").fontfamily("Math").fontscale(0.017).position(V2(-2.48, -4.1))
+let path_t = text("Point moving at drift velocity").fontfamily("Math").fontscale(0.017).position(V2(2.5, -3.775))
 let path_l =  circle(0.1).strokewidth(0).fill("lightred").position(V2(0.5, -3.775))
 
 let leg = diagram_combine(coll_l, part_l, coll_t, part_t, path_l, path_t).translate(V2(0.2, 0))
@@ -304,7 +304,7 @@ function update(time) {
         drawCircle(V2(positions[i].x, positions[i].y), r * currentScale, { opacity: 1, color: (positions[i].isIon) ? "#d62728" : "#aec7e8" })
     }
 
-    let voltage_text = text("V = " + V.toFixed(1) + "V").position(container.get_anchor("bottom-center").add(V2(0, -0.55))).fontsize(20).fontfamily("Math")
+    let voltage_text = text("V = " + V.toFixed(1) + "V").position(container.get_anchor("bottom-center").add(V2(0, -0.55))).fontscale(0.017).fontfamily("Math")
 
     drift_x += v_drift * dt
     let drift_points = []

@@ -135,14 +135,14 @@ let ax_opt = {
 }
 let transf = axes_transform(ax_opt)
 
-let scaled = text("Note: The scattered electric field vectors").fontsize(20).fontfamily("Math").position(V2(-5.2, 4));
-let scaled2 = text("are visually magnified by ~10⁷ for clarity.").fontsize(20).fontfamily("Math").position(V2(-5.1, 3.6));
-let scaled3 = text("In reality, a single air molecule scatters").fontsize(20).fontfamily("Math").position(V2(-5.29, 3.2));
-let scaled4 = text("a vanishingly small fraction of the light.").fontsize(20).fontfamily("Math").position(V2(-5.27, 2.8));
+let scaled = text("Note: The scattered electric field vectors").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 4));
+let scaled2 = text("are visually magnified by ~10⁷ for clarity.").fontscale(0.017).fontfamily("Math").position(V2(-5.1, 3.6));
+let scaled3 = text("In reality, a single air molecule scatters").fontscale(0.017).fontfamily("Math").position(V2(-5.29, 3.2));
+let scaled4 = text("a vanishingly small fraction of the light.").fontscale(0.017).fontfamily("Math").position(V2(-5.27, 2.8));
 
 let ch = circle(0.15).strokewidth(0).fill("lightblue").position(V2(-6.9, 1))
-let ch_t = text("Electron").fontsize(20).fontfamily("Math").position(V2(-5.89, 1))
-let evec_t = text("Value of the electric field at a point").fontsize(20).fontfamily("Math").position(V2(-4.4, 0.4))
+let ch_t = text("Electron").fontscale(0.017).fontfamily("Math").position(V2(-5.89, 1))
+let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 0.4))
 
 let div = line(V2(-2, 4.5), V2(-2, -4.5))
 
@@ -197,7 +197,7 @@ int.draw_function = (inp) => {
 
     let charge = circle(0.13).strokewidth(0).fill("lightblue").position(V2(0, y(t)).apply(transf))
 
-    let sigma = text("σ = " + (0.01 * w**4).toFixed(2) + " ⋅ 10⁻³¹ m²").fontsize(20).fontfamily("Math").position(V2(-5, -3))
+    let sigma = text("σ = " + (0.01 * w**4).toFixed(2) + " ⋅ 10⁻³¹ m²").fontscale(0.017).fontfamily("Math").position(V2(-5, -3))
 
     let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill(col).stroke(col).strokewidth(2).position(V2(-7.15, 0.4))
 

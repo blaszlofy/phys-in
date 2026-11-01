@@ -51,20 +51,20 @@ let outline = rectangle(16, 9).strokewidth(0);
 let div1 = line(V2(-8, -1), V2(8 , -1))
 let div2 = line(V2(-8, 2.5), V2(8 , 2.5))
 
-let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
-let ax2 = xyaxes(ax2_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
+let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let ax2 = xyaxes(ax2_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
 let t1 = text("*").fontsize(30).fontfamily("Math").position(V2(7.6, 2.1)).fontweight("bold")
 let t2 = text("**").fontsize(30).fontfamily("Math").position(V2(7.6, -1.4)).fontweight("bold")
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-5.5, 4))
-let ch_t = text("Positive electric charge").fontsize(20).fontfamily("Math").position(V2(-3.9, 4))
+let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(-3.9, 4))
 let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-5.725, 3.1))
-let evec_t = text("Value of the electric field at a point").fontsize(20).fontfamily("Math").position(V2(-3.05, 3.1))
+let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-3.05, 3.1))
 let pl = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("lightblue").position(V2(0.5, 3.45))
-let pl_t = text("Illustrative plot, proportional to 1/x").fontsize(20).fontfamily("Math").position(V2(3.4, 3.45))
+let pl_t = text("Illustrative plot, proportional to 1/x").fontscale(0.017).fontfamily("Math").position(V2(3.4, 3.45))
 
-let x = text("x (m)").fontsize(20).fontfamily("Math").position(V2(7.5, 0.45))
+let x = text("x (m)").fontscale(0.017).fontfamily("Math").position(V2(7.5, 0.45))
 
 let stat = diagram_combine(div1, div2, ax1, ax2, t1, t2, ch, ch_t, evec, evec_t, pl, pl_t, x, x.position(V2(7.5, -3.05)))
 

@@ -42,29 +42,29 @@ let ax_opt = {
     n_sample: 300
 }
 let transf = axes_transform(ax_opt)
-let ax = xyaxes(ax_opt).fontsize(20).fontfamily("Math").textfill("black").stroke("black").fill("black")
-let tick1 = ytickmark(Math.PI / 16, 0, "𝜋/16", ax_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let ax = xyaxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
+let tick1 = ytickmark(Math.PI / 16, 0, "𝜋/16", ax_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.05, 0)))
-let tick2 = ytickmark(-Math.PI / 16, 0, "-𝜋/16", ax_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let tick2 = ytickmark(-Math.PI / 16, 0, "-𝜋/16", ax_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.05, 0)))
 
 let div1 = line(V2(-8, -1), V2(8, -1))
 let div2 = line(V2(2, 4.5), V2(2, -1))
 
-let t_t = text("t (s)").fontsize(20).fontfamily("Math").position(V2(7.7, -2.75))
-let ang_t = text("θ").fontsize(20).fontfamily("Math").position(V2(-7.5, -1.35))
+let t_t = text("t (s)").fontscale(0.017).fontfamily("Math").position(V2(7.7, -2.75))
+let ang_t = text("θ").fontscale(0.017).fontfamily("Math").position(V2(-7.5, -1.35))
 
 let pend1_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(2.5, 4))
 let pend2_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(2).position(V2(2.5, 3))
-let pend1_t = text("Angle of the blue pendulum").fontsize(20).fontfamily("Math").position(V2(4.89, 4))
-let pend1_t2 = text("from the vertical").fontsize(20).fontfamily("Math").position(V2(4.24, 3.6))
-let pend2_t = text("Angle of the red pendulum").fontsize(20).fontfamily("Math").position(V2(4.84, 3))
-let pend2_t2 = text("from the vertical").fontsize(20).fontfamily("Math").position(V2(4.24, 2.6))
+let pend1_t = text("Angle of the blue pendulum").fontscale(0.017).fontfamily("Math").position(V2(4.89, 4))
+let pend1_t2 = text("from the vertical").fontscale(0.017).fontfamily("Math").position(V2(4.24, 3.6))
+let pend2_t = text("Angle of the red pendulum").fontscale(0.017).fontfamily("Math").position(V2(4.84, 3))
+let pend2_t2 = text("from the vertical").fontscale(0.017).fontfamily("Math").position(V2(4.24, 2.6))
 let D = circle(0.08).strokewidth(0).fill("blue").position(V2(2.75, 2))
 let D2 = circle(0.2).strokewidth(0).fill("lightblue").position(V2(2.75, 2))
-let D_t = text("These points specify the").fontsize(20).fontfamily("Math").position(V2(4.67, 2))
-let D_t2 = text("initial angles of the").fontsize(20).fontfamily("Math").position(V2(4.41, 1.6))
-let D_t3 = text("pendulums (at t = 0)").fontsize(20).fontfamily("Math").position(V2(4.56, 1.2))
+let D_t = text("These points specify the").fontscale(0.017).fontfamily("Math").position(V2(4.67, 2))
+let D_t2 = text("initial angles of the").fontscale(0.017).fontfamily("Math").position(V2(4.41, 1.6))
+let D_t3 = text("pendulums (at t = 0)").fontscale(0.017).fontfamily("Math").position(V2(4.56, 1.2))
 
 let leg = diagram_combine(pend1_l, pend2_l, pend1_t, pend1_t2, pend2_t, pend2_t2, D2, D, D_t, D_t2, D_t3).translate(V2(0.4, -0.8))
 

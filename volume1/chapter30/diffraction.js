@@ -41,28 +41,28 @@ let transf2 = axes_transform(ax2_opt)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let ax1 = xyaxes(ax1_opt).fontfamily("Math").fontsize(20).stroke("black").fill("black").textfill("black")
-let ax2 = xycorneraxes(ax2_opt).fontfamily("Math").fontsize(20).stroke("black").fill("black").textfill("black")
-let ticktop = ytickmark(1, 0, "I/n²I₀", ax2_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let ax1 = xyaxes(ax1_opt).fontfamily("Math").fontscale(0.017).stroke("black").fill("black").textfill("black")
+let ax2 = xycorneraxes(ax2_opt).fontfamily("Math").fontscale(0.017).stroke("black").fill("black").textfill("black")
+let ticktop = ytickmark(1, 0, "I/n²I₀", ax2_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.1, 0.35)))
-let ticktop1 = ytickmark(1, 0, "1", ax2_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let ticktop1 = ytickmark(1, 0, "1", ax2_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.1, 0)))
-let xtick1 = xtickmark(Math.PI / 8, 0, "π/8", ax2_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let xtick1 = xtickmark(Math.PI / 8, 0, "π/8", ax2_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(0, -0.1)))
-let xtick2 = xtickmark(Math.PI / 16, 0, "π/16", ax2_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let xtick2 = xtickmark(Math.PI / 16, 0, "π/16", ax2_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(0, -0.1)))
-let xtick3 = xtickmark(Math.PI / 4, 0, "π/4", ax2_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let xtick3 = xtickmark(Math.PI / 4, 0, "π/4", ax2_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(0, -0.1)))
-let xtick4 = xtickmark(Math.PI * 3 / 16, 0, "3π/16", ax2_opt).fontfamily("Math").fontsize(20).textfill("black").stroke("black")
+let xtick4 = xtickmark(Math.PI * 3 / 16, 0, "3π/16", ax2_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(0, -0.1)))
 
 let div1 = line(V2(-8, -1.9), V2(8, -1.9))
 let div2 = line(V2(-2.5, -1.9), V2(-2.5, 4.5))
 let div3 = line(V2(-2.5, 2.6), V2(8, 2.6))
 
-let x_lab = text("x").fontsize(20).fontfamily("Math").position(V2(-2.75, 1.3))
-let y_lab = text("y").fontsize(20).fontfamily("Math").position(V2(-6.4, 4.3))
-let theta_lab = text("θ").fontsize(20).fontfamily("Math").position(V2(7.8, -4.015))
+let x_lab = text("x").fontscale(0.017).fontfamily("Math").position(V2(-2.75, 1.3))
+let y_lab = text("y").fontscale(0.017).fontfamily("Math").position(V2(-6.4, 4.3))
+let theta_lab = text("θ").fontscale(0.017).fontfamily("Math").position(V2(7.8, -4.015))
 
 const sub = 20
 let middle = line(V2(center.x, center.y - 0.2), V2(center.x, center.y + 4.2)).strokewidth(1.5).stroke("gray").strokedasharray([10])
@@ -80,11 +80,11 @@ let marker = diagram_combine(
     line(V2(0, 0), V2(0, 0.3)).strokewidth(2).stroke("lightred"),
     line(V2(-0.3, 0), V2(-0.3, 0.3)).strokewidth(2).stroke("lightred"),
 ).position(V2(-2, 4))
-let marker_t = text("Markers spaced out by one wavelength λ").fontfamily("Math").fontsize(20).position(V2(0.6, 4.15))
+let marker_t = text("Markers spaced out by one wavelength λ").fontfamily("Math").fontscale(0.017).position(V2(0.6, 4.15))
 let pl = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-2.38, 3.5))
-let pl_t = text("Intensity pattern from n sources (normalized)").fontfamily("Math").fontsize(20).position(V2(0.95, 3.5))
+let pl_t = text("Intensity pattern from n sources (normalized)").fontfamily("Math").fontscale(0.017).position(V2(0.95, 3.5))
 let ar = arrow1(V2(0, 0), V2(0.5, 0), 0.1).stroke("blue").fill("blue").strokewidth(2).position(V2(-2.38, 2.9))
-let ar_t = text("Resultant amplitude from the geometric addition of n 'amplitude vectors'").fontfamily("Math").fontsize(20).position(V2(2.5, 2.9))
+let ar_t = text("Resultant amplitude from the geometric addition of n 'amplitude vectors'").fontfamily("Math").fontscale(0.017).position(V2(2.5, 2.9))
 
 let leg = diagram_combine(marker, marker_t, pl, pl_t, ar, ar_t).translate(V2(0.5, 0))
 

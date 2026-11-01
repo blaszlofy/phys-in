@@ -61,33 +61,33 @@ let rho_opt = {
     n_sample: 150,
     headsize: 0.1
 }
-let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontsize(20).textfill("black")
-let theta_ax = xycorneraxes(theta_opt).fill("black").stroke("black").fontfamily("Math").fontsize(20).textfill("black")
-let rho_ax = xycorneraxes(rho_opt).fill("black").stroke("black").fontfamily("Math").fontsize(20).textfill("black")
+let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let theta_ax = xycorneraxes(theta_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let rho_ax = xycorneraxes(rho_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
 let x_transf = axes_transform(x_opt)
 let theta_transf = axes_transform(theta_opt)
 let rho_transf = axes_transform(rho_opt)
 
 let F_leg = line(V2(0, -0.6), V2(0.5,  -0.6)).stroke("red").strokewidth(1.5)
-let F_text = text("F(t)").fontsize(20).fontfamily("Math").position(V2(0.8, -0.6))
+let F_text = text("F(t)").fontscale(0.017).fontfamily("Math").position(V2(0.8, -0.6))
 let x_leg = line(V2(0, 0), V2(0.5,  0)).stroke("blue").strokewidth(1.5)
-let x_text = text("x(t)").fontsize(20).fontfamily("Math").position(V2(0.8, 0))
-let tick_0 = ytickmark(0, 0, "0°", theta_opt).fontsize(20).fontfamily("Math").textfill("black")
-let tick_1 = ytickmark(-Math.PI / 2, 0, "-90°", theta_opt).fontsize(20).fontfamily("Math").textfill("black")
-let tick_2 = ytickmark(-Math.PI, 0, "-180°", theta_opt).fontsize(20).fontfamily("Math").textfill("black")
+let x_text = text("x(t)").fontscale(0.017).fontfamily("Math").position(V2(0.8, 0))
+let tick_0 = ytickmark(0, 0, "0°", theta_opt).fontscale(0.017).fontfamily("Math").textfill("black")
+let tick_1 = ytickmark(-Math.PI / 2, 0, "-90°", theta_opt).fontscale(0.017).fontfamily("Math").textfill("black")
+let tick_2 = ytickmark(-Math.PI, 0, "-180°", theta_opt).fontscale(0.017).fontfamily("Math").textfill("black")
 
-let F0_text = text("F₀cos(ωt)").fontsize(20).fontfamily("Math").position(V2(7, 4.2))
+let F0_text = text("F₀cos(ωt)").fontscale(0.017).fontfamily("Math").position(V2(7, 4.2))
 let F0_arrow = arrow1(V2(0, 0), V2(0.5, 0), 0.1).stroke("lightred").fill("lightred").strokewidth(2).position(V2(5.7, 4.2))
 
-let theta_text = text("θ (°)").fontfamily("Math").fontsize(20).position(V2(-7.6, -0.8))
-let w_text1 = text("ω (rad/s)").fontfamily("Math").fontsize(20).position(V2(-0.65, -4))
-let w_text2 = text("ω (rad/s)").fontfamily("Math").fontsize(20).position(V2(7.45, -4))
-let rho_text = text("ρ (m)").fontfamily("Math").fontsize(20).position(V2(0.6, -0.8))
+let theta_text = text("θ (°)").fontfamily("Math").fontscale(0.017).position(V2(-7.6, -0.8))
+let w_text1 = text("ω (rad/s)").fontfamily("Math").fontscale(0.017).position(V2(-0.65, -4))
+let w_text2 = text("ω (rad/s)").fontfamily("Math").fontscale(0.017).position(V2(7.45, -4))
+let rho_text = text("ρ (m)").fontfamily("Math").fontscale(0.017).position(V2(0.6, -0.8))
 
 let leg = diagram_combine(F_leg, F_text, x_leg, x_text).position(V2(6.8, 1.9))
 
-let t_text = text("t (s)").fontsize(20).fontfamily("Math").position(V2(6.4, 0.87))
+let t_text = text("t (s)").fontscale(0.017).fontfamily("Math").position(V2(6.4, 0.87))
 
 let stat = diagram_combine(div1, F0_text, F0_arrow, wall, equilibrium, div2, div3, x_ax, leg, t_text, theta_ax, rho_ax, tick_0, tick_1, tick_2, theta_text, rho_text, w_text1, w_text2)
 

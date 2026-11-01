@@ -55,15 +55,15 @@ let outline = rectangle(16, 9).strokewidth(0);
 let sq1 = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("blue").stroke("blue").strokewidth(2).position(V2(-7, 4.2))
 let sq2 = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("cyan").stroke("cyan").strokewidth(2).position(V2(-7, 3.7))
 let sqtot = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("black").stroke("black").strokewidth(2).position(V2(-7, 3.2))
-let t1 = text("Value of C₁, the gravitational field from m₁ at a point").fontsize(20).fontfamily("Math").position(V2(-3, 4.2))
-let t2 = text("Value of C₂, the gravitational field from m₂ at a point").fontsize(20).fontfamily("Math").position(V2(-3, 3.7))
-let ttot = text("Value of C = C₁ + C₂, the total gravitational field at a point").fontsize(20).fontfamily("Math").position(V2(-2.69, 3.2))
+let t1 = text("Value of C₁, the gravitational field from m₁ at a point").fontscale(0.017).fontfamily("Math").position(V2(-3, 4.2))
+let t2 = text("Value of C₂, the gravitational field from m₂ at a point").fontscale(0.017).fontfamily("Math").position(V2(-3, 3.7))
+let ttot = text("Value of C = C₁ + C₂, the total gravitational field at a point").fontscale(0.017).fontfamily("Math").position(V2(-2.69, 3.2))
 
 let a1 = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("blue").stroke("blue").strokewidth(2).position(V2(3, 3.4))
 let a2 = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("cyan").stroke("cyan").strokewidth(2).position(V2(4, 3.4))
 let atot = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("black").stroke("black").strokewidth(2).position(V2(5, 3.4))
-let plus = text("+").fontsize(20).fontfamily("Math").position(V2(3.5, 3.6))
-let equal = text("=").fontsize(20).fontfamily("Math").position(V2(4.5, 3.6))
+let plus = text("+").fontscale(0.017).fontfamily("Math").position(V2(3.5, 3.6))
+let equal = text("=").fontscale(0.017).fontfamily("Math").position(V2(4.5, 3.6))
 
 let leg = diagram_combine(sq1, sq2, sqtot, t1, t2, ttot, a1, a2, atot, plus, equal).translate(V2(0.5, 0))
 

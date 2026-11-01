@@ -104,23 +104,23 @@ let transf = axes_transform(ax1_opt)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
+let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
 let sheet = line(V2(center.x, center.y - max - 0.5), V2(center.x, center.y + max + 0.5)).strokewidth(0.25).stroke("lightgray").vectoreffect("none")
-let z_l = text("z (m)").fontsize(20).fontfamily("Math").position(V2(center.x + 2 * max, center.y + 0.3))
+let z_l = text("z (m)").fontscale(0.017).fontfamily("Math").position(V2(center.x + 2 * max, center.y + 0.3))
 
 let div1 = line(V2(1, 4.5), V2(1, -4.5))
 let div2 = line(V2(1, -1.2), V2(8, -1.2))
 
-let re = text("Re").fontsize(20).fontfamily("Math").position(V2(7.3, 2))
-let im = text("Im").fontsize(20).fontfamily("Math").position(V2(4.9, 4.35))
+let re = text("Re").fontscale(0.017).fontfamily("Math").position(V2(7.3, 2))
+let im = text("Im").fontscale(0.017).fontfamily("Math").position(V2(4.9, 4.35))
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(1.6, -1.6))
-let ch_t = text("Positive electric charge").fontsize(20).fontfamily("Math").position(V2(3.3, -1.6))
+let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(3.3, -1.6))
 let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(1.35, -2.2))
-let evec_t = text("Value of the electric field at a point").fontsize(20).fontfamily("Math").position(V2(4, -2.2))
+let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(4, -2.2))
 let vec = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("blue").stroke("blue").strokewidth(2).position(V2(1.35, -2.8))
-let vec_t = text("Real part of the complex sum").fontsize(20).fontfamily("Math").position(V2(3.7, -2.8))
-let vec_t2 = text("of the 'amplitude vectors'").fontsize(20).fontfamily("Math").position(V2(3.5, -3.2))
+let vec_t = text("Real part of the complex sum").fontscale(0.017).fontfamily("Math").position(V2(3.7, -2.8))
+let vec_t2 = text("of the 'amplitude vectors'").fontscale(0.017).fontfamily("Math").position(V2(3.5, -3.2))
 
 let leg = diagram_combine(ch, ch_t, evec, evec_t, vec, vec_t, vec_t2).translate(V2(0.8, -0.4))
 
@@ -221,7 +221,7 @@ int.draw_function = (inp) => {
 
     let ax2 = axes_empty({headsize: 0.1, bbox: [V2(-2.5, -2.5), V2(2.5, 2.5)]}).position(spiral_center).fill("black").strokewidth(1).stroke("black")
 
-    let P = text("P").fontfamily("Math").fontsize(20).position(inp["pos"].add(V2(0, 0.5)))
+    let P = text("P").fontfamily("Math").fontscale(0.017).position(inp["pos"].add(V2(0, 0.5)))
 
     draw(outline, stat, ...charges, ax2, spiral, resultant, projection, P)
 }

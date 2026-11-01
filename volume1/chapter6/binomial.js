@@ -98,7 +98,7 @@ int.draw_function = (inp) => {
 
     let y_ax = bar.yaxes(data, bar_op).apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.1, 0)))
     let x_ax = bar.xaxes(range_inc(0, c, 1).map((val) => val % (c > 60 ? 10 : c > 20 ? 5 : 2) === 0 ? String(val) : ""), bar_op)
-    let axes = diagram_combine(y_ax, x_ax).fontfamily("Math").fontsize(20).stroke("black").textfill("black")
+    let axes = diagram_combine(y_ax, x_ax).fontfamily("Math").fontscale(0.017).stroke("black").textfill("black")
 
     draw(outline, dataplot, axes, binom_plot)
 }

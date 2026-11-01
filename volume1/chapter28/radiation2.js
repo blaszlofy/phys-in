@@ -104,27 +104,27 @@ let transf = axes_transform(ax1_opt)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
+let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-6.9, 4))
-let ch_t = text("Positive electric charge").fontsize(20).fontfamily("Math").position(V2(-5.2, 4))
+let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 4))
 let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-7.15, 3.1))
-let evec_t = text("Value of the electric field at a point").fontsize(20).fontfamily("Math").position(V2(-4.4, 3.1))
+let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 3.1))
 let D = circle(0.08).strokewidth(0).fill("red").position(V2(-6.9, 2.2))
 let D2 = circle(0.2).strokewidth(0).fill("lightred").position(V2(-6.9, 2.2))
-let D_t = text("Point D").fontsize(20).fontfamily("Math").position(V2(-6, 2.2))
+let D_t = text("Point D").fontscale(0.017).fontfamily("Math").position(V2(-6, 2.2))
 let evec2 = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("green").stroke("green").strokewidth(2).position(V2(-7.15, 1.3))
-let evec2_t = text("Value of the electric field at point D").fontsize(20).fontfamily("Math").position(V2(-4.4, 1.3))
-let evec2_t2 = text("(scaled up for visibility)").fontsize(20).fontfamily("Math").position(V2(-5, 0.9))
+let evec2_t = text("Value of the electric field at point D").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 1.3))
+let evec2_t2 = text("(scaled up for visibility)").fontscale(0.017).fontfamily("Math").position(V2(-5, 0.9))
 let a = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("lightblue").stroke("lightblue").strokewidth(2).position(V2(-7.15, 0))
-let a_t = text("Acceleration of the charge").fontsize(20).fontfamily("Math").position(V2(-4.93, 0))
+let a_t = text("Acceleration of the charge").fontscale(0.017).fontfamily("Math").position(V2(-4.93, 0))
 let ap = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("blue").stroke("blue").strokewidth(2).position(V2(-7.15, -0.9))
-let ap_t = text("Acceleration component").fontsize(20).fontfamily("Math").position(V2(-5.01, -0.9))
-let ap_t2 = text("perpendicular to the line of sight").fontsize(20).fontfamily("Math").position(V2(-4.55, -1.3))
+let ap_t = text("Acceleration component").fontscale(0.017).fontfamily("Math").position(V2(-5.01, -0.9))
+let ap_t2 = text("perpendicular to the line of sight").fontscale(0.017).fontfamily("Math").position(V2(-4.55, -1.3))
 
 
-let x_l = text("x (m)").fontsize(20).fontfamily("Math").position(V2(center.x + max, center.y + 0.3))
-let y_l = text("y (m)").fontsize(20).fontfamily("Math").position(V2(center.x + 0.5, center.y + max - 0.15))
+let x_l = text("x (m)").fontscale(0.017).fontfamily("Math").position(V2(center.x + max, center.y + 0.3))
+let y_l = text("y (m)").fontscale(0.017).fontfamily("Math").position(V2(center.x + 0.5, center.y + max - 0.15))
 
 let bound = circle(radius).position(center).apply(mod.subdivide(200))
 

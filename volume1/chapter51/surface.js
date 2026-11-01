@@ -28,8 +28,8 @@ let div = line(V2(-8, -2.5), V2(8, -2.5))
 
 let part_l = circle(0.07).strokewidth(0).fill("lightblue").position(V2(-3, -3.1))
 let point_l = circle(0.1).strokewidth(0).fill("blue").position(V2(-3, -3.9))
-let part_t = text("Water particles moving in circles").fontfamily("Math").fontsize(20).position(V2(-0.68, -3.1))
-let point_t = text("Point moving at phase velocity").fontfamily("Math").fontsize(20).position(V2(-0.8, -3.9))
+let part_t = text("Water particles moving in circles").fontfamily("Math").fontscale(0.017).position(V2(-0.68, -3.1))
+let point_t = text("Point moving at phase velocity").fontfamily("Math").fontscale(0.017).position(V2(-0.8, -3.9))
 
 let leg = diagram_combine(part_l, point_l, part_t, point_t).translate(V2(1, 0))
 

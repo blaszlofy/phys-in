@@ -49,25 +49,25 @@ let ax_opt = {
 }
 let transf = axes_transform(ax_opt)
 
-let ax1 = xyaxes(ax1_opt).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
-let ax2 = xyaxes(ax2_opt).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
-let ax = xyaxes(ax_opt).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let ax1 = xyaxes(ax1_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let ax2 = xyaxes(ax2_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let ax = xyaxes(ax_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
 let plus = text("+").fontfamily("Math").fontsize(26).position(V2(center.x, center.y + dh / 2))
 let equal = text("=").fontfamily("Math").fontsize(26).position(V2(center.x, center.y - dh / 2))
 
 let sg_l1 = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-7.5, 4))
-let sg_t1 = text("The first wave").fontsize(20).fontfamily("Math").position(V2(-5.9, 4))
+let sg_t1 = text("The first wave").fontscale(0.017).fontfamily("Math").position(V2(-5.9, 4))
 let sg_l2 = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(2).position(V2(-7.5, 3.4))
-let sg_t2 = text("The second wave").fontsize(20).fontfamily("Math").position(V2(-5.72, 3.4))
+let sg_t2 = text("The second wave").fontscale(0.017).fontfamily("Math").position(V2(-5.72, 3.4))
 let sg_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-7.5, 2.8))
-let sg_t = text("The sum of the two waves").fontsize(20).fontfamily("Math").position(V2(-5.2, 2.8))
+let sg_t = text("The sum of the two waves").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 2.8))
 
 let ph_l = circle(0.1).strokewidth(0).fill("lightpurple").position(V2(-1, 4))
 let g_l = circle(0.1).strokewidth(0).fill("lightcyan").position(V2(-1, 3.4))
 let l_l = circle(0.1).strokewidth(0).fill("yellow").position(V2(-1, 2.8))
-let ph_t = text("Point moving at group velocity").fontsize(20).fontfamily("Math").position(V2(1.2, 4))
-let g_t = text("Point moving at phase velocity").fontsize(20).fontfamily("Math").position(V2(1.2, 3.4))
-let l_t = text("Point moving at the speed of light").fontsize(20).fontfamily("Math").position(V2(1.35, 2.8))
+let ph_t = text("Point moving at group velocity").fontscale(0.017).fontfamily("Math").position(V2(1.2, 4))
+let g_t = text("Point moving at phase velocity").fontscale(0.017).fontfamily("Math").position(V2(1.2, 3.4))
+let l_t = text("Point moving at the speed of light").fontscale(0.017).fontfamily("Math").position(V2(1.35, 2.8))
 
 
 let leg = diagram_combine(sg_l1, sg_t1, sg_l2, sg_t2, sg_l, sg_t, ph_l, g_l, ph_t, g_t, l_l, l_t).translate(V2(2, 0))

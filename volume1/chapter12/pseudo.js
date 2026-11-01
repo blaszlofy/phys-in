@@ -28,11 +28,11 @@ const scale = 0.07
 let outline = rectangle(16, 9).strokewidth(0);
 let divider1 = line(V2(-8, -0.75), V2(8, -0.75))
 let divider2 = line(V2(-8, 3), V2(8, 3))
-let tit1 = text("Accelerating coordinate system (with A acceleration)").fontfamily("Math").fontsize(20).position(V2(0, -1))
-let tit2 = text("Stationary coordinate system (scaled based on the system's position)").fontfamily("Math").fontsize(20).position(V2(0, 2.75))
-let title = text("This interactive is quite complicated. See the 'Things to Notice' section").fontfamily("Math").fontsize(20).position(V2(0, 4.3))
-let title2 = text("below for a more detailed explanation,").fontfamily("Math").fontsize(20).position(V2(0, 3.9))
-let title3 = text("and an actual example of working with forces and Newton's laws").fontfamily("Math").fontsize(20).position(V2(0, 3.5))
+let tit1 = text("Accelerating coordinate system (with A acceleration)").fontfamily("Math").fontscale(0.017).position(V2(0, -1))
+let tit2 = text("Stationary coordinate system (scaled based on the system's position)").fontfamily("Math").fontscale(0.017).position(V2(0, 2.75))
+let title = text("This interactive is quite complicated. See the 'Things to Notice' section").fontfamily("Math").fontscale(0.017).position(V2(0, 4.3))
+let title2 = text("below for a more detailed explanation,").fontfamily("Math").fontscale(0.017).position(V2(0, 3.9))
+let title3 = text("and an actual example of working with forces and Newton's laws").fontfamily("Math").fontscale(0.017).position(V2(0, 3.5))
 
 let stat = diagram_combine(divider1, divider2, tit1, tit2, title, title2, title3)
 

@@ -565,8 +565,8 @@ let outline = rectangle(16, 12).strokewidth(0)
 
 let div = line(V2(-8, -3.1), V2(8, -3.1))
 
-let num_ax = xycorneraxes(num_opt).stroke("black").fill("black").textfill("black").fontsize(20).fontfamily("Math")
-let N_label = text("N").fontfamily("Math").fontsize(20).position(V2(-7.8, -3.4))
+let num_ax = xycorneraxes(num_opt).stroke("black").fill("black").textfill("black").fontscale(0.017).fontfamily("Math")
+let N_label = text("N").fontfamily("Math").fontscale(0.017).position(V2(-7.8, -3.4))
 
 let C_mol = circle(0.08).strokewidth(0).fill("#505159").position(V2(-1, -3.4))
 let O_mol1 = circle(0.085).strokewidth(0).fill("#ff3333").position(V2(-0.93, -3.8))
@@ -577,10 +577,10 @@ let CO2_mol1 = circle(0.085).strokewidth(0).fill("#ff3333").position(V2(-0.86, -
 let CO2_mol2 = circle(0.085).strokewidth(0).fill("#ff3333").position(V2(-1.14, -4.6))
 let CO2_mol3 = circle(0.08).strokewidth(0).fill("#505159").position(V2(-1, -4.6))
 
-let C_text = text("C").fontsize(20).fontfamily("Math").position(V2(-0.5, -3.4))
-let O2_text = text("O₂").fontsize(20).fontfamily("Math").position(V2(-0.42, -3.8))
-let CO_text = text("CO").fontsize(20).fontfamily("Math").position(V2(-0.4, -4.2))
-let CO2_text = text("CO₂").fontsize(20).fontfamily("Math").position(V2(-0.35, -4.6))
+let C_text = text("C").fontscale(0.017).fontfamily("Math").position(V2(-0.5, -3.4))
+let O2_text = text("O₂").fontscale(0.017).fontfamily("Math").position(V2(-0.42, -3.8))
+let CO_text = text("CO").fontscale(0.017).fontfamily("Math").position(V2(-0.4, -4.2))
+let CO2_text = text("CO₂").fontscale(0.017).fontfamily("Math").position(V2(-0.35, -4.6))
 
 let C_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("#505159").position(V2(0, -3.4))
 let O2_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("#ff3333").position(V2(0, -3.8))
@@ -589,13 +589,13 @@ let CO2_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("cyan").position
 
 let leg = diagram_combine(C_mol, O_mol1, O_mol2, CO_mol1, CO_mol2, CO2_mol1, CO2_mol2, CO2_mol3, C_text, O2_text, CO_text, CO2_text, C_line, O2_line, CO_line, CO2_line).translate(V2(7, 0))
 
-let t_lab1 = text("t (s)").fontsize(20).fontfamily("Math").position(V2(6.5, -5.7))
+let t_lab1 = text("t (s)").fontscale(0.017).fontfamily("Math").position(V2(6.5, -5.7))
 
 int.draw_function = (inp) => {
     let offset = Math.max(0, t - 30)
 
-    let tick1 = xtickmark((t > 30) ? 30 - (t + 2) % 30 : 28, 0, "t", num_opt).fontfamily("Math").stroke("black").fontsize(20).textfill("black")
-    let tick2 = xtickmark((t > 30) ? 30 - (t) % 30 : 30, 0, "t + 2", num_opt).fontfamily("Math").stroke("black").fontsize(20).textfill("black")
+    let tick1 = xtickmark((t > 30) ? 30 - (t + 2) % 30 : 28, 0, "t", num_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
+    let tick2 = xtickmark((t > 30) ? 30 - (t) % 30 : 30, 0, "t + 2", num_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
 
     let plotC = plotv(dataC.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(2).stroke("#505159")
     let plotO2 = plotv(dataO2.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(2).stroke("#ff3333")

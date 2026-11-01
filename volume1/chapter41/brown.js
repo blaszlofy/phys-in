@@ -93,9 +93,9 @@ let div = line(V2(-8, -3), V2(8, -3))
 
 let coll_l = circle(0.15).strokewidth(0).fill("lightblue").position(V2(-4, -3.45))
 let part_l = circle(0.05).strokewidth(0).fill("blue").position(V2(-4, -4.1))
-let coll_t = text("Colloidal particle").fontfamily("Math").fontsize(20).position(V2(-2.5, -3.45))
-let part_t = text("Gas molecule").fontfamily("Math").fontsize(20).position(V2(-2.7, -4.1))
-let path_t = text("Path of the colloidal particle").fontfamily("Math").fontsize(20).position(V2(2.5, -3.775))
+let coll_t = text("Colloidal particle").fontfamily("Math").fontscale(0.017).position(V2(-2.5, -3.45))
+let part_t = text("Gas molecule").fontfamily("Math").fontscale(0.017).position(V2(-2.7, -4.1))
+let path_t = text("Path of the colloidal particle").fontfamily("Math").fontscale(0.017).position(V2(2.5, -3.775))
 let path_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("lightred").position(V2(0, -3.775))
 
 let leg = diagram_combine(coll_l, part_l, coll_t, part_t, path_l, path_t).translate(V2(0.2, 0))

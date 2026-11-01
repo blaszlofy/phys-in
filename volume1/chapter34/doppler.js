@@ -54,22 +54,22 @@ let div = line(V2(-8, -1), V2(8, -1))
 
 let leg = diagram_combine(
     circle(0.15).strokewidth(0).fill("lightred").position(V2(-7, -1.7)),
-    text("Emitter, traveling at speed v₁").fontfamily("Math").fontsize(20).position(V2(-4.8, -1.7)),
+    text("Emitter, traveling at speed v₁").fontfamily("Math").fontscale(0.017).position(V2(-4.8, -1.7)),
     square(0.3).strokewidth(0).fill("lightblue").position(V2(-7, -2.4)),
-    text("Observer, traveling at speed v₂").fontfamily("Math").fontsize(20).position(V2(-4.7, -2.4)),
+    text("Observer, traveling at speed v₂").fontfamily("Math").fontscale(0.017).position(V2(-4.7, -2.4)),
     diagram_combine(
         line(V2(0, -0.2), V2(0, 0.2)),
         line(V2(-0.3, -0.2), V2(-0.3, 0.2)),
         line(V2(0.3, -0.2), V2(0.3, 0.23)),
     ).position(V2(-7.2, -3.15)),
-    text("Wave crests of the emitted light").fontfamily("Math").fontsize(20).position(V2(-4.65, -3.15)),
+    text("Wave crests of the emitted light").fontfamily("Math").fontscale(0.017).position(V2(-4.65, -3.15)),
     diagram_combine(
         rectangle(0.6, 0.3).stroke("gray").strokewidth(1.5),
         line(V2(-0.2, -0.1), V2(-0.2, 0.1)),
         line(V2(0, -0.1), V2(0, 0.1)),
         line(V2(0.2, -0.1), V2(0.2, 0.1)),
     ).position(V2(-7.2, -3.9)),
-    text("Light as measured by the observer").fontfamily("Math").fontsize(20).position(V2(-4.45, -3.9)),
+    text("Light as measured by the observer").fontfamily("Math").fontscale(0.017).position(V2(-4.45, -3.9)),
 ).translate(V2(4.9, 0))
 
 let stat = diagram_combine(div, leg)

@@ -84,16 +84,16 @@ const center = V2(-4.5, -0.3)
 let div1 = line(V2(0, 4.5), V2(0, -4.5))
 let div2 = line(V2(0, 0), V2(8, 0))
 
-let exp_t = text("Experimental pressure value").fontfamily("Math").fontsize(20).position(V2(4, 0.8))
-let theo_t = text("Theoretical pressure value (p = NkT/V)").fontfamily("Math").fontsize(20).position(V2(4.65, 0.3))
+let exp_t = text("Experimental pressure value").fontfamily("Math").fontscale(0.017).position(V2(4, 0.8))
+let theo_t = text("Theoretical pressure value (p = NkT/V)").fontfamily("Math").fontscale(0.017).position(V2(4.65, 0.3))
 let exp_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(1.5, 0.8))
 let theo_l = line(V2(0, 0), V2(0.5, 0)).stroke("gray").strokedasharray([10]).position(V2(1.5, 0.3))
-let vel_t = text("Velocity histogram").fontfamily("Math").fontsize(20).position(V2(4, -0.3))
+let vel_t = text("Velocity histogram").fontfamily("Math").fontscale(0.017).position(V2(4, -0.3))
 
-let t_t = text("t (s)").fontfamily("Math").fontsize(20).position(V2(7.7, 1.5))
-let p_t = text("p (Pa)").fontfamily("Math").fontsize(20).position(V2(0.65, 4.1))
-let n_t = text("n").fontfamily("Math").fontsize(20).position(V2(1, -0.2))
-let v_t = text("v (m/s)").fontfamily("Math").fontsize(20).position(V2(7.5, -4))
+let t_t = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.7, 1.5))
+let p_t = text("p (Pa)").fontfamily("Math").fontscale(0.017).position(V2(0.65, 4.1))
+let n_t = text("n").fontfamily("Math").fontscale(0.017).position(V2(1, -0.2))
+let v_t = text("v (m/s)").fontfamily("Math").fontscale(0.017).position(V2(7.5, -4))
 
 let leg = diagram_combine(exp_t, theo_t, vel_t, t_t, p_t, n_t, v_t, exp_l, theo_l)
 
@@ -353,8 +353,8 @@ function update(time) {
         bbox: [V2(1.3, 1.5), V2(7.3, 4.3)],
         headsize: 0.1
     }
-    let tick1 = xtickmark(10 - (t + 1) % 10, 0, "t", ax_opt).fontfamily("Math").stroke("black").fontsize(20).textfill("black")
-    let tick2 = xtickmark(10 - (t) % 10, 0, "t + 1", ax_opt).fontfamily("Math").stroke("black").fontsize(20).textfill("black")
+    let tick1 = xtickmark(10 - (t + 1) % 10, 0, "t", ax_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
+    let tick2 = xtickmark(10 - (t) % 10, 0, "t + 1", ax_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
     let yticks = diagram_combine(
         ytickmark_empty(50, 0, ax_opt),
         ytickmark_empty(100, 0, ax_opt),
@@ -364,7 +364,7 @@ function update(time) {
         ytickmark_empty(300, 0, ax_opt),
         ytickmark_empty(350, 0, ax_opt),
     ).stroke("black")
-    let ax = xycorneraxes(ax_opt).fontsize(20).fontfamily("Math").textfill("black").stroke("black").fill("black")
+    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
     let plot_data = exp_pressure_val.map((p, i) => V2(i * max_pressure_time, p))
     let press_plot = plotv(plot_data, ax_opt).stroke("blue").strokewidth(2)
     let real_plot = plotf(x => N * k * T / V, ax_opt).stroke("gray").strokedasharray([10])
@@ -375,7 +375,7 @@ function update(time) {
         yrange: [0, Math.max(500, Math.max(...velocity_histogram))],
     }
     let hist_plot = bar.plot(velocity_histogram, bar_opt).stroke("blue").fill("lightblue").opacity(0.5)
-    let hist_ax = bar.yaxes(velocity_histogram, bar_opt).stroke("black").fontsize(20).fontfamily("Math").textfill("black")
+    let hist_ax = bar.yaxes(velocity_histogram, bar_opt).stroke("black").fontscale(0.017).fontfamily("Math").textfill("black")
 
     function maxwellBoltzmann(x) {
         const v = x * bin_width

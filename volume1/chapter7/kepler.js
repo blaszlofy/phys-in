@@ -135,9 +135,9 @@ let divider2 = line(V2(0, 3), V2(8, 3))
 let divider3 = line(V2(0, -3), V2(8, -3))
 let dividers = diagram_combine(divider1, divider2, divider3)
 
-let t_lab = text("t (10⁷ s)").fontfamily("Math").fontsize(20).position(V2(7.45, -0.1))
-let F_lab = text("F (10²⁰ N) - magnitude of the force between the two bodies").fontfamily("Math").fontsize(20).position(V2(4.2, -1.3))
-let v_lab = text("v (10⁴ m/s) - magnitude of the velocity of the orbiting body").fontfamily("Math").fontsize(20).position(V2(4.21, -1.9))
+let t_lab = text("t (10⁷ s)").fontfamily("Math").fontscale(0.017).position(V2(7.45, -0.1))
+let F_lab = text("F (10²⁰ N) - magnitude of the force between the two bodies").fontfamily("Math").fontscale(0.017).position(V2(4.2, -1.3))
+let v_lab = text("v (10⁴ m/s) - magnitude of the velocity of the orbiting body").fontfamily("Math").fontscale(0.017).position(V2(4.21, -1.9))
 let F_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).stroke("blue").position(V2(0.15, -1.3))
 let v_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).stroke("red").position(V2(0.15, -1.9))
 let labels = diagram_combine(t_lab, F_lab, v_lab, F_line, v_line).translate(V2(0, -0.4))
@@ -211,11 +211,11 @@ int.draw_function = (inp) => {
     let velocity =  arrow1(pos_on_orbit, tangent_dir.scale(v).add(pos_on_orbit), 0.1).fill("red").stroke("red").strokewidth(3)
 
     let legend = diagram_combine(
-        r1_legend.translate(V2(0, 0.01)), text(r1.path_length().toFixed(2).toString()).fontfamily("Math").fontsize(20).translate(V2(0.8, 0)),
-        text("+").fontfamily("Math").fontsize(20).translate(V2(1.2, 0)),
-        r2_legend.translate(V2(1.4, 0.01)), text(r2.path_length().toFixed(2).toString()).fontfamily("Math").fontsize(20).translate(V2(2.2, 0)),
-        text(" = ").fontfamily("Math").fontsize(20).translate(V2(2.7, 0)),
-        text((r1.path_length() + +r2.path_length()).toFixed(2)).fontfamily("Math").fontsize(20).translate(V2(3.2, 0)),
+        r1_legend.translate(V2(0, 0.01)), text(r1.path_length().toFixed(2).toString()).fontfamily("Math").fontscale(0.017).translate(V2(0.8, 0)),
+        text("+").fontfamily("Math").fontscale(0.017).translate(V2(1.2, 0)),
+        r2_legend.translate(V2(1.4, 0.01)), text(r2.path_length().toFixed(2).toString()).fontfamily("Math").fontscale(0.017).translate(V2(2.2, 0)),
+        text(" = ").fontfamily("Math").fontscale(0.017).translate(V2(2.7, 0)),
+        text((r1.path_length() + +r2.path_length()).toFixed(2)).fontfamily("Math").fontscale(0.017).translate(V2(3.2, 0)),
     ).position(V2(2.1, 3.8))
 
     if (planet_cache !== planet_pos || focal_cache !== focal_pos || m_cache !== m || M_cache !== M || G_cache !== G) {
@@ -236,9 +236,9 @@ int.draw_function = (inp) => {
         }
     }
 
-    let period_text = text("T = " + period.toFixed(2) + " ⋅ 10⁷ s").fontfamily("Math").fontsize(20).position(V2(4, -3.8))
+    let period_text = text("T = " + period.toFixed(2) + " ⋅ 10⁷ s").fontfamily("Math").fontscale(0.017).position(V2(4, -3.8))
 
-    let v_f_axes = xycorneraxes(v_f_plot).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
+    let v_f_axes = xycorneraxes(v_f_plot).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
     let v_plot = plotv(velocities, v_f_plot).stroke("red").strokewidth(2)
     let f_plot = plotv(forces, v_f_plot).stroke("blue").strokewidth(2)
     let transf = axes_transform(v_f_plot)

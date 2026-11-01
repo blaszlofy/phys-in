@@ -10,19 +10,13 @@ import {
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
-let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
-};
-
-let canvas_tex = document.getElementById("tex");
-
 let handletex = (str, conf) => {
     return MathJax.tex2svg(str, conf).innerHTML;
 };
 
-let draw_tex = (...diagrams) => {
-    draw_to_svg_element(canvas_tex, diagram_combine(...diagrams));
-    handle_tex_in_svg(canvas_tex, handletex);
+let draw = (...diagrams) => {
+    draw_to_svg_element(canvas, diagram_combine(...diagrams));
+    handle_tex_in_svg(canvas, handletex);
 };
 
 //SOME FUNCTION FROM THE WEB TO GET THE COLOR BASED ON FREQUENCY IN THZ
@@ -66,10 +60,12 @@ let outline = rectangle(16, 9).strokewidth(0)
 let opt_ax = line(V2(-8, 0), V2(8, 0)).stroke("lightgray").strokedasharray([10])
 let lens_bound = line(V2(-4, 0), V2(0, 0)).apply(mod.subdivide(200))
 let P = circle(0.05).strokewidth(0).fill("lightblue").position(V2(-6.5, 0))
-let P_text = text("P").fontsize(20).fontfamily("Math").position(V2(-6.5, -0.3))
+let P_text = text("P").fontscale(0.017).fontfamily("Math").position(V2(-6.5, -0.3))
 let T = circle(0.05).strokewidth(0).fill("lightred").position(V2(6.5, 0))
-let T_text = text("T").fontsize(20).fontfamily("Math").position(V2(6.5, -0.3))
+let T_text = text("T").fontscale(0.017).fontfamily("Math").position(V2(6.5, -0.3))
 let stat = diagram_combine(opt_ax, P, P_text, T, T_text)
+
+let eq = text("$$D_{limit} = \\frac{\\lambda}{2 \\text{n} \\sin(\\theta)} = $$").fontsize(18).position(V2(-3.75, -3.42))
 
 let int = new Interactive(control, canvas);
 
@@ -79,7 +75,7 @@ int.draw_function = (inp) => {
     let v = inp["ν"]
     let t = inp["t"]
 
-    let P__text = text("P'").fontsize(20).fontfamily("Math").position(V2(-6.5, D + 0.3))
+    let P__text = text("P'").fontscale(0.017).fontfamily("Math").position(V2(-6.5, D + 0.3))
     let P_ = circle(0.05).strokewidth(0).fill("blue").position(V2(-6.5, D))
 
     let theta = Math.atan2(h, Math.abs(lens_x - P.get_anchor("center-center").x));
@@ -125,16 +121,16 @@ int.draw_function = (inp) => {
     let D_req = visual_lambda / (2 * Math.sin(theta))
     let resolved = (L_bottom - L_top) >= visual_lambda;
 
-    let notice = text("Point sources " + (resolved ? "resolved" : "unresolved")).fontsize(20).fontfamily("Math").position(V2(4, -3.5))
-    let val = text(D_req.toFixed(2)).fontsize(20).fontfamily("Math").position(V2(-2.05, -3.43))
+    let notice = text("Point sources " + (resolved ? "resolved" : "unresolved")).fontscale(0.017).fontfamily("Math").position(V2(4, -3.5))
+    let val = text(D_req.toFixed(2)).fontscale(0.017).fontfamily("Math").position(V2(-2.05, -3.43))
 
     let legend = diagram_combine(
         wave.position(V2(-3.5, 3.5)),
         wave.position(V2(-3.5 - visual_lambda, 3.5)),
         wave.position(V2(-3.5 - 2 * visual_lambda, 3.5)),
         wave.position(V2(-3.5 - 3 * visual_lambda, 3.5)),
-        text("Light paths with markers spaced by one period of oscillation (wavelength λ)").fontsize(20).fontfamily("Math").position(V2(1.2, 3.5)),
-        text("Lens, which focuses P to T").fontsize(20).fontfamily("Math").position(V2(0.1, 4)),
+        text("Light paths with markers spaced by one period of oscillation (wavelength λ)").fontscale(0.017).fontfamily("Math").position(V2(1.2, 3.5)),
+        text("Lens, which focuses P to T").fontscale(0.017).fontfamily("Math").position(V2(0.1, 4)),
         line(V2(0, -0.2), V2(0, 0.2)).strokewidth(2).strokelinecap("round").stroke("blue").position(V2(-1.7, 4)),
 
         line(V2(-8, 2.7), V2(8, 2.7)),
@@ -143,7 +139,7 @@ int.draw_function = (inp) => {
         text("Assumes index of refraction n = 1 (air)").fontsize(16).fontfamily("Math").position(V2(-3.35, -4.1)),
     )
 
-    draw(outline, P_, P__text, lens, ...annot, ...lightrays, stat, ...waves, notice, val, legend)
+    draw(outline, eq, P_, P__text, lens, ...annot, ...lightrays, stat, ...waves, notice, val, legend)
 }
 
 int.locator("lens", V2(-2.5, 0), 0.2, "gray", lens_bound)
@@ -154,7 +150,3 @@ int.slider("ν", 400, 780, 600, 1, 10, (name, value) => name + " = " + value.toF
 
 int.draw()
 int.draw()
-
-//TEX
-let eq = text("$$D_{limit} = \\frac{\\lambda}{2 \\text{n} \\sin(\\theta)} = $$").fontsize(18).position(V2(-3.95, -3.5))
-draw_tex(outline, eq)

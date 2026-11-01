@@ -29,8 +29,8 @@ let ax_opt = {
 
 let harm_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-2.7, -3.4))
 let sig_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-2.7, -3.9))
-let harm_t = text("Harmonic functions").fontfamily("Math").fontsize(20).position(V2(-0.64, -3.4))
-let sig_t = text("String, sum of the simple harmonic functions").fontfamily("Math").fontsize(20).position(V2(0.8, -3.9))
+let harm_t = text("Harmonic functions").fontfamily("Math").fontscale(0.017).position(V2(-0.64, -3.4))
+let sig_t = text("String, sum of the simple harmonic functions").fontfamily("Math").fontscale(0.017).position(V2(0.8, -3.9))
 
 let leg = diagram_combine(harm_l, sig_l, harm_t, sig_t)
 

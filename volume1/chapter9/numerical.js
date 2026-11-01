@@ -120,22 +120,22 @@ let rul_opt = {
     headsize: 0
 }
 let rul_transf = axes_transform(rul_opt)
-let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontsize(20)
-let rul = xycorneraxes(rul_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontsize(20)
+let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
+let rul = xycorneraxes(rul_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
 
-let t_leg = text("t (s)").fontfamily("Math").fontsize(20).position(V2(7, -2))
-let x_leg = text("x (m)").fontfamily("Math").fontsize(20).position(V2(-7.5, -0.3))
-let x_leg2 = text("x (m)").fontfamily("Math").fontsize(20).position(V2(-5, 4.45))
+let t_leg = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7, -2))
+let x_leg = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(-7.5, -0.3))
+let x_leg2 = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(-5, 4.45))
 
 let exact_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).strokedasharray([10]).position(V2(2.3, 3.6))
 let half_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("blue").opacity(0.5).position(V2(2.3, 2))
 let whole_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("red").opacity(0.5).position(V2(2.3, 3))
 
-let exact_text = text('Exact analytical position of the mass').fontsize(20).fontfamily("Math").position(V2(5, 3.6))
-let whole_text = text('Approximated position using the').fontsize(20).fontfamily("Math").position(V2(4.84, 3))
-let whole_text2 = text('basic method (Euler)').fontsize(20).fontfamily("Math").position(V2(4.15, 2.6))
-let half_text = text('Approximated position using the').fontsize(20).fontfamily("Math").position(V2(4.84, 2))
-let half_text2 = text('ϵ/2 "trick" (Leapfrog)').fontsize(20).fontfamily("Math").position(V2(4.2, 1.6))
+let exact_text = text('Exact analytical position of the mass').fontscale(0.017).fontfamily("Math").position(V2(5, 3.6))
+let whole_text = text('Approximated position using the').fontscale(0.017).fontfamily("Math").position(V2(4.84, 3))
+let whole_text2 = text('basic method (Euler)').fontscale(0.017).fontfamily("Math").position(V2(4.15, 2.6))
+let half_text = text('Approximated position using the').fontscale(0.017).fontfamily("Math").position(V2(4.84, 2))
+let half_text2 = text('ϵ/2 "trick" (Leapfrog)').fontscale(0.017).fontfamily("Math").position(V2(4.2, 1.6))
 
 let statics = diagram_combine(div, div2, ax, t_leg, x_leg, x_leg2, rul, exact_line, half_line, whole_line, exact_text, whole_text, whole_text2, half_text, half_text2)
 

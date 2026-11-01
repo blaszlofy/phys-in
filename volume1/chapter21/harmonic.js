@@ -49,8 +49,8 @@ let divider3 = line(V2(3, 2.5), V2(8, 2.5))
 
 let pot_square = square(0.3).fill("blue").strokewidth(0)
 let kin_square = square(0.3).fill("red").strokewidth(0)
-let pot_text = text("P.E. - potential energy").fontfamily("Math").fontsize(20)
-let kin_text = text("K.E. - kinetic energy").fontfamily("Math").fontsize(20)
+let pot_text = text("P.E. - potential energy").fontfamily("Math").fontscale(0.017)
+let kin_text = text("K.E. - kinetic energy").fontfamily("Math").fontscale(0.017)
 
 let legend = distribute_vertical_and_align(
     [distribute_horizontal_and_align([pot_square, pot_text], 1.4, "center"),
@@ -72,9 +72,9 @@ let axes_opt = {
 }
 let transf = axes_transform(axes_opt)
 
-let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
-let time = text("t (s)").fontfamily("Math").fontsize(20).position(V2(7.4, -4.45))
-let energy = text("x (m)").fontfamily("Math").fontsize(20).position(V2(-7.7,  -1.8))
+let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let time = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.4, -4.45))
+let energy = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(-7.7,  -1.8))
 
 let int = new Interactive(control, canvas);
 
@@ -120,11 +120,11 @@ int.draw_function = (inp) => {
     let bar_outline = rectangle(3, 1).position(V2(5.5, 0)).strokewidth(0)
     let bar = diagram_combine(pot_energy_bar, kin_energy_bar, bar_outline)
 
-    let kin_text = text(ke.toFixed(2)).fontfamily("Math").fontsize(20)
-    let pot_text = text(pe.toFixed(2)).fontfamily("Math").fontsize(20)
-    let total_text = text(max_energy.toFixed(2)).fontfamily("Math").fontsize(20).translate(V2(2.65, 0))
-    let plus = text("+").fontfamily("Math").fontsize(20).translate(V2(0.4, 0)).translate(V2(0.5, 0))
-    let equal = text("=").fontfamily("Math").fontsize(20).translate(V2(2.2,0))
+    let kin_text = text(ke.toFixed(2)).fontfamily("Math").fontscale(0.017)
+    let pot_text = text(pe.toFixed(2)).fontfamily("Math").fontscale(0.017)
+    let total_text = text(max_energy.toFixed(2)).fontfamily("Math").fontscale(0.017).translate(V2(2.65, 0))
+    let plus = text("+").fontfamily("Math").fontscale(0.017).translate(V2(0.4, 0)).translate(V2(0.5, 0))
+    let equal = text("=").fontfamily("Math").fontscale(0.017).translate(V2(2.2,0))
     let pot_square2 = square(0.3).fill("blue").strokewidth(0)
     let kin_square2 = square(0.3).fill("red").strokewidth(0)
     let energy_values = align_vertical([

@@ -35,13 +35,13 @@ let ax_opt = {
     headsize: 0.1,
     n_sample: 300
 }
-let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontsize(20)
+let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
 let div = line(V2(-8, -2.5), V2(8, -2.5))
 
 let harm_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-2.7, -3.1))
 let sig_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-2.7, -3.9))
-let harm_t = text("Harmonics with volume control").fontfamily("Math").fontsize(20).position(V2(0, -3.1))
-let sig_t = text("Audio signal, sum of the harmonics (normalized)").fontfamily("Math").fontsize(20).position(V2(1.01, -3.9))
+let harm_t = text("Harmonics with volume control").fontfamily("Math").fontscale(0.017).position(V2(0, -3.1))
+let sig_t = text("Audio signal, sum of the harmonics (normalized)").fontfamily("Math").fontscale(0.017).position(V2(1.01, -3.9))
 
 let stat = diagram_combine(ax, div, harm_l, sig_l, harm_t, sig_t)
 
@@ -68,7 +68,7 @@ int.draw_function = (inp) => {
 
         let ol = rectangle(0.3, height).move_origin("bottom-center").position(V2(pos[i].x, y)).strokewidth(2).stroke("lightgray")
         let br = rectangle(0.3, pos[i].y - y).move_origin("bottom-center").position(V2(pos[i].x, y)).strokewidth(0).fill("lightblue")
-        let tx = text(((i + 1) === 1 ? "" : (i + 1)) + "ω").fontsize(20).fontfamily("Math").position(V2(pos[i].x, y - 0.4))
+        let tx = text(((i + 1) === 1 ? "" : (i + 1)) + "ω").fontscale(0.017).fontfamily("Math").position(V2(pos[i].x, y - 0.4))
         bars.push(br, ol, tx)
 
         plots.push(

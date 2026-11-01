@@ -17,19 +17,13 @@ import {
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
-let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
-};
-
-let canvas_tex = document.getElementById("tex");
-
 let handletex = (str, conf) => {
     return MathJax.tex2svg(str, conf).innerHTML;
 };
 
-let draw_tex = (...diagrams) => {
-    draw_to_svg_element(canvas_tex, diagram_combine(...diagrams));
-    handle_tex_in_svg(canvas_tex, handletex);
+let draw = (...diagrams) => {
+    draw_to_svg_element(canvas, diagram_combine(...diagrams));
+    handle_tex_in_svg(canvas, handletex);
 };
 
 //STATIC
@@ -96,12 +90,12 @@ int.draw_function = (inp) => {
     M_line = line(V2(rot_pos.x - 3, rot_pos.y + 0.2), V2(pulley_pos.x + 0.2 + 3, rot_pos.y + 0.2)).apply(mod.subdivide(2)).strokewidth(0).rotate(theta, rot_pos)
 
     let M_mass = square(0.3 * Math.cbrt(M)).strokewidth(0).fill("lightred")
-        .combine(text(M.toString() + " kg").fontfamily("Math").fontsize(20)).position(M_pos).translate(V2(0, 0.15 * Math.cbrt(M))).rotate(theta)
+        .combine(text(M.toString() + " kg").fontfamily("Math").fontscale(0.017)).position(M_pos).translate(V2(0, 0.15 * Math.cbrt(M))).rotate(theta)
     let m_mass = square(0.3 * Math.cbrt(m)).strokewidth(0).fill("lightcyan")
-        .combine(text(m.toString() + " kg").fontfamily("Math").fontsize(20)).position(m_pos).translate(V2(0, -0.75))
+        .combine(text(m.toString() + " kg").fontfamily("Math").fontscale(0.017)).position(m_pos).translate(V2(0, -0.75))
     let m_rope = line(m_pos, m_mass.get_anchor("top-center"))
     let w_mass = square(0.3 * Math.cbrt(W)).strokewidth(0).fill("lightblue")
-        .combine(text(W.toString() + " kg").fontfamily("Math").fontsize(20)).move_origin("top-center").position(W_pos)
+        .combine(text(W.toString() + " kg").fontfamily("Math").fontscale(0.017)).move_origin("top-center").position(W_pos)
 
     let rope1 = line(V2(pulley_pos.x - 0.3, pulley_pos.y), W_pos)
     let [p1, p2] =  geometry.circle_tangent_point_from_point(block.get_anchor("bottom-left"), pulley_circle.position(pulley_pos))
@@ -113,33 +107,22 @@ int.draw_function = (inp) => {
     let dist_line_3 = line(V2(pulley_pos.x - 0.3 - 0.15 * Math.cbrt(W) + 0.5, pulley_pos.y - 3), V2(pulley_pos.x - 0.3 - 0.15 * Math.cbrt(W) - 0.5, pulley_pos.y - 3)).strokedasharray([10]).stroke("gray")
 
     let annot_W = annotation.length(V2(pulley_pos.x - 0.3 - 0.15 * Math.cbrt(W), pulley_pos.y - 3), V2(pulley_pos.x - 0.3 - 0.15 * Math.cbrt(W), pulley_pos.y - 3 + dx), "Δx", 0, 0.1, 0.3)
-        .stroke("gray").fontfamily("Math").fontsize(20).strokewidth(1.5)
+        .stroke("gray").fontfamily("Math").fontscale(0.017).strokewidth(1.5)
     let annot_M = annotation.length(V2(M_pos.x, 1.7), M_pos,  M_ratio.string + " Δx", 0, 0.1, -0.4)
-        .stroke("gray").fontfamily("Math").fontsize(20).strokewidth(1.5)
+        .stroke("gray").fontfamily("Math").fontscale(0.017).strokewidth(1.5)
     let annot_m = annotation.length(dist_line_1.get_anchor("center-center"), m_mass.get_anchor("bottom-center"),  ((m_ratio.string === "1") ? "" : m_ratio.string) + " Δx", 0, 0.1, -0.4)
-        .stroke("gray").fontfamily("Math").fontsize(20).strokewidth(1.5)
+        .stroke("gray").fontfamily("Math").fontscale(0.017).strokewidth(1.5)
     let annot = diagram_combine(annot_M, annot_W, annot_m, dist_line_1, dist_line_2, dist_line_3)
 
-    if (m_ratio_cache !== m_ratio.number || M_ratio_cache !== M_ratio.number || m_cache !== m || M_cache !== M) {
-        //TEXT
-        let red_sq = square(0.3).fill("lightred").strokewidth(0)
-        let cyan_sq = square(0.3).fill("lightcyan").strokewidth(0).translate(V2(2, 0))
-        let blue_sq = square(0.3).fill("lightblue").strokewidth(0).translate(V2(4, 0))
-        let red = text("$$" + M_ratio.tex + " \\cdot " + M.toString() + "\\text{ kg}$$").fontfamily("Math").fontsize(18).translate(V2(0.8, 0.03))
-        let cyan = text("$$" + m_ratio.tex + " \\cdot " + m.toString() + "\\text{ kg}$$").fontfamily("Math").fontsize(18).translate(V2(2.8, 0.03))
-        let blue = text("$$" + W.toString() + "\\text{ kg}$$").fontfamily("Math").fontsize(18).translate(V2(4.7, -0.02))
-        let plus = text("+").fontfamily("Math").fontsize(20).translate(V2(1.6, 0))
-        let equal = text("=").fontfamily("Math").fontsize(20).translate(V2(3.6, 0))
-        let calculator = diagram_combine(red_sq, red, plus, cyan_sq, cyan, equal, blue_sq, blue).position(V2(-2.5, -3.4))
-
-        if (typeof MathJax !== 'undefined' && MathJax.tex2svg) {
-            draw_tex(outline, calculator)
-            m_ratio_cache = m_ratio.number
-            M_ratio_cache = M_ratio.number
-            m_cache = m
-            M_cache = M
-        }
-    }
+    let red_sq = square(0.3).fill("lightred").strokewidth(0)
+    let cyan_sq = square(0.3).fill("lightcyan").strokewidth(0).translate(V2(2, 0))
+    let blue_sq = square(0.3).fill("lightblue").strokewidth(0).translate(V2(4, 0))
+    let red = text("$$" + M_ratio.tex + " \\cdot " + M.toString() + "\\text{ kg}$$").fontfamily("Math").fontsize(18).translate(V2(0.8, 0.03))
+    let cyan = text("$$" + m_ratio.tex + " \\cdot " + m.toString() + "\\text{ kg}$$").fontfamily("Math").fontsize(18).translate(V2(2.8, 0.03))
+    let blue = text("$$" + W.toString() + "\\text{ kg}$$").fontfamily("Math").fontsize(18).translate(V2(4.7, -0.02))
+    let plus = text("+").fontfamily("Math").fontscale(0.017).translate(V2(1.6, 0))
+    let equal = text("=").fontfamily("Math").fontscale(0.017).translate(V2(3.6, 0))
+    let calculator = diagram_combine(red_sq, red, plus, cyan_sq, cyan, equal, blue_sq, blue).position(V2(-2.5, -3.4))
 
     if (theta_cache !== theta) {
         theta_cache = theta
@@ -149,7 +132,7 @@ int.draw_function = (inp) => {
         int.locator("M_pos", M_pos, 0.2, "red", M_line)
     }
 
-    draw(outline, divider, rope1, rope2, m_rope, rotator, pulley, W_line, w_mass, block, m_line, M_line, M_mass, m_mass, (dx !== 0) ? annot : square(0))
+    draw(outline, calculator, divider, rope1, rope2, m_rope, rotator, pulley, W_line, w_mass, block, m_line, M_line, M_mass, m_mass, (dx !== 0) ? annot : square(0))
 }
 
 int.locator("m_pos", V2(3, 0), 0.2, "cyan", m_line)

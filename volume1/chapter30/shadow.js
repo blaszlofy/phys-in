@@ -91,20 +91,20 @@ let ax_opt = {
 let transf = axes_transform(ax_opt)
 let ax = xyaxes(ax_opt).fill("black").stroke("black")
 
-let li_t = text("Incoming light from a distant source").fontsize(20).fontfamily("Math").position(V2(4.49, 4.1))
+let li_t = text("Incoming light from a distant source").fontscale(0.017).fontfamily("Math").position(V2(4.49, 4.1))
 let op = line(V2(0, 0), V2(0.5, 0)).stroke("lightgray").strokewidth(30).position(V2(1.6, 3.5))
-let op_t = text("Opaque object").fontsize(20).fontfamily("Math").position(V2(3.2, 3.5))
+let op_t = text("Opaque object").fontscale(0.017).fontfamily("Math").position(V2(3.2, 3.5))
 let sc = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(2).position(V2(1.6, 2.9))
-let sc_t = text("Screen at distance s behind the object").fontsize(20).fontfamily("Math").position(V2(4.52, 2.9))
+let sc_t = text("Screen at distance s behind the object").fontscale(0.017).fontfamily("Math").position(V2(4.52, 2.9))
 let ip = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(1.6, 2.3))
-let ip_t = text("Intensity pattern on the screen").fontsize(20).fontfamily("Math").position(V2(4.16, 2.3))
+let ip_t = text("Intensity pattern on the screen").fontscale(0.017).fontfamily("Math").position(V2(4.16, 2.3))
 let c = arrow1(V2(0, 0), V2(0.5, 0), 0.05).stroke("black").strokewidth(1).position(V2(1.6, 1.7))
-let c_t = text("'Amplitude vectors' from the many").fontsize(20).fontfamily("Math").position(V2(4.37, 1.7))
-let c_t2 = text("secondary sources 'imagined'").fontsize(20).fontfamily("Math").position(V2(4.11, 1.3))
-let c_t3 = text("in open-space above the opaque object").fontsize(20).fontfamily("Math").position(V2(4.61, 0.9))
+let c_t = text("'Amplitude vectors' from the many").fontscale(0.017).fontfamily("Math").position(V2(4.37, 1.7))
+let c_t2 = text("secondary sources 'imagined'").fontscale(0.017).fontfamily("Math").position(V2(4.11, 1.3))
+let c_t3 = text("in open-space above the opaque object").fontscale(0.017).fontfamily("Math").position(V2(4.61, 0.9))
 
-let I = text("I/I₀").fontsize(20).fontfamily("Math").position(V2(1, 1.7))
-let x = text("x").fontsize(20).fontfamily("Math").position(V2(-0.3, 0))
+let I = text("I/I₀").fontscale(0.017).fontfamily("Math").position(V2(1, 1.7))
+let x = text("x").fontscale(0.017).fontfamily("Math").position(V2(-0.3, 0))
 
 let stat = diagram_combine(div1, screen, div2, I, x, diagram_combine(li_t, op, op_t, sc, sc_t, ip, ip_t, c, c_t, c_t2, c_t3).translate(V2(0.4, -0.5)))
 
@@ -173,7 +173,7 @@ int.draw_function = (inp) => {
     }
     let li = arrow1(V2(0, 0), V2(0.5, 0), 0.05).stroke(col).fill(col).strokewidth(2).position(V2(1.6, 4.1)).translate(V2(0.4, -0.5))
 
-    let p = text("P").fontfamily("Math").fontsize(20).position(inp["x"].add(V2(-0.5, 0)))
+    let p = text("P").fontfamily("Math").fontscale(0.017).position(inp["x"].add(V2(-0.5, 0)))
 
     draw(outline, opaque, stat, cornu, pl, ...light, li, p)
 }

@@ -133,7 +133,7 @@ let ax_opt = {
     bbox: [V2(x, -2.9), V2(end_bound, -0.6)],
     headsize: 0.1
 }
-let ax = xyaxes(ax_opt).textfill("black").fontsize(20).fontfamily("Math").stroke("black").fill("black")
+let ax = xyaxes(ax_opt).textfill("black").fontscale(0.017).fontfamily("Math").stroke("black").fill("black")
 let ax2_opt = {
     xrange: [0, end_bound - x],
     yrange: [-0.35, 0.35],
@@ -141,19 +141,19 @@ let ax2_opt = {
     bbox: [V2(x, -0.4), V2(end_bound, 1.4)],
     headsize: 0.1
 }
-let ax2 = xyaxes(ax2_opt).textfill("black").fontsize(20).fontfamily("Math").stroke("black").fill("black")
+let ax2 = xyaxes(ax2_opt).textfill("black").fontscale(0.017).fontfamily("Math").stroke("black").fill("black")
 
-let disp_leg = text("χ (m)").fontfamily("Math").fontsize(20).position(V2(-7.5, 1.2))
-let dist_leg = text("x (m)").fontfamily("Math").fontsize(20).position(V2(7.5, 0.5))
+let disp_leg = text("χ (m)").fontfamily("Math").fontscale(0.017).position(V2(-7.5, 1.2))
+let dist_leg = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(7.5, 0.5))
 
 let disp_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-6.25, -4))
 let part_l = circle(0.1).strokewidth(0).fill("lightblue").position(V2(-6, -3.4))
 let dt_l = line(V2(0, 0), V2(0.5, 0)).stroke("red").strokewidth(2).position(V2(-0.7, -3.4))
 let dx_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-0.7, -4))
-let dt_t = text(", second derivative of displacement with respect to time").fontsize(20).fontfamily("Math").position(V2(3.93, -3.4))
-let dx_t = text(", second derivative of displacement with respect to position").fontsize(20).fontfamily("Math").position(V2(4.12, -4))
-let disp_t = text("Displacement of the particles").fontsize(20).fontfamily("Math").position(V2(-3.6, -4))
-let part_t = text("Gas particles (representation)").fontsize(20).fontfamily("Math").position(V2(-3.53, -3.4))
+let dt_t = text(", second derivative of displacement with respect to time").fontscale(0.017).fontfamily("Math").position(V2(3.93, -3.4))
+let dx_t = text(", second derivative of displacement with respect to position").fontscale(0.017).fontfamily("Math").position(V2(4.12, -4))
+let disp_t = text("Displacement of the particles").fontscale(0.017).fontfamily("Math").position(V2(-3.6, -4))
+let part_t = text("Gas particles (representation)").fontscale(0.017).fontfamily("Math").position(V2(-3.53, -3.4))
 
 let leg = diagram_combine(disp_l, dt_l, dx_l, dt_t, dx_t, part_l, disp_t, part_t).translate(V2(-1, 0))
 

@@ -92,17 +92,17 @@ const res = 20
 let div1 = line(V2(0.5, 4.5), V2(0.5, -4.5))
 let div2 = line(V2(0.5, -1), V2(8, -1))
 
-let h_t = text("h (m)").fontfamily("Math").fontsize(20).position(V2(-2.8, 4))
-let n_t2 = text("n").fontfamily("Math").fontsize(20).position(V2(0.1, -4.25))
-let n_t = text("n").fontfamily("Math").fontsize(20).position(V2(1.1, 3.8))
-let v_t = text("v (m/s)").fontfamily("Math").fontsize(20).position(V2(7.55, -0.5))
+let h_t = text("h (m)").fontfamily("Math").fontscale(0.017).position(V2(-2.8, 4))
+let n_t2 = text("n").fontfamily("Math").fontscale(0.017).position(V2(0.1, -4.25))
+let n_t = text("n").fontfamily("Math").fontscale(0.017).position(V2(1.1, 3.8))
+let v_t = text("v (m/s)").fontfamily("Math").fontscale(0.017).position(V2(7.55, -0.5))
 
-let vel_t = text("Velocity histogram").fontfamily("Math").fontsize(20).position(V2(4.5, 4))
+let vel_t = text("Velocity histogram").fontfamily("Math").fontscale(0.017).position(V2(4.5, 4))
 
-let desc_1 = text("The simulated 'atmosphere'").fontfamily("Math").fontsize(20).position(V2(4, -1.5))
-let desc_2 = text("is in thermal equilibrium, meaning").fontfamily("Math").fontsize(20).position(V2(4.4, -2))
-let desc_3 = text("temperature is independent of height").fontfamily("Math").fontsize(20).position(V2(4.57, -2.5))
-let desc_4 = text("unlike in Earth's atmosphere").fontfamily("Math").fontsize(20).position(V2(4.08, -3))
+let desc_1 = text("The simulated 'atmosphere'").fontfamily("Math").fontscale(0.017).position(V2(4, -1.5))
+let desc_2 = text("is in thermal equilibrium, meaning").fontfamily("Math").fontscale(0.017).position(V2(4.4, -2))
+let desc_3 = text("temperature is independent of height").fontfamily("Math").fontscale(0.017).position(V2(4.57, -2.5))
+let desc_4 = text("unlike in Earth's atmosphere").fontfamily("Math").fontscale(0.017).position(V2(4.08, -3))
 
 let leg = diagram_combine(desc_1, desc_2, desc_3, desc_4).translate(V2(-0.3, -0.45))
 
@@ -371,7 +371,7 @@ function update(time) {
     let C = N * (1 - decayFactor)
 
     let distribution_plot = bar.plot(counts, bar_opt).stroke("blue").fill("lightblue").opacity(0.5)
-    let dist_ax = xycorneraxes(ax_opt).stroke("black").fill("black").textfill("black").fontsize(20).fontfamily("Math")
+    let dist_ax = xycorneraxes(ax_opt).stroke("black").fill("black").textfill("black").fontscale(0.017).fontfamily("Math")
         .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.2, 0.25)))
     let distribution_theo_plot = plotf(x => C * Math.exp(-m * g * (x * sliceHeight) / (k * T)), ax_opt).stroke("gray").strokewidth(2).strokedasharray([10])
 
@@ -383,7 +383,7 @@ function update(time) {
         yrange: [0, Math.max(500, Math.max(...velocity_histogram))],
     }
     let hist_plot = bar.plot(velocity_histogram, bar_opt2).stroke("blue").fill("lightblue").opacity(0.5)
-    let hist_ax = bar.yaxes(velocity_histogram, bar_opt2).stroke("black").fontsize(20).fontfamily("Math").textfill("black")
+    let hist_ax = bar.yaxes(velocity_histogram, bar_opt2).stroke("black").fontscale(0.017).fontfamily("Math").textfill("black")
 
     function maxwellBoltzmann(x) {
         const v = x * bin_width

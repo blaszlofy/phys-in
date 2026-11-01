@@ -30,9 +30,9 @@ let regenerate = false
 let outline = rectangle(16, 9).strokewidth(0);
 
 let lin = line(V2(0, 0), V2(0.5, 0)).strokedasharray([10])
-let lintext = text("Theoretical RMS distance (√n)").fontfamily("Math").fontsize(20).translate(V2(2.4, 0))
+let lintext = text("Theoretical RMS distance (√n)").fontfamily("Math").fontscale(0.017).translate(V2(2.4, 0))
 let reallin = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(3)
-let reallintext = text("Empirical RMS distance").fontfamily("Math").fontsize(20).translate(V2(2.03, 0))
+let reallintext = text("Empirical RMS distance").fontfamily("Math").fontscale(0.017).translate(V2(2.03, 0))
 let legend = distribute_vertical_and_align([
     diagram_combine(lin, lintext),
     diagram_combine(reallin, reallintext)
@@ -97,7 +97,7 @@ int.draw_function = (inp) => {
     let real_plus = line(V2(real_ax_avg, -4.5), V2(real_ax_avg, 4))
     let real_lines = diagram_combine(real_minus, real_plus).strokedasharray([10])
 
-    let axes = xyaxes(ax_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
+    let axes = xyaxes(ax_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
     regenerate = false
 

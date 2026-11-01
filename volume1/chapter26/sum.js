@@ -76,7 +76,7 @@ let x_opt = {
     bbox: [V2(-6, 1.7), V2(1, 1.7)],
     headsize: 0
 }
-let x_line = xycorneraxes(x_opt).fontfamily("Math").fontsize(20).fill("black").stroke("black").textfill("black")
+let x_line = xycorneraxes(x_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
 let A_bound = line(x_opt.bbox[0].add(V2(0, 1.5)), x_opt.bbox[0].add(V2(0, 2))).apply(mod.subdivide(40))
 let B_bound = line(x_opt.bbox[1].add(V2(0, 1.5)), x_opt.bbox[1].add(V2(0, 2))).apply(mod.subdivide(40))
 let transf_x = axes_transform(x_opt)
@@ -90,21 +90,21 @@ let ax_opt = {
     headsize: 0.1
 }
 let transf_coord = axes_transform(ax_opt)
-let ax = xycorneraxes(ax_opt).fontfamily("Math").fontsize(20).fill("black").stroke("black").textfill("black")
+let ax = xycorneraxes(ax_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
 
-let x_leg = text("x (m)").fontfamily("Math").fontsize(20).position(V2(1.2, 1.9))
-let x_leg2 = text("x (m)").fontfamily("Math").fontsize(20).position(V2(7.5, -6.25))
-let t_leg = text("t (3.3 ⋅ 10⁻⁹ s)").fontfamily("Math").fontsize(20).position(V2(-7.1, -3.3))
+let x_leg = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(1.2, 1.9))
+let x_leg2 = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(7.5, -6.25))
+let t_leg = text("t (3.3 ⋅ 10⁻⁹ s)").fontfamily("Math").fontscale(0.017).position(V2(-7.1, -3.3))
 
 let dash = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).position(V2(3.4, 4))
 let colored = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).stroke("cyan").position(V2(3.4, 3.4))
 let act = line(V2(0, 0), V2(0.5, 0)).strokewidth(8).stroke("lightgray").position(V2(3.4, 2.4))
 let inact = line(V2(0, 0), V2(0.5, 0)).strokewidth(8).stroke("gray").position(V2(3.4, 1.9))
-let dash_text = text("Path that takes the shortest time").fontfamily("Math").fontsize(20).position(V2(5.84, 4))
-let col_text = text("Other paths colored based on").fontfamily("Math").fontsize(20).position(V2(5.7, 3.4))
-let col_text2 = text("the time light takes to travel").fontfamily("Math").fontsize(20).position(V2(5.6, 3))
-let act_text = text("Exposed mirror (reflects light)").fontfamily("Math").fontsize(20).position(V2(5.8, 2.4))
-let inact_text = text("Covered mirror (blocks light)").fontfamily("Math").fontsize(20).position(V2(5.75, 1.9))
+let dash_text = text("Path that takes the shortest time").fontfamily("Math").fontscale(0.017).position(V2(5.84, 4))
+let col_text = text("Other paths colored based on").fontfamily("Math").fontscale(0.017).position(V2(5.7, 3.4))
+let col_text2 = text("the time light takes to travel").fontfamily("Math").fontscale(0.017).position(V2(5.6, 3))
+let act_text = text("Exposed mirror (reflects light)").fontfamily("Math").fontscale(0.017).position(V2(5.8, 2.4))
+let inact_text = text("Covered mirror (blocks light)").fontfamily("Math").fontscale(0.017).position(V2(5.75, 1.9))
 
 let stat = diagram_combine(div1, div2, div3, x_line, ax, x_leg, x_leg2, t_leg, dash, colored, dash_text, col_text, col_text2, act, inact, act_text, inact_text)
 
@@ -231,13 +231,13 @@ int.draw_function = (inp) => {
 
         line(V2(sx.data, ax_opt.yrange[0]).apply(transf_coord), V2(sx.data, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([10]).stroke("gray"),
         circle(0.05).position(V2(sx.data, user_t).apply(transf_coord)).strokewidth(0).fill("blue"),
-        text("A").fontfamily("Math").fontsize(20).position(A.add(V2(-0.4, 0))),
-        text("B").fontfamily("Math").fontsize(20).position(B.add(V2(0.4, 0))),
+        text("A").fontfamily("Math").fontscale(0.017).position(A.add(V2(-0.4, 0))),
+        text("B").fontfamily("Math").fontscale(0.017).position(B.add(V2(0.4, 0))),
 
         curve([A, V2(ideal_x_bbox, x_opt.bbox[0].y), B]).strokewidth(1.5).stroke("black").strokedasharray([10]),
         line(V2(ideal_x_data, ax_opt.yrange[0]).apply(transf_coord), V2(ideal_x_data, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([10]).stroke("red"),
         circle(0.05).position(V2(ideal_x_data, ideal_t).apply(transf_coord)).strokewidth(0).fill("red"),
-        text("C").fontfamily("Math").fontsize(20).position(V2(ideal_x_data, ideal_t).apply(transf_coord).add(V2(0.2, 0.3))),
+        text("C").fontfamily("Math").fontscale(0.017).position(V2(ideal_x_data, ideal_t).apply(transf_coord).add(V2(0.2, 0.3))),
         curve([A, P_user, B]).strokewidth(1).stroke("gray").strokedasharray([10])
     )
 }

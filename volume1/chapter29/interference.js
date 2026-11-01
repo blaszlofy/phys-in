@@ -105,26 +105,26 @@ let transf = axes_transform(ax1_opt)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-//let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontsize(20).textfill("black")
+//let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-6.9, 4))
-let ch_t = text("Positive electric charge").fontsize(20).fontfamily("Math").position(V2(-5.2, 4))
+let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 4))
 let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-7.15, 3.1))
-let evec_t = text("Value of the electric field at a point").fontsize(20).fontfamily("Math").position(V2(-4.4, 3.1))
+let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 3.1))
 let inte = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-7.15, 2.2))
-let inte_t = text("Intensity pattern I(θ)").fontsize(20).fontfamily("Math").position(V2(-5.15, 2.2))
+let inte_t = text("Intensity pattern I(θ)").fontscale(0.017).fontfamily("Math").position(V2(-5.15, 2.2))
 
 let warning = diagram_combine(
-    text("There are odd patterns").fontsize(20).fontfamily("Math").position(V2(4.35, 3.7)),
-    text("in the electric field representation").fontsize(20).fontfamily("Math").position(V2(5, 3.3)),
-    text("that do not have a physical").fontsize(20).fontfamily("Math").position(V2(4.55, 2.9)),
-    text("meaning, but they are the result").fontsize(20).fontfamily("Math").position(V2(4.85, 2.5)),
-    text("of sampling problems. More below...").fontsize(20).fontfamily("Math").position(V2(5.11, 2.1)),
+    text("There are odd patterns").fontscale(0.017).fontfamily("Math").position(V2(4.35, 3.7)),
+    text("in the electric field representation").fontscale(0.017).fontfamily("Math").position(V2(5, 3.3)),
+    text("that do not have a physical").fontscale(0.017).fontfamily("Math").position(V2(4.55, 2.9)),
+    text("meaning, but they are the result").fontscale(0.017).fontfamily("Math").position(V2(4.85, 2.5)),
+    text("of sampling problems. More below...").fontscale(0.017).fontfamily("Math").position(V2(5.11, 2.1)),
 ).translate(V2(0.3, -0.7))
 
 let stat = diagram_combine(line(V2(2.8, 4.5), V2(2.8, -4.5)),
-    text("I").fontsize(20).fontfamily("Math").position(V2(2.6, 0.3)),
-    text("θ").fontsize(20).fontfamily("Math").position(V2(-0.1, -4.2)),
+    text("I").fontscale(0.017).fontfamily("Math").position(V2(2.6, 0.3)),
+    text("θ").fontscale(0.017).fontfamily("Math").position(V2(-0.1, -4.2)),
     warning
 )
 let leg = diagram_combine(ch, ch_t, evec, evec_t, inte, inte_t).translate(V2(10.3, -5.4))
@@ -233,7 +233,7 @@ int.draw_function = (inp) => {
         }
 
         let p_line = plotf(I_func, plot_axopt).stroke("blue").strokewidth(2)
-        let p_axes = xyaxes(plot_axopt).stroke("gray").fontfamily("Math").fontsize(20).stroke("black").apply(mod.subdivide(30))
+        let p_axes = xyaxes(plot_axopt).stroke("gray").fontfamily("Math").fontscale(0.017).stroke("black").apply(mod.subdivide(30))
 
         let R_wall = ax1_opt.xrange[1]
         let I_scale = 30

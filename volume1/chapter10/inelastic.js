@@ -24,13 +24,13 @@ let outline = rectangle(16, 9).strokewidth(0);
 let divider1 = line(V2(-8, -1.5), V2(8, -1.5))
 let divider2 = line(V2(-8, 1.5), V2(8, 1.5))
 let divider3 = line(V2(1, 4.5), V2(1, 1.5))
-let tit1 = text("Observer riding in a car at velocity v₂").fontfamily("Math").fontsize(20).position(V2(0, -1.8))
-let tit2 = text("Observer standing still on the ground (Lab Frame)").fontfamily("Math").fontsize(20).position(V2(0, 1.2))
+let tit1 = text("Observer riding in a car at velocity v₂").fontfamily("Math").fontscale(0.017).position(V2(0, -1.8))
+let tit2 = text("Observer standing still on the ground (Lab Frame)").fontfamily("Math").fontscale(0.017).position(V2(0, 1.2))
 
 let stroked = line(V2(0, 0), V2(0.5, 0)).strokedasharray([10]).strokewidth(2).position(V2(1.5, 3.5))
 let basic = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(2).position(V2(1.5, 2.5))
-let stroked_text = text("momentum of m₁ or m₂ or total momentum").fontfamily("Math").fontsize(20).position(V2(4.7, 3.5))
-let basic_text = text("velocity of m₁ or m₂ or both").fontfamily("Math").fontsize(20).position(V2(3.8, 2.5))
+let stroked_text = text("momentum of m₁ or m₂ or total momentum").fontfamily("Math").fontscale(0.017).position(V2(4.7, 3.5))
+let basic_text = text("velocity of m₁ or m₂ or both").fontfamily("Math").fontscale(0.017).position(V2(3.8, 2.5))
 let leg = diagram_combine(stroked, basic, stroked_text, basic_text)
 
 let stat = diagram_combine(divider1, divider2, divider3, tit1, tit2)
@@ -70,8 +70,8 @@ int.draw_function = (inp) => {
         mass1.position(pos)
         mass2.position(pos)
     }
-    let mass1_text = text(((m1 === 1) ? "" : m1.toFixed(0)) + "m").fontfamily("Math").fontsize(20).position(mass1.get_anchor("center-center"))
-    let mass2_text = text(((m2 === 1) ? "" : m2.toFixed(0)) + "m").fontfamily("Math").fontsize(20).position(mass2.get_anchor("center-center"))
+    let mass1_text = text(((m1 === 1) ? "" : m1.toFixed(0)) + "m").fontfamily("Math").fontscale(0.017).position(mass1.get_anchor("center-center"))
+    let mass2_text = text(((m2 === 1) ? "" : m2.toFixed(0)) + "m").fontfamily("Math").fontscale(0.017).position(mass2.get_anchor("center-center"))
 
     let system = diagram_combine(base, mass1, mass2, mass1_text, mass2_text)
 
@@ -82,14 +82,14 @@ int.draw_function = (inp) => {
         let s2 = mass2.get_anchor("top-center").add(V2(0, 0.15))
         if (v1 !== 0) {
             vel_diagram.push(arrow1(s1, s1.add(V2(v1 * 0.4, 0)), 0.1).stroke("red").fill("red"))
-            vel_diagram.push(text(((v1 === 1) ? "" : v1).toString() + "v").position(s1.add(V2(v1 * 0.4 / 2, 0.2))).fontsize(20).fontfamily("Math"))
+            vel_diagram.push(text(((v1 === 1) ? "" : v1).toString() + "v").position(s1.add(V2(v1 * 0.4 / 2, 0.2))).fontscale(0.017).fontfamily("Math"))
         }
         vel_diagram.push(arrow1(s2, s2.add(V2(v2 * 0.4, 0)), 0.1).stroke("blue").fill("blue"))
-        vel_diagram.push(text(((v2 === -1) ? "-" : v2).toString() + "v").position(s2.add(V2(v2 * 0.4 / 2, 0.2))).fontsize(20).fontfamily("Math"))
+        vel_diagram.push(text(((v2 === -1) ? "-" : v2).toString() + "v").position(s2.add(V2(v2 * 0.4 / 2, 0.2))).fontscale(0.017).fontfamily("Math"))
     } else if (!wall && v_final !== 0) {
         let s = mass1.get_anchor("top-right").add(V2(0, 0.15))
         vel_diagram.push(arrow1(s, s.add(V2(v_final * 0.4, 0)), 0.1).stroke("grey").fill("grey"))
-        vel_diagram.push(text(((v_final === 1) ? "" : ((v_final === -1) ? "-" : v_final.toPrecision(2))).toString() + "v").position(s.add(V2(v_final * 0.4 / 2, 0.2))).fontsize(20).fontfamily("Math"))
+        vel_diagram.push(text(((v_final === 1) ? "" : ((v_final === -1) ? "-" : v_final.toPrecision(2))).toString() + "v").position(s.add(V2(v_final * 0.4 / 2, 0.2))).fontscale(0.017).fontfamily("Math"))
     }
 
     let sys1 = diagram_combine(system, ...vel_diagram).position(V2(0, -0.5))
@@ -98,18 +98,18 @@ int.draw_function = (inp) => {
     if (t <= t_collision) {
         let s1 = mass1.get_anchor("top-center").add(V2(0, 0.15))
         vel_diagram2.push(arrow1(s1, s1.add(V2((v1 - v2) * 0.4, 0)), 0.1).stroke("red").fill("red"))
-        vel_diagram2.push(text((((v1 - v2) === 1) ? "" : (v1 - v2)).toString() + "v").position(s1.add(V2((v1 - v2) * 0.4 / 2, 0.2))).fontsize(20).fontfamily("Math"))
+        vel_diagram2.push(text((((v1 - v2) === 1) ? "" : (v1 - v2)).toString() + "v").position(s1.add(V2((v1 - v2) * 0.4 / 2, 0.2))).fontscale(0.017).fontfamily("Math"))
     } else if (!wall && v_final !== 0) {
         let s = mass1.get_anchor("top-right").add(V2(0, 0.15))
         vel_diagram2.push(arrow1(s, s.add(V2((v_final - v2) * 0.4, 0)), 0.1).stroke("grey").fill("grey"))
-        vel_diagram2.push(text((((v_final - v2) === 1) ? "" : (v_final - v2).toPrecision(2)).toString() + "v").position(s.add(V2((v_final - v2) * 0.4 / 2, 0.2))).fontsize(20).fontfamily("Math"))}
+        vel_diagram2.push(text((((v_final - v2) === 1) ? "" : (v_final - v2).toPrecision(2)).toString() + "v").position(s.add(V2((v_final - v2) * 0.4 / 2, 0.2))).fontscale(0.017).fontfamily("Math"))}
 
     let pos = Math.min(-3.9 - v2 * t, 3.9)
 
     let s = system.get_anchor("bottom-center").add(V2(0, -0.15))
     if (pos < 3.9) {
         vel_diagram2.push(arrow1(s, s.add(V2(-v2 * 0.4, 0)), 0.1).fill("black").strokewidth(2).apply_to_tagged_recursive(TAG.ARROW_LINE, d => d.strokedasharray([10])))
-        vel_diagram2.push(text(((v2 === -1) ? "" : -v2).toString() + "v").position(s.add(V2(-v2 * 0.4 / 2, -0.2))).fontsize(20).fontfamily("Math"))
+        vel_diagram2.push(text(((v2 === -1) ? "" : -v2).toString() + "v").position(s.add(V2(-v2 * 0.4 / 2, -0.2))).fontscale(0.017).fontfamily("Math"))
     }
     let sys2 = diagram_combine(system, ...vel_diagram2).position(V2(pos, -3.5))
 
@@ -124,11 +124,11 @@ int.draw_function = (inp) => {
     }
 
     let p1_arrow = arrow1(V2(0, 0), V2(p1 * 0.5, 0), 0.1).fill("red").stroke("red").strokedasharray([10]).strokewidth(2)
-    let p1_tx = text("p₁ = " + ((p1 === 1) ? "mv" : ((p1 === 0) ? "0" : ((p1 === -1) ? "-mv" : (p1.toPrecision(2) + "mv"))))).position(p1_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
+    let p1_tx = text("p₁ = " + ((p1 === 1) ? "mv" : ((p1 === 0) ? "0" : ((p1 === -1) ? "-mv" : (p1.toPrecision(2) + "mv"))))).position(p1_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
     let p2_arrow = arrow1(V2(0, -1), V2(p2  * 0.5, -1), 0.1).fill("blue").stroke("blue").strokedasharray([10]).strokewidth(2)
-    let p2_tx = text("p₂ = " + ((p2 === 1) ? "mv" : ((p2 === 0) ? "0" : ((p2 === -1) ? "-mv" : (p2.toPrecision(2) + "mv"))))).position(p2_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
+    let p2_tx = text("p₂ = " + ((p2 === 1) ? "mv" : ((p2 === 0) ? "0" : ((p2 === -1) ? "-mv" : (p2.toPrecision(2) + "mv"))))).position(p2_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
     let p_arrow = arrow1(V2(0, -2), V2(p  * 0.5, -2), 0.1).fill("gray").stroke("gray").strokedasharray([10]).strokewidth(2)
-    let p_tx = text("p = " + ((p === 1) ? "mv" : ((p === 0) ? "0" : ((p === -1) ? "-mv" : (p.toPrecision(2) + "mv"))))).position(p_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontsize(20).fontfamily("Math")
+    let p_tx = text("p = " + ((p === 1) ? "mv" : ((p === 0) ? "0" : ((p === -1) ? "-mv" : (p.toPrecision(2) + "mv"))))).position(p_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
     let plus = text("+").fontfamily("Math").fontsize(25).position(V2(0, -0.4))
     let equal = text("=").fontfamily("Math").fontsize(25).position(V2(0, -1.4))
     let momentum = diagram_combine(p1_tx, p1_arrow, p2_tx, p2_arrow, p_tx, p_arrow, plus, equal).move_origin("center-center").position(V2(-3.5, 3))

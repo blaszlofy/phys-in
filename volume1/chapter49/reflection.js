@@ -59,13 +59,13 @@ let div = line(V2(-8, -2), V2(8, -2))
 let r_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).position(V2(-2, -2.6))
 let g1_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).stroke("lightblue").position(V2(-3.5, -2.6))
 let g2_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).stroke("lightred").position(V2(-5, -2.6))
-let plus = text("+").fontfamily("Math").fontsize(20).position(V2(-4, -2.6))
-let equal = text("=").fontfamily("Math").fontsize(20).position(V2(-2.5, -2.6))
+let plus = text("+").fontfamily("Math").fontscale(0.017).position(V2(-4, -2.6))
+let equal = text("=").fontfamily("Math").fontscale(0.017).position(V2(-2.5, -2.6))
 
 let g_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).stroke("gray").position(V2(-5, -3.8))
 let r_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).position(V2(-5, -3.2))
-let r_t = text("Physical string: fixed to the wall at one end, moved at the other to generate waves").fontsize(20).fontfamily("Math").position(V2(0.5, -3.2))
-let g_t = text("Incident and reflected waves (their superposition equals the actual displacement)").fontsize(20).fontfamily("Math").position(V2(0.56, -3.8))
+let r_t = text("Physical string: fixed to the wall at one end, moved at the other to generate waves").fontscale(0.017).fontfamily("Math").position(V2(0.5, -3.2))
+let g_t = text("Incident and reflected waves (their superposition equals the actual displacement)").fontscale(0.017).fontfamily("Math").position(V2(0.56, -3.8))
 
 let leg = diagram_combine(r_l_sum, g1_l_sum, g2_l_sum, plus, equal, g_l, r_l, r_t, g_t).translate(V2(-0.1, 0))
 

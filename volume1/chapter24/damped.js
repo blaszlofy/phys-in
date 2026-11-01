@@ -55,25 +55,25 @@ let E_opt = {
     headsize: 0.1
 }
 
-let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontsize(20).textfill("black")
-let E_ax = xycorneraxes(E_opt).fill("black").stroke("black").fontfamily("Math").fontsize(20).textfill("black")
+let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let E_ax = xycorneraxes(E_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
 let x_transf = axes_transform(x_opt)
 let E_transf = axes_transform(E_opt)
 
 let F_leg = line(V2(0, 0), V2(0.5,  0)).stroke("red").strokewidth(1.5).position(V2(-6.3, 0))
-let F_text = text("E(t)").fontsize(20).fontfamily("Math").position(V2(-5.5, 0))
+let F_text = text("E(t)").fontscale(0.017).fontfamily("Math").position(V2(-5.5, 0))
 let E_approx_leg = line(V2(0, 0), V2(0.5,  0)).stroke("gray").strokewidth(1.5).strokedasharray([10]).position(V2(-4.9, 0))
-let E_approx_text = text("Energy approximation for high Q values").fontsize(20).fontfamily("Math").position(V2(-2, 0))
+let E_approx_text = text("Energy approximation for high Q values").fontscale(0.017).fontfamily("Math").position(V2(-2, 0))
 let x_leg = line(V2(0, 0), V2(0.5,  0)).stroke("blue").strokewidth(1.5).position(V2(-7.8, 0))
-let x_text = text("x(t)").fontsize(20).fontfamily("Math").position(V2(-7, 0))
+let x_text = text("x(t)").fontscale(0.017).fontfamily("Math").position(V2(-7, 0))
 
 let leg = diagram_combine(F_leg, F_text, x_leg, x_text, E_approx_leg, E_approx_text).translate(V2(2, -3.85))
 
-let t_text = text("t (s)").fontsize(20).fontfamily("Math").position(V2(7.6, 0.87))
-let t_text2 = text("t (s)").fontsize(20).fontfamily("Math").position(V2(7.6, -2.85))
-let x_g_text = text("x (m)").fontsize(20).fontfamily("Math").position(V2(-7.6, 2))
-let E_g_text = text("E (J)").fontsize(20).fontfamily("Math").position(V2(-7.65, -0.7))
+let t_text = text("t (s)").fontscale(0.017).fontfamily("Math").position(V2(7.6, 0.87))
+let t_text2 = text("t (s)").fontscale(0.017).fontfamily("Math").position(V2(7.6, -2.85))
+let x_g_text = text("x (m)").fontscale(0.017).fontfamily("Math").position(V2(-7.6, 2))
+let E_g_text = text("E (J)").fontscale(0.017).fontfamily("Math").position(V2(-7.65, -0.7))
 
 let stat = diagram_combine(div1, wall, equilibrium, div2, div3, x_ax, E_ax, leg, t_text, t_text2, x_g_text, E_g_text)
 
@@ -143,14 +143,14 @@ int.draw_function = (inp) => {
     let pos_circ = circle(0.05).strokewidth(0).fill("blue").position(V2(t, _x).apply(x_transf))
     let en_circ = circle(0.05).strokewidth(0).fill("red").position(V2(t, _E).apply(E_transf))
 
-    let Q = text("Q = " + (w0 / (2 * gamma)).toFixed(2)).fontsize(20).fontfamily("Math").position(V2(3.5, -3.85))
+    let Q = text("Q = " + (w0 / (2 * gamma)).toFixed(2)).fontscale(0.017).fontfamily("Math").position(V2(3.5, -3.85))
     let sign = " = "
     if (w0 > gamma) {
         sign = " > "
     } else if (w0 < gamma) {
         sign = " < "
     }
-    let comparison = text("ω₀" + sign + "γ").fontsize(20).fontfamily("Math").position(V2(5, -3.85))
+    let comparison = text("ω₀" + sign + "γ").fontscale(0.017).fontfamily("Math").position(V2(5, -3.85))
 
     draw(outline, sp, stat, mass, timeline, timeline2, x_plot, E_plot, E_approx_plot, Q, comparison, (Math.abs(_x) < 7.2) ? pos_circ : square(0), (Math.abs(_E) < 35) ? en_circ : square(0))
 }

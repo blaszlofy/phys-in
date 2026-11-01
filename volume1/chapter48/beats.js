@@ -63,27 +63,27 @@ let phasor_opt = {
 }
 let transf = axes_transform(phasor_opt)
 
-let ax1 = xyaxes(ax1_opt).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
-let ax2 = xyaxes(ax2_opt).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
-let ax = xyaxes(ax_opt).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let ax1 = xyaxes(ax1_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let ax2 = xyaxes(ax2_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let ax = xyaxes(ax_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
 let plus = text("+").fontfamily("Math").fontsize(26).position(V2(center.x, center.y + dh / 2))
 let equal = text("=").fontfamily("Math").fontsize(26).position(V2(center.x, center.y - dh / 2))
 
-let phasor_ax = xyaxes(phasor_opt).fontsize(20).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let phasor_ax = xyaxes(phasor_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
 
 let div1 = line(V2(-2.8, 4.5), V2(-2.8, -4.5))
 let div2 = line(V2(-8, -0.8), V2(-2.8, -0.8))
 
 let sg_l1 = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-7.5, 4))
-let sg_t1 = text("The first signal").fontsize(20).fontfamily("Math").position(V2(-5.9, 4))
+let sg_t1 = text("The first signal").fontscale(0.017).fontfamily("Math").position(V2(-5.9, 4))
 let sg_l2 = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(2).position(V2(-7.5, 3.4))
-let sg_t2 = text("The second signal").fontsize(20).fontfamily("Math").position(V2(-5.72, 3.4))
+let sg_t2 = text("The second signal").fontscale(0.017).fontfamily("Math").position(V2(-5.72, 3.4))
 let sg_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-7.5, 2.8))
-let sg_t = text("The sum of the two signals").fontsize(20).fontfamily("Math").position(V2(-5.2, 2.8))
-let amp1 = text("The arrows are the complex").fontfamily("Math").fontsize(20).position(V2(-5.1, 1.7))
-let amp2 = text("vectors of the signals in a").fontfamily("Math").fontsize(20).position(V2(-5.25, 1.3))
-let amp3 = text("coordinate system that rotates").fontfamily("Math").fontsize(20).position(V2(-4.95, 0.9))
-let amp4 = text("with the first signal.").fontfamily("Math").fontsize(20).position(V2(-5.58, 0.5))
+let sg_t = text("The sum of the two signals").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 2.8))
+let amp1 = text("The arrows are the complex").fontfamily("Math").fontscale(0.017).position(V2(-5.1, 1.7))
+let amp2 = text("vectors of the signals in a").fontfamily("Math").fontscale(0.017).position(V2(-5.25, 1.3))
+let amp3 = text("coordinate system that rotates").fontfamily("Math").fontscale(0.017).position(V2(-4.95, 0.9))
+let amp4 = text("with the first signal.").fontfamily("Math").fontscale(0.017).position(V2(-5.58, 0.5))
 
 let leg = diagram_combine(sg_l1, sg_t1, sg_l2, sg_t2, sg_l, sg_t, amp1, amp2, amp3, amp4).translate(V2(-0.1, -0.3))
 

@@ -76,10 +76,10 @@ let divider1 = line(V2(-8, -3), V2(8, -3))
 let divider2 = line(V2(0.5, -3), V2(0.5, 5.5))
 let div = diagram_combine(divider1, divider2)
 
-let leg_h = text("h - the water height at the red triangle,").fontfamily('Math').fontsize(20).position(V2(4.2, -2.3))
-let leg_h2 = text(`a "city" on Earth's surface`).fontfamily('Math').fontsize(20).position(V2(4.2, -2.6))
-let leg_t = text("t (days)").fontfamily('Math').fontsize(20).position(V2(7.55, -5.2))
-let leg_h3 = text("h (m)").fontfamily('Math').fontsize(20).position(V2(-7.7, -3.4))
+let leg_h = text("h - the water height at the red triangle,").fontfamily('Math').fontscale(0.017).position(V2(4.2, -2.3))
+let leg_h2 = text(`a "city" on Earth's surface`).fontfamily('Math').fontscale(0.017).position(V2(4.2, -2.6))
+let leg_t = text("t (days)").fontfamily('Math').fontscale(0.017).position(V2(7.55, -5.2))
+let leg_h3 = text("h (m)").fontfamily('Math').fontscale(0.017).position(V2(-7.7, -3.4))
 let leg = diagram_combine(leg_h, leg_h2, leg_t, leg_h3)
 
 let ax_opt = {
@@ -127,7 +127,7 @@ int.draw_function = (inp) => {
     let earth_zoom = circle(R * ZOOM).position(earth_zoom_pos).fill("blue").strokewidth(0)
 
     let h_base = R * m / M * Math.pow(1 / 60, 3)
-    let ax = xycorneraxes(ax_opt).fontsize(20).fontfamily("Math").fill("black").stroke("black").textfill("black")
+    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").fill("black").stroke("black").textfill("black")
 
     let visual_moon_angle = Math.atan2(moon_pos.y - earth_pos.y, moon_pos.x - earth_pos.x)
     //this visual tide is based on absolutly nothing, its just nice
@@ -160,7 +160,7 @@ int.draw_function = (inp) => {
 
     let plot_vis = diagram_combine(timeline, value_point)
 
-    let h_value = text("h = " + (0.6 + h / h_base).toFixed(2) + " m").fontfamily('Math').fontsize(20).position(V2(4.2, -2))
+    let h_value = text("h = " + (0.6 + h / h_base).toFixed(2) + " m").fontfamily('Math').fontscale(0.017).position(V2(4.2, -2))
 
     draw(outline, div, earth_orbit, moon_orbit, earth, moon, visual_tide, city, earth_zoom_orbit, earth_zoom, ax, tide_plot, (t / DAY_TO_RAW < ax_opt.xrange[1] ? plot_vis : square(0)), leg, h_value)
 }

@@ -41,10 +41,10 @@ let axes_opt = {
 let outline = rectangle(16, 9).strokewidth(0);
 let divider = line(V2(1, -4.5), V2(1, 4.5))
 
-let axes = xycorneraxes(axes_opt).position(V2(2, -4)).stroke("black").textfill("black").fontfamily("Math").fontsize(20)
+let axes = xycorneraxes(axes_opt).position(V2(2, -4)).stroke("black").textfill("black").fontfamily("Math").fontscale(0.017)
     .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.03, -0.02))).fill("black")
-let time_label = text("t (s)").fontfamily("Math").fontsize(20).position(V2(7.5, -4.2))
-let dist_label = text("D (m)").fontfamily("Math").fontsize(20).position(V2(1.5, 4.3))
+let time_label = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.5, -4.2))
+let dist_label = text("D (m)").fontfamily("Math").fontscale(0.017).position(V2(1.5, 4.3))
 
 let int = new Interactive(control, canvas);
 
@@ -112,7 +112,7 @@ int.draw_function = (inp) => {
         back_plot = plotf((num => get_x(num, theta, g)), axes_opt).position(V2(2, -4))
             .strokedasharray([10]).stroke("lightblue")
         ruler = xycorneraxes({...ruler_opt, xrange: [0, l - 3]}).position(top).rotate(-theta).scale(SCALE)
-            .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.2, 0))).stroke("black").fontfamily("Math").fontsize(20).textfill("black")
+            .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.2, 0))).stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
         g_cache = g;
         theta_cache = theta;

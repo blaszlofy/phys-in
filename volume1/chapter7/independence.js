@@ -41,12 +41,12 @@ let ax_opt2 = {
     headsize: 0.1
 }
 
-let t1 = text("t (s)").fontfamily("Math").fontsize(20).position(V2(-3, -4.3))
-let t2 = text("t (s)").fontfamily("Math").fontsize(20).position(V2(-3, -0.3))
-let v1 = text("v (m/s)").fontfamily("Math").fontsize(20).position(V2(-7.3, -0.7))
-let v2 = text("v (m/s)").fontfamily("Math").fontsize(20).position(V2(-7.3, 3.2))
-let lab = text("v indicates the magnitude of").position(V2(-5, 4.2)).fontfamily("Math").fontsize(20)
-let lab2 = text(" velocity in the vertical direction").position(V2(-5, 3.9)).fontfamily("Math").fontsize(20)
+let t1 = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(-3, -4.3))
+let t2 = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(-3, -0.3))
+let v1 = text("v (m/s)").fontfamily("Math").fontscale(0.017).position(V2(-7.3, -0.7))
+let v2 = text("v (m/s)").fontfamily("Math").fontscale(0.017).position(V2(-7.3, 3.2))
+let lab = text("v indicates the magnitude of").position(V2(-5, 4.2)).fontfamily("Math").fontscale(0.017)
+let lab2 = text(" velocity in the vertical direction").position(V2(-5, 3.9)).fontfamily("Math").fontscale(0.017)
 let label = diagram_combine(t1, t2, v1, v2, lab, lab2)
 
 let int = new Interactive(control, canvas);
@@ -185,8 +185,8 @@ int.draw_function = (inp) => {
 
     ax_opt.xrange = [rotator_end_t, land_t]
     ax_opt2.xrange = [rotator_end_t, land_t]
-    let ax = xycorneraxes(ax_opt).fontsize(20).fontfamily("Math").textfill("black").stroke("black").fill("black")
-    let ax2 = xycorneraxes(ax_opt2).fontsize(20).fontfamily("Math").textfill("black").stroke("black").fill("black")
+    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
+    let ax2 = xycorneraxes(ax_opt2).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
     let plot1 = plotf((x) => g * (x - rotator_end_t), ax_opt).stroke("blue").strokewidth(2)
     let plot2 = plotf((x) => g * (x - rotator_end_t), ax_opt2).stroke("lightblue").strokewidth(2)
 

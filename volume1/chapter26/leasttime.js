@@ -75,7 +75,7 @@ let x_opt = {
     bbox: [V2(-6, 1.7), V2(1, 1.7)],
     headsize: 0
 }
-let x_line = xycorneraxes(x_opt).fontfamily("Math").fontsize(20).fill("black").stroke("black").textfill("black")
+let x_line = xycorneraxes(x_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
 let A_bound = line(x_opt.bbox[0].add(V2(0, 1.5)), x_opt.bbox[0].add(V2(0, 2.5))).apply(mod.subdivide(40))
 let transf_x = axes_transform(x_opt)
 let x_bound = line(x_opt.bbox[0], x_opt.bbox[1]).apply(mod.subdivide(100))
@@ -88,25 +88,25 @@ let ax_opt = {
     headsize: 0.1
 }
 let transf_coord = axes_transform(ax_opt)
-let ax = xycorneraxes(ax_opt).fontfamily("Math").fontsize(20).fill("black").stroke("black").textfill("black")
+let ax = xycorneraxes(ax_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
 
 let value_to_x = (value) => {
     return V2(value, 0).apply(transf_x).x
 }
 
-let mat = text("Material where light").fontfamily("Math").fontsize(20).position(V2(-6, 0))
-let mat2 = text("travels n times").fontfamily("Math").fontsize(20).position(V2(-6, -0.4))
-let mat3 = text("slower than in air").fontfamily("Math").fontsize(20).position(V2(-6, -0.8))
-let air = text("Air").fontfamily("Math").fontsize(20).position(V2(2, 4))
-let x_leg = text("x (m)").fontfamily("Math").fontsize(20).position(V2(1.2, 1.9))
-let x_leg2 = text("x (m)").fontfamily("Math").fontsize(20).position(V2(7.5, -4.25))
-let t_leg = text("t (3.3 ⋅ 10⁻⁹ s)").fontfamily("Math").fontsize(20).position(V2(-7.1, -1.3))
+let mat = text("Material where light").fontfamily("Math").fontscale(0.017).position(V2(-6, 0))
+let mat2 = text("travels n times").fontfamily("Math").fontscale(0.017).position(V2(-6, -0.4))
+let mat3 = text("slower than in air").fontfamily("Math").fontscale(0.017).position(V2(-6, -0.8))
+let air = text("Air").fontfamily("Math").fontscale(0.017).position(V2(2, 4))
+let x_leg = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(1.2, 1.9))
+let x_leg2 = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(7.5, -4.25))
+let t_leg = text("t (3.3 ⋅ 10⁻⁹ s)").fontfamily("Math").fontscale(0.017).position(V2(-7.1, -1.3))
 
 let dash = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).position(V2(3.4, 3))
 let colored = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).stroke("cyan").position(V2(3.4, 2))
-let dash_text = text("Path that takes the shortest time").fontfamily("Math").fontsize(20).position(V2(5.8, 3))
-let col_text = text("Other paths colored based on").fontfamily("Math").fontsize(20).position(V2(5.7, 2))
-let col_text2 = text("the time light takes to travel").fontfamily("Math").fontsize(20).position(V2(5.6, 1.6))
+let dash_text = text("Path that takes the shortest time").fontfamily("Math").fontscale(0.017).position(V2(5.8, 3))
+let col_text = text("Other paths colored based on").fontfamily("Math").fontscale(0.017).position(V2(5.7, 2))
+let col_text2 = text("the time light takes to travel").fontfamily("Math").fontscale(0.017).position(V2(5.6, 1.6))
 
 let stat = diagram_combine(div1, div2, x_line, ax, mat, mat2, mat3, air, x_leg, x_leg2, t_leg, dash, colored, dash_text, col_text, col_text2)
 
@@ -165,8 +165,8 @@ int.draw_function = (inp) => {
 
     let material = rectangle_corner(V2(-8, -1), V2(3, 1.7)).strokewidth(0).fill("lightblue").opacity((n - 1) * 0.7)
 
-    let A_leg = text("A").fontfamily("Math").fontsize(20).position(A.add(V2(-0.4, 0)))
-    let B_leg = text("B").fontfamily("Math").fontsize(20).position(B.add(V2(0.4, 0)))
+    let A_leg = text("A").fontfamily("Math").fontscale(0.017).position(A.add(V2(-0.4, 0)))
+    let B_leg = text("B").fontfamily("Math").fontscale(0.017).position(B.add(V2(0.4, 0)))
 
     let boundaryY = x_opt.bbox[0].y
     let ideal_X = findIdealX(A, B, n, boundaryY)
@@ -181,7 +181,7 @@ int.draw_function = (inp) => {
     let _dist1 = Math.hypot(_P.x - A.x, _P.y - A.y)
     let _dist2 = n * Math.hypot(_P.x - B.x, _P.y - B.y)
     let min_point = circle(0.05).position(V2(ideal_X, _dist1 + _dist2).apply(transf_coord)).strokewidth(0).fill("red")
-    let c = text("C").fontfamily("Math").fontsize(20).position(min_point.get_anchor("center-center").add(V2(0.2, -0.3)))
+    let c = text("C").fontfamily("Math").fontscale(0.017).position(min_point.get_anchor("center-center").add(V2(0.2, -0.3)))
 
     draw(outline, material, stat, ...sortedPathObjects, pl, user_line, user_point, A_leg, B_leg, ideal_path, min_line, min_point, c, user_path)
 }
