@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, curve, line, xyaxes, xycorneraxes, plotv, plotf, xtickmark, bar, ytickmark_empty, text,
     circle, mod
 } from "diagramatics";
@@ -13,7 +12,16 @@ let control = document.getElementById("control");
 let button = document.getElementById("restart")
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -21,8 +29,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -87,13 +97,13 @@ const amount = 40
 
 let bound = line(V2(0, center.y - height / 2 - 0.4), V2(-width / 2 + 1, center.y - height / 2 - 0.4)).apply(mod.subdivide(300))
 
-let div = line(V2(-8, -3), V2(8, -3))
+let div = line(V2(-8, -3), V2(8, -3)).vectoreffect("none").strokewidth(0.015)
 
 let part_l = circle(0.05).strokewidth(0).fill("blue").position(V2(-4, -3.775))
 let part_l2 = circle(0.05).strokewidth(0).fill("red").position(V2(-4.2, -3.775))
 let part_t = text("Gas molecule").fontfamily("Math").fontscale(0.017).position(V2(-2.9, -3.775))
 let path_t = text("Distribution of the red particles").fontfamily("Math").fontscale(0.017).position(V2(2.5, -3.775))
-let path_l = line(V2(0, 0), V2(0.4, 0)).strokewidth(30).stroke("lightred").position(V2(0, -3.775)).opacity(0.6)
+let path_l = line(V2(0, 0), V2(0.4, 0)).strokewidth(0.399).vectoreffect("none").stroke("lightred").position(V2(0, -3.775)).opacity(0.6)
 
 let leg = diagram_combine(part_l, part_l2, part_t, path_l, path_t).translate(V2(0.6, 0))
 
@@ -253,8 +263,8 @@ function update(time) {
         drawCircle(V2(positions[i].x, positions[i].y), r * currentScale, { opacity: 0.8, color: positions[i].red ? "#d62728" : "#1f77b4"})
     }
 
-    const delta = 0.3
-    let container = rectangle(width + 2 * delta, height + delta).position(center).strokewidth(3).stroke("gray")
+    const delta = 0.05
+    let container = rectangle(width + 2 * delta, height + delta).position(center).strokewidth(0.039).vectoreffect("none").stroke("gray")
 
     let bar_opt = {
         gap: 0,
@@ -270,10 +280,10 @@ function update(time) {
         headsize: 0.1
     }
 
-    let dist = bar.plot(redDensity, bar_opt).stroke("red").fill("lightred").opacity(0.4)
-    let dist_ax = xycorneraxes(ax_opt).stroke("black").fill("black")
+    let dist = bar.plot(redDensity, bar_opt).stroke("red").fill("lightred").opacity(0.4).vectoreffect("none").strokewidth(0.015)
+    let dist_ax = xycorneraxes(ax_opt).stroke("black").fill("black").vectoreffect("none").strokewidth(0.015)
 
-    let divider = line(p.add(V2(0, 0.3)), p.add(V2(0, 0.3 + height + delta))).stroke("gray").strokewidth(2).strokedasharray([10])
+    let divider = line(p.add(V2(0, 0.3)), p.add(V2(0, 0.3 + height + delta))).stroke("gray").strokewidth(0.026).vectoreffect("none").strokedasharray([0.25])
 
     draw(outline, stat, container, dist, dist_ax, divider)
     requestAnimationFrame(update)
@@ -285,7 +295,7 @@ int.draw_function = (inp) => {
 }
 
 int.slider("N", 300, 1000, 700, 1, 10, (name, value) => name + " = " + value.toFixed(0))
-int.slider("T", 200, 350, 273, 1, 10, (name, value) => name + " = " + value.toFixed(1) + " K")
+int.slider("T", 100, 350, 273, 1, 10, (name, value) => name + " = " + value.toFixed(1) + " K")
 
 int.locator("p", V2(0, 0), 0.2, "blue", bound)
 

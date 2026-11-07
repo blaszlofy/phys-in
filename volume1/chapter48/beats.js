@@ -12,7 +12,10 @@ let control = document.getElementById("control");
 let button = document.getElementById("sound")
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 let time = 0
@@ -63,22 +66,22 @@ let phasor_opt = {
 }
 let transf = axes_transform(phasor_opt)
 
-let ax1 = xyaxes(ax1_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
-let ax2 = xyaxes(ax2_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
-let ax = xyaxes(ax_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
-let plus = text("+").fontfamily("Math").fontsize(26).position(V2(center.x, center.y + dh / 2))
-let equal = text("=").fontfamily("Math").fontsize(26).position(V2(center.x, center.y - dh / 2))
+let ax1 = xyaxes(ax1_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black").vectoreffect("none").strokewidth(0.015)
+let ax2 = xyaxes(ax2_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black").vectoreffect("none").strokewidth(0.015)
+let ax = xyaxes(ax_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black").vectoreffect("none").strokewidth(0.015)
+let plus = text("+").fontfamily("Math").fontscale(0.025).position(V2(center.x, center.y + dh / 2))
+let equal = text("=").fontfamily("Math").fontscale(0.025).position(V2(center.x, center.y - dh / 2))
 
-let phasor_ax = xyaxes(phasor_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
+let phasor_ax = xyaxes(phasor_opt).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black").vectoreffect("none").strokewidth(0.015)
 
-let div1 = line(V2(-2.8, 4.5), V2(-2.8, -4.5))
-let div2 = line(V2(-8, -0.8), V2(-2.8, -0.8))
+let div1 = line(V2(-2.8, 4.5), V2(-2.8, -4.5)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(-8, -0.8), V2(-2.8, -0.8)).vectoreffect("none").strokewidth(0.015)
 
-let sg_l1 = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-7.5, 4))
+let sg_l1 = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(0.026).vectoreffect("none").position(V2(-7.5, 4))
 let sg_t1 = text("The first signal").fontscale(0.017).fontfamily("Math").position(V2(-5.9, 4))
-let sg_l2 = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(2).position(V2(-7.5, 3.4))
+let sg_l2 = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(0.026).vectoreffect("none").position(V2(-7.5, 3.4))
 let sg_t2 = text("The second signal").fontscale(0.017).fontfamily("Math").position(V2(-5.72, 3.4))
-let sg_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-7.5, 2.8))
+let sg_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(-7.5, 2.8))
 let sg_t = text("The sum of the two signals").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 2.8))
 let amp1 = text("The arrows are the complex").fontfamily("Math").fontscale(0.017).position(V2(-5.1, 1.7))
 let amp2 = text("vectors of the signals in a").fontfamily("Math").fontscale(0.017).position(V2(-5.25, 1.3))
@@ -101,11 +104,11 @@ int.draw_function = (inp) => {
 
     current_dw = dw
 
-    let sig1 = plotf((t) => A1 * Math.cos((w + dw / 2) * t), ax1_opt).stroke("lightblue").strokewidth(2)
-    let sig2 = plotf((t) => A2 * Math.cos((w - dw / 2) * t), ax2_opt).stroke("lightred").strokewidth(2)
-    let sig = plotf((t) => A1 * Math.cos((w + dw / 2) * t) + A2 * Math.cos((w - dw / 2) * t), ax_opt).stroke("blue").strokewidth(2)
-    let env_top = plotf((t) => Math.sqrt(A1**2 + A2**2 + 2 * A1 * A2 * Math.cos(dw * t)), ax_opt).stroke("gray").strokedasharray([10])
-    let env_bottom = plotf((t) => -Math.sqrt(A1**2 + A2**2 + 2 * A1 * A2 * Math.cos(dw * t)), ax_opt).stroke("gray").strokedasharray([10])
+    let sig1 = plotf((t) => A1 * Math.cos((w + dw / 2) * t), ax1_opt).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
+    let sig2 = plotf((t) => A2 * Math.cos((w - dw / 2) * t), ax2_opt).stroke("lightred").strokewidth(0.026).vectoreffect("none")
+    let sig = plotf((t) => A1 * Math.cos((w + dw / 2) * t) + A2 * Math.cos((w - dw / 2) * t), ax_opt).stroke("blue").strokewidth(0.026).vectoreffect("none")
+    let env_top = plotf((t) => Math.sqrt(A1**2 + A2**2 + 2 * A1 * A2 * Math.cos(dw * t)), ax_opt).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
+    let env_bottom = plotf((t) => -Math.sqrt(A1**2 + A2**2 + 2 * A1 * A2 * Math.cos(dw * t)), ax_opt).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
 
     if (ctx) {
         o1.frequency.value = 220 + dw / (4 * Math.PI)
@@ -115,9 +118,9 @@ int.draw_function = (inp) => {
         g2.gain.value = A2 * 0.05
     }
 
-    let ph1 = arrow1(V2(0, 0).apply(transf), V2(A1, 0).apply(transf), 0.1).stroke("lightblue").strokewidth(2)
-    let ph2 = arrow1(V2(A1, 0).apply(transf), Vdir(phase_diff).scale(A2).add(V2(A1, 0)).apply(transf), 0.1).stroke("lightred").strokewidth(2)
-    let ph = arrow1(V2(0, 0).apply(transf), Vdir(phase_diff).scale(A2).add(V2(A1, 0)).apply(transf), 0.1).stroke("blue").strokewidth(2)
+    let ph1 = arrow1(V2(0, 0).apply(transf), V2(A1, 0).apply(transf), 0.1).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
+    let ph2 = arrow1(V2(A1, 0).apply(transf), Vdir(phase_diff).scale(A2).add(V2(A1, 0)).apply(transf), 0.1).stroke("lightred").strokewidth(0.026).vectoreffect("none")
+    let ph = arrow1(V2(0, 0).apply(transf), Vdir(phase_diff).scale(A2).add(V2(A1, 0)).apply(transf), 0.1).stroke("blue").strokewidth(0.026).vectoreffect("none")
 
     draw(outline, stat, sig1, sig2, sig, env_top, env_bottom, ph1, ph2, ph)
 }

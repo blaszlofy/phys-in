@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, line, xyaxes, circle, axes_transform, arrow1, text, Vdir, mod, annotation, axes_empty
 } from "diagramatics";
 
@@ -11,7 +10,16 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -19,8 +27,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
     redraw()
 }
 window.addEventListener('resize', resizeCanvas);
@@ -104,21 +114,21 @@ let transf = axes_transform(ax1_opt)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 let sheet = line(V2(center.x, center.y - max - 0.5), V2(center.x, center.y + max + 0.5)).strokewidth(0.25).stroke("lightgray").vectoreffect("none")
 let z_l = text("z (m)").fontscale(0.017).fontfamily("Math").position(V2(center.x + 2 * max, center.y + 0.3))
 
-let div1 = line(V2(1, 4.5), V2(1, -4.5))
-let div2 = line(V2(1, -1.2), V2(8, -1.2))
+let div1 = line(V2(1, 4.5), V2(1, -4.5)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(1, -1.2), V2(8, -1.2)).vectoreffect("none").strokewidth(0.015)
 
 let re = text("Re").fontscale(0.017).fontfamily("Math").position(V2(7.3, 2))
 let im = text("Im").fontscale(0.017).fontfamily("Math").position(V2(4.9, 4.35))
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(1.6, -1.6))
 let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(3.3, -1.6))
-let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(1.35, -2.2))
+let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none").position(V2(1.35, -2.2))
 let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(4, -2.2))
-let vec = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("blue").stroke("blue").strokewidth(2).position(V2(1.35, -2.8))
+let vec = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("blue").stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(1.35, -2.8))
 let vec_t = text("Real part of the complex sum").fontscale(0.017).fontfamily("Math").position(V2(3.7, -2.8))
 let vec_t2 = text("of the 'amplitude vectors'").fontscale(0.017).fontfamily("Math").position(V2(3.5, -3.2))
 
@@ -148,7 +158,7 @@ function create_plane_wave_vectors(z, w, A, n, scale) {
 
         let angle = -wave_k * (r + dr / 2)
         let next = curr.add(V2(mag, 0).rotate(angle))
-        vecs.push(arrow1(curr, next, 0.02).stroke("black").fill("black").strokewidth(1))
+        vecs.push(arrow1(curr, next, 0.02).stroke("black").fill("black").strokewidth(0.015).vectoreffect("none"))
 
         curr = next
     }
@@ -216,10 +226,10 @@ int.draw_function = (inp) => {
     let time_angle = w * t
     let spiral = spiral_base_diagram.rotate(time_angle).position(spiral_center)
     let rotated_end = spiral_base_end.rotate(time_angle)
-    let resultant = arrow1(spiral_center, spiral_center.add(rotated_end), 0.1).strokewidth(2).fill("red").stroke("red")
-    let projection = arrow1(spiral_center, spiral_center.add(V2(rotated_end.x, 0)), 0.1).strokewidth(3).fill("blue").stroke("blue")
+    let resultant = arrow1(spiral_center, spiral_center.add(rotated_end), 0.1).strokewidth(0.026).vectoreffect("none").fill("red").stroke("red")
+    let projection = arrow1(spiral_center, spiral_center.add(V2(rotated_end.x, 0)), 0.1).strokewidth(0.039).vectoreffect("none").fill("blue").stroke("blue")
 
-    let ax2 = axes_empty({headsize: 0.1, bbox: [V2(-2.5, -2.5), V2(2.5, 2.5)]}).position(spiral_center).fill("black").strokewidth(1).stroke("black")
+    let ax2 = axes_empty({headsize: 0.1, bbox: [V2(-2.5, -2.5), V2(2.5, 2.5)]}).position(spiral_center).fill("black").strokewidth(0.015).vectoreffect("none").stroke("black")
 
     let P = text("P").fontfamily("Math").fontscale(0.017).position(inp["pos"].add(V2(0, 0.5)))
 

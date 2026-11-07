@@ -31,18 +31,26 @@ main {
     width: 100%;
 }
 
-@media (max-width: 768px) {
-    .sim-container {
+@media (max-width: 1200px) {
+    main {
         padding: 0;
+    }
+
+    .control-panel, .info-container, .notice-section, .info-padding {
+        padding: 2rem;
     }
 }
 
 
 /*SIMULATION PAGE*/
 .sim-container {
+    --sim-ratio: 16 / 9;
+
     position: relative;
-    width: calc(1200px - 4rem);
-    height: calc((1200px - 4rem) * 9 / 16);
+    max-width: 1200px;
+    width: 100%;
+    aspect-ratio: var(--sim-ratio);
+    margin: 0 auto;
 }
 
 .sim-canvas, .sim-tex-overlay {
@@ -50,7 +58,7 @@ main {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    aspect-ratio: var(--canvas-ratio, var(--sim-ratio));
 }
 
 .sim-tex-overlay {
@@ -103,6 +111,7 @@ main {
     font-style: italic;
     font-weight: bold;
     transition: transform 0.2s ease, background-color 0.2s ease;
+    margin-left: 1rem;
 }
 
 .feynman-ref-link:hover {

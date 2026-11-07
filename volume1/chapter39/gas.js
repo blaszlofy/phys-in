@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, curve, line, xyaxes, xycorneraxes, plotv, plotf, xtickmark, bar, ytickmark_empty, text
 } from "diagramatics";
 
@@ -11,7 +10,16 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -19,8 +27,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -42,7 +52,7 @@ function worldToScreen(x, y) {
     let yOffset = (htmlcanvas.height - (world.top - world.bottom) * currentScale) / 2
 
     return {
-        x: xOffset + 9 + (x - world.left) * currentScale,
+        x: xOffset + (x - world.left) * currentScale,
         y: yOffset + (world.top - y) * currentScale
     }
 }
@@ -81,13 +91,13 @@ const k = 1
 const depth = 0.75
 const center = V2(-4.5, -0.3)
 
-let div1 = line(V2(0, 4.5), V2(0, -4.5))
-let div2 = line(V2(0, 0), V2(8, 0))
+let div1 = line(V2(0, 4.5), V2(0, -4.5)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(0, 0), V2(8, 0)).vectoreffect("none").strokewidth(0.015)
 
 let exp_t = text("Experimental pressure value").fontfamily("Math").fontscale(0.017).position(V2(4, 0.8))
 let theo_t = text("Theoretical pressure value (p = NkT/V)").fontfamily("Math").fontscale(0.017).position(V2(4.65, 0.3))
-let exp_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(1.5, 0.8))
-let theo_l = line(V2(0, 0), V2(0.5, 0)).stroke("gray").strokedasharray([10]).position(V2(1.5, 0.3))
+let exp_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(1.5, 0.8))
+let theo_l = line(V2(0, 0), V2(0.5, 0)).stroke("gray").strokedasharray([0.2]).position(V2(1.5, 0.3)).vectoreffect("none").strokewidth(0.015)
 let vel_t = text("Velocity histogram").fontfamily("Math").fontscale(0.017).position(V2(4, -0.3))
 
 let t_t = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.7, 1.5))
@@ -323,8 +333,8 @@ function update(time) {
         drawCircle(V2(p.x + depth * (1 - zNormalized), p.y + depth * (1 - zNormalized)), r * currentScale, { opacity: op })
     }
 
-    const delta = 0.3
-    let container = rectangle(width + delta, height + delta).position(center).strokewidth(3).stroke("gray")
+    const delta = 0.1
+    let container = rectangle(width + delta, height + delta).position(center).strokewidth(0.039).vectoreffect("none").stroke("gray")
     const dP = V2(depth, depth)
     let outer = diagram_combine(
         curve([
@@ -335,7 +345,7 @@ function update(time) {
             container.get_anchor("bottom-right")
         ]),
         line(container.get_anchor("top-right"), container.get_anchor("top-right").add(dP))
-    ).stroke("gray").strokewidth(2)
+    ).stroke("gray").strokewidth(0.026).vectoreffect("none")
     let inner = diagram_combine(
         curve([
             container.get_anchor("top-left").add(dP),
@@ -343,7 +353,7 @@ function update(time) {
             container.get_anchor("bottom-right").add(dP)
         ]),
         line(container.get_anchor("bottom-left"), container.get_anchor("bottom-left").add(dP))
-    ).stroke("gray").strokewidth(1.1)
+    ).stroke("gray").strokewidth(0.0143).vectoreffect("none")
 
     let ax_opt = {
         xrange: [0, max_exp_length * max_pressure_time],
@@ -353,29 +363,29 @@ function update(time) {
         bbox: [V2(1.3, 1.5), V2(7.3, 4.3)],
         headsize: 0.1
     }
-    let tick1 = xtickmark(10 - (t + 1) % 10, 0, "t", ax_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
-    let tick2 = xtickmark(10 - (t) % 10, 0, "t + 1", ax_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
+    let tick1 = xtickmark(10 - (t + 1) % 10, 0, "t", ax_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
+    let tick2 = xtickmark(10 - (t) % 10, 0, "t + 1", ax_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
     let yticks = diagram_combine(
-        ytickmark_empty(50, 0, ax_opt),
-        ytickmark_empty(100, 0, ax_opt),
-        ytickmark_empty(150, 0, ax_opt),
-        ytickmark_empty(200, 0, ax_opt),
-        ytickmark_empty(250, 0, ax_opt),
-        ytickmark_empty(300, 0, ax_opt),
-        ytickmark_empty(350, 0, ax_opt),
+        ytickmark_empty(50, 0, ax_opt).vectoreffect("none").strokewidth(0.015),
+        ytickmark_empty(100, 0, ax_opt).vectoreffect("none").strokewidth(0.015),
+        ytickmark_empty(150, 0, ax_opt).vectoreffect("none").strokewidth(0.015),
+        ytickmark_empty(200, 0, ax_opt).vectoreffect("none").strokewidth(0.015),
+        ytickmark_empty(250, 0, ax_opt).vectoreffect("none").strokewidth(0.015),
+        ytickmark_empty(300, 0, ax_opt).vectoreffect("none").strokewidth(0.015),
+        ytickmark_empty(350, 0, ax_opt).vectoreffect("none").strokewidth(0.015),
     ).stroke("black")
-    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
+    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black").vectoreffect("none").strokewidth(0.015)
     let plot_data = exp_pressure_val.map((p, i) => V2(i * max_pressure_time, p))
-    let press_plot = plotv(plot_data, ax_opt).stroke("blue").strokewidth(2)
-    let real_plot = plotf(x => N * k * T / V, ax_opt).stroke("gray").strokedasharray([10])
+    let press_plot = plotv(plot_data, ax_opt).stroke("blue").strokewidth(0.026).vectoreffect("none")
+    let real_plot = plotf(x => N * k * T / V, ax_opt).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
 
     let bar_opt = {
         gap: 0,
         bbox: [V2(1.3, -4), V2(7, -0.5)],
         yrange: [0, Math.max(500, Math.max(...velocity_histogram))],
     }
-    let hist_plot = bar.plot(velocity_histogram, bar_opt).stroke("blue").fill("lightblue").opacity(0.5)
-    let hist_ax = bar.yaxes(velocity_histogram, bar_opt).stroke("black").fontscale(0.017).fontfamily("Math").textfill("black")
+    let hist_plot = bar.plot(velocity_histogram, bar_opt).stroke("blue").fill("lightblue").opacity(0.5).vectoreffect("none").strokewidth(0.015)
+    let hist_ax = bar.yaxes(velocity_histogram, bar_opt).stroke("black").fontscale(0.017).fontfamily("Math").textfill("black").vectoreffect("none").strokewidth(0.015)
 
     function maxwellBoltzmann(x) {
         const v = x * bin_width
@@ -390,7 +400,7 @@ function update(time) {
         bbox: bar_opt.bbox,
         yrange: bar_opt.yrange,
         xrange: [0, velocity_histogram.length]
-    }).stroke("gray").strokewidth(2).strokedasharray([10])
+    }).stroke("gray").strokewidth(0.026).vectoreffect("none").strokedasharray([0.25])
 
     draw(outline, stat, container, outer, inner, ax, real_plot, press_plot, tick1, tick2, yticks, hist_plot, hist_ax, theo_dist)
     requestAnimationFrame(update)

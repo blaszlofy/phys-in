@@ -11,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const amount = 50
@@ -27,17 +30,17 @@ let ax_opt = {
     bbox: [V2(-w / 2, y - h / 2), V2(w / 2, y + h / 2)],
 }
 
-let harm_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-2.7, -3.4))
-let sig_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-2.7, -3.9))
+let harm_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(0.026).vectoreffect("none").position(V2(-2.7, -3.4))
+let sig_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(-2.7, -3.9))
 let harm_t = text("Harmonic functions").fontfamily("Math").fontscale(0.017).position(V2(-0.64, -3.4))
 let sig_t = text("String, sum of the simple harmonic functions").fontfamily("Math").fontscale(0.017).position(V2(0.8, -3.9))
 
 let leg = diagram_combine(harm_l, sig_l, harm_t, sig_t)
 
-let wall1 = line(V2(-w / 2, y - h / 2), V2(-w / 2, y + h / 2)).strokewidth(3).stroke("gray")
-let wall2 = line(V2(w / 2, y - h / 2), V2(w / 2, y + h / 2)).strokewidth(3).stroke("gray")
+let wall1 = line(V2(-w / 2, y - h / 2), V2(-w / 2, y + h / 2)).strokewidth(0.039).vectoreffect("none").stroke("gray")
+let wall2 = line(V2(w / 2, y - h / 2), V2(w / 2, y + h / 2)).strokewidth(0.039).vectoreffect("none").stroke("gray")
 
-let div = diagram_combine(line(V2(-8, -2.8), V2(8, -2.8)))
+let div = diagram_combine(line(V2(-8, -2.8), V2(8, -2.8)).vectoreffect("none").strokewidth(0.015))
 let stat = diagram_combine(wall1, wall2, leg, div)
 
 let outline = rectangle(16, 9).strokewidth(0);
@@ -116,11 +119,11 @@ int.draw_function = (inp) => {
         return total
     }
 
-    let string = plotf((x) => sum(x, t), ax_opt).stroke("blue").strokewidth(2)
+    let string = plotf((x) => sum(x, t), ax_opt).stroke("blue").strokewidth(0.026).vectoreffect("none")
 
     let components = []
     for (let i = 0; i < display; i++) {
-        components[i] = plotf(x => fourier[i] * Math.sin((i + 1) * Math.PI * x / w) * Math.cos((i + 1) * Math.PI * c * t / w), ax_opt).strokewidth(1).stroke("lightblue").opacity(1 / Math.sqrt(i + 1))
+        components[i] = plotf(x => fourier[i] * Math.sin((i + 1) * Math.PI * x / w) * Math.cos((i + 1) * Math.PI * c * t / w), ax_opt).strokewidth(0.015).vectoreffect("none").stroke("lightblue").opacity(1 / Math.sqrt(i + 1))
     }
 
     let harm = 10
@@ -135,7 +138,7 @@ int.draw_function = (inp) => {
         n_sample: 20
     }
     for (let i = 0; i < harm; i++) {
-        let harmonic = plotf(x => fourier[i] * Math.sin((i + 1) * Math.PI * x / w) * Math.cos((i + 1) * Math.PI * c * t / w), small_opt).strokewidth(2).stroke("lightblue")
+        let harmonic = plotf(x => fourier[i] * Math.sin((i + 1) * Math.PI * x / w) * Math.cos((i + 1) * Math.PI * c * t / w), small_opt).strokewidth(0.026).vectoreffect("none").stroke("lightblue")
 
         if (i < harm / 2) {
             row1.push(diagram_combine(harmonic, rectangle(w / harm, 2 * h / harm + 0.4).strokewidth(0)))

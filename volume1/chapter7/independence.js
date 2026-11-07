@@ -4,13 +4,17 @@ import {
     diagram_combine,
     Interactive, V2, arc, to_radian, circle, line, boolean, square, curve, arrow1, xycorneraxes, xyaxes, plotf, text,
     axes_transform,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const release_pos = V2(3.3, 0.5)
@@ -21,7 +25,7 @@ const detail = 100
 const SCALE = 0.13
 
 let outline = rectangle(16, 9).strokewidth(0);
-let divider = line(V2(-2.5, 4.5), V2(-2.5, -4.5)).stroke("black")
+let divider = line(V2(-2.5, 4.5), V2(-2.5, -4.5)).stroke("black").vectoreffect("none").strokewidth(0.015)
 
 let ax_opt = {
     xrange: [0, 10],
@@ -62,7 +66,7 @@ int.draw_function = (inp) => {
 
     let rotator = arc(radius, theta).rotate(-Math.PI / 2).position(release_pos.add(V2(0, radius)))
     let slope = line(rotator.get_anchor("top-right"), rotator.get_anchor("top-right").add(V2(length, 0).rotate(theta)))
-    let slide = diagram_combine(rotator, slope).stroke("lightgray").strokewidth(5).translate(V2(0, -1).rotate(theta).scale(0.03))
+    let slide = diagram_combine(rotator, slope).stroke("lightgray").strokewidth(0.066).vectoreffect("none").translate(V2(0, -1).rotate(theta).scale(0.03))
 
     let ball_radius = 0.15 * Math.cbrt(m1)
     let outside = circle(ball_radius).fill("lightblue").strokewidth(0)
@@ -112,10 +116,10 @@ int.draw_function = (inp) => {
         path.push(V2(electro_pos.x + ball2_radius + ball_radius, -3.5 + ball_radius))
     }
 
-    let ball_path = curve(path).stroke("gray").strokedasharray([10])
-    let ball2_path = line(V2(electro_pos.x, -3.5 + ball2_radius), electro_pos.add(V2(0, ball2_radius))).stroke("gray").strokedasharray([10])
+    let ball_path = curve(path).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
+    let ball2_path = line(V2(electro_pos.x, -3.5 + ball2_radius), electro_pos.add(V2(0, ball2_radius))).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
     let ground = curve([V2(electro_pos.x - ball2_radius, -1), V2(electro_pos.x - ball2_radius, -3.5), V2(electro_pos.x + 1.4, -3.5)])
-        .stroke("lightgray").strokewidth(5).translate(V2(-1, -1).normalize().scale(0.03))
+        .stroke("lightgray").strokewidth(0.066).vectoreffect("none").translate(V2(-1, -1).normalize().scale(0.03))
 
     let l1 = square(0)
     let l2 = square(0)
@@ -131,12 +135,12 @@ int.draw_function = (inp) => {
         let v_vector = slope_dir.scale(slope_v * SCALE)
         let vx_vector = V2(0, -1).scale(v_vector.dot(V2(0, -1)))
         let vy_vector = V2(-1, 0).scale(v_vector.dot(V2(-1, 0)))
-        v = arrow1(ball.origin, ball.origin.add(v_vector), 0.1).strokewidth(3).stroke("red").fill("red")
-        vy = arrow1(ball.origin, ball.origin.add(vx_vector), 0.1).stroke("lightblue").fill("lightblue").strokewidth(3)
-        vx = arrow1(ball.origin, ball.origin.add(vy_vector), 0.1).stroke("lightred").fill("lightred").strokewidth(3)
+        v = arrow1(ball.origin, ball.origin.add(v_vector), 0.1).strokewidth(0.039).vectoreffect("none").stroke("red").fill("red")
+        vy = arrow1(ball.origin, ball.origin.add(vx_vector), 0.1).stroke("lightblue").fill("lightblue").strokewidth(0.039).vectoreffect("none")
+        vx = arrow1(ball.origin, ball.origin.add(vy_vector), 0.1).stroke("lightred").fill("lightred").strokewidth(0.039).vectoreffect("none")
 
-        l1 = line(ball.origin.add(vx_vector), ball.origin.add(v_vector)).strokedasharray([10]).stroke("gray")
-        l2 = line(ball.origin.add(vy_vector), ball.origin.add(v_vector)).strokedasharray([10]).stroke("gray")
+        l1 = line(ball.origin.add(vx_vector), ball.origin.add(v_vector)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
+        l2 = line(ball.origin.add(vy_vector), ball.origin.add(v_vector)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
     }
     if (t >= slope_end_t && t < rotator_end_t) {
         let ball_pos = V2(0, -radius + ball_radius).rotate(theta - alpha(t)).add(release_pos.add(V2(0, radius)))
@@ -146,12 +150,12 @@ int.draw_function = (inp) => {
         let v_vector = slope_dir.rotate(-alpha(t)).scale(rotator_v * SCALE)
         let vx_vector = V2(0, -1).scale(v_vector.dot(V2(0, -1)))
         let vy_vector = V2(-1, 0).scale(v_vector.dot(V2(-1, 0)))
-        v = arrow1(ball.origin, ball.origin.add(v_vector), 0.1).strokewidth(3).stroke("red").fill("red")
-        vy = arrow1(ball.origin, ball.origin.add(vx_vector), 0.1).stroke("lightblue").fill("lightblue").strokewidth(3)
-        vx = arrow1(ball.origin, ball.origin.add(vy_vector), 0.1).stroke("lightred").fill("lightred").strokewidth(3)
+        v = arrow1(ball.origin, ball.origin.add(v_vector), 0.1).strokewidth(0.039).vectoreffect("none").stroke("red").fill("red")
+        vy = arrow1(ball.origin, ball.origin.add(vx_vector), 0.1).stroke("lightblue").fill("lightblue").strokewidth(0.039).vectoreffect("none")
+        vx = arrow1(ball.origin, ball.origin.add(vy_vector), 0.1).stroke("lightred").fill("lightred").strokewidth(0.039).vectoreffect("none")
 
-        l1 = line(ball.origin.add(vx_vector), ball.origin.add(v_vector)).strokedasharray([10]).stroke("gray")
-        l2 = line(ball.origin.add(vy_vector), ball.origin.add(v_vector)).strokedasharray([10]).stroke("gray")
+        l1 = line(ball.origin.add(vx_vector), ball.origin.add(v_vector)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
+        l2 = line(ball.origin.add(vy_vector), ball.origin.add(v_vector)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
     }
     if (t >= rotator_end_t && t < collision_t) {
         ball.position(release_pos.add(V2(0, ball_radius)).add(V2(-free_x(t), free_y(t))))
@@ -161,22 +165,22 @@ int.draw_function = (inp) => {
 
         let vx_vector = V2(-1, 0).scale(rotator_v * SCALE)
         let vy_vector = V2(0, 1).scale(free_v_y * SCALE)
-        v = arrow1(ball.origin, ball.origin.add(vx_vector).add(vy_vector), 0.1).strokewidth(3).stroke("red").fill("red")
-        vy = arrow1(ball.origin, ball.origin.add(vy_vector), 0.1).stroke("lightblue").fill("lightblue").strokewidth(3)
-        vx = arrow1(ball.origin, ball.origin.add(vx_vector), 0.1).stroke("lightred").fill("lightred").strokewidth(3)
+        v = arrow1(ball.origin, ball.origin.add(vx_vector).add(vy_vector), 0.1).strokewidth(0.039).vectoreffect("none").stroke("red").fill("red")
+        vy = arrow1(ball.origin, ball.origin.add(vy_vector), 0.1).stroke("lightblue").fill("lightblue").strokewidth(0.039).vectoreffect("none")
+        vx = arrow1(ball.origin, ball.origin.add(vx_vector), 0.1).stroke("lightred").fill("lightred").strokewidth(0.039).vectoreffect("none")
 
-        l1 = line(ball.origin.add(vx_vector), ball.origin.add(vx_vector).add(vy_vector)).strokedasharray([10]).stroke("gray")
-        l2 = line(ball.origin.add(vy_vector), ball.origin.add(vy_vector).add(vx_vector)).strokedasharray([10]).stroke("gray")
+        l1 = line(ball.origin.add(vx_vector), ball.origin.add(vx_vector).add(vy_vector)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
+        l2 = line(ball.origin.add(vy_vector), ball.origin.add(vy_vector).add(vx_vector)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
 
-        v2 = arrow1(ball2.origin, ball2.origin.add(V2(0, (-g * (t - rotator_end_t)) * SCALE)), 0.1).strokewidth(3).stroke("blue").fill("blue")
+        v2 = arrow1(ball2.origin, ball2.origin.add(V2(0, (-g * (t - rotator_end_t)) * SCALE)), 0.1).strokewidth(0.039).vectoreffect("none").stroke("blue").fill("blue")
     }
     if (t >= collision_t && t < land_t) {
         ball.position(V2(electro_pos.x + ball2_radius + ball_radius, release_pos.y + ball_radius).add(V2(0, free_y(t))))
         ball.rotate(length / ball_radius + rotator_v / ball_radius * (rotator_end_t - slope_end_t))
         ball2.position(electro_pos.add(V2(0, ball2_radius)).add(V2(0, free_y(t))))
 
-        v = arrow1(ball.origin, ball.origin.add(V2(0, (-g * (t - rotator_end_t)) * SCALE)), 0.1).strokewidth(3).stroke("red").fill("red")
-        v2 = arrow1(ball2.origin, ball2.origin.add(V2(0, (-g * (t - rotator_end_t)) * SCALE)), 0.1).strokewidth(3).stroke("blue").fill("blue")
+        v = arrow1(ball.origin, ball.origin.add(V2(0, (-g * (t - rotator_end_t)) * SCALE)), 0.1).strokewidth(0.039).vectoreffect("none").stroke("red").fill("red")
+        v2 = arrow1(ball2.origin, ball2.origin.add(V2(0, (-g * (t - rotator_end_t)) * SCALE)), 0.1).strokewidth(0.039).vectoreffect("none").stroke("blue").fill("blue")
     }
     if (t >= land_t) {
         ball.position(V2(electro_pos.x + ball2_radius + ball_radius, -3.5 + ball_radius))
@@ -185,10 +189,10 @@ int.draw_function = (inp) => {
 
     ax_opt.xrange = [rotator_end_t, land_t]
     ax_opt2.xrange = [rotator_end_t, land_t]
-    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
-    let ax2 = xycorneraxes(ax_opt2).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
-    let plot1 = plotf((x) => g * (x - rotator_end_t), ax_opt).stroke("blue").strokewidth(2)
-    let plot2 = plotf((x) => g * (x - rotator_end_t), ax_opt2).stroke("lightblue").strokewidth(2)
+    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black").vectoreffect("none").strokewidth(0.015)
+    let ax2 = xycorneraxes(ax_opt2).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black").vectoreffect("none").strokewidth(0.015)
+    let plot1 = plotf((x) => g * (x - rotator_end_t), ax_opt).stroke("blue").strokewidth(0.026).vectoreffect("none")
+    let plot2 = plotf((x) => g * (x - rotator_end_t), ax_opt2).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
 
     let transf1 = axes_transform(ax_opt)
     let transf2 = axes_transform(ax_opt2)
@@ -197,8 +201,8 @@ int.draw_function = (inp) => {
     let v_circ_1 = square(0)
     let v_circ_2 = square(0)
     if (t > rotator_end_t && t < land_t) {
-        timeline1 = line(V2(t, 0).apply(transf1), V2(t, 12).apply(transf1)).stroke("gray").strokedasharray([10])
-        timeline2 = line(V2(t, 0).apply(transf2), V2(t, 12).apply(transf2)).stroke("gray").strokedasharray([10])
+        timeline1 = line(V2(t, 0).apply(transf1), V2(t, 12).apply(transf1)).stroke("gray").strokedasharray([0.2])
+        timeline2 = line(V2(t, 0).apply(transf2), V2(t, 12).apply(transf2)).stroke("gray").strokedasharray([0.2])
         v_circ_1 = circle(0.05).position(V2(t, g * (t - rotator_end_t)).apply(transf1)).strokewidth(0).fill("blue")
         v_circ_2 = circle(0.05).position(V2(t, g * (t - rotator_end_t)).apply(transf2)).strokewidth(0).fill("lightblue")
     }
@@ -206,7 +210,7 @@ int.draw_function = (inp) => {
     let ring = arc(0.5, Math.PI).rotate(Math.PI / 2).move_origin("bottom-right").position(release_pos).scale(V2(0.4, 1)).stroke("gray")
     let ring_top = arc(0.5, Math.PI).rotate(-Math.PI / 2).move_origin("bottom-left").position(release_pos).scale(V2(0.4, 1)).stroke("gray")
     let cable = curve([release_pos.add(V2(0, 1)), release_pos.add(V2(0, 3)), release_pos.add(V2(-release_pos.x + electro_pos.x, 3)), electro_pos.add(V2(0, 2 * ball2_radius))])
-        .strokewidth(2).stroke("lightgray").strokelinejoin("round")
+        .strokewidth(0.026).vectoreffect("none").stroke("lightgray").strokelinejoin("round")
     let control = rectangle(1, 0.7).position(V2((electro_pos.x + release_pos.x) / 2, release_pos.y + 3)).stroke(0).fill("lightgray")
     let controlpanel = circle(0.1).position(control.get_anchor("center-center")).fill((t > rotator_end_t) ? "lightgreen" : "lightred").stroke(0)
     let release = rectangle(0.1, 0.3).move_origin("bottom-center").position(electro_pos.add(V2(0, 2 * ball2_radius))).stroke(0).fill("gray")

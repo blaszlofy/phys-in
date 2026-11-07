@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, circle, V2, axes_transform, xyaxes, line, Vdir, text, square, arrow1
 } from "diagramatics";
 
@@ -11,7 +10,16 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -19,8 +27,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
     redraw()
 }
 window.addEventListener('resize', resizeCanvas);
@@ -144,7 +154,7 @@ let ch = circle(0.15).strokewidth(0).fill("lightblue").position(V2(-6.9, 1))
 let ch_t = text("Electron").fontscale(0.017).fontfamily("Math").position(V2(-5.89, 1))
 let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 0.4))
 
-let div = line(V2(-2, 4.5), V2(-2, -4.5))
+let div = line(V2(-2, 4.5), V2(-2, -4.5)).vectoreffect("none").strokewidth(0.015)
 
 let stat = diagram_combine(scaled, scaled2, scaled3, scaled4, div, ch, ch_t, evec_t)
 
@@ -165,13 +175,13 @@ int.draw_function = (inp) => {
     let y = (time) => -K * A * Math.cos(w * time)
     let a_y = (time) => K * A * w**2 * Math.cos(w * time)
 
-    let dirs = [line(V2(-50, 0).apply(transf), V2(50, 0).apply(transf)).stroke("gray").strokedasharray([10])]
+    let dirs = [line(V2(-50, 0).apply(transf), V2(50, 0).apply(transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)]
     let step = (max - dist) / amount
     for (let theta = 0; theta < Math.PI * 2; theta += Math.PI * 2 / lines) {
         if (Math.abs(theta - Math.PI) < 0.1) continue
         if (Math.abs(theta) < 0.1) continue
 
-        dirs.push(line(Vdir(theta).scale(dist).apply(transf), Vdir(theta).scale(max).apply(transf)).stroke("gray").strokedasharray([10]))
+        dirs.push(line(Vdir(theta).scale(dist).apply(transf), Vdir(theta).scale(max).apply(transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015))
 
         for (let i = 0; i < amount; i++) {
             let pos = Vdir(theta).scale(dist + i * step)
@@ -199,7 +209,7 @@ int.draw_function = (inp) => {
 
     let sigma = text("σ = " + (0.01 * w**4).toFixed(2) + " ⋅ 10⁻³¹ m²").fontscale(0.017).fontfamily("Math").position(V2(-5, -3))
 
-    let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill(col).stroke(col).strokewidth(2).position(V2(-7.15, 0.4))
+    let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill(col).stroke(col).strokewidth(0.026).vectoreffect("none").position(V2(-7.15, 0.4))
 
     draw(outline, stat, ...dirs, charge, evec, sigma_rect, sigma, sigma_rect.position(V2(-6.5, -3)))
 }

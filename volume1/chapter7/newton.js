@@ -3,13 +3,17 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, polygon, V2, circle, curve, arrow1, square, text,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function calcE(M, e, detail) {
@@ -88,7 +92,7 @@ int.draw_function = (inp) => {
     let R = Math.cbrt(M)
     let r = 0.05 * Math.cbrt(m)
 
-    let orbit = ellipse(cannon_pos, focal_pos, planet_pos, 100).stroke("gray")
+    let orbit = ellipse(cannon_pos, focal_pos, planet_pos, 100).stroke("gray").vectoreffect("none").strokewidth(0.015)
 
     if (planet_pos.sub(other_point).length() <= R + r) {
         let crash_E_positive = Math.acos((a - R) / (a * e))
@@ -102,7 +106,7 @@ int.draw_function = (inp) => {
             crashed = true
         }
 
-        orbit = curve(ellipse(cannon_pos, focal_pos, planet_pos, 100, Math.PI, crash_E).path.points).stroke("gray")
+        orbit = curve(ellipse(cannon_pos, focal_pos, planet_pos, 100, Math.PI, crash_E).path.points).stroke("gray").vectoreffect("none").strokewidth(0.015)
     } else if (t > period && int.intervals["t"] !== undefined) {
         int.set("t", 0)
     }
@@ -119,13 +123,13 @@ int.draw_function = (inp) => {
         let dir_to_planet = planet_pos.sub(pos_on_orbit).normalize()
         let dist_to_planet = planet_pos.sub(pos_on_orbit).length()
         let force_factor = 0.02 * G * M * m / Math.pow(dist_to_planet, 2)
-        force = arrow1(pos_on_orbit, dir_to_planet.scale(force_factor).add(pos_on_orbit), 0.1).stroke("blue").fill("blue").strokewidth(3)
+        force = arrow1(pos_on_orbit, dir_to_planet.scale(force_factor).add(pos_on_orbit), 0.1).stroke("blue").fill("blue").strokewidth(0.039).vectoreffect("none")
 
         let v_mag = 0.3 *  Math.sqrt(G * M * ((2 / dist_to_planet) - (1 / ellipse_params.a)))
         let tangent_dir = ellipse_params.u.scale(-ellipse_params.a * Math.sin(E))
             .add(ellipse_params.v.scale(ellipse_params.b * Math.cos(E)))
             .normalize()
-        velocity =  arrow1(pos_on_orbit, tangent_dir.scale(v_mag).add(pos_on_orbit), 0.1).fill("red").stroke("red").strokewidth(3)
+        velocity =  arrow1(pos_on_orbit, tangent_dir.scale(v_mag).add(pos_on_orbit), 0.1).fill("red").stroke("red").strokewidth(0.039).vectoreffect("none")
     }
 
     let v_esc_val = text("v꜀ = " + v_crit.toFixed(2) + " ⋅ 10³ m/s").fontfamily("Math").fontscale(0.017).position(V2(6, 4))

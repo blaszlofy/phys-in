@@ -3,13 +3,17 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, square, V2, circle, line, text,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function getLightColor(freq) {
@@ -50,7 +54,7 @@ function getLightColor(freq) {
 
 const c = 2;
 
-let div = line(V2(-8, -1), V2(8, -1))
+let div = line(V2(-8, -1), V2(8, -1)).vectoreffect("none").strokewidth(0.015)
 
 let leg = diagram_combine(
     circle(0.15).strokewidth(0).fill("lightred").position(V2(-7, -1.7)),
@@ -58,16 +62,16 @@ let leg = diagram_combine(
     square(0.3).strokewidth(0).fill("lightblue").position(V2(-7, -2.4)),
     text("Observer, traveling at speed v₂").fontfamily("Math").fontscale(0.017).position(V2(-4.7, -2.4)),
     diagram_combine(
-        line(V2(0, -0.2), V2(0, 0.2)),
-        line(V2(-0.3, -0.2), V2(-0.3, 0.2)),
-        line(V2(0.3, -0.2), V2(0.3, 0.23)),
+        line(V2(0, -0.2), V2(0, 0.2)).vectoreffect("none").strokewidth(0.015),
+        line(V2(-0.3, -0.2), V2(-0.3, 0.2)).vectoreffect("none").strokewidth(0.015),
+        line(V2(0.3, -0.2), V2(0.3, 0.23)).vectoreffect("none").strokewidth(0.015),
     ).position(V2(-7.2, -3.15)),
     text("Wave crests of the emitted light").fontfamily("Math").fontscale(0.017).position(V2(-4.65, -3.15)),
     diagram_combine(
-        rectangle(0.6, 0.3).stroke("gray").strokewidth(1.5),
-        line(V2(-0.2, -0.1), V2(-0.2, 0.1)),
-        line(V2(0, -0.1), V2(0, 0.1)),
-        line(V2(0.2, -0.1), V2(0.2, 0.1)),
+        rectangle(0.6, 0.3).stroke("gray").strokewidth(0.0199).vectoreffect("none"),
+        line(V2(-0.2, -0.1), V2(-0.2, 0.1)).vectoreffect("none").strokewidth(0.015),
+        line(V2(0, -0.1), V2(0, 0.1)).vectoreffect("none").strokewidth(0.015),
+        line(V2(0.2, -0.1), V2(0.2, 0.1)).vectoreffect("none").strokewidth(0.015),
     ).position(V2(-7.2, -3.9)),
     text("Light as measured by the observer").fontfamily("Math").fontscale(0.017).position(V2(-4.45, -3.9)),
 ).translate(V2(4.9, 0))
@@ -111,37 +115,37 @@ int.draw_function = (inp) => {
     let space_back = lambda_back * SCALE
     let dX_back = ((c + v1) * t) % space_back
     for (let X = x - dX_back - (space_back * 2); X >= -8; X -= space_back) {
-        light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(col_back).position(V2(X, 1)))
+        light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(col_back).position(V2(X, 1)).vectoreffect("none").strokewidth(0.015))
     }
 
     let dX_front = ((c - v1) * t) % (lambda_front * SCALE)
     for (let X = x + dX_front + (lambda_front * SCALE * 2); X <= 8; X += lambda_front * SCALE) {
-        light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(col_front).position(V2(X, 1)))
+        light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(col_front).position(V2(X, 1)).vectoreffect("none").strokewidth(0.015))
     }
 
     let box1 = diagram_combine(
-        rectangle(1.5, 1).stroke("gray").strokewidth(1.5),
+        rectangle(1.5, 1).stroke("gray").strokewidth(0.0199).vectoreffect("none"),
         ...(() => {
             let obs_light = []
             let space1 = lambda_obs1 * SCALE
             let dX = (c * t) % space1
 
             for (let X = 0.7 - dX; X >= -0.7; X -= space1) {
-                obs_light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(getLightColor(f_obs1)).position(V2(X, 0)))
+                obs_light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(getLightColor(f_obs1)).position(V2(X, 0)).vectoreffect("none").strokewidth(0.015))
             }
             return obs_light
         })()
     ).position(V2(o1 + 0.6, 2.3))
 
     let box2 = diagram_combine(
-        rectangle(1.5, 1).stroke("gray").strokewidth(1.5),
+        rectangle(1.5, 1).stroke("gray").strokewidth(0.0199).vectoreffect("none"),
         ...(() => {
             let obs_light = []
             let space2 = lambda_obs2 * SCALE
             let dX = (c * t) % space2
 
             for (let X = -0.7 + dX; X <= 0.7; X += space2) {
-                obs_light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(getLightColor(f_obs2)).position(V2(X, 0)))
+                obs_light.push(line(V2(0, -0.3), V2(0, 0.3)).stroke(getLightColor(f_obs2)).position(V2(X, 0)).vectoreffect("none").strokewidth(0.015))
             }
             return obs_light
         })()

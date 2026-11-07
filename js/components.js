@@ -205,6 +205,7 @@ class PhysinWarning extends HTMLElement {
             font-size: 1.2rem;
             color: #ff8787;
             text-align: center;
+            margin: 1rem;
         }
         </style>
         <div class="warning">

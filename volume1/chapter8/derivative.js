@@ -16,7 +16,10 @@ let handletex = (str, conf) => {
 };
 
 let draw_tex = (...diagrams) => {
-    draw_to_svg_element(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
     handle_tex_in_svg(canvas, handletex);
 };
 
@@ -30,22 +33,22 @@ let ax_opt = {
 }
 const x = time => -0.000000990783437*time**10 + 0.000021037529294*time**9 + 0.000202274791939*time**8 - 0.010202611835379*time**7 + 0.124504873380118*time**6 - 0.717861769721937*time**5 + 2.003475042584663*time**4 - 1.958550419885061*time**3 - 1.628181199973283*time**2 + 4.186593763913083*time
 const v = time => -0.00000990783437*time**9 + 0.000189337763646*time**8 + 0.001618198335512*time**7 - 0.071418282847653*time**6 + 0.747029240280708*time**5 - 3.589308848609685*time**4 + 8.013900170338652*time**3 - 5.875651259655183*time**2 - 3.256362399946566*time + 4.186593763913083
-let ax = xycorneraxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
-let pos_plot = plotf((t) => x(t), ax_opt).stroke("lightblue").strokewidth(3)
+let ax = xycorneraxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017).vectoreffect("none").strokewidth(0.015)
+let pos_plot = plotf((t) => x(t), ax_opt).stroke("lightblue").strokewidth(0.039).vectoreffect("none")
 let transf = axes_transform(ax_opt)
-let loc_bound = line(ax_opt.bbox[0], V2(ax_opt.bbox[1].x - 0.01, ax_opt.bbox[0].y)).strokewidth(1).apply(mod.subdivide(400))
+let loc_bound = line(ax_opt.bbox[0], V2(ax_opt.bbox[1].x - 0.01, ax_opt.bbox[0].y)).strokewidth(0.015).vectoreffect("none").apply(mod.subdivide(400))
 
 let vel_limit = text("$$v = \\lim_{\\Delta t \\to 0} \\frac{\\Delta s}{\\Delta t} = \\frac{ds}{dt} = $$").fontscale(0.017).position(V2(-3.3, 4))
 let rect = rectangle_corner(vel_limit.bounding_box()[0], vel_limit.bounding_box()[1])
-let vel = text("$$\\frac{\\Delta s}{\\Delta t} = $$").fontsize(20).position(V2(0.2, 4))
+let vel = text("$$\\frac{\\Delta s}{\\Delta t} = $$").fontscale(0.017).position(V2(0.2, 4))
 let legend_tex = diagram_combine(vel_limit, vel, rect)
 
 let s_leg = text("s (m)").fontfamily("Math").fontscale(0.017).position(V2(-6.5, 3.2))
 let t_leg = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.1, -4.25))
-let exact_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-4.9, 3.7)).stroke("red").strokewidth(1.5)
-let emp_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-0.4, 3.7)).stroke("black").strokewidth(1.5).strokedasharray([10])
-let exact_line2 = line(V2(0, 0), V2(0.45, 0)).position(V2(3.2, 4.2)).stroke("red").strokewidth(1.5)
-let emp_line2 = line(V2(0, 0), V2(0.5, 0)).position(V2(3.2, 3.7)).stroke("black").strokewidth(1.5).strokedasharray([10])
+let exact_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-4.9, 3.7)).stroke("red").strokewidth(0.0199).vectoreffect("none")
+let emp_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-0.4, 3.7)).stroke("black").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2])
+let exact_line2 = line(V2(0, 0), V2(0.45, 0)).position(V2(3.2, 4.2)).stroke("red").strokewidth(0.0199).vectoreffect("none")
+let emp_line2 = line(V2(0, 0), V2(0.5, 0)).position(V2(3.2, 3.7)).stroke("black").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2])
 let exact = text("Actual velocity of the ball").fontfamily("Math").fontscale(0.017).position(V2(5.2, 4.2))
 let emp = text("Approximated velocity").fontfamily("Math").fontscale(0.017).position(V2(5.07, 3.7))
 let legend = diagram_combine(s_leg, t_leg, exact_line, emp_line, exact_line2, emp_line2, exact, emp)
@@ -71,23 +74,23 @@ int.draw_function = (inp) => {
 
     let pos_t = V2(pos.x, x(pos.x)).apply(transf)
     let pos_dt = V2(pos.x + dt, x(pos.x + dt)).apply(transf)
-    let l_vert_t = line(V2(pos.x, 0).apply(transf), pos_t).strokedasharray([10]).stroke("gray")
-    let l_vert_dt = line(V2(pos.x +  dt, 0).apply(transf), pos_dt).strokedasharray([10]).stroke("gray")
-    let l_hor_t = line(V2(-0.6, x(pos.x)).apply(transf), pos_t).strokedasharray([10]).stroke("gray")
-    let l_hor_dt = line(V2(0, x(pos.x + dt)).apply(transf), pos_dt).strokedasharray([10]).stroke("gray")
+    let l_vert_t = line(V2(pos.x, 0).apply(transf), pos_t).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
+    let l_vert_dt = line(V2(pos.x +  dt, 0).apply(transf), pos_dt).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
+    let l_hor_t = line(V2(-0.6, x(pos.x)).apply(transf), pos_t).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
+    let l_hor_dt = line(V2(0, x(pos.x + dt)).apply(transf), pos_dt).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
 
     let ds = x(pos.x + dt) - x(pos.x)
     let pos_r_angle = V2(pos.x + dt, x(pos.x)).apply(transf)
-    let tangent = plotf((_x) => ds / dt * (_x - pos.x) + x(pos.x), ax_opt).stroke("black").strokedasharray([10]).strokewidth(1.5)
-    let actual_tangent = plotf((_x) => v(pos.x) * (_x - pos.x) + x(pos.x), ax_opt).stroke("red").strokewidth(1.5)
-    let dt_annot = annotation.length(pos_t, pos_r_angle, "Δt", 0, 0.1, 0.2 * Math.sign(ds/dt)).stroke("blue").strokewidth(2).fontscale(0.017)
-    let ds_annot = annotation.length(pos_dt, pos_r_angle, "Δs", 0, 0.1, -0.2 * Math.sign(ds/dt)).stroke("green").strokewidth(2).fontscale(0.017)
+    let tangent = plotf((_x) => ds / dt * (_x - pos.x) + x(pos.x), ax_opt).stroke("black").strokedasharray([0.25]).strokewidth(0.0199).vectoreffect("none")
+    let actual_tangent = plotf((_x) => v(pos.x) * (_x - pos.x) + x(pos.x), ax_opt).stroke("red").strokewidth(0.0199).vectoreffect("none")
+    let dt_annot = annotation.length(pos_t, pos_r_angle, "Δt", 0, 0.1, 0.2 * Math.sign(ds/dt)).stroke("blue").strokewidth(0.026).vectoreffect("none").fontscale(0.017)
+    let ds_annot = annotation.length(pos_dt, pos_r_angle, "Δs", 0, 0.1, -0.2 * Math.sign(ds/dt)).stroke("green").strokewidth(0.026).vectoreffect("none").fontscale(0.017)
 
     let tangent_system = diagram_combine(l_vert_t, l_vert_dt, l_hor_t, l_hor_dt, tangent, actual_tangent, dt_annot, ds_annot)
 
     let ball = circle(0.2).position(V2(-0.6, x(pos.x)).apply(transf)).strokewidth(0).fill("lightblue")
-    let velocity = arrow1(ball.origin, V2(-0.6, x(pos.x) + v(pos.x)).apply(transf), 0.1).fill("red").stroke("red").strokewidth(2)
-    let velocity_emp = arrow1(ball.origin.add(V2(0.1, 0)), V2(-0.5, x(pos.x) + ds/dt).apply(transf), 0.1).fill("black").stroke("black").strokewidth(2).apply_to_tagged_recursive(TAG.ARROW_LINE, d => d.strokedasharray([10]))
+    let velocity = arrow1(ball.origin, V2(-0.6, x(pos.x) + v(pos.x)).apply(transf), 0.1).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none")
+    let velocity_emp = arrow1(ball.origin.add(V2(0.1, 0)), V2(-0.5, x(pos.x) + ds/dt).apply(transf), 0.1).fill("black").stroke("black").strokewidth(0.026).vectoreffect("none").apply_to_tagged_recursive(TAG.ARROW_LINE, d => d.strokedasharray([0.25]))
 
     let v_exact = text(v(pos.x).toFixed(2)).fontfamily("Math").fontscale(0.017).position(V2(-1.5, 3.95))
     let v_empiric = text((ds/dt).toFixed(2)).fontfamily("Math").fontscale(0.017).position(V2(1, 3.95))

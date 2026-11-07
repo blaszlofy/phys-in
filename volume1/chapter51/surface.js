@@ -11,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const A = 0.5
@@ -24,7 +27,7 @@ const y_res = 4
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let div = line(V2(-8, -2.5), V2(8, -2.5))
+let div = line(V2(-8, -2.5), V2(8, -2.5)).vectoreffect("none").strokewidth(0.015)
 
 let part_l = circle(0.07).strokewidth(0).fill("lightblue").position(V2(-3, -3.1))
 let point_l = circle(0.1).strokewidth(0).fill("blue").position(V2(-3, -3.9))
@@ -57,7 +60,7 @@ int.draw_function = (inp) => {
         i++
         for (let y = y_bottom; y <= y_top; y += (y_top - y_bottom) / y_res) {
             if (i === 5) {
-                circles.push(circle(R(y - y_top)).strokewidth(1.5).stroke("gray").strokedasharray([6]).position(V2(x, y)))
+                circles.push(circle(R(y - y_top)).strokewidth(0.0199).vectoreffect("none").stroke("gray").strokedasharray([6]).position(V2(x, y)))
             }
             particles.push(
                 circle(0.07).strokewidth(0).fill("lightblue").position(V2(x - R(y - y_top) * Math.sin(k * x - w * t), y + R(y - y_top) * Math.cos(k * x - w * t)))

@@ -11,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const y = 1.5
@@ -42,7 +45,7 @@ function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0
     let b = (length - 2 * R) / a;
     let parametric_function = (t) => V2(b * t + R - R * Math.cos(t), k * R * Math.sin(t));
     let points = linspace(0, a, sample_number).map(parametric_function);
-    return curve(points).rotate(angle).translate(p1);
+    return curve(points).rotate(angle).translate(p1).vectoreffect("none").strokewidth(0.015);
 }
 
 const k = 50
@@ -53,17 +56,17 @@ const left_bound = -7
 const resolution = 300
 
 let bound = line(V2(7, -1.3 + y), V2(7, 1.3 + y)).apply(mod.subdivide(300))
-let wall = line(V2(0, y - 2), V2(0, y + 2)).strokewidth(3).stroke("gray")
-let div = line(V2(-8, -2), V2(8, -2))
+let wall = line(V2(0, y - 2), V2(0, y + 2)).strokewidth(0.039).vectoreffect("none").stroke("gray")
+let div = line(V2(-8, -2), V2(8, -2)).vectoreffect("none").strokewidth(0.015)
 
-let r_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).position(V2(-2, -2.6))
-let g1_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).stroke("lightblue").position(V2(-3.5, -2.6))
-let g2_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).stroke("lightred").position(V2(-5, -2.6))
+let r_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.039).vectoreffect("none").position(V2(-2, -2.6)).vectoreffect("none")
+let g1_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2]).stroke("lightblue").position(V2(-3.5, -2.6))
+let g2_l_sum = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2]).stroke("lightred").position(V2(-5, -2.6))
 let plus = text("+").fontfamily("Math").fontscale(0.017).position(V2(-4, -2.6))
 let equal = text("=").fontfamily("Math").fontscale(0.017).position(V2(-2.5, -2.6))
 
-let g_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).stroke("gray").position(V2(-5, -3.8))
-let r_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).position(V2(-5, -3.2))
+let g_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2]).stroke("gray").position(V2(-5, -3.8))
+let r_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.039).vectoreffect("none").position(V2(-5, -3.2))
 let r_t = text("Physical string: fixed to the wall at one end, moved at the other to generate waves").fontscale(0.017).fontfamily("Math").position(V2(0.5, -3.2))
 let g_t = text("Incident and reflected waves (their superposition equals the actual displacement)").fontscale(0.017).fontfamily("Math").position(V2(0.56, -3.8))
 
@@ -123,11 +126,11 @@ function update(time) {
         }
     }
 
-    let g1 = curve(ghost1).stroke("lightblue").strokewidth(1.5).strokedasharray([10])
-    let g2 = curve(ghost2).stroke("lightred").strokewidth(1.5).strokedasharray([10])
-    let rope = curve(rope_points).stroke("black").strokewidth(3)
+    let g1 = curve(ghost1).stroke("lightblue").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.25])
+    let g2 = curve(ghost2).stroke("lightred").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.25])
+    let rope = curve(rope_points).stroke("black").strokewidth(0.039).vectoreffect("none")
 
-    let stick = line(V2(7, position.y - 1.5), V2(7, position.y + 1.5)).stroke("gray").strokewidth(2)
+    let stick = line(V2(7, position.y - 1.5), V2(7, position.y + 1.5)).stroke("gray").strokewidth(0.026).vectoreffect("none")
 
     draw(outline, g1, g2, rope, spring_diagram, particle, wall, stick, div, leg)
     requestAnimationFrame(update)

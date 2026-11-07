@@ -12,14 +12,18 @@ import {
     plotv,
     axes_transform,
     square,
-    arrow1, text, distribute_horizontal_and_align, distribute_vertical_and_align, align_vertical
+    arrow1, text, distribute_horizontal_and_align, distribute_vertical_and_align, align_vertical,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 //STATIC
@@ -27,9 +31,9 @@ let sus_point = V2(-2.5, 4.3)
 
 let outline = rectangle(16, 9).strokewidth(0)
 
-let divider1 = line(V2(-8, -1.5), V2(8, -1.5))
-let divider2 = line(V2(3, -1.5), V2(3, 4.5))
-let divider3 = line(V2(3, 2.5), V2(8, 2.5))
+let divider1 = line(V2(-8, -1.5), V2(8, -1.5)).vectoreffect("none").strokewidth(0.015)
+let divider2 = line(V2(3, -1.5), V2(3, 4.5)).vectoreffect("none").strokewidth(0.015)
+let divider3 = line(V2(3, 2.5), V2(8, 2.5)).vectoreffect("none").strokewidth(0.015)
 
 let pot_square = square(0.3).fill("blue").strokewidth(0)
 let kin_square = square(0.3).fill("red").strokewidth(0)
@@ -44,7 +48,7 @@ let legend = distribute_vertical_and_align(
 
 let setup = diagram_combine(outline, divider1, divider2, divider3)
 
-let suspension = line(V2(sus_point.x - 1.5, sus_point.y), V2(sus_point.x + 1.5, sus_point.y)).strokewidth(3).stroke("lightgray")
+let suspension = line(V2(sus_point.x - 1.5, sus_point.y), V2(sus_point.x + 1.5, sus_point.y)).strokewidth(0.039).vectoreffect("none").stroke("lightgray")
 
 let axes_opt = {
     xrange: [0, 17],
@@ -54,7 +58,7 @@ let axes_opt = {
     headsize: 0.1,
     n_sample: 200
 }
-let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 let time = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.4, -4.45))
 let energy = text("E").fontfamily("Math").fontscale(0.017).position(V2(-8,  -2))
 
@@ -88,24 +92,24 @@ int.draw_function = (inp) => {
     let theta = theta_0 * Math.cos(omega * t);
     let pend_pos = V2(sus_point.x + l * Math.sin(theta), sus_point.y - l * Math.cos(theta));
 
-    let path = arc(l, 0.6).position(sus_point).rotate(-Math.PI/2 - 0.3).strokedasharray([10]);
-    let rope = line(sus_point, pend_pos);
+    let path = arc(l, 0.6).position(sus_point).rotate(-Math.PI/2 - 0.3).vectoreffect("none").strokewidth(0.015).strokedasharray([0.2]);
+    let rope = line(sus_point, pend_pos).vectoreffect("none").strokewidth(0.015);
     let ball = circle(0.15 * Math.cbrt(m)).position(pend_pos).fill("lightblue").strokewidth(0)
 
     let end_point = sus_point.sub(pend_pos).normalize().rotate(Math.PI / 2).scale(omega * theta_0 * l * Math.sin(omega * t))
-    let vel_vector = arrow1(pend_pos, pend_pos.add(end_point), 0.1).fill("lightred").stroke("lightred").strokewidth(2)
+    let vel_vector = arrow1(pend_pos, pend_pos.add(end_point), 0.1).fill("lightred").stroke("lightred").strokewidth(0.026).vectoreffect("none")
 
     //ENERGY PLOT
     if (g !== g_cache || l !== l_cache || m !== m_cache) {
         max_energy = 1/2 * m * g * l * Math.pow(theta_0, 2);
-        pot_energy_plot = plotf((x) => max_energy * Math.pow(Math.cos(omega * x), 2), axes_opt).stroke("blue").strokewidth(2)
-        kin_energy_plot = plotf((x) => max_energy * Math.pow(Math.sin(omega * x), 2), axes_opt).stroke("red").strokewidth(2)
-        total_energy_plot = plotf((x) => max_energy, {...axes_opt, n_sample: 2}).stroke("lightblue").strokewidth(2)
+        pot_energy_plot = plotf((x) => max_energy * Math.pow(Math.cos(omega * x), 2), axes_opt).stroke("blue").strokewidth(0.026).vectoreffect("none")
+        kin_energy_plot = plotf((x) => max_energy * Math.pow(Math.sin(omega * x), 2), axes_opt).stroke("red").strokewidth(0.026).vectoreffect("none")
+        total_energy_plot = plotf((x) => max_energy, {...axes_opt, n_sample: 2}).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
 
         g_cache = g; l_cache = l; m_cache = m;
     }
 
-    let time_line = plotv([V2(t, 0.0), V2(t, 6.5)], axes_opt).stroke("lightgray").strokewidth(2).strokedasharray([10]);
+    let time_line = plotv([V2(t, 0.0), V2(t, 6.5)], axes_opt).stroke("lightgray").strokewidth(0.026).vectoreffect("none").strokedasharray([0.2]);
     let pot_plot_point = circle(0.07).position(V2(t, max_energy * Math.pow(Math.cos(omega * t), 2)).apply(axes_transform(axes_opt))).strokewidth(0).fill("blue");
     let kin_plot_point = circle(0.07).position(V2(t, max_energy * Math.pow(Math.sin(omega * t), 2)).apply(axes_transform(axes_opt))).strokewidth(0).fill("red");
     let total_plot_point = circle(0.07).position(V2(t, max_energy).apply(axes_transform(axes_opt))).strokewidth(0).fill("lightblue");

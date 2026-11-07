@@ -11,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const detail = 200
@@ -65,8 +68,8 @@ function colorLerp(min, max, value) {
 }
 
 let outline = rectangle(16, 9).strokewidth(0)
-let div1 = line(V2(-8, -1), V2(8, -1))
-let div2 = line(V2(3, 4.5), V2(3, -1))
+let div1 = line(V2(-8, -1), V2(8, -1)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(3, 4.5), V2(3, -1)).vectoreffect("none").strokewidth(0.015)
 
 let x_opt = {
     xrange: [0, 10],
@@ -75,7 +78,7 @@ let x_opt = {
     bbox: [V2(-6, 1.7), V2(1, 1.7)],
     headsize: 0
 }
-let x_line = xycorneraxes(x_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
+let x_line = xycorneraxes(x_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black").vectoreffect("none").strokewidth(0.015)
 let A_bound = line(x_opt.bbox[0].add(V2(0, 1.5)), x_opt.bbox[0].add(V2(0, 2.5))).apply(mod.subdivide(40))
 let transf_x = axes_transform(x_opt)
 let x_bound = line(x_opt.bbox[0], x_opt.bbox[1]).apply(mod.subdivide(100))
@@ -88,7 +91,7 @@ let ax_opt = {
     headsize: 0.1
 }
 let transf_coord = axes_transform(ax_opt)
-let ax = xycorneraxes(ax_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
+let ax = xycorneraxes(ax_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black").vectoreffect("none").strokewidth(0.015)
 
 let value_to_x = (value) => {
     return V2(value, 0).apply(transf_x).x
@@ -102,8 +105,8 @@ let x_leg = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(1.2, 1
 let x_leg2 = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(7.5, -4.25))
 let t_leg = text("t (3.3 ⋅ 10⁻⁹ s)").fontfamily("Math").fontscale(0.017).position(V2(-7.1, -1.3))
 
-let dash = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).position(V2(3.4, 3))
-let colored = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).stroke("cyan").position(V2(3.4, 2))
+let dash = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2]).position(V2(3.4, 3))
+let colored = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.0199).vectoreffect("none").stroke("cyan").position(V2(3.4, 2))
 let dash_text = text("Path that takes the shortest time").fontfamily("Math").fontscale(0.017).position(V2(5.8, 3))
 let col_text = text("Other paths colored based on").fontfamily("Math").fontscale(0.017).position(V2(5.7, 2))
 let col_text2 = text("the time light takes to travel").fontfamily("Math").fontscale(0.017).position(V2(5.6, 1.6))
@@ -155,9 +158,9 @@ int.draw_function = (inp) => {
         let dist1 = Math.hypot(P.x - A.x, P.y - A.y)
         let dist2 = n * Math.hypot(P.x - B.x, P.y - B.y)
         return (dist1 + dist2)
-    }, ax_opt).strokewidth(2).stroke("blue")
+    }, ax_opt).strokewidth(0.026).vectoreffect("none").stroke("blue")
 
-    let user_line = line(V2(x_user, 0).apply(transf_coord), V2(x_user, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([10]).stroke("gray")
+    let user_line = line(V2(x_user, 0).apply(transf_coord), V2(x_user, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
     let P = V2(x_user, 0).apply(transf_x)
     let dist1 = Math.hypot(P.x - A.x, P.y - A.y)
     let dist2 = n * Math.hypot(P.x - B.x, P.y - B.y)
@@ -171,12 +174,12 @@ int.draw_function = (inp) => {
     let boundaryY = x_opt.bbox[0].y
     let ideal_X = findIdealX(A, B, n, boundaryY)
     let ideal_P = V2(ideal_X, boundaryY)
-    let ideal_path = curve([A, ideal_P, B]).strokewidth(1.5).stroke("black").strokedasharray([10])
+    let ideal_path = curve([A, ideal_P, B]).strokewidth(0.0199).vectoreffect("none").stroke("black").strokedasharray([0.2])
 
-    let user_path = curve([A, inp["x"], B]).strokewidth(1).stroke("gray").strokedasharray([10])
+    let user_path = curve([A, inp["x"], B]).strokewidth(0.015).vectoreffect("none").stroke("gray").strokedasharray([0.2])
 
     ideal_X = V2(ideal_X, 0).sub(x_opt.bbox[0]).scale((x_opt.xrange[1] - x_opt.xrange[0]) / (x_opt.bbox[1].x - x_opt.bbox[0].x)).x
-    let min_line = line(V2(ideal_X, 0).apply(transf_coord), V2(ideal_X, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([10]).stroke("red")
+    let min_line = line(V2(ideal_X, 0).apply(transf_coord), V2(ideal_X, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([0.25]).stroke("red").vectoreffect("none").strokewidth(0.015)
     let _P = V2(ideal_X, 0).apply(transf_x)
     let _dist1 = Math.hypot(_P.x - A.x, _P.y - A.y)
     let _dist2 = n * Math.hypot(_P.x - B.x, _P.y - B.y)

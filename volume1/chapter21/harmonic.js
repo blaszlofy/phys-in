@@ -13,14 +13,18 @@ import {
     axes_transform,
     square,
     arrow1, text, distribute_horizontal_and_align, distribute_vertical_and_align, align_vertical, linspace, curve,
-    boolean, Vdir
+    boolean, Vdir,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0.5, sample_number = 100) {
@@ -33,7 +37,7 @@ function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0
     let b = (length - 2 * R) / a;
     let parametric_function = (t) => V2(b * t + R - R * Math.cos(t), k * R * Math.sin(t));
     let points = linspace(0, a, sample_number).map(parametric_function);
-    return curve(points).rotate(angle).translate(p1);
+    return curve(points).rotate(angle).translate(p1).vectoreffect("none").strokewidth(0.015);
 }
 
 
@@ -43,9 +47,9 @@ let circ_point = V2(-5, 1)
 
 let outline = rectangle(16, 9).strokewidth(0)
 
-let divider1 = line(V2(-8, -1.5), V2(8, -1.5))
-let divider2 = line(V2(3, -1.5), V2(3, 4.5))
-let divider3 = line(V2(3, 2.5), V2(8, 2.5))
+let divider1 = line(V2(-8, -1.5), V2(8, -1.5)).vectoreffect("none").strokewidth(0.015)
+let divider2 = line(V2(3, -1.5), V2(3, 4.5)).vectoreffect("none").strokewidth(0.015)
+let divider3 = line(V2(3, 2.5), V2(8, 2.5)).vectoreffect("none").strokewidth(0.015)
 
 let pot_square = square(0.3).fill("blue").strokewidth(0)
 let kin_square = square(0.3).fill("red").strokewidth(0)
@@ -60,7 +64,7 @@ let legend = distribute_vertical_and_align(
 
 let setup = diagram_combine(outline, divider1, divider2, divider3)
 
-let suspension = line(V2(sus_point.x - 1.5, sus_point.y), V2(sus_point.x + 1.5, sus_point.y)).strokewidth(3).stroke("lightgray")
+let suspension = line(V2(sus_point.x - 1.5, sus_point.y), V2(sus_point.x + 1.5, sus_point.y)).strokewidth(0.039).vectoreffect("none").stroke("lightgray")
 
 let axes_opt = {
     xrange: [0, 17],
@@ -72,7 +76,7 @@ let axes_opt = {
 }
 let transf = axes_transform(axes_opt)
 
-let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let axes = xycorneraxes(axes_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 let time = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.4, -4.45))
 let energy = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(-7.7,  -1.8))
 
@@ -100,15 +104,15 @@ int.draw_function = (inp) => {
 
     let ball_pos = V2(sus_point.x, 1 + x(t))
 
-    let connector = line(V2(0, 1 + x(t)), V2(-6.5, 1 + x(t))).strokewidth(2).stroke("gray").strokedasharray([10])
+    let connector = line(V2(0, 1 + x(t)), V2(-6.5, 1 + x(t))).strokewidth(0.026).vectoreffect("none").stroke("gray").strokedasharray([0.2])
 
     let ball = circle(0.15 * Math.cbrt(m)).position(ball_pos).fill("lightblue").strokewidth(0)
-    let vel_vector = arrow1(ball_pos, ball_pos.add(V2(0, v(t) * 0.3)), 0.1).fill("lightred").stroke("lightred").strokewidth(2)
+    let vel_vector = arrow1(ball_pos, ball_pos.add(V2(0, v(t) * 0.3)), 0.1).fill("lightred").stroke("lightred").strokewidth(0.026).vectoreffect("none")
 
-    let timeline = plotv([V2(t, -2), V2(t, 2)], axes_opt).stroke("lightgray").strokewidth(2).strokedasharray([10]);
+    let timeline = plotv([V2(t, -2), V2(t, 2)], axes_opt).stroke("lightgray").strokewidth(0.026).vectoreffect("none").strokedasharray([0.2]);
     let pos_point = circle(0.05).fill("blue").strokewidth(0).position(V2(t, x(t)).apply(transf))
 
-    let x_plot = plotf(X => x(X), axes_opt).strokewidth(2).stroke("lightblue")
+    let x_plot = plotf(X => x(X), axes_opt).strokewidth(0.026).vectoreffect("none").stroke("lightblue")
 
     let max_energy = 0.5 * m * w**2 * A**2
     let ke = 0.5 * m * Math.pow(v(t), 2)

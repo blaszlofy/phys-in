@@ -3,13 +3,17 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, V2, polygon, circle, line, xycorneraxes, plotv, regular_polygon, axes_transform, text, square,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const ZOOM = 20
@@ -72,8 +76,8 @@ function get_theta(t, period) {
 
 //STATIC
 let outline = rectangle(16, 11).strokewidth(0);
-let divider1 = line(V2(-8, -3), V2(8, -3))
-let divider2 = line(V2(0.5, -3), V2(0.5, 5.5))
+let divider1 = line(V2(-8, -3), V2(8, -3)).vectoreffect("none").strokewidth(0.015)
+let divider2 = line(V2(0.5, -3), V2(0.5, 5.5)).vectoreffect("none").strokewidth(0.015)
 let div = diagram_combine(divider1, divider2)
 
 let leg_h = text("h - the water height at the red triangle,").fontfamily('Math').fontscale(0.017).position(V2(4.2, -2.3))
@@ -109,8 +113,8 @@ int.draw_function = (inp) => {
     let earth_params = ellipseParameters(barycenter, a_vis * (m / (m + M)), e)
     let moon_params = ellipseParameters(barycenter, a_vis * (M / (m + M)), e, -1)
 
-    let earth_orbit = ellipse(barycenter, a_vis * (m / (m + M)), e, 100,1).strokewidth(1).stroke("lightgray")
-    let moon_orbit = ellipse(barycenter, a_vis * (M / (m + M)), e, 100, -1).strokewidth(1).strokedasharray([10]).stroke("lightgray")
+    let earth_orbit = ellipse(barycenter, a_vis * (m / (m + M)), e, 100,1).strokewidth(0.015).vectoreffect("none").stroke("lightgray")
+    let moon_orbit = ellipse(barycenter, a_vis * (M / (m + M)), e, 100, -1).strokewidth(0.015).vectoreffect("none").strokedasharray([0.25]).stroke("lightgray")
 
     let R = Math.cbrt(3 * M / (4 * Math.PI * 5515 /*density of the earth*/)) * SCALE
     let r = Math.cbrt(3 * m / (4 * Math.PI * 3344 /*density of the moon*/)) * SCALE
@@ -122,15 +126,15 @@ int.draw_function = (inp) => {
     let moon = circle(r).position(moon_pos).fill("black").strokewidth(0)
 
     let earth_zoom_params = ellipseParameters(zoom_barycenter, a_vis * (m / (m + M)) * ZOOM, e)
-    let earth_zoom_orbit = ellipse(zoom_barycenter, a_vis * (m / (m + M)) * ZOOM, e, 100, 1).strokewidth(1).stroke("lightgray").strokedasharray([10])
+    let earth_zoom_orbit = ellipse(zoom_barycenter, a_vis * (m / (m + M)) * ZOOM, e, 100, 1).strokewidth(0.015).vectoreffect("none").stroke("lightgray").strokedasharray([0.2])
     let earth_zoom_pos = earth_zoom_params.center.add(earth_zoom_params.u.scale(earth_zoom_params.a * Math.cos(E))).add(earth_zoom_params.v.scale(earth_zoom_params.b * Math.sin(E)))
     let earth_zoom = circle(R * ZOOM).position(earth_zoom_pos).fill("blue").strokewidth(0)
 
     let h_base = R * m / M * Math.pow(1 / 60, 3)
-    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").fill("black").stroke("black").textfill("black")
+    let ax = xycorneraxes(ax_opt).fontscale(0.017).fontfamily("Math").fill("black").stroke("black").textfill("black").vectoreffect("none").strokewidth(0.015)
 
     let visual_moon_angle = Math.atan2(moon_pos.y - earth_pos.y, moon_pos.x - earth_pos.x)
-    //this visual tide is based on absolutly nothing, its just nice
+    //this visual tide is based on absolutely nothing, it's just nice
     let visual_tide1 = ellipse(zoom_barycenter, (R * ZOOM) * 1.155, 0.5, 100, 1, -Math.PI / 2, Math.PI / 2).move_origin("center-left").position(earth_zoom_pos).rotate(visual_moon_angle).fill("lightblue").strokewidth(0);
     let visual_tide2 = ellipse(zoom_barycenter, (R * ZOOM) * 1.092, 0.4, 100, -1, -Math.PI / 2, Math.PI / 2).move_origin("center-right").position(earth_zoom_pos).rotate(visual_moon_angle).fill("lightblue").strokewidth(0);
     let visual_tide = diagram_combine(visual_tide1, visual_tide2)
@@ -150,10 +154,10 @@ int.draw_function = (inp) => {
             graph_points.push(V2(_t, 0.6 + h / h_base));
         }
     }
-    let tide_plot = plotv(graph_points, ax_opt).stroke("lightblue").strokewidth(2)
+    let tide_plot = plotv(graph_points, ax_opt).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
 
     let transf = axes_transform(ax_opt)
-    let timeline = line(V2((t / DAY_TO_RAW), 0).apply(transf), V2((t / DAY_TO_RAW), ax_opt.yrange[1]).apply(transf)).strokedasharray([10]).stroke("gray")
+    let timeline = line(V2((t / DAY_TO_RAW), 0).apply(transf), V2((t / DAY_TO_RAW), ax_opt.yrange[1]).apply(transf)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
     let theta = get_theta((t / DAY_TO_RAW), period);
     let h = tide(theta, h_base);
     let value_point = circle(0.05).fill("blue").strokewidth(0).position(V2( (t / DAY_TO_RAW),0.6 + h / h_base).apply(transf))

@@ -3,13 +3,17 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, V2, xyaxes, plotv, line, axes_transform, text, distribute_vertical_and_align,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function generatePath(n) {
@@ -29,9 +33,9 @@ let regenerate = false
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
 
-let lin = line(V2(0, 0), V2(0.5, 0)).strokedasharray([10])
+let lin = line(V2(0, 0), V2(0.5, 0)).strokedasharray([0.2]).vectoreffect("none").strokewidth(0.015)
 let lintext = text("Theoretical RMS distance (√n)").fontfamily("Math").fontscale(0.017).translate(V2(2.4, 0))
-let reallin = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(3)
+let reallin = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(0.039).vectoreffect("none")
 let reallintext = text("Empirical RMS distance").fontfamily("Math").fontscale(0.017).translate(V2(2.03, 0))
 let legend = distribute_vertical_and_align([
     diagram_combine(lin, lintext),
@@ -77,7 +81,7 @@ int.draw_function = (inp) => {
             plots.shift()
         }
         paths.push(new_path)
-        plots.push(plotv(new_path, ax_opt).stroke("lightblue").opacity(0.5))
+        plots.push(plotv(new_path, ax_opt).stroke("lightblue").opacity(0.5).vectoreffect("none").strokewidth(0.015))
     }
 
     let sum_sq = 0;
@@ -91,13 +95,13 @@ int.draw_function = (inp) => {
 
     let line_minus = line(V2(-ax_avg, -4.5), V2(-ax_avg, 4))
     let line_plus = line(V2(ax_avg, -4.5), V2(ax_avg, 4))
-    let lines = diagram_combine(line_minus, line_plus).stroke("lightred").strokewidth(3)
+    let lines = diagram_combine(line_minus, line_plus).stroke("lightred").strokewidth(0.039).vectoreffect("none")
 
-    let real_minus = line(V2(-real_ax_avg, -4.5), V2(-real_ax_avg, 4))
-    let real_plus = line(V2(real_ax_avg, -4.5), V2(real_ax_avg, 4))
-    let real_lines = diagram_combine(real_minus, real_plus).strokedasharray([10])
+    let real_minus = line(V2(-real_ax_avg, -4.5), V2(-real_ax_avg, 4)).vectoreffect("none").strokewidth(0.015)
+    let real_plus = line(V2(real_ax_avg, -4.5), V2(real_ax_avg, 4)).vectoreffect("none").strokewidth(0.015)
+    let real_lines = diagram_combine(real_minus, real_plus).strokedasharray([0.3])
 
-    let axes = xyaxes(ax_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+    let axes = xyaxes(ax_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 
     regenerate = false
 

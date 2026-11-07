@@ -2,10 +2,9 @@
 
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg,
     line, V2, xycorneraxes, text, xtickmark, square, plotv, circle
 } from "diagramatics";
@@ -17,7 +16,16 @@ let button = document.getElementById("restart")
 let int = new Interactive(control, canvas);
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -25,8 +33,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
     redraw()
 }
 window.addEventListener('resize', resizeCanvas);
@@ -258,15 +268,11 @@ function animate(time) {
         dataCO.push(V2(t, coMolecules.length))
         dataCO2.push(V2(t, co2Molecules.length))
 
-        dataT.push(V2(t, currentT))
-
         if (dataC.length > 30) {
             dataC.shift()
             dataO2.shift()
             dataCO.shift()
             dataCO2.shift()
-
-            dataT.shift()
         }
     }
 
@@ -563,9 +569,9 @@ function animate(time) {
 
 let outline = rectangle(16, 12).strokewidth(0)
 
-let div = line(V2(-8, -3.1), V2(8, -3.1))
+let div = line(V2(-8, -3), V2(8, -3)).vectoreffect("none").strokewidth(0.015)
 
-let num_ax = xycorneraxes(num_opt).stroke("black").fill("black").textfill("black").fontscale(0.017).fontfamily("Math")
+let num_ax = xycorneraxes(num_opt).stroke("black").fill("black").textfill("black").fontscale(0.017).fontfamily("Math").vectoreffect("none").strokewidth(0.015)
 let N_label = text("N").fontfamily("Math").fontscale(0.017).position(V2(-7.8, -3.4))
 
 let C_mol = circle(0.08).strokewidth(0).fill("#505159").position(V2(-1, -3.4))
@@ -582,10 +588,10 @@ let O2_text = text("O₂").fontscale(0.017).fontfamily("Math").position(V2(-0.42
 let CO_text = text("CO").fontscale(0.017).fontfamily("Math").position(V2(-0.4, -4.2))
 let CO2_text = text("CO₂").fontscale(0.017).fontfamily("Math").position(V2(-0.35, -4.6))
 
-let C_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("#505159").position(V2(0, -3.4))
-let O2_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("#ff3333").position(V2(0, -3.8))
-let CO_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("blue").position(V2(0, -4.2))
-let CO2_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("cyan").position(V2(0, -4.6))
+let C_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("#505159").position(V2(0, -3.4))
+let O2_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("#ff3333").position(V2(0, -3.8))
+let CO_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("blue").position(V2(0, -4.2))
+let CO2_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("cyan").position(V2(0, -4.6))
 
 let leg = diagram_combine(C_mol, O_mol1, O_mol2, CO_mol1, CO_mol2, CO2_mol1, CO2_mol2, CO2_mol3, C_text, O2_text, CO_text, CO2_text, C_line, O2_line, CO_line, CO2_line).translate(V2(7, 0))
 
@@ -597,10 +603,10 @@ int.draw_function = (inp) => {
     let tick1 = xtickmark((t > 30) ? 30 - (t + 2) % 30 : 28, 0, "t", num_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
     let tick2 = xtickmark((t > 30) ? 30 - (t) % 30 : 30, 0, "t + 2", num_opt).fontfamily("Math").stroke("black").fontscale(0.017).textfill("black")
 
-    let plotC = plotv(dataC.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(2).stroke("#505159")
-    let plotO2 = plotv(dataO2.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(2).stroke("#ff3333")
-    let plotCO = plotv(dataCO.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(2).stroke("blue")
-    let plotCO2 = plotv(dataCO2.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(2).stroke("cyan")
+    let plotC = plotv(dataC.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(0.026).vectoreffect("none").stroke("#505159")
+    let plotO2 = plotv(dataO2.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(0.026).vectoreffect("none").stroke("#ff3333")
+    let plotCO = plotv(dataCO.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(0.026).vectoreffect("none").stroke("blue")
+    let plotCO2 = plotv(dataCO2.map(p => V2(p.x - offset, p.y)), num_opt).strokewidth(0.026).vectoreffect("none").stroke("cyan")
 
     draw(outline, div, num_ax, N_label, tick1, tick2, plotC, plotO2, plotCO, plotCO2, leg, t_lab1)
 }

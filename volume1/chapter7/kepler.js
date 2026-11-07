@@ -4,13 +4,17 @@ import {
     diagram_combine,
     Interactive, V2, circle, polygon, geometry, text, arrow, line, arrow1, plotv, xycorneraxes, plotf, square,
     axes_transform,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function calcE(M, e, detail) {
@@ -119,8 +123,8 @@ let focal_pos = V2(3, 0)
 
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
-let r1_legend = line(V2(0, 0), V2(0.5, 0)).strokedasharray([10]).stroke("blue")
-let r2_legend = line(V2(0, 0), V2(0.5, 0)).strokedasharray([10]).stroke("red")
+let r1_legend = line(V2(0, 0), V2(0.5, 0)).strokedasharray([0.2]).stroke("blue").vectoreffect("none").strokewidth(0.015)
+let r2_legend = line(V2(0, 0), V2(0.5, 0)).strokedasharray([0.2]).stroke("red").vectoreffect("none").strokewidth(0.015)
 
 let v_f_plot = {
     xrange: [0, 22.5],
@@ -130,16 +134,16 @@ let v_f_plot = {
     headsize: 0.1
 }
 
-let divider1 = line(V2(0, 4.5), V2(0, -4.5))
-let divider2 = line(V2(0, 3), V2(8, 3))
-let divider3 = line(V2(0, -3), V2(8, -3))
+let divider1 = line(V2(0, 4.5), V2(0, -4.5)).vectoreffect("none").strokewidth(0.015)
+let divider2 = line(V2(0, 3), V2(8, 3)).vectoreffect("none").strokewidth(0.015)
+let divider3 = line(V2(0, -3), V2(8, -3)).vectoreffect("none").strokewidth(0.015)
 let dividers = diagram_combine(divider1, divider2, divider3)
 
 let t_lab = text("t (10⁷ s)").fontfamily("Math").fontscale(0.017).position(V2(7.45, -0.1))
 let F_lab = text("F (10²⁰ N) - magnitude of the force between the two bodies").fontfamily("Math").fontscale(0.017).position(V2(4.2, -1.3))
 let v_lab = text("v (10⁴ m/s) - magnitude of the velocity of the orbiting body").fontfamily("Math").fontscale(0.017).position(V2(4.21, -1.9))
-let F_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).stroke("blue").position(V2(0.15, -1.3))
-let v_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(3).stroke("red").position(V2(0.15, -1.9))
+let F_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.039).vectoreffect("none").stroke("blue").position(V2(0.15, -1.3))
+let v_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.039).vectoreffect("none").stroke("red").position(V2(0.15, -1.9))
 let labels = diagram_combine(t_lab, F_lab, v_lab, F_line, v_line).translate(V2(0, -0.4))
 
 let int = new Interactive(control, canvas);
@@ -192,23 +196,23 @@ int.draw_function = (inp) => {
     let pos_on_orbit = ellipse_params.center.add(ellipse_params.u.scale(ellipse_params.a * Math.cos(E))).add(ellipse_params.v.scale(ellipse_params.b * Math.sin(E)))
 
     let star = circle(0.2 * Math.cbrt(M)).strokewidth(0).fill("lightblue").position(star_pos)
-    let orbit = ellipse(planet_pos, star_pos, focal_pos, 100).stroke("gray")
+    let orbit = ellipse(planet_pos, star_pos, focal_pos, 100).stroke("gray").vectoreffect("none").strokewidth(0.015)
     let planet = circle(0.05 * Math.cbrt(m)).position(pos_on_orbit).strokewidth(0).fill("lightblue")
 
-    let r1 = line(focal_pos, pos_on_orbit).strokedasharray([10]).stroke("blue")
-    let r2 = line(star_pos, pos_on_orbit).strokedasharray([10]).stroke("red")
+    let r1 = line(focal_pos, pos_on_orbit).strokedasharray([0.25]).stroke("blue").vectoreffect("none").strokewidth(0.015)
+    let r2 = line(star_pos, pos_on_orbit).strokedasharray([0.25]).stroke("red").vectoreffect("none").strokewidth(0.015)
     let r = diagram_combine(r1, r2)
 
     let dir_to_star = star_pos.sub(pos_on_orbit).normalize()
     let dist_to_star = star_pos.sub(pos_on_orbit).length()
     let force_factor = 0.02 * G * M * m / Math.pow(dist_to_star, 2)
-    let force = arrow1(pos_on_orbit, dir_to_star.scale(force_factor).add(pos_on_orbit), 0.1).stroke("blue").fill("blue").strokewidth(3)
+    let force = arrow1(pos_on_orbit, dir_to_star.scale(force_factor).add(pos_on_orbit), 0.1).stroke("blue").fill("blue").strokewidth(0.039).vectoreffect("none")
 
     let v = 0.3 *  Math.sqrt(G * M * ((2 / dist_to_star) - (1 / ellipse_params.a)))
     let tangent_dir = ellipse_params.u.scale(-ellipse_params.a * Math.sin(E))
         .add(ellipse_params.v.scale(ellipse_params.b * Math.cos(E)))
         .normalize()
-    let velocity =  arrow1(pos_on_orbit, tangent_dir.scale(v).add(pos_on_orbit), 0.1).fill("red").stroke("red").strokewidth(3)
+    let velocity =  arrow1(pos_on_orbit, tangent_dir.scale(v).add(pos_on_orbit), 0.1).fill("red").stroke("red").strokewidth(0.039).vectoreffect("none")
 
     let legend = diagram_combine(
         r1_legend.translate(V2(0, 0.01)), text(r1.path_length().toFixed(2).toString()).fontfamily("Math").fontscale(0.017).translate(V2(0.8, 0)),
@@ -238,11 +242,11 @@ int.draw_function = (inp) => {
 
     let period_text = text("T = " + period.toFixed(2) + " ⋅ 10⁷ s").fontfamily("Math").fontscale(0.017).position(V2(4, -3.8))
 
-    let v_f_axes = xycorneraxes(v_f_plot).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black")
-    let v_plot = plotv(velocities, v_f_plot).stroke("red").strokewidth(2)
-    let f_plot = plotv(forces, v_f_plot).stroke("blue").strokewidth(2)
+    let v_f_axes = xycorneraxes(v_f_plot).fontscale(0.017).fontfamily("Math").stroke("black").fill("black").textfill("black").vectoreffect("none").strokewidth(0.015)
+    let v_plot = plotv(velocities, v_f_plot).stroke("red").strokewidth(0.026).vectoreffect("none")
+    let f_plot = plotv(forces, v_f_plot).stroke("blue").strokewidth(0.026).vectoreffect("none")
     let transf = axes_transform(v_f_plot)
-    let time_line = line(V2((t % period), 0).apply(transf), V2((t % period), 20).apply(transf)).strokedasharray([10]).stroke("gray")
+    let time_line = line(V2((t % period), 0).apply(transf), V2((t % period), 20).apply(transf)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
     let force_point = circle(0.05).fill("blue").strokewidth(0).position(V2((t % period), Math.min(20, force_factor * 5)).apply(transf))
     let velocity_point = circle(0.05).fill("red").strokewidth(0).position(V2((t % period), v / 0.3).apply(transf))
     let plot_combined = diagram_combine(v_f_axes, v_plot, f_plot, time_line, force_point, velocity_point)

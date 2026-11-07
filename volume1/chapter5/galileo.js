@@ -3,6 +3,7 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, line, V2, polygon, to_radian, circle, boolean, square, numberline, xycorneraxes, TAG, text, plotf,
+    draw_to_svg_element,
     curve, axes_transform
 } from "diagramatics";
 
@@ -10,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const SCALE = 1/6;
@@ -39,10 +43,10 @@ let axes_opt = {
 
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
-let divider = line(V2(1, -4.5), V2(1, 4.5))
+let divider = line(V2(1, -4.5), V2(1, 4.5)).vectoreffect("none").strokewidth(0.015)
 
 let axes = xycorneraxes(axes_opt).position(V2(2, -4)).stroke("black").textfill("black").fontfamily("Math").fontscale(0.017)
-    .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.03, -0.02))).fill("black")
+    .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.03, -0.02))).fill("black").vectoreffect("none").strokewidth(0.015)
 let time_label = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.5, -4.2))
 let dist_label = text("D (m)").fontfamily("Math").fontscale(0.017).position(V2(1.5, 4.3))
 
@@ -72,7 +76,7 @@ int.draw_function = (inp) => {
 
     let top = V2(-7.5, -4 + (SCALE * l * Math.sin(theta)))
     let ramp = polygon([V2(-7.5, -4), V2(-7.5 + (SCALE * l * Math.cos(theta)), -4), top])
-        .strokewidth(1).fill("lightblue").opacity(0.7)
+        .strokewidth(0.015).vectoreffect("none").fill("lightblue").opacity(0.7)
     let dir = V2(1, 0).rotate(-theta).normalize()
     let offset = V2(0, r * C).rotate(-theta)
     let outside = circle(r * C).fill("lightblue").strokewidth(0)
@@ -91,11 +95,11 @@ int.draw_function = (inp) => {
             let current_x = get_x(current_t, theta, g);
             plot_points.push(V2(current_t, current_x).apply(transf));
         }
-        real_plot = curve(plot_points).position(V2(2, -4)).stroke("blue").strokewidth(2);
+        real_plot = curve(plot_points).position(V2(2, -4)).stroke("blue").strokewidth(0.026).vectoreffect("none");
     }
 
     let t_line = curve([V2(t, 0).apply(transf), V2(t, x).apply(transf), V2(0, x).apply(transf)])
-        .strokedasharray([10]).stroke("darkgray").position(V2(2, -4))
+        .strokedasharray([0.3]).stroke("darkgray").position(V2(2, -4)).vectoreffect("none").strokewidth(0.026)
     let pos = circle(0.05).fill("blue").strokewidth(0).position(V2(t, x).apply(transf).add(V2(2, -4)))
 
     if (g_cache !== g || theta_cache !== theta || m_cache !== m) {
@@ -103,15 +107,15 @@ int.draw_function = (inp) => {
             let x_i = get_x(i, theta, g)
             intervals[i] = diagram_combine(
                 curve([V2(i, 0).apply(transf), V2(i, x_i).apply(transf), V2(0, x_i).apply(transf)])
-                    .strokedasharray([10]).stroke("darkgray").position(V2(2, -4)),
+                    .strokedasharray([0.3]).stroke("darkgray").position(V2(2, -4)).vectoreffect("none").strokewidth(0.015),
                 circle(0.05).fill("blue").strokewidth(0).position(V2(i, x_i).apply(transf).add(V2(2, -4))),
                 circle(C * r).position(top.add(offset).add(dir.scale(x_i * SCALE))).strokewidth(0).fill("lightblue").opacity(0.5)
             )
         }
 
         back_plot = plotf((num => get_x(num, theta, g)), axes_opt).position(V2(2, -4))
-            .strokedasharray([10]).stroke("lightblue")
-        ruler = xycorneraxes({...ruler_opt, xrange: [0, l - 3]}).position(top).rotate(-theta).scale(SCALE)
+            .strokedasharray([0.3]).stroke("lightblue").vectoreffect("none").strokewidth(0.015)
+        ruler = xycorneraxes({...ruler_opt, xrange: [0, l - 3]}).position(top).rotate(-theta).scale(SCALE).vectoreffect("none").strokewidth(0.015)
             .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.2, 0))).stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
 
         g_cache = g;

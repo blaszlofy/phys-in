@@ -3,13 +3,17 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, rectangle_corner, V2, arrow1, circle, boolean, square, image, text,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 let button_off = diagram_combine(square(0.4).strokewidth(0), image("/hide-icon.svg", 0.3, 0.3).move_origin("center-center").position(V2(0, 0)))
@@ -35,15 +39,15 @@ function generateFieldVectors(mass1_pos, mass2_pos, mass1, mass2, color1, color2
             if (rel1.length() < 0.7) continue
             let v1 = rel1.scale(G * mass1 / (rel1.length()**3))
             if (mass1 !== 0) {
-                arrows1.push(arrow1(pos, pos.add(v1), 0.1).stroke(color1).fill(color1).strokewidth(2).opacity(0.5))
+                arrows1.push(arrow1(pos, pos.add(v1), 0.1).stroke(color1).fill(color1).strokewidth(0.026).vectoreffect("none").opacity(0.5))
             }
             let rel2 = mass2_pos.sub(pos)
             if (rel2.length() < 0.7) continue
             let v2 = rel2.scale(G * mass2 / (rel2.length()**3))
             if (mass2 !== 0) {
-                arrows2.push(arrow1(pos, pos.add(v2), 0.1).stroke(color2).fill(color2).strokewidth(2).opacity(0.5))
+                arrows2.push(arrow1(pos, pos.add(v2), 0.1).stroke(color2).fill(color2).strokewidth(0.026).vectoreffect("none").opacity(0.5))
             }
-            arrows.push(arrow1(pos, pos.add(v1).add(v2), 0.1).strokewidth(2).fill("black"))
+            arrows.push(arrow1(pos, pos.add(v1).add(v2), 0.1).strokewidth(0.026).vectoreffect("none").fill("black"))
         }
     }
     return {a1: arrows1, a2: arrows2, tot: arrows}
@@ -52,16 +56,16 @@ function generateFieldVectors(mass1_pos, mass2_pos, mass1, mass2, color1, color2
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
 
-let sq1 = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("blue").stroke("blue").strokewidth(2).position(V2(-7, 4.2))
-let sq2 = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("cyan").stroke("cyan").strokewidth(2).position(V2(-7, 3.7))
-let sqtot = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("black").stroke("black").strokewidth(2).position(V2(-7, 3.2))
+let sq1 = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("blue").stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(-7, 4.2))
+let sq2 = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("cyan").stroke("cyan").strokewidth(0.026).vectoreffect("none").position(V2(-7, 3.7))
+let sqtot = arrow1(V2(0, 0), V2(0.5, 0), 0.1).fill("black").stroke("black").strokewidth(0.026).vectoreffect("none").position(V2(-7, 3.2))
 let t1 = text("Value of C₁, the gravitational field from m₁ at a point").fontscale(0.017).fontfamily("Math").position(V2(-3, 4.2))
 let t2 = text("Value of C₂, the gravitational field from m₂ at a point").fontscale(0.017).fontfamily("Math").position(V2(-3, 3.7))
 let ttot = text("Value of C = C₁ + C₂, the total gravitational field at a point").fontscale(0.017).fontfamily("Math").position(V2(-2.69, 3.2))
 
-let a1 = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("blue").stroke("blue").strokewidth(2).position(V2(3, 3.4))
-let a2 = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("cyan").stroke("cyan").strokewidth(2).position(V2(4, 3.4))
-let atot = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("black").stroke("black").strokewidth(2).position(V2(5, 3.4))
+let a1 = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("blue").stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(3, 3.4))
+let a2 = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("cyan").stroke("cyan").strokewidth(0.026).vectoreffect("none").position(V2(4, 3.4))
+let atot = arrow1(V2(0, 0), V2(0, 0.5), 0.1).fill("black").stroke("black").strokewidth(0.026).vectoreffect("none").position(V2(5, 3.4))
 let plus = text("+").fontscale(0.017).fontfamily("Math").position(V2(3.5, 3.6))
 let equal = text("=").fontscale(0.017).fontfamily("Math").position(V2(4.5, 3.6))
 

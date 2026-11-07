@@ -4,13 +4,17 @@ import {
     diagram_combine,
     Interactive, V2, xyaxes, line, plotv, plotf, text, square, axes_transform, linspace, curve, arrow1, xycorneraxes,
     circle,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const x0 = 1
@@ -30,13 +34,13 @@ function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0
 }
 
 function oscillator(position, velocity, actual_pos, block_color = "lightblue", arrow_color = "gray", darken) {
-    let top = line(V2(-1, 0), V2(1, 0)).strokewidth(3).stroke("lightgray")
+    let top = line(V2(-1, 0), V2(1, 0)).strokewidth(0.039).vectoreffect("none").stroke("lightgray")
     let pos = V2(0, -2.25 + 0.5 * position)
     if (velocity + pos.y > 0 || velocity + pos.y < -4.5 || darken) {
         velocity = 0
     }
-    let vel = arrow1(pos, pos.add(V2(0, velocity)), 0.1).strokewidth(2).stroke(arrow_color).fill(arrow_color)
-    let spr = spring(V2(0, 0), pos, 0.15, 10, 0.05, 100)
+    let vel = arrow1(pos, pos.add(V2(0, velocity)), 0.1).strokewidth(0.026).vectoreffect("none").stroke(arrow_color).fill(arrow_color)
+    let spr = spring(V2(0, 0), pos, 0.15, 10, 0.05, 100).vectoreffect("none").strokewidth(0.015)
     let block = rectangle(0.8, 0.4).fill(block_color).strokewidth(0).position(pos)
     let osc = diagram_combine(spr, top, vel, block).position(actual_pos).mut()
     if (darken) {
@@ -102,8 +106,8 @@ function getHalfNumerical(eps, range) {
 
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
-let div = line(V2(-8, 0), V2(8, 0))
-let div2 = line(V2(1.5, 0), V2(1.5, 4.5))
+let div = line(V2(-8, 0), V2(8, 0)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(1.5, 0), V2(1.5, 4.5)).vectoreffect("none").strokewidth(0.015)
 let ax_opt = {
     xrange: [0, Math.PI * 4],
     yrange: [-3, 3],
@@ -120,16 +124,16 @@ let rul_opt = {
     headsize: 0
 }
 let rul_transf = axes_transform(rul_opt)
-let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
-let rul = xycorneraxes(rul_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
+let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017).vectoreffect("none").strokewidth(0.015)
+let rul = xycorneraxes(rul_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017).vectoreffect("none").strokewidth(0.015)
 
 let t_leg = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7, -2))
 let x_leg = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(-7.5, -0.3))
 let x_leg2 = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(-5, 4.45))
 
-let exact_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).strokedasharray([10]).position(V2(2.3, 3.6))
-let half_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("blue").opacity(0.5).position(V2(2.3, 2))
-let whole_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("red").opacity(0.5).position(V2(2.3, 3))
+let exact_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").strokedasharray([0.2]).position(V2(2.3, 3.6))
+let half_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("blue").opacity(0.5).position(V2(2.3, 2))
+let whole_line = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("red").opacity(0.5).position(V2(2.3, 3))
 
 let exact_text = text('Exact analytical position of the mass').fontscale(0.017).fontfamily("Math").position(V2(5, 3.6))
 let whole_text = text('Approximated position using the').fontscale(0.017).fontfamily("Math").position(V2(4.84, 3))
@@ -146,7 +150,7 @@ int.draw_function = (inp) => {
     let t = inp["t"]
 
     let whole_data = getWholeNumerical(eps, ax_opt.xrange[1])
-    let whole_pos = plotv(whole_data.positions, ax_opt).stroke("red").opacity((eps > 0.05) ? 0.5 : 1).strokewidth(2)
+    let whole_pos = plotv(whole_data.positions, ax_opt).stroke("red").opacity((eps > 0.05) ? 0.5 : 1).strokewidth(0.026).vectoreffect("none")
     let whole_points = []
     if (eps > 0.05) {
         for (let data of whole_data.positions) {
@@ -156,7 +160,7 @@ int.draw_function = (inp) => {
     }
 
     let half_data = getHalfNumerical(eps, ax_opt.xrange[1])
-    let half_pos = plotv(half_data.positions, ax_opt).stroke("blue").opacity((eps > 0.05) ? 0.5 : 1).strokewidth(2)
+    let half_pos = plotv(half_data.positions, ax_opt).stroke("blue").opacity((eps > 0.05) ? 0.5 : 1).strokewidth(0.026).vectoreffect("none")
     let half_points = []
     if (eps > 0.05) {
         for (let data of half_data.positions) {
@@ -165,11 +169,11 @@ int.draw_function = (inp) => {
         }
     }
 
-    let real_pos = plotf((x) => Math.cos(x), ax_opt).strokewidth(2).strokedasharray([10])
+    let real_pos = plotf((x) => Math.cos(x), ax_opt).strokewidth(0.026).vectoreffect("none").strokedasharray([0.25])
 
     let oscillator1 = oscillator(Math.cos(t), -Math.sin(t), V2(-6.5, 4.5), "gray")
     let osc1_diagram = oscillator1.diagram
-    let osc1_line = line(oscillator1.block_pos, V2(-0.02, Math.cos(t)).apply(rul_transf)).strokewidth(2).strokedasharray([10])
+    let osc1_line = line(oscillator1.block_pos, V2(-0.02, Math.cos(t)).apply(rul_transf)).strokewidth(0.026).vectoreffect("none").strokedasharray([0.25])
 
     let pos2 = getInterpolatedValue(t, half_data.positions)
     let out_of_bound2 = false
@@ -180,7 +184,7 @@ int.draw_function = (inp) => {
     let vel2 = getInterpolatedValue(t, half_data.velocities)
     let oscillator2 = oscillator(pos2, vel2, V2(-3.5, 4.5), "lightblue", "blue", out_of_bound2)
     let osc2_diagram = oscillator2.diagram
-    let osc2_line = line(oscillator2.block_pos, V2(0.02, pos2).apply(rul_transf)).stroke("blue").opacity(out_of_bound2 ? 0.05 : 0.5).strokewidth(2)
+    let osc2_line = line(oscillator2.block_pos, V2(0.02, pos2).apply(rul_transf)).stroke("blue").opacity(out_of_bound2 ? 0.05 : 0.5).strokewidth(0.026).vectoreffect("none")
 
     let pos3 = getInterpolatedValue(t, whole_data.positions)
     let out_of_bound = false
@@ -191,11 +195,11 @@ int.draw_function = (inp) => {
     let vel3 = getInterpolatedValue(t, whole_data.velocities)
     let oscillator3 = oscillator(pos3, vel3, V2(-0.5, 4.5), "lightred", "red", out_of_bound)
     let osc3_diagram = oscillator3.diagram
-    let osc3_line = line(oscillator3.block_pos, V2(0.02, pos3).apply(rul_transf)).stroke("red").opacity(out_of_bound ? 0.05 : 0.5).strokewidth(2)
+    let osc3_line = line(oscillator3.block_pos, V2(0.02, pos3).apply(rul_transf)).stroke("red").opacity(out_of_bound ? 0.05 : 0.5).strokewidth(0.026).vectoreffect("none")
 
     let oscillators = diagram_combine(osc1_line, osc2_line, osc3_line, osc1_diagram, osc2_diagram, osc3_diagram)
 
-    let timeline = line(V2(t, -3).apply(transf), V2(t, 3).apply(transf)).strokedasharray([10]).stroke("gray")
+    let timeline = line(V2(t, -3).apply(transf), V2(t, 3).apply(transf)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
     let circ1 = circle(0.05).stroke(0).fill("gray").position(V2(t, Math.cos(t)).apply(transf))
     let circ3 = square(0)
     if (Math.abs(pos2) < 2.9) {

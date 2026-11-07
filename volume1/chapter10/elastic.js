@@ -11,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const dx = 0.1
@@ -21,12 +24,12 @@ const dist = 6
 
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
-let divider1 = line(V2(-8, -1.5), V2(8, -1.5))
-let divider2 = line(V2(-8, 1.5), V2(8, 1.5))
-let divider3 = line(V2(1, 4.5), V2(1, 1.5))
+let divider1 = line(V2(-8, -1.5), V2(8, -1.5)).vectoreffect("none").strokewidth(0.015)
+let divider2 = line(V2(-8, 1.5), V2(8, 1.5)).vectoreffect("none").strokewidth(0.015)
+let divider3 = line(V2(1, 4.5), V2(1, 1.5)).vectoreffect("none").strokewidth(0.015)
 
-let stroked = line(V2(0, 0), V2(0.5, 0)).strokedasharray([10]).strokewidth(2).position(V2(1.5, 4))
-let basic = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(2).position(V2(1.5, 3))
+let stroked = line(V2(0, 0), V2(0.5, 0)).strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none").position(V2(1.5, 4))
+let basic = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(0.026).vectoreffect("none").position(V2(1.5, 3))
 let stroked_text = text("momentum of m₁ or m₂ or total momentum").fontfamily("Math").fontscale(0.017).position(V2(4.7, 4))
 let basic_text = text("velocity of m₁ or m₂ or both").fontfamily("Math").fontscale(0.017).position(V2(3.8, 3))
 let sq = square(0.25).strokewidth(0).fill("black").position(V2(1.75, 2))
@@ -126,14 +129,14 @@ int.draw_function = (inp) => {
     }
     let p = p1 + p2
 
-    let p1_arrow = arrow1(V2(0, 0), V2(p1 * 0.5, 0), 0.1).fill("red").stroke("red").strokedasharray([10]).strokewidth(2)
+    let p1_arrow = arrow1(V2(0, 0), V2(p1 * 0.5, 0), 0.1).fill("red").stroke("red").strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none")
     let p1_tx = text("p₁ = " + ((p1 === 1) ? "mv" : ((p1 === 0) ? "0" : ((p1 === -1) ? "-mv" : (p1.toPrecision(2) + "mv"))))).position(p1_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
-    let p2_arrow = arrow1(V2(0, -1), V2(p2  * 0.5, -1), 0.1).fill("blue").stroke("blue").strokedasharray([10]).strokewidth(2)
+    let p2_arrow = arrow1(V2(0, -1), V2(p2  * 0.5, -1), 0.1).fill("blue").stroke("blue").strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none")
     let p2_tx = text("p₂ = " + ((p2 === 1) ? "mv" : ((p2 === 0) ? "0" : ((p2 === -1) ? "-mv" : (p2.toPrecision(2) + "mv"))))).position(p2_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
-    let p_arrow = arrow1(V2(0, -2), V2(p  * 0.5, -2), 0.1).fill("gray").stroke("gray").strokedasharray([10]).strokewidth(2)
+    let p_arrow = arrow1(V2(0, -2), V2(p  * 0.5, -2), 0.1).fill("gray").stroke("gray").strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none")
     let p_tx = text("p = " + ((p === 1) ? "mv" : ((p === 0) ? "0" : ((p === -1) ? "-mv" : (p.toPrecision(2) + "mv"))))).position(p_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
-    let plus = text("+").fontfamily("Math").fontsize(25).position(V2(0, -0.4))
-    let equal = text("=").fontfamily("Math").fontsize(25).position(V2(0, -1.4))
+    let plus = text("+").fontfamily("Math").fontscale(0.02).position(V2(0, -0.4))
+    let equal = text("=").fontfamily("Math").fontscale(0.02).position(V2(0, -1.4))
     let momentum = diagram_combine(p1_tx, p1_arrow, p2_tx, p2_arrow, p_tx, p_arrow, plus, equal).move_origin("center-center").position(V2(-3.5, 3))
 
     let e1 = (t < t_collision) ? m1 * v1**2 * (1 / 2) : m1 * v_final1**2 * (1 / 2)
@@ -145,7 +148,7 @@ int.draw_function = (inp) => {
         e2 = 0
     }
     let e = e1 + e2
-    let tot = rectangle(e * 0.5, 0.5)
+    let tot = rectangle(e * 0.5, 0.5).vectoreffect("none").strokewidth(0.015)
     let rect1 = rectangle(e1 * 0.5, 0.5).move_origin("center-left").position(tot.get_anchor("center-left")).strokewidth(0).fill("red")
     let rect2 = rectangle(e2 * 0.5, 0.5).move_origin("center-right").position(tot.get_anchor("center-right")).strokewidth(0).fill("blue")
     let energy = (e > 0) ? diagram_combine(tot, rect1, rect2).position(V2(0, -0.5)) : square(0)

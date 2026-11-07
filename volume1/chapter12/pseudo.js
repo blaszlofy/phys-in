@@ -12,7 +12,10 @@ let canvas2 = document.getElementById("canvas2");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 let draw2 = (...diagrams) => {
     draw_to_svg(canvas2, diagram_combine(...diagrams));
@@ -26,8 +29,8 @@ const scale = 0.07
 
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
-let divider1 = line(V2(-8, -0.75), V2(8, -0.75))
-let divider2 = line(V2(-8, 3), V2(8, 3))
+let divider1 = line(V2(-8, -0.75), V2(8, -0.75)).vectoreffect("none").strokewidth(0.015)
+let divider2 = line(V2(-8, 3), V2(8, 3)).vectoreffect("none").strokewidth(0.015)
 let tit1 = text("Accelerating coordinate system (with A acceleration)").fontfamily("Math").fontscale(0.017).position(V2(0, -1))
 let tit2 = text("Stationary coordinate system (scaled based on the system's position)").fontfamily("Math").fontscale(0.017).position(V2(0, 2.75))
 let title = text("This interactive is quite complicated. See the 'Things to Notice' section").fontfamily("Math").fontscale(0.017).position(V2(0, 4.3))
@@ -100,41 +103,41 @@ int.draw_function = (inp) => {
 
     // Forces for Accelerating Frame
     annot1.push(
-        annotation.vector(V2(active_f * scale, 0), "f", V2(0, 0.1), 0.1).position(mass.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(2),
-        annotation.vector(V2(-active_f * scale, 0), "-f", V2(0, 0.1), 0.1).position(base.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(2)
+        annotation.vector(V2(active_f * scale, 0), "f", V2(0, 0.1), 0.1).position(mass.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(-active_f * scale, 0), "-f", V2(0, 0.1), 0.1).position(base.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(0.026).vectoreffect("none").fontscale(0.015)
     )
 
     if (wall) {
         let Nw = Freq - Fmax;
         annot1.push(
-            annotation.vector(V2(Nw * scale, 0), "N'", V2(0, 0.1), 0.1).position(c).stroke("purple").fill("purple").strokewidth(2),
-            annotation.vector(V2(-Nw * scale, 0), "-N'", V2(0, 0.1), 0.1).position(base.get_anchor("center-left")).stroke("purple").fill("purple").strokewidth(2)
+            annotation.vector(V2(Nw * scale, 0), "N'", V2(0, 0.1), 0.1).position(c).stroke("purple").fill("purple").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+            annotation.vector(V2(-Nw * scale, 0), "-N'", V2(0, 0.1), 0.1).position(base.get_anchor("center-left")).stroke("purple").fill("purple").strokewidth(0.026).vectoreffect("none").fontscale(0.015)
         )
     }
 
     annot1.push(
-        annotation.vector(V2(-current_A * M * scale, 0), "MA", V2(0, 0.2), 0.1).strokewidth(2).position(base.get_anchor("bottom-left")),
-        annotation.vector(V2(0, -W * scale), "W", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(2),
-        annotation.vector(V2(0, W * scale), "N", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(2),
-        annotation.vector(V2(-m * current_A * scale, 0), "mA", V2(0, 0.1), 0.1).position(c).stroke("cyan").fill("cyan").strokewidth(2),
-        annotation.vector(V2(F * scale, 0), "F", V2(0, 0.2), 0.1).strokewidth(2).position(base.get_anchor("bottom-right"))
+        annotation.vector(V2(-current_A * M * scale, 0), "MA", V2(0, 0.2), 0.1).strokewidth(0.026).vectoreffect("none").position(base.get_anchor("bottom-left")).fontscale(0.015),
+        annotation.vector(V2(0, -W * scale), "W", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(0, W * scale), "N", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(-m * current_A * scale, 0), "mA", V2(0, 0.1), 0.1).position(c).stroke("cyan").fill("cyan").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(F * scale, 0), "F", V2(0, 0.2), 0.1).strokewidth(0.026).vectoreffect("none").position(base.get_anchor("bottom-right")).fontscale(0.015)
     )
 
     //Forces for Stationary Frame
     let annot2 = []
     annot2.push(
-        annotation.vector(V2(active_f * scale, 0), "f", V2(0, 0.1), 0.1).position(mass.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(2),
-        annotation.vector(V2(-active_f * scale, 0), "-f", V2(0, 0.1), 0.1).position(base.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(2),
-        annotation.vector(V2(0, -W * scale), "W", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(2),
-        annotation.vector(V2(0, W * scale), "N", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(2),
-        annotation.vector(V2(F * scale, 0), "F", V2(0, 0.2), 0.1).strokewidth(2).position(base.get_anchor("bottom-right"))
+        annotation.vector(V2(active_f * scale, 0), "f", V2(0, 0.1), 0.1).position(mass.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(-active_f * scale, 0), "-f", V2(0, 0.1), 0.1).position(base.get_anchor("bottom-center")).stroke("red").fill("red").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(0, -W * scale), "W", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(0, W * scale), "N", V2(0.2, 0), 0.1).position(c).stroke("blue").fill("blue").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+        annotation.vector(V2(F * scale, 0), "F", V2(0, 0.2), 0.1).strokewidth(0.026).vectoreffect("none").position(base.get_anchor("bottom-right")).fontscale(0.015)
     )
 
     if (wall) {
         let Nw = Freq - Fmax;
         annot2.push(
-            annotation.vector(V2(Nw * scale, 0), "N'", V2(0, 0.1), 0.1).position(c).stroke("purple").fill("purple").strokewidth(2),
-            annotation.vector(V2(-Nw * scale, 0), "-N'", V2(0, 0.1), 0.1).position(base.get_anchor("center-left")).stroke("purple").fill("purple").strokewidth(2)
+            annotation.vector(V2(Nw * scale, 0), "N'", V2(0, 0.1), 0.1).position(c).stroke("purple").fill("purple").strokewidth(0.026).vectoreffect("none").fontscale(0.015),
+            annotation.vector(V2(-Nw * scale, 0), "-N'", V2(0, 0.1), 0.1).position(base.get_anchor("center-left")).stroke("purple").fill("purple").strokewidth(0.026).vectoreffect("none").fontscale(0.015)
         )
     }
 

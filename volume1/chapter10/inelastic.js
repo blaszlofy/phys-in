@@ -11,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 const dx = 0.1
@@ -21,14 +24,14 @@ const dist = 4
 
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0);
-let divider1 = line(V2(-8, -1.5), V2(8, -1.5))
-let divider2 = line(V2(-8, 1.5), V2(8, 1.5))
-let divider3 = line(V2(1, 4.5), V2(1, 1.5))
+let divider1 = line(V2(-8, -1.5), V2(8, -1.5)).vectoreffect("none").strokewidth(0.015)
+let divider2 = line(V2(-8, 1.5), V2(8, 1.5)).vectoreffect("none").strokewidth(0.015)
+let divider3 = line(V2(1, 4.5), V2(1, 1.5)).vectoreffect("none").strokewidth(0.015)
 let tit1 = text("Observer riding in a car at velocity v₂").fontfamily("Math").fontscale(0.017).position(V2(0, -1.8))
 let tit2 = text("Observer standing still on the ground (Lab Frame)").fontfamily("Math").fontscale(0.017).position(V2(0, 1.2))
 
-let stroked = line(V2(0, 0), V2(0.5, 0)).strokedasharray([10]).strokewidth(2).position(V2(1.5, 3.5))
-let basic = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(2).position(V2(1.5, 2.5))
+let stroked = line(V2(0, 0), V2(0.5, 0)).strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none").position(V2(1.5, 3.5))
+let basic = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(0.026).vectoreffect("none").position(V2(1.5, 2.5))
 let stroked_text = text("momentum of m₁ or m₂ or total momentum").fontfamily("Math").fontscale(0.017).position(V2(4.7, 3.5))
 let basic_text = text("velocity of m₁ or m₂ or both").fontfamily("Math").fontscale(0.017).position(V2(3.8, 2.5))
 let leg = diagram_combine(stroked, basic, stroked_text, basic_text)
@@ -108,7 +111,7 @@ int.draw_function = (inp) => {
 
     let s = system.get_anchor("bottom-center").add(V2(0, -0.15))
     if (pos < 3.9) {
-        vel_diagram2.push(arrow1(s, s.add(V2(-v2 * 0.4, 0)), 0.1).fill("black").strokewidth(2).apply_to_tagged_recursive(TAG.ARROW_LINE, d => d.strokedasharray([10])))
+        vel_diagram2.push(arrow1(s, s.add(V2(-v2 * 0.4, 0)), 0.1).fill("black").strokewidth(0.026).vectoreffect("none").apply_to_tagged_recursive(TAG.ARROW_LINE, d => d.strokedasharray([0.2])))
         vel_diagram2.push(text(((v2 === -1) ? "" : -v2).toString() + "v").position(s.add(V2(-v2 * 0.4 / 2, -0.2))).fontscale(0.017).fontfamily("Math"))
     }
     let sys2 = diagram_combine(system, ...vel_diagram2).position(V2(pos, -3.5))
@@ -123,14 +126,14 @@ int.draw_function = (inp) => {
         p = 0
     }
 
-    let p1_arrow = arrow1(V2(0, 0), V2(p1 * 0.5, 0), 0.1).fill("red").stroke("red").strokedasharray([10]).strokewidth(2)
+    let p1_arrow = arrow1(V2(0, 0), V2(p1 * 0.5, 0), 0.1).fill("red").stroke("red").strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none")
     let p1_tx = text("p₁ = " + ((p1 === 1) ? "mv" : ((p1 === 0) ? "0" : ((p1 === -1) ? "-mv" : (p1.toPrecision(2) + "mv"))))).position(p1_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
-    let p2_arrow = arrow1(V2(0, -1), V2(p2  * 0.5, -1), 0.1).fill("blue").stroke("blue").strokedasharray([10]).strokewidth(2)
+    let p2_arrow = arrow1(V2(0, -1), V2(p2  * 0.5, -1), 0.1).fill("blue").stroke("blue").strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none")
     let p2_tx = text("p₂ = " + ((p2 === 1) ? "mv" : ((p2 === 0) ? "0" : ((p2 === -1) ? "-mv" : (p2.toPrecision(2) + "mv"))))).position(p2_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
-    let p_arrow = arrow1(V2(0, -2), V2(p  * 0.5, -2), 0.1).fill("gray").stroke("gray").strokedasharray([10]).strokewidth(2)
+    let p_arrow = arrow1(V2(0, -2), V2(p  * 0.5, -2), 0.1).fill("gray").stroke("gray").strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none")
     let p_tx = text("p = " + ((p === 1) ? "mv" : ((p === 0) ? "0" : ((p === -1) ? "-mv" : (p.toPrecision(2) + "mv"))))).position(p_arrow.get_anchor("center-center").add(V2(0, 0.2))).fontscale(0.017).fontfamily("Math")
-    let plus = text("+").fontfamily("Math").fontsize(25).position(V2(0, -0.4))
-    let equal = text("=").fontfamily("Math").fontsize(25).position(V2(0, -1.4))
+    let plus = text("+").fontfamily("Math").fontscale(0.02).position(V2(0, -0.4))
+    let equal = text("=").fontfamily("Math").fontscale(0.02).position(V2(0, -1.4))
     let momentum = diagram_combine(p1_tx, p1_arrow, p2_tx, p2_arrow, p_tx, p_arrow, plus, equal).move_origin("center-center").position(V2(-3.5, 3))
 
     draw(outline, stat, leg, sys1, sys2, momentum)

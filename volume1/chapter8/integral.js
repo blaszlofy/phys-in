@@ -16,7 +16,10 @@ let handletex = (str, conf) => {
 };
 
 let draw = (...diagrams) => {
-    draw_to_svg_element(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
     handle_tex_in_svg(canvas, handletex);
 };
 
@@ -51,8 +54,8 @@ let ax_opt = {
 let transf = axes_transform(ax_opt)
 const x = time => -0.000000990783437*time**10 + 0.000021037529294*time**9 + 0.000202274791939*time**8 - 0.010202611835379*time**7 + 0.124504873380118*time**6 - 0.717861769721937*time**5 + 2.003475042584663*time**4 - 1.958550419885061*time**3 - 1.628181199973283*time**2 + 4.186593763913083*time
 const v = time => -0.00000990783437*time**9 + 0.000189337763646*time**8 + 0.001618198335512*time**7 - 0.071418282847653*time**6 + 0.747029240280708*time**5 - 3.589308848609685*time**4 + 8.013900170338652*time**3 - 5.875651259655183*time**2 - 3.256362399946566*time + 4.186593763913083
-let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
-let pos_plot = plotf((t) => v(t), ax_opt).stroke("lightblue").strokewidth(3)
+let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017).vectoreffect("none").strokewidth(0.015)
+let pos_plot = plotf((t) => v(t), ax_opt).stroke("lightblue").strokewidth(0.039).vectoreffect("none")
 let loc_bound = line(V2(0, 0).apply(transf), V2(ax_opt.xrange[1], 0).apply(transf)).strokewidth(0).apply(mod.subdivide(400))
 
 let rul_opt = {
@@ -62,7 +65,7 @@ let rul_opt = {
     bbox: [V2(-1.2, 0).apply(transf), V2(-1.2, 7.5).apply(transf)],
     headsize: 0
 }
-let rul = xyaxes(rul_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
+let rul = xyaxes(rul_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017).vectoreffect("none").strokewidth(0.015)
 
 let dist_limit = text("$$s = \\int v(t) dt = $$").fontscale(0.017).position(V2(-3.8, 3.98))
 let rect = rectangle_corner(dist_limit.bounding_box()[0], dist_limit.bounding_box()[1])
@@ -72,10 +75,10 @@ let legend_tex = diagram_combine(dist_limit, dist, rect)
 let v_leg = text("v (m/s)").fontfamily("Math").fontscale(0.017).position(V2(-6, 3.2))
 let s_leg = text("s (m)").fontfamily("Math").fontscale(0.017).position(V2(-7.55, 4.35))
 let t_leg = text("t (s)").fontfamily("Math").fontscale(0.017).position(V2(7.6, -1.3))
-let exact_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-4.9, 3.7)).stroke("red").strokewidth(1.5)
-let emp_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-1.3, 3.75)).stroke("black").strokewidth(1.5).strokedasharray([10])
-let exact_line2 = line(V2(0, 0), V2(0.45, 0)).position(V2(2.3, 4.2)).stroke("red").strokewidth(1.5)
-let emp_line2 = line(V2(0, 0), V2(0.5, 0)).position(V2(2.3, 3.7)).stroke("black").strokewidth(1.5).strokedasharray([10])
+let exact_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-4.9, 3.7)).stroke("red").strokewidth(0.0199).vectoreffect("none")
+let emp_line = line(V2(0, 0), V2(0, 0.5)).position(V2(-1.3, 3.75)).stroke("black").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2])
+let exact_line2 = line(V2(0, 0), V2(0.45, 0)).position(V2(2.3, 4.2)).stroke("red").strokewidth(0.0199).vectoreffect("none")
+let emp_line2 = line(V2(0, 0), V2(0.5, 0)).position(V2(2.3, 3.7)).stroke("black").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2])
 let exact = text("Actual position of the ball").fontfamily("Math").fontscale(0.017).position(V2(4.35, 4.2))
 let emp = text("Approximated position by summing").fontfamily("Math").fontscale(0.017).position(V2(5, 3.7))
 let emp2 = text("up the areas of the blue rectangles").fontfamily("Math").fontscale(0.017).position(V2(4.87, 3.35))
@@ -97,7 +100,7 @@ int.draw_function = (inp) => {
     }
 
     let ball = circle(0.2).position(V2(-0.8, x(pos.x)).apply(transf)).strokewidth(0).fill("lightblue")
-    let ball_line = line(V2(-1.3, x(pos.x)).apply(transf), ball.origin).stroke("red").strokewidth(1.5)
+    let ball_line = line(V2(-1.3, x(pos.x)).apply(transf), ball.origin).stroke("red").strokewidth(0.0199).vectoreffect("none")
 
     let riemann = get_riemann_rectangles(v, dt, pos.x, transf)
     let rect = []
@@ -113,7 +116,7 @@ int.draw_function = (inp) => {
     }
 
     let ghost_ball = circle(0.2).position(V2(-0.8, approx_area).apply(transf)).strokewidth(0).fill("#d6e3f3")
-    let ghost_ball_line = line(V2(-1.3, approx_area).apply(transf), ghost_ball.origin).stroke("black").strokewidth(1.5).strokedasharray([10])
+    let ghost_ball_line = line(V2(-1.3, approx_area).apply(transf), ghost_ball.origin).stroke("black").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2])
 
     let s_exact = text(x(pos.x).toFixed(2)).fontfamily("Math").fontscale(0.017).position(V2(-2.5, 3.96))
     let s_empiric = text((approx_area).toFixed(2)).fontfamily("Math").fontscale(0.017).position(V2(1, 3.96))

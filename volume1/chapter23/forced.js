@@ -4,13 +4,17 @@ import {
     diagram_combine,
     Interactive, line, V2, linspace, curve, square, arrow1, xyaxes, plotf, text, axes_transform, xycorneraxes,
     ytickmark, circle,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0.5, sample_number = 100) {
@@ -23,19 +27,19 @@ function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0
     let b = (length - 2 * R) / a;
     let parametric_function = (t) => V2(b * t + R - R * Math.cos(t), k * R * Math.sin(t));
     let points = linspace(0, a, sample_number).map(parametric_function);
-    return curve(points).rotate(angle).translate(p1);
+    return curve(points).rotate(angle).translate(p1).vectoreffect("none").strokewidth(0.015);
 }
 
 const sus_point = V2(-7.8, 3.35)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let div1 = line(V2(-8, 2.2), V2(8, 2.2))
-let div2 = line(V2(-8, -0.5), V2(8, -0.5))
-let div3 = line(V2(0, -0.5), V2(0, -4.5))
+let div1 = line(V2(-8, 2.2), V2(8, 2.2)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(-8, -0.5), V2(8, -0.5)).vectoreffect("none").strokewidth(0.015)
+let div3 = line(V2(0, -0.5), V2(0, -4.5)).vectoreffect("none").strokewidth(0.015)
 
-let wall = line(V2(-7.8, 2.5), V2(-7.8, 4.2)).strokewidth(3).stroke("lightgray")
-let equilibrium = line(V2(0, 2.3), V2(0, 4.4)).strokewidth(2).stroke("lightgray").strokedasharray([10])
+let wall = line(V2(-7.8, 2.5), V2(-7.8, 4.2)).strokewidth(0.039).vectoreffect("none").stroke("lightgray")
+let equilibrium = line(V2(0, 2.3), V2(0, 4.4)).strokewidth(0.026).vectoreffect("none").stroke("lightgray").strokedasharray([0.25])
 
 let x_opt = {
     xrange: [0, 20],
@@ -61,24 +65,24 @@ let rho_opt = {
     n_sample: 150,
     headsize: 0.1
 }
-let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
-let theta_ax = xycorneraxes(theta_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
-let rho_ax = xycorneraxes(rho_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
+let theta_ax = xycorneraxes(theta_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
+let rho_ax = xycorneraxes(rho_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 
 let x_transf = axes_transform(x_opt)
 let theta_transf = axes_transform(theta_opt)
 let rho_transf = axes_transform(rho_opt)
 
-let F_leg = line(V2(0, -0.6), V2(0.5,  -0.6)).stroke("red").strokewidth(1.5)
+let F_leg = line(V2(0, -0.6), V2(0.5,  -0.6)).stroke("red").strokewidth(0.0199).vectoreffect("none")
 let F_text = text("F(t)").fontscale(0.017).fontfamily("Math").position(V2(0.8, -0.6))
-let x_leg = line(V2(0, 0), V2(0.5,  0)).stroke("blue").strokewidth(1.5)
+let x_leg = line(V2(0, 0), V2(0.5,  0)).stroke("blue").strokewidth(0.0199).vectoreffect("none")
 let x_text = text("x(t)").fontscale(0.017).fontfamily("Math").position(V2(0.8, 0))
 let tick_0 = ytickmark(0, 0, "0°", theta_opt).fontscale(0.017).fontfamily("Math").textfill("black")
 let tick_1 = ytickmark(-Math.PI / 2, 0, "-90°", theta_opt).fontscale(0.017).fontfamily("Math").textfill("black")
 let tick_2 = ytickmark(-Math.PI, 0, "-180°", theta_opt).fontscale(0.017).fontfamily("Math").textfill("black")
 
 let F0_text = text("F₀cos(ωt)").fontscale(0.017).fontfamily("Math").position(V2(7, 4.2))
-let F0_arrow = arrow1(V2(0, 0), V2(0.5, 0), 0.1).stroke("lightred").fill("lightred").strokewidth(2).position(V2(5.7, 4.2))
+let F0_arrow = arrow1(V2(0, 0), V2(0.5, 0), 0.1).stroke("lightred").fill("lightred").strokewidth(0.026).vectoreffect("none").position(V2(5.7, 4.2))
 
 let theta_text = text("θ (°)").fontfamily("Math").fontscale(0.017).position(V2(-7.6, -0.8))
 let w_text1 = text("ω (rad/s)").fontfamily("Math").fontscale(0.017).position(V2(-0.65, -4))
@@ -112,9 +116,9 @@ int.draw_function = (inp) => {
 
     let mass = square(0.6).strokewidth(0).fill("lightblue").position(mass_pos).mut()
     let sp = spring(sus_point, mass_pos, 0.2, 20, 0.13, 300).mut()
-    let force = arrow1(mass_pos, mass_pos.add(V2(F(t), 0)), 0.1).stroke("lightred").fill("lightred").strokewidth(2).mut()
+    let force = arrow1(mass_pos, mass_pos.add(V2(F(t), 0)), 0.1).stroke("lightred").fill("lightred").strokewidth(0.026).vectoreffect("none").mut()
     if (Math.abs(mass_pos.x + F(t)) > 8) {
-        force = line(mass_pos, V2(Math.sign(mass_pos.x + F(t)) * 8, mass_pos.y)).stroke("lightred").strokewidth(2).mut()
+        force = line(mass_pos, V2(Math.sign(mass_pos.x + F(t)) * 8, mass_pos.y)).stroke("lightred").strokewidth(0.026).vectoreffect("none").mut()
     }
     if (Math.abs(x(t)) >= 7.2) {
         sp.fill("#e1e1e1").stroke("#e1e1e1")
@@ -122,26 +126,26 @@ int.draw_function = (inp) => {
         mass.fill("#e1e1e1").stroke("#e1e1e1")
     }
 
-    let x_plot = plotf((t) => x(t), x_opt).stroke("blue").strokewidth(1.5)
-    let f_plot = plotf((t) => F(t), x_opt).stroke("red").strokewidth(1.5)
-    let zero_line = line(V2(0, 0).apply(theta_transf), V2(11, 0).apply(theta_transf)).stroke("gray").strokedasharray([10])
-    let pi_line = line(V2(0, -Math.PI).apply(theta_transf), V2(11, -Math.PI).apply(theta_transf)).stroke("gray").strokedasharray([10])
-    let pi2_line = line(V2(0, -Math.PI / 2).apply(theta_transf), V2(11, -Math.PI / 2).apply(theta_transf)).stroke("gray").strokedasharray([10])
-    let w0_line = line(V2(w0, -4).apply(theta_transf), V2(w0, 1).apply(theta_transf)).stroke("gray").strokedasharray([10])
+    let x_plot = plotf((t) => x(t), x_opt).stroke("blue").strokewidth(0.0199).vectoreffect("none")
+    let f_plot = plotf((t) => F(t), x_opt).stroke("red").strokewidth(0.0199).vectoreffect("none")
+    let zero_line = line(V2(0, 0).apply(theta_transf), V2(11, 0).apply(theta_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
+    let pi_line = line(V2(0, -Math.PI).apply(theta_transf), V2(11, -Math.PI).apply(theta_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
+    let pi2_line = line(V2(0, -Math.PI / 2).apply(theta_transf), V2(11, -Math.PI / 2).apply(theta_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
+    let w0_line = line(V2(w0, -4).apply(theta_transf), V2(w0, 1).apply(theta_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
 
     let w_circ = circle(0.05).strokewidth(0).fill("blue").position(V2(w, theta(w)).apply(theta_transf))
-    let w_line = line(V2(w, -4).apply(theta_transf), V2(w, 1).apply(theta_transf)).stroke("black").strokedasharray([10])
+    let w_line = line(V2(w, -4).apply(theta_transf), V2(w, 1).apply(theta_transf)).stroke("black").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
 
-    let w0_line2 = line(V2(w0, 0).apply(rho_transf), V2(w0, 20).apply(rho_transf)).stroke("gray").strokedasharray([10])
+    let w0_line2 = line(V2(w0, 0).apply(rho_transf), V2(w0, 20).apply(rho_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
     let w_circ2 = circle(0.05).strokewidth(0).fill("blue").position(V2(w, rho(w)).apply(rho_transf))
-    let w_line2 = line(V2(w, 0).apply(rho_transf), V2(w, 20).apply(rho_transf)).stroke("black").strokedasharray([10])
+    let w_line2 = line(V2(w, 0).apply(rho_transf), V2(w, 20).apply(rho_transf)).stroke("black").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
 
     let plot_lines = diagram_combine(zero_line, pi_line, pi2_line, w0_line, w_line, w0_line2, w_line2)
 
-    let rho_plot = plotf(w => rho(w), rho_opt).stroke("lightblue").strokewidth(2)
-    let theta_plot = plotf(w => theta(w), theta_opt).stroke("lightblue").strokewidth(2)
+    let rho_plot = plotf(w => rho(w), rho_opt).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
+    let theta_plot = plotf(w => theta(w), theta_opt).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
 
-    let timeline = line(V2(t, -7.2).apply(x_transf), V2(t, 7.2).apply(x_transf)).stroke("gray").strokedasharray([10])
+    let timeline = line(V2(t, -7.2).apply(x_transf), V2(t, 7.2).apply(x_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
     let pos_circ = circle(0.05).strokewidth(0).fill("blue").position(V2(t, x(t)).apply(x_transf))
     let f_circ = circle(0.05).strokewidth(0).fill("red").position(V2(t, F(t)).apply(x_transf))
 

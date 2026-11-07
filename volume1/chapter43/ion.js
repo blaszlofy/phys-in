@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, curve, line, xyaxes, xycorneraxes, plotv, plotf, xtickmark, bar, ytickmark_empty, text,
     circle
 } from "diagramatics";
@@ -13,7 +12,16 @@ let control = document.getElementById("control");
 let button = document.getElementById("restart")
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -21,8 +29,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -94,13 +104,13 @@ let path_l =  circle(0.1).strokewidth(0).fill("lightred").position(V2(0.5, -3.77
 
 let leg = diagram_combine(coll_l, part_l, coll_t, part_t, path_l, path_t).translate(V2(0.2, 0))
 
-let div = line(V2(-8, -3), V2(8, -3))
+let div = line(V2(-8, -3), V2(8, -3)).vectoreffect("none").strokewidth(0.015)
 
-const delta = 0.3
-let container = rectangle(width + 2 * delta, height + delta).position(center).strokewidth(3).stroke("gray")
+const delta = 0.05
+let container = rectangle(width + 2 * delta, height + delta).position(center).strokewidth(0.039).vectoreffect("none").stroke("gray")
 let battery = diagram_combine(
-    line(container.get_anchor("bottom-left"), container.get_anchor("top-left")).strokewidth(5),
-    line(container.get_anchor("bottom-right"), container.get_anchor("top-right")).strokewidth(5),
+    line(container.get_anchor("bottom-left"), container.get_anchor("top-left")).strokewidth(0.066).vectoreffect("none"),
+    line(container.get_anchor("bottom-right"), container.get_anchor("top-right")).strokewidth(0.066).vectoreffect("none"),
     curve([
         container.get_anchor("center-left"),
         container.get_anchor("center-left").add(V2(-0.6, 0)),
@@ -109,7 +119,7 @@ let battery = diagram_combine(
         container.get_anchor("center-right").add(V2(0.6, -height / 2 - delta - 0.4)),
         container.get_anchor("center-right").add(V2(0.6, 0)),
         container.get_anchor("center-right"),
-    ]),
+    ]).vectoreffect("none").strokewidth(0.015),
     rectangle(1.8, 0.6).position(container.get_anchor("bottom-center").add(V2(0, -0.55))).strokewidth(0).fill("lightgray"),
 )
 

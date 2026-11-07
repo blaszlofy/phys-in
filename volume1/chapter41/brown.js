@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, curve, line, xyaxes, xycorneraxes, plotv, plotf, xtickmark, bar, ytickmark_empty, text,
     circle
 } from "diagramatics";
@@ -12,7 +11,16 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -20,8 +28,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -89,14 +99,14 @@ let bigParticle = {
     v: { x: 0, y: 0, z: 0 }
 }
 
-let div = line(V2(-8, -3), V2(8, -3))
+let div = line(V2(-8, -3), V2(8, -3)).vectoreffect("none").strokewidth(0.015)
 
 let coll_l = circle(0.15).strokewidth(0).fill("lightblue").position(V2(-4, -3.45))
 let part_l = circle(0.05).strokewidth(0).fill("blue").position(V2(-4, -4.1))
 let coll_t = text("Colloidal particle").fontfamily("Math").fontscale(0.017).position(V2(-2.5, -3.45))
 let part_t = text("Gas molecule").fontfamily("Math").fontscale(0.017).position(V2(-2.7, -4.1))
 let path_t = text("Path of the colloidal particle").fontfamily("Math").fontscale(0.017).position(V2(2.5, -3.775))
-let path_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("lightred").position(V2(0, -3.775))
+let path_l = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("lightred").position(V2(0, -3.775))
 
 let leg = diagram_combine(coll_l, part_l, coll_t, part_t, path_l, path_t).translate(V2(0.2, 0))
 
@@ -306,10 +316,10 @@ function update(time) {
 
     drawCircle(V2(bigParticle.p.x, bigParticle.p.y), R * currentScale, { opacity: 1, color: "#aec7e8" })
 
-    const delta = 0.3
-    let container = rectangle(width + 2 * delta, height + delta).position(center).strokewidth(3).stroke("gray")
+    const delta = 0.05
+    let container = rectangle(width + 2 * delta, height + delta).position(center).strokewidth(0.039).vectoreffect("none").stroke("gray")
 
-    let path_diagram = curve(path).stroke("lightred").strokewidth(2)
+    let path_diagram = curve(path).stroke("lightred").strokewidth(0.026).vectoreffect("none")
 
     draw(outline, stat, container, path_diagram)
     requestAnimationFrame(update)

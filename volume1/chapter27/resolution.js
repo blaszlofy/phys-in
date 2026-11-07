@@ -15,7 +15,10 @@ let handletex = (str, conf) => {
 };
 
 let draw = (...diagrams) => {
-    draw_to_svg_element(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
     handle_tex_in_svg(canvas, handletex);
 };
 
@@ -57,7 +60,7 @@ const c = 2
 
 //STATIC
 let outline = rectangle(16, 9).strokewidth(0)
-let opt_ax = line(V2(-8, 0), V2(8, 0)).stroke("lightgray").strokedasharray([10])
+let opt_ax = line(V2(-8, 0), V2(8, 0)).stroke("lightgray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
 let lens_bound = line(V2(-4, 0), V2(0, 0)).apply(mod.subdivide(200))
 let P = circle(0.05).strokewidth(0).fill("lightblue").position(V2(-6.5, 0))
 let P_text = text("P").fontscale(0.017).fontfamily("Math").position(V2(-6.5, -0.3))
@@ -65,7 +68,7 @@ let T = circle(0.05).strokewidth(0).fill("lightred").position(V2(6.5, 0))
 let T_text = text("T").fontscale(0.017).fontfamily("Math").position(V2(6.5, -0.3))
 let stat = diagram_combine(opt_ax, P, P_text, T, T_text)
 
-let eq = text("$$D_{limit} = \\frac{\\lambda}{2 \\text{n} \\sin(\\theta)} = $$").fontsize(18).position(V2(-3.75, -3.42))
+let eq = text("$$D_{limit} = \\frac{\\lambda}{2 \\text{n} \\sin(\\theta)} = $$").fontscale(0.015).position(V2(-3.75, -3.42))
 
 let int = new Interactive(control, canvas);
 
@@ -80,19 +83,19 @@ int.draw_function = (inp) => {
 
     let theta = Math.atan2(h, Math.abs(lens_x - P.get_anchor("center-center").x));
 
-    let lens = line(V2(lens_x, -h), V2(lens_x, h)).strokewidth(2).strokelinecap("round").stroke("blue")
+    let lens = line(V2(lens_x, -h), V2(lens_x, h)).strokewidth(0.026).vectoreffect("none").strokelinecap("round").stroke("blue")
 
     let annot = [
-        annotation.length(P.get_anchor("center-center"), P_.get_anchor("center-center"), "D", -0.2, 0.1, -0.4).stroke("blue"),
-        annotation.angle([V2(lens_x, 0), P.get_anchor("center-center"), lens.get_anchor("top-center")], "θ", 0.6, 0.8).strokewidth(0).fill("lightblue")
+        annotation.length(P.get_anchor("center-center"), P_.get_anchor("center-center"), "D", -0.2, 0.1, -0.4).stroke("blue").fontscale(0.017).vectoreffect("none").strokewidth(0.02),
+        annotation.angle([V2(lens_x, 0), P.get_anchor("center-center"), lens.get_anchor("top-center")], "θ", 0.6, 0.8).strokewidth(0).fill("lightblue").fontscale(0.017)
     ]
 
     let lightrays = [
-        line(P.get_anchor("center-center"), lens.get_anchor("top-center")).strokedasharray([10]).stroke("gray"),
-        line(P.get_anchor("center-center"), lens.get_anchor("bottom-center")).strokedasharray([10]).stroke("gray"),
+        line(P.get_anchor("center-center"), lens.get_anchor("top-center")).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015),
+        line(P.get_anchor("center-center"), lens.get_anchor("bottom-center")).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015),
     ]
-    let p_top = curve([P_.get_anchor("center-center"), lens.get_anchor("top-center"), T.get_anchor("center-center")]).stroke("gray")
-    let p_bottom = curve([P_.get_anchor("center-center"), lens.get_anchor("bottom-center"), T.get_anchor("center-center")]).stroke("gray")
+    let p_top = curve([P_.get_anchor("center-center"), lens.get_anchor("top-center"), T.get_anchor("center-center")]).stroke("gray").vectoreffect("none").strokewidth(0.015)
+    let p_bottom = curve([P_.get_anchor("center-center"), lens.get_anchor("bottom-center"), T.get_anchor("center-center")]).stroke("gray").vectoreffect("none").strokewidth(0.015)
 
     lightrays.push(p_top, p_bottom)
 
@@ -102,7 +105,7 @@ int.draw_function = (inp) => {
     let L_top = p_top.path_length()
     let L_bottom = p_bottom.path_length()
 
-    let wave = line(V2(0, -0.1), V2(0, 0.1)).stroke(getLightColor(v)).strokewidth(1.5)
+    let wave = line(V2(0, -0.1), V2(0, 0.1)).stroke(getLightColor(v)).strokewidth(0.0199).vectoreffect("none")
 
     let offset = (c * t) % visual_lambda
 
@@ -131,12 +134,12 @@ int.draw_function = (inp) => {
         wave.position(V2(-3.5 - 3 * visual_lambda, 3.5)),
         text("Light paths with markers spaced by one period of oscillation (wavelength λ)").fontscale(0.017).fontfamily("Math").position(V2(1.2, 3.5)),
         text("Lens, which focuses P to T").fontscale(0.017).fontfamily("Math").position(V2(0.1, 4)),
-        line(V2(0, -0.2), V2(0, 0.2)).strokewidth(2).strokelinecap("round").stroke("blue").position(V2(-1.7, 4)),
+        line(V2(0, -0.2), V2(0, 0.2)).strokewidth(0.026).vectoreffect("none").strokelinecap("round").stroke("blue").position(V2(-1.7, 4)),
 
-        line(V2(-8, 2.7), V2(8, 2.7)),
-        line(V2(-8, -2.5), V2(8, -2.5)),
+        line(V2(-8, 2.7), V2(8, 2.7)).vectoreffect("none").strokewidth(0.015),
+        line(V2(-8, -2.5), V2(8, -2.5)).vectoreffect("none").strokewidth(0.015),
 
-        text("Assumes index of refraction n = 1 (air)").fontsize(16).fontfamily("Math").position(V2(-3.35, -4.1)),
+        text("Assumes index of refraction n = 1 (air)").fontscale(0.015).fontfamily("Math").position(V2(-3.35, -4.1)),
     )
 
     draw(outline, eq, P_, P__text, lens, ...annot, ...lightrays, stat, ...waves, notice, val, legend)

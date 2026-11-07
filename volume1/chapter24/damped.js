@@ -3,6 +3,7 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, line, V2, linspace, curve, square, arrow1, xyaxes, plotf, text, axes_transform, xycorneraxes,
+    draw_to_svg_element,
     ytickmark, circle,
 } from "diagramatics";
 
@@ -10,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0.5, sample_number = 100) {
@@ -23,19 +27,19 @@ function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0
     let b = (length - 2 * R) / a;
     let parametric_function = (t) => V2(b * t + R - R * Math.cos(t), k * R * Math.sin(t));
     let points = linspace(0, a, sample_number).map(parametric_function);
-    return curve(points).rotate(angle).translate(p1);
+    return curve(points).rotate(angle).translate(p1).vectoreffect("none").strokewidth(0.015);
 }
 
 const sus_point = V2(-7.8, 3.35)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let div1 = line(V2(-8, 2.2), V2(8, 2.2))
-let div2 = line(V2(-8, -0.5), V2(8, -0.5))
-let div3 = line(V2(-8, -3.2), V2(8, -3.2))
+let div1 = line(V2(-8, 2.2), V2(8, 2.2)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(-8, -0.5), V2(8, -0.5)).vectoreffect("none").strokewidth(0.015)
+let div3 = line(V2(-8, -3.2), V2(8, -3.2)).vectoreffect("none").strokewidth(0.015)
 
-let wall = line(V2(-7.8, 2.5), V2(-7.8, 4.2)).strokewidth(3).stroke("lightgray")
-let equilibrium = line(V2(0, 2.3), V2(0, 4.4)).strokewidth(2).stroke("lightgray").strokedasharray([10])
+let wall = line(V2(-7.8, 2.5), V2(-7.8, 4.2)).strokewidth(0.039).vectoreffect("none").stroke("lightgray")
+let equilibrium = line(V2(0, 2.3), V2(0, 4.4)).strokewidth(0.026).vectoreffect("none").stroke("lightgray").strokedasharray([0.25])
 
 let x_opt = {
     xrange: [0, 20],
@@ -55,17 +59,17 @@ let E_opt = {
     headsize: 0.1
 }
 
-let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
-let E_ax = xycorneraxes(E_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let x_ax = xyaxes(x_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
+let E_ax = xycorneraxes(E_opt).fill("black").stroke("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 
 let x_transf = axes_transform(x_opt)
 let E_transf = axes_transform(E_opt)
 
-let F_leg = line(V2(0, 0), V2(0.5,  0)).stroke("red").strokewidth(1.5).position(V2(-6.3, 0))
+let F_leg = line(V2(0, 0), V2(0.5,  0)).stroke("red").strokewidth(0.0199).vectoreffect("none").position(V2(-6.3, 0))
 let F_text = text("E(t)").fontscale(0.017).fontfamily("Math").position(V2(-5.5, 0))
-let E_approx_leg = line(V2(0, 0), V2(0.5,  0)).stroke("gray").strokewidth(1.5).strokedasharray([10]).position(V2(-4.9, 0))
+let E_approx_leg = line(V2(0, 0), V2(0.5,  0)).stroke("gray").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2]).position(V2(-4.9, 0))
 let E_approx_text = text("Energy approximation for high Q values").fontscale(0.017).fontfamily("Math").position(V2(-2, 0))
-let x_leg = line(V2(0, 0), V2(0.5,  0)).stroke("blue").strokewidth(1.5).position(V2(-7.8, 0))
+let x_leg = line(V2(0, 0), V2(0.5,  0)).stroke("blue").strokewidth(0.0199).vectoreffect("none").position(V2(-7.8, 0))
 let x_text = text("x(t)").fontscale(0.017).fontfamily("Math").position(V2(-7, 0))
 
 let leg = diagram_combine(F_leg, F_text, x_leg, x_text, E_approx_leg, E_approx_text).translate(V2(2, -3.85))
@@ -134,12 +138,12 @@ int.draw_function = (inp) => {
         mass.fill("#e1e1e1").stroke("#e1e1e1")
     }
 
-    let x_plot = plotf((t) => x(t, A, w0, gamma), x_opt).stroke("blue").strokewidth(1.5)
-    let E_plot = plotf((t) => E(t, A, w0, gamma), E_opt).stroke("red").strokewidth(1.5)
-    let E_approx_plot = plotf((t) => 1 / 2 * w0**2 * A**2 * Math.exp(-2 * gamma * t), E_opt).stroke("gray").strokewidth(1.5).strokedasharray([10])
+    let x_plot = plotf((t) => x(t, A, w0, gamma), x_opt).stroke("blue").strokewidth(0.0199).vectoreffect("none")
+    let E_plot = plotf((t) => E(t, A, w0, gamma), E_opt).stroke("red").strokewidth(0.0199).vectoreffect("none")
+    let E_approx_plot = plotf((t) => 1 / 2 * w0**2 * A**2 * Math.exp(-2 * gamma * t), E_opt).stroke("gray").strokewidth(0.0199).vectoreffect("none").strokedasharray([0.25])
 
-    let timeline = line(V2(t, -7.2).apply(x_transf), V2(t, 7.2).apply(x_transf)).stroke("gray").strokedasharray([10])
-    let timeline2 = line(V2(t, 0).apply(E_transf), V2(t, 35).apply(E_transf)).stroke("gray").strokedasharray([10])
+    let timeline = line(V2(t, -7.2).apply(x_transf), V2(t, 7.2).apply(x_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
+    let timeline2 = line(V2(t, 0).apply(E_transf), V2(t, 35).apply(E_transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
     let pos_circ = circle(0.05).strokewidth(0).fill("blue").position(V2(t, _x).apply(x_transf))
     let en_circ = circle(0.05).strokewidth(0).fill("red").position(V2(t, _E).apply(E_transf))
 

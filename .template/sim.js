@@ -4,14 +4,17 @@ import {
     diagram_combine,
     Interactive,
     draw_to_svg_element,
-    handle_tex_in_svg
+    handle_tex_in_svg,
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 let canvas_tex = document.getElementById("tex");

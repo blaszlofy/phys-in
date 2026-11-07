@@ -11,7 +11,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 //SOME FUNCTION FROM THE WEB TO GET THE COLOR BASED ON FREQUENCY IN THZ
@@ -73,10 +76,10 @@ const sc_bottom = V2(-1, -0.3)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let div1 = line(V2(-8, -0.5), V2(8, -0.5))
-let div2 = line(V2(1.3, 4.5), V2(1.3, -0.5))
+let div1 = line(V2(-8, -0.5), V2(8, -0.5)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(1.3, 4.5), V2(1.3, -0.5)).vectoreffect("none").strokewidth(0.015)
 
-let screen = line(sc_top, sc_bottom).strokewidth(2)
+let screen = line(sc_top, sc_bottom).strokewidth(0.026).vectoreffect("none")
 let bound = line(sc_top, sc_bottom).apply(mod.subdivide(200))
 
 let ax_opt = {
@@ -89,16 +92,16 @@ let ax_opt = {
     n_sample: 200,
 }
 let transf = axes_transform(ax_opt)
-let ax = xyaxes(ax_opt).fill("black").stroke("black")
+let ax = xyaxes(ax_opt).fill("black").stroke("black").vectoreffect("none").strokewidth(0.015)
 
 let li_t = text("Incoming light from a distant source").fontscale(0.017).fontfamily("Math").position(V2(4.49, 4.1))
-let op = line(V2(0, 0), V2(0.5, 0)).stroke("lightgray").strokewidth(30).position(V2(1.6, 3.5))
+let op = line(V2(0, 0), V2(0.5, 0)).stroke("lightgray").strokewidth(0.399).vectoreffect("none").position(V2(1.6, 3.5))
 let op_t = text("Opaque object").fontscale(0.017).fontfamily("Math").position(V2(3.2, 3.5))
-let sc = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(2).position(V2(1.6, 2.9))
+let sc = line(V2(0, 0), V2(0.5, 0)).stroke("black").strokewidth(0.026).vectoreffect("none").position(V2(1.6, 2.9))
 let sc_t = text("Screen at distance s behind the object").fontscale(0.017).fontfamily("Math").position(V2(4.52, 2.9))
-let ip = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(1.6, 2.3))
+let ip = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(1.6, 2.3))
 let ip_t = text("Intensity pattern on the screen").fontscale(0.017).fontfamily("Math").position(V2(4.16, 2.3))
-let c = arrow1(V2(0, 0), V2(0.5, 0), 0.05).stroke("black").strokewidth(1).position(V2(1.6, 1.7))
+let c = arrow1(V2(0, 0), V2(0.5, 0), 0.05).stroke("black").strokewidth(0.015).vectoreffect("none").position(V2(1.6, 1.7))
 let c_t = text("'Amplitude vectors' from the many").fontscale(0.017).fontfamily("Math").position(V2(4.37, 1.7))
 let c_t2 = text("secondary sources 'imagined'").fontscale(0.017).fontfamily("Math").position(V2(4.11, 1.3))
 let c_t3 = text("in open-space above the opaque object").fontscale(0.017).fontfamily("Math").position(V2(4.61, 0.9))
@@ -131,16 +134,16 @@ function create_cornu_vectors(v_start, v_end, n, active_v_min, scale = 5) {
         if (is_active) a_end = next
 
         if (is_active) {
-            vecs.push(arrow1(curr, next, 0.05).stroke("black").fill("black").strokewidth(1))
+            vecs.push(arrow1(curr, next, 0.05).stroke("black").fill("black").strokewidth(0.015).vectoreffect("none"))
         } else {
-            vecs.push(arrow1(curr, next, 0.05).stroke("lightgray").fill("lightgray").strokewidth(1).opacity(0.25))
+            vecs.push(arrow1(curr, next, 0.05).stroke("lightgray").fill("lightgray").strokewidth(0.015).vectoreffect("none").opacity(0.25))
         }
 
         curr = next
     }
 
     if (a_start && a_end) {
-        vecs.push(arrow1(a_start, a_end, 0.15).strokewidth(2).fill("blue").stroke("blue"))
+        vecs.push(arrow1(a_start, a_end, 0.15).strokewidth(0.026).vectoreffect("none").fill("blue").stroke("blue"))
     }
 
     return diagram_combine(...vecs)
@@ -157,21 +160,21 @@ int.draw_function = (inp) => {
 
     let cornu = create_cornu_vectors(-6, 6, 100, -u).position(V2(-4, -2.2))
 
-    let timeline = line(V2(-y, 0).apply(transf), V2(-y, 1.5).apply(transf)).strokedasharray([10]).stroke("gray")
+    let timeline = line(V2(-y, 0).apply(transf), V2(-y, 1.5).apply(transf)).strokedasharray([0.25]).stroke("gray").vectoreffect("none").strokewidth(0.015)
     let val = circle(0.05).strokewidth(0).fill("blue").position(V2(-y, fresnel_intensity(u)).apply(transf))
-    let intensity = plotf(x => fresnel_intensity(-x * scale), ax_opt).stroke("blue").strokewidth(2)
+    let intensity = plotf(x => fresnel_intensity(-x * scale), ax_opt).stroke("blue").strokewidth(0.026).vectoreffect("none")
     let pl = diagram_combine(ax, intensity, timeline, val).move_origin("bottom-center").position(sc_bottom.add(sc_top).scale(0.5).add(V2(0.4, 0))).rotate(-Math.PI / 2)
 
     let opaque = line(V2(sc_bottom.x - s * 2, sc_bottom.y - 0.2), V2(sc_top.x - s * 2, sc_top.y - (sc_top.y - sc_bottom.y) / 2))
-        .strokewidth(30).stroke("lightgray")
+        .strokewidth(0.399).vectoreffect("none").stroke("lightgray")
 
     let col = getLightColor(299792 / inp["λ"])
     let light = []
     for (let i = 0; i < 10; i++) {
         let y = -0.2 + 4.85 / 10 * i
-        light.push(arrow1(V2(-7.95, y), V2(-7.4, y), 0.05).stroke(col).fill(col).strokewidth(2))
+        light.push(arrow1(V2(-7.95, y), V2(-7.4, y), 0.05).stroke(col).fill(col).strokewidth(0.026).vectoreffect("none"))
     }
-    let li = arrow1(V2(0, 0), V2(0.5, 0), 0.05).stroke(col).fill(col).strokewidth(2).position(V2(1.6, 4.1)).translate(V2(0.4, -0.5))
+    let li = arrow1(V2(0, 0), V2(0.5, 0), 0.05).stroke(col).fill(col).strokewidth(0.026).vectoreffect("none").position(V2(1.6, 4.1)).translate(V2(0.4, -0.5))
 
     let p = text("P").fontfamily("Math").fontscale(0.017).position(inp["x"].add(V2(-0.5, 0)))
 

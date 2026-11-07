@@ -65,9 +65,9 @@ function colorLerp(min, max, value) {
 }
 
 let outline = rectangle_corner(V2(-8, -6.5), V2(8, 4.5)).strokewidth(0)
-let div1 = line(V2(-8, 1), V2(8, 1))
-let div3 = line(V2(-8, -3), V2(8, -3))
-let div2 = line(V2(3, 4.5), V2(3, 1))
+let div1 = line(V2(-8, 1), V2(8, 1)).vectoreffect("none").strokewidth(0.015)
+let div3 = line(V2(-8, -3), V2(8, -3)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(3, 4.5), V2(3, 1)).vectoreffect("none").strokewidth(0.015)
 
 let x_opt = {
     xrange: [0, 10],
@@ -76,7 +76,7 @@ let x_opt = {
     bbox: [V2(-6, 1.7), V2(1, 1.7)],
     headsize: 0
 }
-let x_line = xycorneraxes(x_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
+let x_line = xycorneraxes(x_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black").vectoreffect("none").strokewidth(0.015)
 let A_bound = line(x_opt.bbox[0].add(V2(0, 1.5)), x_opt.bbox[0].add(V2(0, 2))).apply(mod.subdivide(40))
 let B_bound = line(x_opt.bbox[1].add(V2(0, 1.5)), x_opt.bbox[1].add(V2(0, 2))).apply(mod.subdivide(40))
 let transf_x = axes_transform(x_opt)
@@ -90,16 +90,16 @@ let ax_opt = {
     headsize: 0.1
 }
 let transf_coord = axes_transform(ax_opt)
-let ax = xycorneraxes(ax_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black")
+let ax = xycorneraxes(ax_opt).fontfamily("Math").fontscale(0.017).fill("black").stroke("black").textfill("black").vectoreffect("none").strokewidth(0.015)
 
 let x_leg = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(1.2, 1.9))
 let x_leg2 = text("x (m)").fontfamily("Math").fontscale(0.017).position(V2(7.5, -6.25))
 let t_leg = text("t (3.3 ⋅ 10⁻⁹ s)").fontfamily("Math").fontscale(0.017).position(V2(-7.1, -3.3))
 
-let dash = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).strokedasharray([10]).position(V2(3.4, 4))
-let colored = line(V2(0, 0), V2(0.5, 0)).strokewidth(1.5).stroke("cyan").position(V2(3.4, 3.4))
-let act = line(V2(0, 0), V2(0.5, 0)).strokewidth(8).stroke("lightgray").position(V2(3.4, 2.4))
-let inact = line(V2(0, 0), V2(0.5, 0)).strokewidth(8).stroke("gray").position(V2(3.4, 1.9))
+let dash = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.0199).vectoreffect("none").strokedasharray([0.2]).position(V2(3.4, 4))
+let colored = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.0199).vectoreffect("none").stroke("cyan").position(V2(3.4, 3.4))
+let act = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.106).vectoreffect("none").stroke("lightgray").position(V2(3.4, 2.4))
+let inact = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.106).vectoreffect("none").stroke("gray").position(V2(3.4, 1.9))
 let dash_text = text("Path that takes the shortest time").fontfamily("Math").fontscale(0.017).position(V2(5.84, 4))
 let col_text = text("Other paths colored based on").fontfamily("Math").fontscale(0.017).position(V2(5.7, 3.4))
 let col_text2 = text("the time light takes to travel").fontfamily("Math").fontscale(0.017).position(V2(5.6, 3))
@@ -139,7 +139,7 @@ function create_vectors(A, B, n, m_left_idx, m_right_idx, user_idx) {
         if (pdata[i].active && !a_start) a_start = curr
         if (pdata[i].active) a_end = next
 
-        let arr = arrow1(curr, next, 0.05).stroke(pdata[i].user ? "red" : (pdata[i].active ? "black" : "lightgray")).strokewidth(pdata[i].user ? 3 : 1).mut()
+        let arr = arrow1(curr, next, 0.05).stroke(pdata[i].user ? "red" : (pdata[i].active ? "black" : "lightgray")).strokewidth(pdata[i].user ? 0.039 : 0.015).vectoreffect("none").mut()
         if (!pdata[i].active) arr.opacity(0.25)
 
         vecs.push(arr)
@@ -147,7 +147,7 @@ function create_vectors(A, B, n, m_left_idx, m_right_idx, user_idx) {
     }
 
     if (a_start && a_end) {
-        vecs.push(arrow1(a_start, a_end, 0.2).strokewidth(2).fill("black").stroke("black").mut())
+        vecs.push(arrow1(a_start, a_end, 0.2).strokewidth(0.026).vectoreffect("none").fill("black").stroke("black").mut())
     }
 
     return diagram_combine(...vecs)
@@ -208,13 +208,13 @@ int.draw_function = (inp) => {
     let timeplot = []
 
     if (m_left_data > 0) {
-        timeplot.push(plotf(f, {...ax_opt, xrange: [0, m_left_data], bbox: [V2(-7.5, -6), V2(-7.5 + m_left_data * 1.5, -3.5)]}).strokewidth(2).stroke("blue").opacity(0.15).mut())
+        timeplot.push(plotf(f, {...ax_opt, xrange: [0, m_left_data], bbox: [V2(-7.5, -6), V2(-7.5 + m_left_data * 1.5, -3.5)]}).strokewidth(0.026).vectoreffect("none").stroke("blue").opacity(0.15).mut())
     }
     if (m_right_data > m_left_data) {
-        timeplot.push(plotf(f, {...ax_opt, xrange: [m_left_data, m_right_data], bbox: [V2(-7.5 + m_left_data * 1.5, -6), V2(-7.5 + m_right_data * 1.5, -3.5)]}).strokewidth(2).stroke("blue").mut())
+        timeplot.push(plotf(f, {...ax_opt, xrange: [m_left_data, m_right_data], bbox: [V2(-7.5 + m_left_data * 1.5, -6), V2(-7.5 + m_right_data * 1.5, -3.5)]}).strokewidth(0.026).vectoreffect("none").stroke("blue").mut())
     }
     if (10 > m_right_data) {
-        timeplot.push(plotf(f, {...ax_opt, xrange: [m_right_data, 10], bbox: [V2(-7.5 + m_right_data * 1.5, -6), V2(7.5, -3.5)]}).strokewidth(2).stroke("blue").opacity(0.15).mut())
+        timeplot.push(plotf(f, {...ax_opt, xrange: [m_right_data, 10], bbox: [V2(-7.5 + m_right_data * 1.5, -6), V2(7.5, -3.5)]}).strokewidth(0.026).vectoreffect("none").stroke("blue").opacity(0.15).mut())
     }
 
     let P_user = V2(sx.data, 0).apply(transf_x)
@@ -229,16 +229,16 @@ int.draw_function = (inp) => {
         create_vectors(A, B, n, m_left_idx, m_right_idx, sx.idx).position(V2(-2.7, -1)),
         ...sorted_paths, ...timeplot,
 
-        line(V2(sx.data, ax_opt.yrange[0]).apply(transf_coord), V2(sx.data, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([10]).stroke("gray"),
+        line(V2(sx.data, ax_opt.yrange[0]).apply(transf_coord), V2(sx.data, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([0.2]).stroke("gray").vectoreffect("none").strokewidth(0.015),
         circle(0.05).position(V2(sx.data, user_t).apply(transf_coord)).strokewidth(0).fill("blue"),
         text("A").fontfamily("Math").fontscale(0.017).position(A.add(V2(-0.4, 0))),
         text("B").fontfamily("Math").fontscale(0.017).position(B.add(V2(0.4, 0))),
 
-        curve([A, V2(ideal_x_bbox, x_opt.bbox[0].y), B]).strokewidth(1.5).stroke("black").strokedasharray([10]),
-        line(V2(ideal_x_data, ax_opt.yrange[0]).apply(transf_coord), V2(ideal_x_data, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([10]).stroke("red"),
+        curve([A, V2(ideal_x_bbox, x_opt.bbox[0].y), B]).strokewidth(0.0199).vectoreffect("none").stroke("black").strokedasharray([0.2]),
+        line(V2(ideal_x_data, ax_opt.yrange[0]).apply(transf_coord), V2(ideal_x_data, ax_opt.yrange[1]).apply(transf_coord)).strokedasharray([0.25]).stroke("red").vectoreffect("none").strokewidth(0.015),
         circle(0.05).position(V2(ideal_x_data, ideal_t).apply(transf_coord)).strokewidth(0).fill("red"),
         text("C").fontfamily("Math").fontscale(0.017).position(V2(ideal_x_data, ideal_t).apply(transf_coord).add(V2(0.2, 0.3))),
-        curve([A, P_user, B]).strokewidth(1).stroke("gray").strokedasharray([10])
+        curve([A, P_user, B]).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
     )
 }
 

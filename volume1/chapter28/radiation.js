@@ -12,7 +12,10 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function get_retarded_time(x, y, t, pos, c) {
@@ -48,20 +51,20 @@ let ax2_opt = {
 let transf2 = axes_transform(ax2_opt)
 
 let outline = rectangle(16, 9).strokewidth(0);
-let div1 = line(V2(-8, -1), V2(8 , -1))
-let div2 = line(V2(-8, 2.5), V2(8 , 2.5))
+let div1 = line(V2(-8, -1), V2(8 , -1)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(-8, 2.5), V2(8 , 2.5)).vectoreffect("none").strokewidth(0.015)
 
-let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
-let ax2 = xyaxes(ax2_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
+let ax2 = xyaxes(ax2_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 
-let t1 = text("*").fontsize(30).fontfamily("Math").position(V2(7.6, 2.1)).fontweight("bold")
-let t2 = text("**").fontsize(30).fontfamily("Math").position(V2(7.6, -1.4)).fontweight("bold")
+let t1 = text("*").fontscale(0.02).fontfamily("Math").position(V2(7.6, 2.1)).fontweight("bold")
+let t2 = text("**").fontscale(0.02).fontfamily("Math").position(V2(7.6, -1.4)).fontweight("bold")
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-5.5, 4))
 let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(-3.9, 4))
-let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-5.725, 3.1))
+let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none").position(V2(-5.725, 3.1))
 let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-3.05, 3.1))
-let pl = line(V2(0, 0), V2(0.5, 0)).strokewidth(2).stroke("lightblue").position(V2(0.5, 3.45))
+let pl = line(V2(0, 0), V2(0.5, 0)).strokewidth(0.026).vectoreffect("none").stroke("lightblue").position(V2(0.5, 3.45))
 let pl_t = text("Illustrative plot, proportional to 1/x").fontscale(0.017).fontfamily("Math").position(V2(3.4, 3.45))
 
 let x = text("x (m)").fontscale(0.017).fontfamily("Math").position(V2(7.5, 0.45))
@@ -88,7 +91,7 @@ int.draw_function = (inp) => {
         let r = i * step + dist
         if (r > ax1_opt.xrange[1]) continue
         let E = -(k / (c**2 * r)) * a_y(t - r / c)
-        E1.push(arrow1(V2(r, 0).apply(transf1), V2(r, E).apply(transf1), 0.05).fill("red").stroke("red").strokewidth(2))
+        E1.push(arrow1(V2(r, 0).apply(transf1), V2(r, E).apply(transf1), 0.05).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none"))
     }
 
     //FEYNMAN PROVIDES THE HEAVISIDE-FEYNMAN FORMULA, BUT FOR NOT WANTING TO DO NUMERICAL DERIVATIVES, HERE THE LIÉNARD-WIECHERT FORMULA IS USED
@@ -116,16 +119,16 @@ int.draw_function = (inp) => {
 
         if (out_of_bound) {
             E = E.normalize().scale(Math.sign(E.y) * ax2_opt.yrange[1] / Math.sin(E.angle()))
-            E2.push(arrow1(r.apply(transf2), r.add(E).apply(transf2), 0).fill("red").stroke("red").strokewidth(2))
+            E2.push(arrow1(r.apply(transf2), r.add(E).apply(transf2), 0).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none"))
             continue
         }
 
-        E2.push(arrow1(r.apply(transf2), r.add(E).apply(transf2), 0.05).fill("red").stroke("red").strokewidth(2))
+        E2.push(arrow1(r.apply(transf2), r.add(E).apply(transf2), 0.05).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none"))
     }
 
-    let p1 = plotf(x => k * A * w**2/(x * c**2), {...ax1_opt, xrange: [dist, 60], bbox: [V2(V2(dist, 0).apply(transf1).x, -4.4), V2(7.8, -1.1)]}).stroke("lightblue").strokewidth(2)
-    let p12 = plotf(x => k * A * w**2/(x * c**2), {...ax1_opt, xrange: [0, dist], bbox: [V2(-7.5, -4.4), V2(V2(dist, 0).apply(transf1).x, -1.1)]}).stroke("lightblue").strokewidth(2).strokedasharray([10])
-    let p2 = plotf(x => k * A * w**2/(x * c**2), ax2_opt).stroke("lightblue").strokewidth(2)
+    let p1 = plotf(x => k * A * w**2/(x * c**2), {...ax1_opt, xrange: [dist, 60], bbox: [V2(V2(dist, 0).apply(transf1).x, -4.4), V2(7.8, -1.1)]}).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
+    let p12 = plotf(x => k * A * w**2/(x * c**2), {...ax1_opt, xrange: [0, dist], bbox: [V2(-7.5, -4.4), V2(V2(dist, 0).apply(transf1).x, -1.1)]}).stroke("lightblue").strokewidth(0.026).vectoreffect("none").strokedasharray([0.2])
+    let p2 = plotf(x => k * A * w**2/(x * c**2), ax2_opt).stroke("lightblue").strokewidth(0.026).vectoreffect("none")
 
     let dotdot = distribute_horizontal_and_align([
         circle(0.03).strokewidth(0).fill("lightred"),

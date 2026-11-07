@@ -12,7 +12,10 @@ let control = document.getElementById("control");
 let button = document.getElementById("sound")
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 let normalize = (val, max, min) => (val - min) / (max - min)
@@ -35,11 +38,11 @@ let ax_opt = {
     headsize: 0.1,
     n_sample: 300
 }
-let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017)
-let div = line(V2(-8, -2.5), V2(8, -2.5))
+let ax = xyaxes(ax_opt).stroke("black").fill("black").textfill("black").fontfamily("Math").fontscale(0.017).vectoreffect("none").strokewidth(0.015)
+let div = line(V2(-8, -2.5), V2(8, -2.5)).vectoreffect("none").strokewidth(0.015)
 
-let harm_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(-2.7, -3.1))
-let sig_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-2.7, -3.9))
+let harm_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(0.026).vectoreffect("none").position(V2(-2.7, -3.1))
+let sig_l = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(-2.7, -3.9))
 let harm_t = text("Harmonics with volume control").fontfamily("Math").fontscale(0.017).position(V2(0, -3.1))
 let sig_t = text("Audio signal, sum of the harmonics (normalized)").fontfamily("Math").fontscale(0.017).position(V2(1.01, -3.9))
 
@@ -66,13 +69,13 @@ int.draw_function = (inp) => {
         norm[i] = normalize(pos[i].y, y + height, y)
         total += norm[i]
 
-        let ol = rectangle(0.3, height).move_origin("bottom-center").position(V2(pos[i].x, y)).strokewidth(2).stroke("lightgray")
+        let ol = rectangle(0.3, height).move_origin("bottom-center").position(V2(pos[i].x, y)).strokewidth(0.026).vectoreffect("none").stroke("lightgray")
         let br = rectangle(0.3, pos[i].y - y).move_origin("bottom-center").position(V2(pos[i].x, y)).strokewidth(0).fill("lightblue")
         let tx = text(((i + 1) === 1 ? "" : (i + 1)) + "ω").fontscale(0.017).fontfamily("Math").position(V2(pos[i].x, y - 0.4))
         bars.push(br, ol, tx)
 
         plots.push(
-            plotf((x) => norm[i] * Math.sin((i + 1) * x), ax_opt).stroke("lightblue").opacity(1 / Math.sqrt((i + 1))).strokewidth(2)
+            plotf((x) => norm[i] * Math.sin((i + 1) * x), ax_opt).stroke("lightblue").opacity(1 / Math.sqrt((i + 1))).strokewidth(0.026).vectoreffect("none")
         )
 
         if (ctx) {
@@ -89,7 +92,7 @@ int.draw_function = (inp) => {
             sum += norm[i] * Math.sin((i + 1) * x)
         }
         return sum / total
-    }, ax_opt).strokewidth(2).stroke("blue")
+    }, ax_opt).strokewidth(0.026).vectoreffect("none").stroke("blue")
 
     draw(outline, ...bars, stat, ...plots, signal)
 }

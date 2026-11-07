@@ -3,13 +3,17 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, V2, line, arc, linspace, curve, circle, axes_transform, xyaxes, xtickmark, ytickmark, TAG, plotf, text,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0.5, sample_number = 100) {
@@ -22,16 +26,16 @@ function spring(p1, p2, radius = 1, coil_number = 10, separation_coefficient = 0
     let b = (length - 2 * R) / a;
     let parametric_function = (t) => V2(b * t + R - R * Math.cos(t), k * R * Math.sin(t));
     let points = linspace(0, a, sample_number).map(parametric_function);
-    return curve(points).rotate(angle).translate(p1);
+    return curve(points).rotate(angle).translate(p1).vectoreffect("none").strokewidth(0.015);
 }
 
 const center = V2(-3, 4)
 const dist = 5
 const g = 9.81
 
-let top = line(center.add(V2(-dist / 2 - 2, 0)), center.add(V2(dist / 2 + 2, 0))).strokewidth(3).stroke("gray")
-let ang1 = arc(1.5, Math.PI / 4).rotate(-Math.PI / 2 - Math.PI / 8).position(center.add(V2(-dist / 2, 0))).stroke("gray").strokedasharray([11])
-let ang2 = arc(1.5, Math.PI / 4).rotate(-Math.PI / 2 - Math.PI / 8).position(center.add(V2(dist / 2, 0))).stroke("gray").strokedasharray([11])
+let top = line(center.add(V2(-dist / 2 - 2, 0)), center.add(V2(dist / 2 + 2, 0))).strokewidth(0.039).vectoreffect("none").stroke("gray")
+let ang1 = arc(1.5, Math.PI / 4).rotate(-Math.PI / 2 - Math.PI / 8).position(center.add(V2(-dist / 2, 0))).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
+let ang2 = arc(1.5, Math.PI / 4).rotate(-Math.PI / 2 - Math.PI / 8).position(center.add(V2(dist / 2, 0))).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
 
 let ax_opt = {
     xrange: [0, 20],
@@ -42,20 +46,20 @@ let ax_opt = {
     n_sample: 300
 }
 let transf = axes_transform(ax_opt)
-let ax = xyaxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black")
+let ax = xyaxes(ax_opt).fontscale(0.017).fontfamily("Math").textfill("black").stroke("black").fill("black").vectoreffect("none").strokewidth(0.015)
 let tick1 = ytickmark(Math.PI / 16, 0, "𝜋/16", ax_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
-    .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.05, 0)))
+    .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.05, 0))).vectoreffect("none").strokewidth(0.015)
 let tick2 = ytickmark(-Math.PI / 16, 0, "-𝜋/16", ax_opt).fontfamily("Math").fontscale(0.017).textfill("black").stroke("black")
-    .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.05, 0)))
+    .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.05, 0))).vectoreffect("none").strokewidth(0.015)
 
-let div1 = line(V2(-8, -1), V2(8, -1))
-let div2 = line(V2(2, 4.5), V2(2, -1))
+let div1 = line(V2(-8, -1), V2(8, -1)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(2, 4.5), V2(2, -1)).vectoreffect("none").strokewidth(0.015)
 
 let t_t = text("t (s)").fontscale(0.017).fontfamily("Math").position(V2(7.7, -2.75))
 let ang_t = text("θ").fontscale(0.017).fontfamily("Math").position(V2(-7.5, -1.35))
 
-let pend1_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(2).position(V2(2.5, 4))
-let pend2_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(2).position(V2(2.5, 3))
+let pend1_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightblue").strokewidth(0.026).vectoreffect("none").position(V2(2.5, 4))
+let pend2_l = line(V2(0, 0), V2(0.5, 0)).stroke("lightred").strokewidth(0.026).vectoreffect("none").position(V2(2.5, 3))
 let pend1_t = text("Angle of the blue pendulum").fontscale(0.017).fontfamily("Math").position(V2(4.89, 4))
 let pend1_t2 = text("from the vertical").fontscale(0.017).fontfamily("Math").position(V2(4.24, 3.6))
 let pend2_t = text("Angle of the red pendulum").fontscale(0.017).fontfamily("Math").position(V2(4.84, 3))
@@ -96,18 +100,18 @@ int.draw_function = (inp) => {
     let pos1 = center.add(V2(-dist / 2, 0)).add(dir1.scale(l))
     let pos2 = center.add(V2(dist / 2, 0)).add(dir2.scale(l))
 
-    let rope1 = line(center.add(V2(-dist / 2, 0)), pos1).stroke("lightgray").strokewidth(3)
-    let rope2 = line(center.add(V2(dist / 2, 0)), pos2).stroke("lightgray").strokewidth(3)
+    let rope1 = line(center.add(V2(-dist / 2, 0)), pos1).stroke("lightgray").strokewidth(0.039).vectoreffect("none")
+    let rope2 = line(center.add(V2(dist / 2, 0)), pos2).stroke("lightgray").strokewidth(0.039).vectoreffect("none")
 
     let mass1 = circle(Math.cbrt(m) * 0.15).strokewidth(0).fill("lightblue").position(pos1)
     let mass2 = circle(Math.cbrt(m) * 0.15).strokewidth(0).fill("lightred").position(pos2)
 
     let sp = spring(center.add(V2(-dist / 2, 0)).add(dir1.scale(l)), center.add(V2(dist / 2, 0)).add(dir2.scale(l)), 0.15, 20, 0.12, 300)
 
-    let plot1 = plotf((time) => t1(time), ax_opt).strokewidth(2).stroke("lightblue")
-    let plot2 = plotf((time) => t2(time), ax_opt).strokewidth(2).stroke("lightred")
+    let plot1 = plotf((time) => t1(time), ax_opt).strokewidth(0.026).vectoreffect("none").stroke("lightblue")
+    let plot2 = plotf((time) => t2(time), ax_opt).strokewidth(0.026).vectoreffect("none").stroke("lightred")
 
-    let timeline = line(V2(t, -Math.PI / 8).apply(transf), V2(t, Math.PI / 8).apply(transf)).stroke("gray").strokedasharray([10])
+    let timeline = line(V2(t, -Math.PI / 8).apply(transf), V2(t, Math.PI / 8).apply(transf)).stroke("gray").strokedasharray([0.25]).vectoreffect("none").strokewidth(0.015)
     let point1 = circle(0.05).strokewidth(0).fill("blue").position(V2(t, t1(t)).apply(transf))
     let point2 = circle(0.05).strokewidth(0).fill("red").position(V2(t, t2(t)).apply(transf))
 

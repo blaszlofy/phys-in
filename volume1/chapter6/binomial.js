@@ -3,13 +3,17 @@ import {
     draw_to_svg,
     diagram_combine,
     Interactive, V2, bar, range_inc, TAG, plotf,
+    draw_to_svg_element
 } from "diagramatics";
 
 let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: true,
+        padding: 0,
+    });
 };
 
 function calculateRandomFrequencies(c, n_log) {
@@ -94,10 +98,10 @@ int.draw_function = (inp) => {
     }
 
     let dataplot = bar.plot(data, bar_op).strokewidth(0).fill("lightblue")
-    let binom_plot = plotf(x => normalCurve(x, c, n_log), ax_op).strokedasharray([10])
+    let binom_plot = plotf(x => normalCurve(x, c, n_log), ax_op).strokedasharray([0.3]).vectoreffect("none").strokewidth(0.015)
 
-    let y_ax = bar.yaxes(data, bar_op).apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.1, 0)))
-    let x_ax = bar.xaxes(range_inc(0, c, 1).map((val) => val % (c > 60 ? 10 : c > 20 ? 5 : 2) === 0 ? String(val) : ""), bar_op)
+    let y_ax = bar.yaxes(data, bar_op).apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.1, 0))).vectoreffect("none").strokewidth(0.015)
+    let x_ax = bar.xaxes(range_inc(0, c, 1).map((val) => val % (c > 60 ? 10 : c > 20 ? 5 : 2) === 0 ? String(val) : ""), bar_op).vectoreffect("none").strokewidth(0.015)
     let axes = diagram_combine(y_ax, x_ax).fontfamily("Math").fontscale(0.017).stroke("black").textfill("black")
 
     draw(outline, dataplot, axes, binom_plot)

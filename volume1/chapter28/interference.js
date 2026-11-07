@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, line, xyaxes, circle, axes_transform, arrow1, text, Vdir, mod, annotation, to_radian
 } from "diagramatics";
 
@@ -11,7 +10,16 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -19,8 +27,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
     redraw()
 }
 window.addEventListener('resize', resizeCanvas);
@@ -105,16 +115,16 @@ let transf = axes_transform(ax1_opt)
 
 let outline = rectangle(16, 9).strokewidth(0);
 
-let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black")
+let ax1 = xyaxes(ax1_opt).stroke("black").fill("black").fontfamily("Math").fontscale(0.017).textfill("black").vectoreffect("none").strokewidth(0.015)
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-6.9, 4))
 let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 4))
-let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-7.15, 3.1))
+let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none").position(V2(-7.15, 3.1))
 let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 3.1))
 let D = circle(0.08).strokewidth(0).fill("red").position(V2(-6.9, 2.2))
 let D2 = circle(0.2).strokewidth(0).fill("lightred").position(V2(-6.9, 2.2))
 let D_t = text("Point D").fontscale(0.017).fontfamily("Math").position(V2(-6, 2.2))
-let evec2 = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("green").stroke("green").strokewidth(2).position(V2(-7.15, 1.3))
+let evec2 = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("green").stroke("green").strokewidth(0.026).vectoreffect("none").position(V2(-7.15, 1.3))
 let evec2_t = text("Value of the electric field at point D").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 1.3))
 let evec2_t2 = text("(scaled up for visibility)").fontscale(0.017).fontfamily("Math").position(V2(-5, 0.9))
 
@@ -124,7 +134,7 @@ let y_l = text("y (m)").fontscale(0.017).fontfamily("Math").position(V2(center.x
 
 let bound = circle(radius).position(center).apply(mod.subdivide(200))
 
-let stat = diagram_combine(ax1, x_l, y_l, line(V2(2.4 - max, 4.5), V2(2.4 - max, -4.5)))
+let stat = diagram_combine(ax1, x_l, y_l, line(V2(2.4 - max, 4.5), V2(2.4 - max, -4.5)).vectoreffect("none").strokewidth(0.015))
 let leg = diagram_combine(ch, ch_t, evec, evec_t, evec2, evec2_t, evec2_t2, D2, D, D_t).translate(V2(0, -2.4))
 
 let int = new Interactive(control, canvas);
@@ -185,10 +195,10 @@ int.draw_function = (inp) => {
 
     let E = -(k / (c**2 * r1)) * a_y1(t - r1 / c) * Math.cos(dir1) + -(k / (c**2 * r2)) * a_y2(t - r2 / c) * Math.cos(dir2)
 
-    let ln = line(pos, center).stroke("gray").strokedasharray([10]).strokewidth(2)
+    let ln = line(pos, center).stroke("gray").strokedasharray([0.2]).strokewidth(0.026).vectoreffect("none")
     let center_dir = pos.sub(center).angle()
     let end_pos = pos.add(Vdir(center_dir + Math.PI / 2).scale(E))
-    let E_vec = arrow1(pos, end_pos, 0.05).fill("green").stroke("green").strokewidth(2)
+    let E_vec = arrow1(pos, end_pos, 0.05).fill("green").stroke("green").strokewidth(0.026).vectoreffect("none")
 
     draw(outline, stat, ln, charge1, charge2, E_vec, leg)
 }

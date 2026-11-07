@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, curve, line, xyaxes, xycorneraxes, plotv, plotf, xtickmark, bar, ytickmark_empty, text, TAG
 } from "diagramatics";
 
@@ -11,7 +10,16 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -19,8 +27,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
 }
 window.addEventListener('resize', resizeCanvas);
 
@@ -42,7 +52,7 @@ function worldToScreen(x, y) {
     let yOffset = (htmlcanvas.height - (world.top - world.bottom) * currentScale) / 2
 
     return {
-        x: xOffset + 9 + (x - world.left) * currentScale,  //+9 is needed, somehow the two canvases are offset...
+        x: xOffset + (x - world.left) * currentScale,  //+9 is needed, somehow the two canvases are offset...
         y: yOffset + (world.top - y) * currentScale
     }
 }
@@ -89,8 +99,8 @@ const V = 17
 const center = V2(-6, -0.3)
 const res = 20
 
-let div1 = line(V2(0.5, 4.5), V2(0.5, -4.5))
-let div2 = line(V2(0.5, -1), V2(8, -1))
+let div1 = line(V2(0.5, 4.5), V2(0.5, -4.5)).vectoreffect("none").strokewidth(0.015)
+let div2 = line(V2(0.5, -1), V2(8, -1)).vectoreffect("none").strokewidth(0.015)
 
 let h_t = text("h (m)").fontfamily("Math").fontscale(0.017).position(V2(-2.8, 4))
 let n_t2 = text("n").fontfamily("Math").fontscale(0.017).position(V2(0.1, -4.25))
@@ -332,8 +342,8 @@ function update(time) {
         drawCircle(V2(p.x + depth * (1 - zNormalized), p.y + depth * (1 - zNormalized)), r * currentScale, { opacity: op })
     }
 
-    const delta = 0.3
-    let container = rectangle(width + delta, height + delta).position(center).strokewidth(3).stroke("gray")
+    const delta = 0.1
+    let container = rectangle(width + delta, height + delta).position(center).strokewidth(0.039).vectoreffect("none").stroke("gray")
     const dP = V2(depth, depth)
     let outer = diagram_combine(
         curve([
@@ -344,7 +354,7 @@ function update(time) {
             container.get_anchor("bottom-right")
         ]),
         line(container.get_anchor("top-right"), container.get_anchor("top-right").add(dP))
-    ).stroke("gray").strokewidth(2)
+    ).stroke("gray").strokewidth(0.026).vectoreffect("none")
     let inner = diagram_combine(
         curve([
             container.get_anchor("top-left").add(dP),
@@ -352,7 +362,7 @@ function update(time) {
             container.get_anchor("bottom-right").add(dP)
         ]),
         line(container.get_anchor("bottom-left"), container.get_anchor("bottom-left").add(dP))
-    ).stroke("gray").strokewidth(1.1)
+    ).stroke("gray").strokewidth(0.0143).vectoreffect("none")
 
     let bar_opt = {
         gap: 0,
@@ -371,9 +381,9 @@ function update(time) {
     let C = N * (1 - decayFactor)
 
     let distribution_plot = bar.plot(counts, bar_opt).stroke("blue").fill("lightblue").opacity(0.5)
-    let dist_ax = xycorneraxes(ax_opt).stroke("black").fill("black").textfill("black").fontscale(0.017).fontfamily("Math")
+    let dist_ax = xycorneraxes(ax_opt).stroke("black").fill("black").textfill("black").fontscale(0.017).fontfamily("Math").vectoreffect("none").strokewidth(0.015)
         .apply_to_tagged_recursive(TAG.GRAPH_TICK_LABEL, d => d.translate(V2(-0.2, 0.25)))
-    let distribution_theo_plot = plotf(x => C * Math.exp(-m * g * (x * sliceHeight) / (k * T)), ax_opt).stroke("gray").strokewidth(2).strokedasharray([10])
+    let distribution_theo_plot = plotf(x => C * Math.exp(-m * g * (x * sliceHeight) / (k * T)), ax_opt).stroke("gray").strokewidth(0.026).vectoreffect("none").strokedasharray([0.25])
 
     let plot_combined = diagram_combine(distribution_plot, dist_ax, distribution_theo_plot).move_origin("bottom-center").hflip().rotate(-Math.PI / 2).position(center.add(V2(width, 0)))
 
@@ -382,8 +392,8 @@ function update(time) {
         bbox: [V2(1.3, -0.5), V2(7, 3.5)],
         yrange: [0, Math.max(500, Math.max(...velocity_histogram))],
     }
-    let hist_plot = bar.plot(velocity_histogram, bar_opt2).stroke("blue").fill("lightblue").opacity(0.5)
-    let hist_ax = bar.yaxes(velocity_histogram, bar_opt2).stroke("black").fontscale(0.017).fontfamily("Math").textfill("black")
+    let hist_plot = bar.plot(velocity_histogram, bar_opt2).stroke("blue").fill("lightblue").opacity(0.5).vectoreffect("none").strokewidth(0.015)
+    let hist_ax = bar.yaxes(velocity_histogram, bar_opt2).stroke("black").fontscale(0.017).fontfamily("Math").textfill("black").vectoreffect("none").strokewidth(0.015)
 
     function maxwellBoltzmann(x) {
         const v = x * bin_width
@@ -398,7 +408,7 @@ function update(time) {
         bbox: bar_opt2.bbox,
         yrange: bar_opt2.yrange,
         xrange: [0, velocity_histogram.length]
-    }).stroke("gray").strokewidth(2).strokedasharray([10])
+    }).stroke("gray").strokewidth(0.026).vectoreffect("none").strokedasharray([0.25])
 
     draw(outline, stat, container, outer, inner, plot_combined, hist_plot, hist_ax, theo_dist)
     requestAnimationFrame(update)

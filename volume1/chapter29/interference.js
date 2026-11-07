@@ -1,9 +1,8 @@
 import {
     rectangle,
-    draw_to_svg,
+    draw_to_svg_element,
     diagram_combine,
     Interactive,
-    draw_to_svg_element,
     handle_tex_in_svg, V2, line, xyaxes, circle, axes_transform, arrow1, text, Vdir, mod, annotation, to_radian, plotf,
     square
 } from "diagramatics";
@@ -12,7 +11,16 @@ let canvas = document.getElementById("canvas");
 let control = document.getElementById("control");
 
 let draw = (...diagrams) => {
-    draw_to_svg(canvas, diagram_combine(...diagrams));
+    draw_to_svg_element(canvas, diagram_combine(...diagrams), {
+        set_html_attribute: false,
+        padding: 0,
+    });
+    
+    const innerSvg = canvas.querySelector('svg[meta="diagram_svg"]');
+    if (innerSvg) {
+        innerSvg.setAttribute('viewBox', `${world.left} ${-world.top} ${world.right - world.left} ${world.top - world.bottom}`);
+        innerSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    }
 };
 
 //HTML CANVAS
@@ -20,8 +28,10 @@ const htmlcanvas = document.getElementById("htmlcanvas");
 const ctx = htmlcanvas.getContext("2d");
 
 function resizeCanvas() {
-    htmlcanvas.width = htmlcanvas.clientWidth;
-    htmlcanvas.height = htmlcanvas.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    htmlcanvas.width = htmlcanvas.clientWidth * dpr;
+    htmlcanvas.height = htmlcanvas.clientHeight * dpr;
     redraw()
 }
 window.addEventListener('resize', resizeCanvas);
@@ -109,9 +119,9 @@ let outline = rectangle(16, 9).strokewidth(0);
 
 let ch = circle(0.15).strokewidth(0).fill("lightred").position(V2(-6.9, 4))
 let ch_t = text("Positive electric charge").fontscale(0.017).fontfamily("Math").position(V2(-5.2, 4))
-let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(2).position(V2(-7.15, 3.1))
+let evec = arrow1(V2(0, 0), V2(0.5, 0), 0.05).fill("red").stroke("red").strokewidth(0.026).vectoreffect("none").position(V2(-7.15, 3.1))
 let evec_t = text("Value of the electric field at a point").fontscale(0.017).fontfamily("Math").position(V2(-4.4, 3.1))
-let inte = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(2).position(V2(-7.15, 2.2))
+let inte = line(V2(0, 0), V2(0.5, 0)).stroke("blue").strokewidth(0.026).vectoreffect("none").position(V2(-7.15, 2.2))
 let inte_t = text("Intensity pattern I(θ)").fontscale(0.017).fontfamily("Math").position(V2(-5.15, 2.2))
 
 let warning = diagram_combine(
@@ -122,7 +132,7 @@ let warning = diagram_combine(
     text("of sampling problems. More below...").fontscale(0.017).fontfamily("Math").position(V2(5.11, 2.1)),
 ).translate(V2(0.3, -0.7))
 
-let stat = diagram_combine(line(V2(2.8, 4.5), V2(2.8, -4.5)),
+let stat = diagram_combine(line(V2(2.8, 4.5), V2(2.8, -4.5)).vectoreffect("none").strokewidth(0.015),
     text("I").fontscale(0.017).fontfamily("Math").position(V2(2.6, 0.3)),
     text("θ").fontscale(0.017).fontfamily("Math").position(V2(-0.1, -4.2)),
     warning
@@ -232,8 +242,8 @@ int.draw_function = (inp) => {
             return I / max_possible_I
         }
 
-        let p_line = plotf(I_func, plot_axopt).stroke("blue").strokewidth(2)
-        let p_axes = xyaxes(plot_axopt).stroke("gray").fontfamily("Math").fontscale(0.017).stroke("black").apply(mod.subdivide(30))
+        let p_line = plotf(I_func, plot_axopt).stroke("blue").strokewidth(0.026).vectoreffect("none")
+        let p_axes = xyaxes(plot_axopt).stroke("gray").fontfamily("Math").fontscale(0.017).stroke("black").apply(mod.subdivide(30)).vectoreffect("none").strokewidth(0.015)
 
         let R_wall = ax1_opt.xrange[1]
         let I_scale = 30
